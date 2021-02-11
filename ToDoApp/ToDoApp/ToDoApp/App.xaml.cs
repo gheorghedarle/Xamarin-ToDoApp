@@ -1,7 +1,5 @@
-﻿using System;
-using ToDoApp.Views;
+﻿using ToDoApp.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ToDoApp
 {
@@ -11,6 +9,7 @@ namespace ToDoApp
         {
             InitializeComponent();
 
+            Sharpnado.HorizontalListView.Initializer.Initialize(true, false);
             MainPage = new NavigationPage(new WelcomePage());
         }
 

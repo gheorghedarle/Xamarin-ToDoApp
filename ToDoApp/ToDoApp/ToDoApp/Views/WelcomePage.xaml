@@ -1,13 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sho="http://sharpnado.com"
+             xmlns:viewModels="clr-namespace:ToDoApp.ViewModels"
              x:Class="ToDoApp.Views.WelcomePage"
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.BindingContext>
+        <viewModels:WelcomePageViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand"/>
+            <sho:HorizontalListView
+                CollectionPadding="10,30,10,75"
+                CurrentIndex="1"
+                ItemsSource="{Binding TaskList}">
+                <sho:HorizontalListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout BackgroundColor="Red">
+                            <Label Text="This is a task"></Label>
+                        </StackLayout>
+                    </DataTemplate>
+                </sho:HorizontalListView.ItemTemplate>
+            </sho:HorizontalListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
