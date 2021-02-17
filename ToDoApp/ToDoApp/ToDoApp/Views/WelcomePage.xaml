@@ -9,22 +9,42 @@
         <viewModels:WelcomePageViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"/>
+        <Grid>
             <sho:HorizontalListView
-                CollectionPadding="10,30,10,75"
-                CurrentIndex="1"
-                ItemsSource="{Binding TaskList}">
+                ItemHeight="50"
+                ListLayout="Vertical"
+                CollectionPadding="16"
+                ItemSpacing="8"
+                ItemsSource="{Binding TaskList}"
+                CurrentIndex="0"
+                EnableDragAndDrop="True"
+                iOSDragAndDropOnPanGesture="True"
+                TapCommand="{Binding TapCommand}">
                 <sho:HorizontalListView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout BackgroundColor="Red">
-                            <Label Text="This is a task"></Label>
-                        </StackLayout>
+                        <sho:DraggableViewCell 
+                            x:Name="DraggableViewCell">
+                            <ContentView
+                                BackgroundColor="#cacaca">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Ellipse
+                                        Stroke="Red"
+                                        StrokeThickness="4"
+                                        WidthRequest="25"
+                                        HeightRequest="25"
+                                        Aspect="Uniform"
+                                        Margin="16, 0, 0, 0"></Ellipse>
+                                    <Label 
+                                        Text="{Binding .}"
+                                        Margin="8, 0, 8, 0"
+                                        VerticalOptions="Center"></Label>
+                                </StackLayout>
+                            </ContentView>
+                        </sho:DraggableViewCell>
                     </DataTemplate>
                 </sho:HorizontalListView.ItemTemplate>
             </sho:HorizontalListView>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
