@@ -9,34 +9,43 @@
         <viewModels:WelcomePageViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid>
+        <Grid
+            RowDefinitions="Auto, *">
+            <Label
+                Grid.Row="0"
+                Text="Today"
+                FontSize="24"
+                FontFamily="CairoBold"
+                Margin="16, 0, 0, 0"></Label>
             <sho:HorizontalListView
+                Grid.Row="1"
                 ItemHeight="50"
                 ListLayout="Vertical"
-                CollectionPadding="16"
+                CollectionPadding="16, 0, 16, 0"
                 ItemSpacing="8"
                 ItemsSource="{Binding TaskList}"
                 CurrentIndex="0"
                 EnableDragAndDrop="True"
-                iOSDragAndDropOnPanGesture="True"
-                TapCommand="{Binding TapCommand}">
+                iOSDragAndDropOnPanGesture="True">
                 <sho:HorizontalListView.ItemTemplate>
                     <DataTemplate>
                         <sho:DraggableViewCell 
                             x:Name="DraggableViewCell">
                             <ContentView
-                                BackgroundColor="#cacaca">
+                                BackgroundColor="#f5f5f5">
                                 <StackLayout
                                     Orientation="Horizontal">
-                                    <Ellipse
-                                        Stroke="Red"
-                                        StrokeThickness="4"
-                                        WidthRequest="25"
-                                        HeightRequest="25"
-                                        Aspect="Uniform"
-                                        Margin="16, 0, 0, 0"></Ellipse>
+                                    <Label
+                                        Text="&#xf111;"
+                                        FontSize="24"
+                                        FontFamily="FontAwesome"
+                                        TextColor="#cacaca"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center"
+                                        Margin="16, 0, 0, 0"></Label>
                                     <Label 
                                         Text="{Binding .}"
+                                        FontFamily="CairoRegular"
                                         Margin="8, 0, 8, 0"
                                         VerticalOptions="Center"></Label>
                                 </StackLayout>
