@@ -33,22 +33,41 @@
                             x:Name="DraggableViewCell">
                             <ContentView
                                 BackgroundColor="#f5f5f5">
-                                <StackLayout
-                                    Orientation="Horizontal">
-                                    <Label
-                                        Text="&#xf111;"
-                                        FontSize="24"
-                                        FontFamily="FontAwesome"
-                                        TextColor="#cacaca"
-                                        HorizontalOptions="Start"
-                                        VerticalOptions="Center"
-                                        Margin="16, 0, 0, 0"></Label>
-                                    <Label 
-                                        Text="{Binding .}"
-                                        FontFamily="CairoRegular"
-                                        Margin="8, 0, 8, 0"
-                                        VerticalOptions="Center"></Label>
-                                </StackLayout>
+                                <SwipeView Threshold="50">
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItemView 
+                                                Command="{Binding CheckAnswerCommand}">
+                                                <StackLayout 
+                                                    BackgroundColor="LightPink">
+                                                    <Label
+                                                        Text="&#xf2ed;"
+                                                        FontSize="24"
+                                                        FontFamily="FontAwesome"
+                                                        TextColor="Red"
+                                                        HorizontalOptions="Center"
+                                                        VerticalOptions="CenterAndExpand"></Label>
+                                                </StackLayout>
+                                            </SwipeItemView>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <StackLayout
+                                        Orientation="Horizontal">
+                                        <Label
+                                            Text="&#xf111;"
+                                            FontSize="24"
+                                            FontFamily="FontAwesome"
+                                            TextColor="#cacaca"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                            Margin="16, 0, 0, 0"></Label>
+                                        <Label 
+                                            Text="{Binding .}"
+                                            FontFamily="CairoRegular"
+                                            Margin="8, 0, 8, 0"
+                                            VerticalOptions="Center"></Label>
+                                    </StackLayout>
+                                </SwipeView>
                             </ContentView>
                         </sho:DraggableViewCell>
                     </DataTemplate>
