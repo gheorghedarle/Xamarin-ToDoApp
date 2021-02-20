@@ -21,12 +21,13 @@
                 Grid.Row="1"
                 ItemHeight="50"
                 ListLayout="Vertical"
-                CollectionPadding="16, 0, 16, 0"
+                CollectionPadding="16, 8, 16, 16"
                 ItemSpacing="8"
                 ItemsSource="{Binding TaskList}"
                 CurrentIndex="0"
                 EnableDragAndDrop="True"
-                iOSDragAndDropOnPanGesture="True">
+                iOSDragAndDropOnPanGesture="True"
+                VerticalOptions="FillAndExpand">
                 <sho:HorizontalListView.ItemTemplate>
                     <DataTemplate>
                         <sho:DraggableViewCell 
@@ -73,6 +74,23 @@
                     </DataTemplate>
                 </sho:HorizontalListView.ItemTemplate>
             </sho:HorizontalListView>
+            <Frame 
+                Grid.Row="1" 
+                BackgroundColor="#007965"
+                VerticalOptions="End" 
+                HorizontalOptions="End" 
+                CornerRadius="18" 
+                TranslationY="-30" 
+                TranslationX="-30"
+                Padding="18, 16, 18, 16">
+                <Label
+                    Text="&#xf067;"
+                    FontSize="30"
+                    FontFamily="FontAwesome"
+                    TextColor="#00af91"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"></Label>
+            </Frame>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
