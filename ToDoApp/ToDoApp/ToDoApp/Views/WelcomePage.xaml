@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:sho="http://sharpnado.com"
              xmlns:viewModels="clr-namespace:ToDoApp.ViewModels"
              x:Class="ToDoApp.Views.WelcomePage"
              NavigationPage.HasNavigationBar="False">
@@ -10,87 +9,11 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid
-            RowDefinitions="Auto, *">
-            <Label
-                Grid.Row="0"
-                Text="Today"
-                FontSize="24"
-                FontFamily="CairoBold"
-                Margin="16, 0, 0, 0"></Label>
-            <sho:HorizontalListView
+            RowDefinitions="*, Auto">
+            <Button 
                 Grid.Row="1"
-                ItemHeight="50"
-                ListLayout="Vertical"
-                CollectionPadding="16, 8, 16, 16"
-                ItemSpacing="8"
-                ItemsSource="{Binding TaskList}"
-                CurrentIndex="0"
-                EnableDragAndDrop="True"
-                iOSDragAndDropOnPanGesture="True"
-                VerticalOptions="FillAndExpand">
-                <sho:HorizontalListView.ItemTemplate>
-                    <DataTemplate>
-                        <sho:DraggableViewCell 
-                            x:Name="DraggableViewCell">
-                            <ContentView
-                                BackgroundColor="#f5f5f5">
-                                <SwipeView Threshold="50">
-                                    <SwipeView.RightItems>
-                                        <SwipeItems>
-                                            <SwipeItemView 
-                                                Command="{Binding CheckAnswerCommand}">
-                                                <StackLayout 
-                                                    BackgroundColor="LightPink">
-                                                    <Label
-                                                        Text="&#xf2ed;"
-                                                        FontSize="24"
-                                                        FontFamily="FontAwesome"
-                                                        TextColor="Red"
-                                                        HorizontalOptions="Center"
-                                                        VerticalOptions="CenterAndExpand"></Label>
-                                                </StackLayout>
-                                            </SwipeItemView>
-                                        </SwipeItems>
-                                    </SwipeView.RightItems>
-                                    <StackLayout
-                                        Orientation="Horizontal">
-                                        <Label
-                                            Text="&#xf111;"
-                                            FontSize="24"
-                                            FontFamily="FontAwesome"
-                                            TextColor="#cacaca"
-                                            HorizontalOptions="Start"
-                                            VerticalOptions="Center"
-                                            Margin="16, 0, 0, 0"></Label>
-                                        <Label 
-                                            Text="{Binding .}"
-                                            FontFamily="CairoRegular"
-                                            Margin="8, 0, 8, 0"
-                                            VerticalOptions="Center"></Label>
-                                    </StackLayout>
-                                </SwipeView>
-                            </ContentView>
-                        </sho:DraggableViewCell>
-                    </DataTemplate>
-                </sho:HorizontalListView.ItemTemplate>
-            </sho:HorizontalListView>
-            <Frame 
-                Grid.Row="1" 
-                BackgroundColor="#007965"
-                VerticalOptions="End" 
-                HorizontalOptions="End" 
-                CornerRadius="18" 
-                TranslationY="-30" 
-                TranslationX="-30"
-                Padding="18, 16, 18, 16">
-                <Label
-                    Text="&#xf067;"
-                    FontSize="30"
-                    FontFamily="FontAwesome"
-                    TextColor="#00af91"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"></Label>
-            </Frame>
+                Text="Start"
+                Command="{Binding StartCommand}"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
