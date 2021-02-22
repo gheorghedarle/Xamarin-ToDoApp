@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sho="http://sharpnado.com"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:viewModels="clr-namespace:ToDoApp.ViewModels"
              x:Class="ToDoApp.Views.TasksPage"
              NavigationPage.HasNavigationBar="False">
@@ -54,7 +55,7 @@
                                     <StackLayout
                                         Orientation="Horizontal">
                                         <Label
-                                            Text="&#xf111;"
+                                            Text="{Binding IsDone, Converter={StaticResource DoneIconConverter}}"
                                             FontSize="24"
                                             FontFamily="FontAwesome"
                                             TextColor="#cacaca"
@@ -62,10 +63,31 @@
                                             VerticalOptions="Center"
                                             Margin="16, 0, 0, 0"></Label>
                                         <Label 
-                                            Text="{Binding .}"
+                                            Text="{Binding Title}"
                                             FontFamily="CairoRegular"
                                             Margin="8, 0, 8, 0"
-                                            VerticalOptions="Center"></Label>
+                                            VerticalOptions="Center">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup>
+                                                    <VisualState x:Name="notSelected">
+                                                        <VisualState.StateTriggers>
+                                                            <StateTrigger IsActive="{Binding IsDone}"></StateTrigger>
+                                                        </VisualState.StateTriggers>
+                                                        <VisualState.Setters>
+                                                            <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                    <!--<VisualState x:Name="selected">
+                                                        <VisualState.StateTriggers>
+                                                            <StateTrigger IsActive="{Binding IsDone, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                        </VisualState.StateTriggers>
+                                                        <VisualState.Setters>
+                                                            <Setter Property="TextDecorations" Value="None"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>-->
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                        </Label>
                                     </StackLayout>
                                 </SwipeView>
                             </ContentView>
