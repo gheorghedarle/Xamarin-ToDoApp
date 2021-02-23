@@ -21,9 +21,10 @@
                 Grid.Row="1"
                 ItemHeight="50"
                 ListLayout="Vertical"
-                CollectionPadding="16, 8, 16, 16"
+                CollectionPadding="16, 0, 16, 16"
                 ItemSpacing="8"
                 ItemsSource="{Binding TaskList}"
+                TapCommand="{Binding CheckTaskCommand}"
                 CurrentIndex="0"
                 EnableDragAndDrop="True"
                 iOSDragAndDropOnPanGesture="True"
@@ -32,13 +33,21 @@
                     <DataTemplate>
                         <sho:DraggableViewCell 
                             x:Name="DraggableViewCell">
-                            <ContentView
-                                BackgroundColor="#f5f5f5">
-                                <SwipeView Threshold="50">
+                            <Frame
+                                Padding="0"
+                                HasShadow="False">
+                                <Frame.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
+                                        TargetType="Frame"
+                                        Value="True">
+                                        <Setter Property="BackgroundColor" Value="#f5f5f5"></Setter>
+                                    </DataTrigger>
+                                </Frame.Triggers>
+                                <!--<SwipeView Threshold="50">
                                     <SwipeView.RightItems>
                                         <SwipeItems>
-                                            <SwipeItemView 
-                                                Command="{Binding CheckAnswerCommand}">
+                                            <SwipeItemView>
                                                 <StackLayout 
                                                     BackgroundColor="LightPink">
                                                     <Label
@@ -51,46 +60,52 @@
                                                 </StackLayout>
                                             </SwipeItemView>
                                         </SwipeItems>
-                                    </SwipeView.RightItems>
-                                    <StackLayout
-                                        Orientation="Horizontal">
-                                        <Label
-                                            Text="{Binding IsDone, Converter={StaticResource DoneIconConverter}}"
-                                            FontSize="24"
-                                            FontFamily="FontAwesome"
-                                            TextColor="#cacaca"
-                                            HorizontalOptions="Start"
-                                            VerticalOptions="Center"
-                                            Margin="16, 0, 0, 0"></Label>
-                                        <Label 
+                                    </SwipeView.RightItems>-->
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Label
+                                        Text="{Binding IsDone, Converter={StaticResource DoneIconConverter}}"
+                                        FontSize="24"
+                                        FontFamily="FontAwesome"
+                                        TextColor="#222222"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center"
+                                        Margin="16, 0, 0, 0">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup>
+                                                <VisualState x:Name="done">
+                                                    <VisualState.StateTriggers>
+                                                        <StateTrigger IsActive="{Binding IsDone}"></StateTrigger>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="TextColor" Value="#cacaca"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                    </Label>
+                                    <Label 
                                             Text="{Binding Title}"
                                             FontFamily="CairoRegular"
                                             Margin="8, 0, 8, 0"
                                             VerticalOptions="Center">
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup>
-                                                    <VisualState x:Name="notSelected">
-                                                        <VisualState.StateTriggers>
-                                                            <StateTrigger IsActive="{Binding IsDone}"></StateTrigger>
-                                                        </VisualState.StateTriggers>
-                                                        <VisualState.Setters>
-                                                            <Setter Property="TextDecorations" Value="Strikethrough"/>
-                                                        </VisualState.Setters>
-                                                    </VisualState>
-                                                    <!--<VisualState x:Name="selected">
-                                                        <VisualState.StateTriggers>
-                                                            <StateTrigger IsActive="{Binding IsDone, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
-                                                        </VisualState.StateTriggers>
-                                                        <VisualState.Setters>
-                                                            <Setter Property="TextDecorations" Value="None"/>
-                                                        </VisualState.Setters>
-                                                    </VisualState>-->
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                        </Label>
-                                    </StackLayout>
-                                </SwipeView>
-                            </ContentView>
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup>
+                                                <VisualState x:Name="done">
+                                                    <VisualState.StateTriggers>
+                                                        <StateTrigger IsActive="{Binding IsDone}"></StateTrigger>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                                        <Setter Property="TextColor" Value="#cacaca"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                    </Label>
+                                </StackLayout>
+                                <!--</SwipeView>-->
+                            </Frame>
                         </sho:DraggableViewCell>
                     </DataTemplate>
                 </sho:HorizontalListView.ItemTemplate>

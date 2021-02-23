@@ -1,6 +1,6 @@
 ﻿namespace ToDoApp.Models
 {
-    public class TasksModel
+    public class TaskModel: BaseModel
     {
         public string Title { get; set; }
         public string Description { get; set; }
