@@ -35,6 +35,7 @@
                             x:Name="DraggableViewCell">
                             <Frame
                                 Padding="0"
+                                Margin="8, 0, 8, 0"
                                 HasShadow="False">
                                 <Frame.Triggers>
                                     <DataTrigger
@@ -67,12 +68,19 @@
                                         Text="{Binding IsDone, Converter={StaticResource DoneIconConverter}}"
                                         FontSize="24"
                                         FontFamily="FontAwesome"
-                                        TextColor="#222222"
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center"
                                         Margin="16, 0, 0, 0">
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroup>
+                                                <VisualState x:Name="normal">
+                                                    <VisualState.StateTriggers>
+                                                        <StateTrigger IsActive="{Binding IsDone, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="TextColor" Value="#222222"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
                                                 <VisualState x:Name="done">
                                                     <VisualState.StateTriggers>
                                                         <StateTrigger IsActive="{Binding IsDone}"></StateTrigger>
@@ -85,18 +93,25 @@
                                         </VisualStateManager.VisualStateGroups>
                                     </Label>
                                     <Label 
-                                            Text="{Binding Title}"
-                                            FontFamily="CairoRegular"
-                                            Margin="8, 0, 8, 0"
-                                            VerticalOptions="Center">
+                                        Text="{Binding Title}"
+                                        FontFamily="CairoRegular"
+                                        Margin="8, 0, 8, 0"
+                                        VerticalOptions="Center">
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroup>
+                                                <VisualState x:Name="normal">
+                                                    <VisualState.StateTriggers>
+                                                        <StateTrigger IsActive="{Binding IsDone, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="TextColor" Value="#222222"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
                                                 <VisualState x:Name="done">
                                                     <VisualState.StateTriggers>
                                                         <StateTrigger IsActive="{Binding IsDone}"></StateTrigger>
                                                     </VisualState.StateTriggers>
                                                     <VisualState.Setters>
-                                                        <Setter Property="TextDecorations" Value="Strikethrough"/>
                                                         <Setter Property="TextColor" Value="#cacaca"/>
                                                     </VisualState.Setters>
                                                 </VisualState>

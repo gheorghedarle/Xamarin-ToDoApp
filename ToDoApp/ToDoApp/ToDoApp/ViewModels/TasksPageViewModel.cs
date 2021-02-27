@@ -30,7 +30,7 @@ namespace ToDoApp.ViewModels
 
         private void CheckTaskCommandHandler(TaskModel task)
         {
-            task.IsDone = true;
+            task.IsDone = !task.IsDone;
         }
     }
 }
