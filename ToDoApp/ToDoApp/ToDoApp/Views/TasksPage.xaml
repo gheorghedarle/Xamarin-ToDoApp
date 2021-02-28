@@ -10,15 +10,21 @@
         <viewModels:TasksPageViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto, *">
+        <Grid RowDefinitions="Auto, Auto, *">
             <Label
                 Grid.Row="0"
-                Text="Today"
+                Text="Hello John!"
                 FontSize="24"
                 FontFamily="CairoBold"
+                Margin="16, 4, 0, 0"></Label>
+            <Label
+                Grid.Row="1"
+                Text="Tasks"
+                FontSize="20"
+                FontFamily="CairoSemiBold"
                 Margin="16, 0, 0, 0"></Label>
             <sho:HorizontalListView
-                Grid.Row="1"
+                Grid.Row="2"
                 ItemHeight="50"
                 ListLayout="Vertical"
                 CollectionPadding="16, 0, 16, 16"
@@ -126,7 +132,7 @@
                 </sho:HorizontalListView.ItemTemplate>
             </sho:HorizontalListView>
             <Frame 
-                Grid.Row="1" 
+                Grid.Row="2" 
                 BackgroundColor="#007965"
                 VerticalOptions="End" 
                 HorizontalOptions="End" 
