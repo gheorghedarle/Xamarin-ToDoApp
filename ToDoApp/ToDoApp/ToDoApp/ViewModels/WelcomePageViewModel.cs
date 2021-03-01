@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using ToDoApp.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels
 {
     public class WelcomePageViewModel: BaseViewModel
     {
+        public string Name { get; set; }
+
         public ICommand StartCommand { get; set; }
 
         public WelcomePageViewModel()
@@ -18,6 +18,7 @@ namespace ToDoApp.ViewModels
 
         private async void StartCommandHandler()
         {
+            Preferences.Set("Name", Name);
             await Application.Current.MainPage.Navigation.PushAsync(new TasksPage());
         }
     }

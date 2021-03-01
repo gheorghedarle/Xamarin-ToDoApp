@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using ToDoApp.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels
@@ -11,6 +12,8 @@ namespace ToDoApp.ViewModels
     public class TasksPageViewModel: BaseViewModel
     {
         public ObservableCollection<TaskModel> TaskList { get; set; }
+
+        public string Name { get; set; }
 
         public ICommand CheckTaskCommand { get; set; }
 
@@ -26,11 +29,18 @@ namespace ToDoApp.ViewModels
                 new TaskModel() { Title = "Title 4", Description = "Description", IsDone = false },
                 new TaskModel() { Title = "Title 5", Description = "Description", IsDone = true },
             };
+
+            SetUserName();
         }
 
         private void CheckTaskCommandHandler(TaskModel task)
         {
             task.IsDone = !task.IsDone;
+        }
+
+        private void SetUserName()
+        {
+            Name = Preferences.Get("Name", "");
         }
     }
 }

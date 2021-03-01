@@ -13,7 +13,7 @@
         <Grid RowDefinitions="Auto, Auto, *">
             <Label
                 Grid.Row="0"
-                Text="Hello John!"
+                Text="{Binding Name, StringFormat='Hello {0}!'}"
                 FontSize="24"
                 FontFamily="CairoBold"
                 Margin="16, 4, 0, 0"></Label>
