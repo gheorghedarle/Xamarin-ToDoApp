@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using ToDoApp.Models;
+using ToDoApp.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -11,6 +12,7 @@ namespace ToDoApp.ViewModels
 {
     public class TasksPageViewModel: BaseViewModel
     {
+        public ObservableCollection<MonthModel> MonthList { get; set; }
         public ObservableCollection<TaskModel> TaskList { get; set; }
 
         public string Name { get; set; }
@@ -29,6 +31,8 @@ namespace ToDoApp.ViewModels
                 new TaskModel() { Title = "Title 4", Description = "Description", IsDone = false },
                 new TaskModel() { Title = "Title 5", Description = "Description", IsDone = true },
             };
+
+            MonthList = new ObservableCollection<MonthModel>(DateService.GetMonthList());
 
             SetUserName();
         }
