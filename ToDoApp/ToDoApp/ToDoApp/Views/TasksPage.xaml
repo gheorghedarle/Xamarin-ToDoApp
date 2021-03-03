@@ -10,7 +10,7 @@
         <viewModels:TasksPageViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto, Auto, Auto, *">
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, *">
             <Label
                 Grid.Row="0"
                 Text="{Binding Name, StringFormat='Hello {0}!'}"
@@ -56,14 +56,41 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Label
+            <CollectionView
                 Grid.Row="2"
+                ItemsSource="{Binding MonthList}"
+                Margin="16, 0, 0, 0"
+                HeightRequest="48">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="6"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Padding="4"
+                            CornerRadius="16"
+                            Margin="8, 0, 8, 0"
+                            HasShadow="False"
+                            BackgroundColor="#007965">
+                            <Label
+                                Text="19"
+                                FontSize="28"
+                                FontFamily="CairoRegular"
+                                Margin="-2, -4, 0, 0"
+                                TextColor="#00af91"
+                                HorizontalOptions="Center"></Label>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label
+                Grid.Row="3"
                 Text="Tasks"
                 FontSize="20"
                 FontFamily="CairoSemiBold"
                 Margin="16, 0, 0, 0"></Label>
             <sho:HorizontalListView
-                Grid.Row="3"
+                Grid.Row="4"
                 ItemHeight="50"
                 ListLayout="Vertical"
                 CollectionPadding="16, 0, 16, 16"
@@ -171,7 +198,7 @@
                 </sho:HorizontalListView.ItemTemplate>
             </sho:HorizontalListView>
             <Frame 
-                Grid.Row="3" 
+                Grid.Row="4" 
                 BackgroundColor="#007965"
                 VerticalOptions="End" 
                 HorizontalOptions="End" 
