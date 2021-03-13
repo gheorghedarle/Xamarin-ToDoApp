@@ -58,8 +58,8 @@
             </CollectionView>
             <CollectionView
                 Grid.Row="2"
-                ItemsSource="{Binding MonthList}"
-                Margin="16, 0, 0, 0"
+                ItemsSource="{Binding DaysList}"
+                Margin="16, 0, 8, 0"
                 HeightRequest="48">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal" ItemSpacing="6"/>
@@ -71,14 +71,16 @@
                             CornerRadius="16"
                             Margin="8, 0, 8, 0"
                             HasShadow="False"
-                            BackgroundColor="#007965">
+                            BackgroundColor="#007965"
+                            WidthRequest="36">
                             <Label
-                                Text="19"
+                                Text="{Binding Day}"
                                 FontSize="28"
                                 FontFamily="CairoRegular"
+                                CharacterSpacing="-1"
                                 Margin="-2, -4, 0, 0"
-                                TextColor="#00af91"
-                                HorizontalOptions="Center"></Label>
+                                TextColor="#FFFFFF"
+                                HorizontalTextAlignment="Center"></Label>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

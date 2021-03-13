@@ -22,5 +22,19 @@ namespace ToDoApp.Services
             monthList[DateTime.Now.Month - 1].IsActive = true;
             return monthList;
         }
+
+        public static List<DayModel> GetDayList()
+        {
+            List<DayModel> dayList = new List<DayModel>();
+            for(var i=1;i<=DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);i++)
+            {
+                dayList.Add(new DayModel()
+                {
+                    Day = i,
+                    IsActive = false
+                });
+            }
+            return dayList;
+        }
     }
 }

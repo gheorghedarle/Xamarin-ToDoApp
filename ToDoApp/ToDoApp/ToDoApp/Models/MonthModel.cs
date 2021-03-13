@@ -9,4 +9,10 @@ namespace ToDoApp.Models
         public bool IsActive { get; set; }
         public string Name { get; set; }
     }
+
+    public class DayModel: BaseModel
+    {
+        public bool IsActive { get; set; }
+        public int Day { get; set; }
+    }
 }

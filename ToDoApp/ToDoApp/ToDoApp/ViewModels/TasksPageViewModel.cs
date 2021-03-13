@@ -13,6 +13,7 @@ namespace ToDoApp.ViewModels
     public class TasksPageViewModel: BaseViewModel
     {
         public ObservableCollection<MonthModel> MonthList { get; set; }
+        public ObservableCollection<DayModel> DaysList { get; set; }
         public ObservableCollection<TaskModel> TaskList { get; set; }
 
         public string Name { get; set; }
@@ -33,6 +34,7 @@ namespace ToDoApp.ViewModels
             };
 
             MonthList = new ObservableCollection<MonthModel>(DateService.GetMonthList());
+            DaysList = new ObservableCollection<DayModel>(DateService.GetDayList());
 
             SetUserName();
         }
