@@ -72,15 +72,27 @@
                             Margin="8, 0, 8, 0"
                             HasShadow="False"
                             BackgroundColor="#007965"
-                            WidthRequest="36">
-                            <Label
-                                Text="{Binding Day}"
-                                FontSize="28"
-                                FontFamily="CairoRegular"
-                                CharacterSpacing="-1"
-                                Margin="-2, -4, 0, 0"
-                                TextColor="#FFFFFF"
-                                HorizontalTextAlignment="Center"></Label>
+                            WidthRequest="48">
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0">
+                                <Label
+                                    Text="Sun"
+                                    FontSize="12"
+                                    FontFamily="CairoRegular"
+                                    CharacterSpacing="-1"
+                                    Margin="-2, -4, 0, 0"
+                                    TextColor="#FFFFFF"
+                                    HorizontalTextAlignment="Center"></Label>
+                                <Label
+                                    Text="{Binding Day}"
+                                    FontSize="24"
+                                    FontFamily="CairoRegular"
+                                    CharacterSpacing="-1"
+                                    Margin="-2, -4, 0, 0"
+                                    TextColor="#FFFFFF"
+                                    HorizontalTextAlignment="Center"></Label>
+                            </StackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -119,23 +131,6 @@
                                         <Setter Property="BackgroundColor" Value="#f5f5f5"></Setter>
                                     </DataTrigger>
                                 </Frame.Triggers>
-                                <!--<SwipeView Threshold="50">
-                                    <SwipeView.RightItems>
-                                        <SwipeItems>
-                                            <SwipeItemView>
-                                                <StackLayout 
-                                                    BackgroundColor="LightPink">
-                                                    <Label
-                                                        Text="&#xf2ed;"
-                                                        FontSize="24"
-                                                        FontFamily="FontAwesome"
-                                                        TextColor="Red"
-                                                        HorizontalOptions="Center"
-                                                        VerticalOptions="CenterAndExpand"></Label>
-                                                </StackLayout>
-                                            </SwipeItemView>
-                                        </SwipeItems>
-                                    </SwipeView.RightItems>-->
                                 <StackLayout
                                     Orientation="Horizontal">
                                     <Label
@@ -193,7 +188,6 @@
                                         </VisualStateManager.VisualStateGroups>
                                     </Label>
                                 </StackLayout>
-                                <!--</SwipeView>-->
                             </Frame>
                         </sho:DraggableViewCell>
                     </DataTemplate>
