@@ -14,5 +14,7 @@ namespace ToDoApp.Models
     {
         public bool IsActive { get; set; }
         public int Day { get; set; }
+        public string DayName { get; set; }
+        public int Column { get; set; }
     }
 }
