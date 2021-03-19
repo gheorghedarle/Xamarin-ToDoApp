@@ -20,7 +20,8 @@
             <Grid
                 Grid.Row="1"
                 ColumnDefinitions="*, *, *, *, *, *"
-                BindableLayout.ItemsSource="{Binding DaysList}">
+                BindableLayout.ItemsSource="{Binding DaysList}"
+                Margin="16, 0, 16, 0">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <Frame

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using ToDoApp.Models;
 
 namespace ToDoApp.Services
@@ -27,14 +26,16 @@ namespace ToDoApp.Services
         public static List<DayModel> GetDayList()
         {
             List<DayModel> dayList = new List<DayModel>();
-            for (var i = 1; i <= DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month); i++)
+            var firstDayOfTheCurrentWeek = DateTime.Now.AddDays(((int)DateTime.Now.DayOfWeek - 1) * -1);
+            for (var i = 0; i < 7; i++)
             {
+                var date = firstDayOfTheCurrentWeek.AddDays(i);
                 dayList.Add(new DayModel()
                 {
-                    Day = i,
-                    DayName = new DateTime(DateTime.Now.Year, DateTime.Now.Month, i).ToString("ddd"),
-                    IsActive = new DateTime(DateTime.Now.Year, DateTime.Now.Month, i).Date == DateTime.Now.Date,
-                    Column = i-1
+                    Day = date.Day,
+                    DayName = date.ToString("ddd"),
+                    IsActive = date.Date == DateTime.Now.Date,
+                    Column = i
                 });
             }
             return dayList.Take(7).ToList();
