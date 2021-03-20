@@ -1,7 +1,8 @@
 ﻿using ToDoApp.Views;
 using Xamarin.Forms;
 
-[assembly: ExportFont("FontAwesome.ttf", Alias = "FontAwesome")]
+[assembly: ExportFont("FontAwesome-Regular.ttf", Alias = "FontAwesome-Regular")]
+[assembly: ExportFont("FontAwesome-Solid.ttf", Alias = "FontAwesome-Solid")]
 
 [assembly: ExportFont("Cairo-Bold.ttf", Alias = "CairoBold")]
 [assembly: ExportFont("Cairo-SemiBold.ttf", Alias = "CairoSemiBold")]

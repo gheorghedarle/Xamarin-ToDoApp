@@ -14,109 +14,140 @@
             <Label
                 Grid.Row="0"
                 Text="{Binding Name, StringFormat='Hello {0}!'}"
+                TextColor="#333"
                 FontSize="24"
                 FontFamily="CairoBold"
                 Margin="16, 4, 0, 0"></Label>
             <Grid
                 Grid.Row="1"
+                Margin="16, 6, 16, 6"
+                HeightRequest="40"
+                ColumnDefinitions="Auto, *, 40, 40">
+                <Label
+                    Grid.Column="0"
+                    Text="March 15 - 21, 2021"
+                    TextColor="#333"
+                    FontSize="18"
+                    FontFamily="CairoSemiBold"
+                    VerticalOptions="Center"></Label>
+                <Button
+                    Grid.Column="2"
+                    Text="&#xf053;"
+                    TextColor="#333"
+                    FontSize="18"
+                    FontFamily="FontAwesome-Solid"
+                    HorizontalOptions="EndAndExpand"
+                    BackgroundColor="White"></Button>
+                <Button
+                    Grid.Column="3"
+                    Text="&#xf054;"
+                    TextColor="#333"
+                    FontSize="18"
+                    FontFamily="FontAwesome-Solid"
+                    HorizontalOptions="EndAndExpand"
+                    BackgroundColor="White"></Button>
+            </Grid>
+            <Grid
+                Grid.Row="2"
                 ColumnDefinitions="*, *, *, *, *, *"
                 BindableLayout.ItemsSource="{Binding DaysList}"
                 Margin="16, 0, 16, 0">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Frame
-                                Grid.Column="{Binding Column}"
-                                Padding="4"
-                                CornerRadius="16"
-                                HasShadow="False">
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup>
-                                        <VisualState x:Name="normal">
-                                            <VisualState.StateTriggers>
-                                                <StateTrigger IsActive="{Binding IsActive, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
-                                            </VisualState.StateTriggers>
-                                            <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="#FFF"/>
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                        <VisualState x:Name="active">
-                                            <VisualState.StateTriggers>
-                                                <StateTrigger IsActive="{Binding IsActive}"></StateTrigger>
-                                            </VisualState.StateTriggers>
-                                            <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="#007965"/>
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-                                <StackLayout
-                                    Spacing="0">
-                                    <Label
-                                        Text="{Binding DayName}"
-                                        FontSize="12"
-                                        CharacterSpacing="-1"
-                                        Margin="0"
-                                        HorizontalTextAlignment="Center">
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup>
-                                                <VisualState x:Name="normal">
-                                                    <VisualState.StateTriggers>
-                                                        <StateTrigger IsActive="{Binding IsActive, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
-                                                    </VisualState.StateTriggers>
-                                                    <VisualState.Setters>
-                                                        <Setter Property="FontFamily" Value="CairoRegular"/>
-                                                        <Setter Property="TextColor" Value="#333"/>
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                                <VisualState x:Name="active">
-                                                    <VisualState.StateTriggers>
-                                                        <StateTrigger IsActive="{Binding IsActive}"></StateTrigger>
-                                                    </VisualState.StateTriggers>
-                                                    <VisualState.Setters>
-                                                        <Setter Property="FontFamily" Value="CairoBold"/>
-                                                        <Setter Property="TextColor" Value="#FFF"/>
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
-                                    </Label>
-                                    <Label
-                                        Text="{Binding Day}"
-                                        FontSize="20"
-                                        CharacterSpacing="-1"
-                                        Margin="0, -4, 0, 0"
-                                        HorizontalTextAlignment="Center">
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup>
-                                                <VisualState x:Name="normal">
-                                                    <VisualState.StateTriggers>
-                                                        <StateTrigger IsActive="{Binding IsActive, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
-                                                    </VisualState.StateTriggers>
-                                                    <VisualState.Setters>
-                                                        <Setter Property="FontFamily" Value="CairoRegular"/>
-                                                        <Setter Property="TextColor" Value="#333"/>
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                                <VisualState x:Name="active">
-                                                    <VisualState.StateTriggers>
-                                                        <StateTrigger IsActive="{Binding IsActive}"></StateTrigger>
-                                                    </VisualState.StateTriggers>
-                                                    <VisualState.Setters>
-                                                        <Setter Property="FontFamily" Value="CairoBold"/>
-                                                        <Setter Property="TextColor" Value="#FFF"/>
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
-                                    </Label>
-                                </StackLayout>
-                            </Frame>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Grid.Column="{Binding Column}"
+                            Padding="4"
+                            CornerRadius="16"
+                            HasShadow="False">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+                                    <VisualState x:Name="normal">
+                                        <VisualState.StateTriggers>
+                                            <StateTrigger IsActive="{Binding IsActive, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#FFF"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="active">
+                                        <VisualState.StateTriggers>
+                                            <StateTrigger IsActive="{Binding IsActive}"></StateTrigger>
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#007965"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <StackLayout
+                                Spacing="0">
+                                <Label
+                                    Text="{Binding DayName}"
+                                    FontSize="12"
+                                    CharacterSpacing="-1"
+                                    Margin="0"
+                                    HorizontalTextAlignment="Center">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup>
+                                            <VisualState x:Name="normal">
+                                                <VisualState.StateTriggers>
+                                                    <StateTrigger IsActive="{Binding IsActive, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                </VisualState.StateTriggers>
+                                                <VisualState.Setters>
+                                                    <Setter Property="FontFamily" Value="CairoRegular"/>
+                                                    <Setter Property="TextColor" Value="#333"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="active">
+                                                <VisualState.StateTriggers>
+                                                    <StateTrigger IsActive="{Binding IsActive}"></StateTrigger>
+                                                </VisualState.StateTriggers>
+                                                <VisualState.Setters>
+                                                    <Setter Property="FontFamily" Value="CairoBold"/>
+                                                    <Setter Property="TextColor" Value="#FFF"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Label>
+                                <Label
+                                    Text="{Binding Day}"
+                                    FontSize="20"
+                                    CharacterSpacing="-1"
+                                    Margin="0, -4, 0, 0"
+                                    HorizontalTextAlignment="Center">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup>
+                                            <VisualState x:Name="normal">
+                                                <VisualState.StateTriggers>
+                                                    <StateTrigger IsActive="{Binding IsActive, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                </VisualState.StateTriggers>
+                                                <VisualState.Setters>
+                                                    <Setter Property="FontFamily" Value="CairoRegular"/>
+                                                    <Setter Property="TextColor" Value="#333"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="active">
+                                                <VisualState.StateTriggers>
+                                                    <StateTrigger IsActive="{Binding IsActive}"></StateTrigger>
+                                                </VisualState.StateTriggers>
+                                                <VisualState.Setters>
+                                                    <Setter Property="FontFamily" Value="CairoBold"/>
+                                                    <Setter Property="TextColor" Value="#FFF"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Label>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
             </Grid>
             <Label
                 Grid.Row="3"
                 Text="Tasks"
+                TextColor="#333"
                 FontSize="20"
                 FontFamily="CairoSemiBold"
                 Margin="16, 0, 0, 0"></Label>
@@ -153,7 +184,7 @@
                                     <Label
                                         Text="{Binding IsDone, Converter={StaticResource DoneIconConverter}}"
                                         FontSize="24"
-                                        FontFamily="FontAwesome"
+                                        FontFamily="FontAwesome-Regular"
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center"
                                         Margin="16, 0, 0, 0">
@@ -222,8 +253,8 @@
                 <Label
                     Text="&#xf067;"
                     FontSize="30"
-                    FontFamily="FontAwesome"
-                    TextColor="#00af91"
+                    FontFamily="FontAwesome-Solid"
+                    TextColor="White"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"></Label>
             </Frame>

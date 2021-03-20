@@ -15,6 +15,8 @@
     <None Remove="Resources\Fonts\Cairo-Light.ttf" />
     <None Remove="Resources\Fonts\Cairo-Regular.ttf" />
     <None Remove="Resources\Fonts\Cairo-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\FontAwesome-Regular.ttf" />
+    <None Remove="Resources\Fonts\FontAwesome-Solid.ttf" />
     <None Remove="Resources\Fonts\FontAwesome.ttf" />
   </ItemGroup>
 
@@ -23,7 +25,8 @@
     <EmbeddedResource Include="Resources\Fonts\Cairo-Light.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Cairo-Regular.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Cairo-SemiBold.ttf" />
-    <EmbeddedResource Include="Resources\Fonts\FontAwesome.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\FontAwesome-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\FontAwesome-Solid.ttf" />
   </ItemGroup>
 
   <ItemGroup>
