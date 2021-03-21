@@ -8,28 +8,27 @@ namespace ToDoApp.Services
 {
     public static class DateService
     {
-        public static List<MonthModel> GetMonthList()
+        public static WeekModel GetWeek()
         {
-            List<MonthModel> monthList = new List<MonthModel>();
-            foreach (var month in DateTimeFormatInfo.CurrentInfo.MonthNames)
+            DayOfWeek firstDay = new CultureInfo("ro-RO").DateTimeFormat.FirstDayOfWeek;
+            DateTime firstDayInWeek = DateTime.Now.Date;
+            while (firstDayInWeek.DayOfWeek != firstDay)
+                firstDayInWeek = firstDayInWeek.AddDays(-1);
+            var lastDayInWeek = firstDayInWeek.AddDays(6);
+            return new WeekModel()
             {
-                monthList.Add(new MonthModel()
-                {
-                    Name = month,
-                    IsActive = false
-                });
-            }
-            monthList[DateTime.Now.Month - 1].IsActive = true;
-            return monthList;
+                StartDay = firstDayInWeek,
+                LastDay = lastDayInWeek,
+                WeekString = $"{firstDayInWeek.ToString("MMMM")} {firstDayInWeek.Day}-{lastDayInWeek.Day}"
+            };
         }
 
-        public static List<DayModel> GetDayList()
+        public static List<DayModel> GetDayList(DateTime firstDayInWeek, DateTime lastDayInWeek)
         {
             List<DayModel> dayList = new List<DayModel>();
-            var firstDayOfTheCurrentWeek = DateTime.Now.AddDays(((int)DateTime.Now.DayOfWeek - 1) * -1);
             for (var i = 0; i < 7; i++)
             {
-                var date = firstDayOfTheCurrentWeek.AddDays(i);
+                var date = firstDayInWeek.AddDays(i);
                 dayList.Add(new DayModel()
                 {
                     Day = date.Day,
@@ -38,7 +37,7 @@ namespace ToDoApp.Services
                     Column = i
                 });
             }
-            return dayList.Take(7).ToList();
+            return dayList;
         }
     }
 }

@@ -12,11 +12,11 @@ namespace ToDoApp.ViewModels
 {
     public class TasksPageViewModel: BaseViewModel
     {
-        public ObservableCollection<MonthModel> MonthList { get; set; }
         public ObservableCollection<DayModel> DaysList { get; set; }
         public ObservableCollection<TaskModel> TaskList { get; set; }
 
         public string Name { get; set; }
+        public WeekModel Week { get; set; }
 
         public ICommand CheckTaskCommand { get; set; }
 
@@ -33,8 +33,8 @@ namespace ToDoApp.ViewModels
                 new TaskModel() { Title = "Title 5", Description = "Description", IsDone = true },
             };
 
-            MonthList = new ObservableCollection<MonthModel>(DateService.GetMonthList());
-            DaysList = new ObservableCollection<DayModel>(DateService.GetDayList());
+            Week = DateService.GetWeek();
+            DaysList = new ObservableCollection<DayModel>(DateService.GetDayList(Week.StartDay, Week.LastDay));
 
             SetUserName();
         }

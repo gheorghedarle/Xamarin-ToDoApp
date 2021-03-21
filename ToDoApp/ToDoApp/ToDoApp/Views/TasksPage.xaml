@@ -20,12 +20,12 @@
                 Margin="16, 4, 0, 0"></Label>
             <Grid
                 Grid.Row="1"
-                Margin="16, 6, 16, 6"
+                Margin="16, 6, 16, 0"
                 HeightRequest="40"
                 ColumnDefinitions="Auto, *, 40, 40">
                 <Label
                     Grid.Column="0"
-                    Text="March 15 - 21, 2021"
+                    Text="{Binding Week.WeekString}"
                     TextColor="#333"
                     FontSize="18"
                     FontFamily="CairoSemiBold"

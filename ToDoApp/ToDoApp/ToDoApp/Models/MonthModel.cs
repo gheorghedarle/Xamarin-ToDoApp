@@ -4,10 +4,11 @@ using System.Text;
 
 namespace ToDoApp.Models
 {
-    public class MonthModel: BaseModel
+    public class WeekModel : BaseModel
     {
-        public bool IsActive { get; set; }
-        public string Name { get; set; }
+        public DateTime StartDay { get; set; }
+        public DateTime LastDay { get; set; }
+        public string WeekString { get; set; }
     }
 
     public class DayModel: BaseModel
