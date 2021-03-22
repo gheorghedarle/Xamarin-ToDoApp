@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
+using System.Linq;
 using System.Windows.Input;
 using ToDoApp.Models;
 using ToDoApp.Services;
@@ -19,12 +19,16 @@ namespace ToDoApp.ViewModels
         public WeekModel Week { get; set; }
 
         public ICommand CheckTaskCommand { get; set; }
+        public ICommand PreviousWeekCommand { get; set; }
+        public ICommand NextWeekCommand { get; set; }
 
         public TasksPageViewModel()
         {
             CheckTaskCommand = new Command<TaskModel>(CheckTaskCommandHandler);
+            PreviousWeekCommand = new Command<DateTime>(PreviousWeekCommandHandler);
+            NextWeekCommand = new Command<DateTime>(NextWeekCommandHandler);
 
-            TaskList = new ObservableCollection<TaskModel>()
+            var taskList = new List<TaskModel>()
             {
                 new TaskModel() { Title = "Title 1", Description = "Description", IsDone = true },
                 new TaskModel() { Title = "Title 2", Description = "Description", IsDone = false },
@@ -32,8 +36,9 @@ namespace ToDoApp.ViewModels
                 new TaskModel() { Title = "Title 4", Description = "Description", IsDone = false },
                 new TaskModel() { Title = "Title 5", Description = "Description", IsDone = true },
             };
+            TaskList = new ObservableCollection<TaskModel>(taskList.OrderBy(t => t.IsDone).ToList());
 
-            Week = DateService.GetWeek();
+            Week = DateService.GetWeek(DateTime.Now);
             DaysList = new ObservableCollection<DayModel>(DateService.GetDayList(Week.StartDay, Week.LastDay));
 
             SetUserName();
@@ -42,6 +47,19 @@ namespace ToDoApp.ViewModels
         private void CheckTaskCommandHandler(TaskModel task)
         {
             task.IsDone = !task.IsDone;
+            TaskList = new ObservableCollection<TaskModel>(TaskList.OrderBy(t => t.IsDone).ToList());
+        }
+
+        private void PreviousWeekCommandHandler(DateTime startDate)
+        {
+            Week = DateService.GetWeek(startDate.AddDays(-1));
+            DaysList = new ObservableCollection<DayModel>(DateService.GetDayList(Week.StartDay, Week.LastDay));
+        }
+
+        private void NextWeekCommandHandler(DateTime lastDate)
+        {
+            Week = DateService.GetWeek(lastDate.AddDays(1));
+            DaysList = new ObservableCollection<DayModel>(DateService.GetDayList(Week.StartDay, Week.LastDay));
         }
 
         private void SetUserName()

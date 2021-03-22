@@ -8,10 +8,10 @@ namespace ToDoApp.Services
 {
     public static class DateService
     {
-        public static WeekModel GetWeek()
+        public static WeekModel GetWeek(DateTime date)
         {
             DayOfWeek firstDay = new CultureInfo("ro-RO").DateTimeFormat.FirstDayOfWeek;
-            DateTime firstDayInWeek = DateTime.Now.Date;
+            DateTime firstDayInWeek = date.Date;
             while (firstDayInWeek.DayOfWeek != firstDay)
                 firstDayInWeek = firstDayInWeek.AddDays(-1);
             var lastDayInWeek = firstDayInWeek.AddDays(6);
@@ -19,7 +19,9 @@ namespace ToDoApp.Services
             {
                 StartDay = firstDayInWeek,
                 LastDay = lastDayInWeek,
-                WeekString = $"{firstDayInWeek.ToString("MMMM")} {firstDayInWeek.Day}-{lastDayInWeek.Day}"
+                WeekString = firstDayInWeek.Month == lastDayInWeek.Month ? 
+                    $"{firstDayInWeek.ToString("MMMM")} {firstDayInWeek.Day} - {lastDayInWeek.Day}" :
+                    $"{firstDayInWeek.ToString("MMMM")} {firstDayInWeek.Day} - {lastDayInWeek.ToString("MMMM")} {lastDayInWeek.Day}"
             };
         }
 
