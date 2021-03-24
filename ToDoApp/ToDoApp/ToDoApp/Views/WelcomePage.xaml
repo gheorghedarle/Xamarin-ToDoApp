@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:ToDoApp.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ToDoApp.Views.WelcomePage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.BindingContext>
@@ -9,14 +10,36 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid
+            BackgroundColor="#253864"
             RowDefinitions="*, Auto, Auto">
-            <Entry
-                Grid.Row="0"
-                Text="{Binding Name}"></Entry>
-            <Button 
+            <Frame
                 Grid.Row="1"
-                Text="Start"
-                Command="{Binding StartCommand}"></Button>
+                BackgroundColor="White"
+                CornerRadius="32"
+                Margin="16, 0">
+                <StackLayout
+                    Spacing="0">
+                    <Label
+                        Text="Name"></Label>
+                    <Entry
+                        Text="{Binding Name}">
+                        <Entry.Effects>
+                            <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
+                        </Entry.Effects>
+                    </Entry>
+                </StackLayout>
+            </Frame>
+            <Button 
+                Grid.Row="2"
+                BackgroundColor="#FFCF5C"
+                Command="{Binding StartCommand}"
+                CornerRadius="32"
+                FontSize="16"
+                FontFamily="CairoBold"
+                Padding="24, 16, 24, 16"
+                Margin="32, 16"
+                Text="GET STARTED"
+                TextColor="#253864"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
