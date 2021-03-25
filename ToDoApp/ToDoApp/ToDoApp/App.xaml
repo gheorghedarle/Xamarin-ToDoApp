@@ -2,10 +2,15 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:ToDoApp.Converters"
+             xmlns:styles="clr-namespace:ToDoApp.Styles"
              x:Class="ToDoApp.App">
     <Application.Resources>
         <ResourceDictionary>
             <converters:DoneIconConverter x:Key="DoneIconConverter"/>
+
+            <ResourceDictionary.MergedDictionaries>
+                <styles:Theme></styles:Theme>
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

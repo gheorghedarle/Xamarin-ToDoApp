@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoApp.Styles.Fonts">
+    <OnPlatform
+      x:Key="OverlineFontSize"
+      x:TypeArguments="x:Double"
+      Android="10"
+      iOS="10" />
+    <OnPlatform
+      x:Key="CaptionFontSize"
+      x:TypeArguments="x:Double"
+      Android="12"
+      iOS="12" />
+    <OnPlatform
+      x:Key="ButtonFontSize"
+      x:TypeArguments="x:Double"
+      Android="14"
+      iOS="14" />
+    <OnPlatform
+      x:Key="Body2FontSize"
+      x:TypeArguments="x:Double"
+      Android="14"
+      iOS="14" />
+    <OnPlatform
+      x:Key="Body1FontSize"
+      x:TypeArguments="x:Double"
+      Android="16"
+      iOS="16" />
+    <OnPlatform
+      x:Key="Subtitle2FontSize"
+      x:TypeArguments="x:Double"
+      Android="16"
+      iOS="16" />
+    <OnPlatform
+      x:Key="Subtitle1FontSize"
+      x:TypeArguments="x:Double"
+      Android="18"
+      iOS="18" />
+    <OnPlatform
+      x:Key="Headline4FontSize"
+      x:TypeArguments="x:Double"
+      Android="23"
+      iOS="23" />
+    <OnPlatform
+      x:Key="Headline3FontSize"
+      x:TypeArguments="x:Double"
+      Android="27"
+      iOS="27" />
+    <OnPlatform
+      x:Key="Headline2FontSize"
+      x:TypeArguments="x:Double"
+      Android="38"
+      iOS="38" />
+    <OnPlatform
+      x:Key="Headline1FontSize"
+      x:TypeArguments="x:Double"
+      Android="54"
+      iOS="54" />
+    <OnPlatform
+      x:Key="Headline0FontSize"
+      x:TypeArguments="x:Double"
+      Android="68"
+      iOS="68" />
+</ResourceDictionary>

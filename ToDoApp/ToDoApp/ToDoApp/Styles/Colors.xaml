@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary  xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoApp.Styles.Colors">
+    <Color x:Key="PrimaryColor">#007CD1</Color>
+    <Color x:Key="PrimaryDarkColor">#001532</Color>
+    <Color x:Key="AccentColor">#F3C623</Color>
+
+    <Color x:Key="FailColor">#D04C41</Color>
+    <Color x:Key="SuccessColor">#00AF49</Color>
+
+    <!--App Theme Light-->
+    <Color x:Key="LightPrimaryTextColor">#001532</Color>
+    <Color x:Key="LightSecondaryTextColor">#667284</Color>
+
+    <Color x:Key="LightPageBackgroundColor">#F5F5F5</Color>
+    <Color x:Key="LightCardBackgroundColor">#FFF</Color>
+    <Color x:Key="LightCardUnselectedBackgroundColor">#E0E0E0</Color>
+
+    <Color x:Key="LightTransparentBackgroundColor">#99F5F5F5</Color>
+
+    <!--App Theme Dark-->
+    <Color x:Key="DarkPrimaryTextColor">#F5F5F5</Color>
+    <Color x:Key="DarkSecondaryTextColor">#B2B8C1</Color>
+
+    <Color x:Key="DarkPageBackgroundColor">#001532</Color>
+    <Color x:Key="DarkCardBackgroundColor">#192C46</Color>
+    <Color x:Key="DarkCardUnselectedBackgroundColor">#000E23</Color>
+
+    <Color x:Key="DarkTransparentBackgroundColor">#99001532</Color>
+</ResourceDictionary>

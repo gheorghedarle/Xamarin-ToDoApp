@@ -35,7 +35,7 @@
                 Command="{Binding StartCommand}"
                 CornerRadius="32"
                 FontSize="16"
-                FontFamily="CairoBold"
+                FontFamily="Cairo_Bold"
                 Padding="24, 16, 24, 16"
                 Margin="32, 16"
                 Text="GET STARTED"

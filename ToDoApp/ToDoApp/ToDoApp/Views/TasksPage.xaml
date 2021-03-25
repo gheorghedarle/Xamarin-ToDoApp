@@ -16,7 +16,7 @@
                 Text="{Binding Name, StringFormat='Hello {0}!'}"
                 TextColor="#333"
                 FontSize="24"
-                FontFamily="CairoBold"
+                FontFamily="Cairo_Bold"
                 Margin="16, 4, 0, 0"></Label>
             <Grid
                 Grid.Row="1"
@@ -28,7 +28,7 @@
                     Text="{Binding Week.WeekString}"
                     TextColor="#333"
                     FontSize="18"
-                    FontFamily="CairoSemiBold"
+                    FontFamily="Cairo_SemiBold"
                     VerticalOptions="Center"></Label>
                 <Button
                     Grid.Column="2"
@@ -98,7 +98,7 @@
                                                     <StateTrigger IsActive="{Binding IsActive, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="FontFamily" Value="CairoRegular"/>
+                                                    <Setter Property="FontFamily" Value="Cairo_Regular"/>
                                                     <Setter Property="TextColor" Value="#333"/>
                                                 </VisualState.Setters>
                                             </VisualState>
@@ -107,7 +107,7 @@
                                                     <StateTrigger IsActive="{Binding IsActive}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="FontFamily" Value="CairoBold"/>
+                                                    <Setter Property="FontFamily" Value="Cairo_Bold"/>
                                                     <Setter Property="TextColor" Value="#FFF"/>
                                                 </VisualState.Setters>
                                             </VisualState>
@@ -127,7 +127,7 @@
                                                     <StateTrigger IsActive="{Binding IsActive, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="FontFamily" Value="CairoRegular"/>
+                                                    <Setter Property="FontFamily" Value="Cairo_Regular"/>
                                                     <Setter Property="TextColor" Value="#333"/>
                                                 </VisualState.Setters>
                                             </VisualState>
@@ -136,7 +136,7 @@
                                                     <StateTrigger IsActive="{Binding IsActive}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="FontFamily" Value="CairoBold"/>
+                                                    <Setter Property="FontFamily" Value="Cairo_Bold"/>
                                                     <Setter Property="TextColor" Value="#FFF"/>
                                                 </VisualState.Setters>
                                             </VisualState>
@@ -153,7 +153,7 @@
                 Text="Tasks"
                 TextColor="#333"
                 FontSize="20"
-                FontFamily="CairoSemiBold"
+                FontFamily="Cairo_SemiBold"
                 Margin="16, 0, 0, 0"></Label>
             <sho:HorizontalListView
                 Grid.Row="4"
@@ -215,7 +215,7 @@
                                     </Label>
                                     <Label 
                                         Text="{Binding Title}"
-                                        FontFamily="CairoRegular"
+                                        FontFamily="Cairo_Regular"
                                         Margin="8, 0, 8, 0"
                                         VerticalOptions="Center">
                                         <VisualStateManager.VisualStateGroups>
