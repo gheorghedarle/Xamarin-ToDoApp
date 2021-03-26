@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoApp.Views.Fragments.ConnectionView"
+             IsVisible="{Binding HasNoInternetConnection}" 
+             RowDefinitions="Auto, Auto"
+             ColumnDefinitions="Auto, *"
+             RowSpacing="0"
+             ColumnSpacing="16"
+             Padding="24, 16, 24, 16">
+    <Label
+        Grid.Column="0"
+        Grid.RowSpan="2"
+        Text="&#xf12a;"
+        Style="{StaticResource Headline2_FontAwesome}"
+        TextColor="{StaticResource FailColor}"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"></Label>
+    <Label
+        Grid.Column="1"
+        Grid.Row="0"
+        Text="No Internet Connection"
+        Style="{StaticResource Body1_CairoRegular}"
+        TextColor="{StaticResource FailColor}"/>
+    <Label
+        Grid.Column="1"
+        Grid.Row="1"
+        Text="It looks like you do not have internet connection"
+        Style="{StaticResource Body2_CairoRegular}"/>
+</Grid>

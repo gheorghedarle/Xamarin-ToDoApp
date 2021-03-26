@@ -22,6 +22,7 @@ namespace ToDoApp.ViewModels
         public BaseViewModel()
         {
             Connectivity.ConnectivityChanged += ConnectivityChanged;
+            HasNoInternetConnection = !Connectivity.NetworkAccess.Equals(NetworkAccess.Internet);
         }
 
         #endregion

@@ -4,22 +4,25 @@
              xmlns:sho="http://sharpnado.com"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:viewModels="clr-namespace:ToDoApp.ViewModels"
+             xmlns:fragments="clr-namespace:ToDoApp.Views.Fragments"
              x:Class="ToDoApp.Views.TasksPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.BindingContext>
         <viewModels:TasksPageViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto, Auto, Auto, Auto, *">
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *">
+            <fragments:ConnectionView
+                Grid.Row="0"/>
             <Label
-                Grid.Row="0"
+                Grid.Row="1"
                 Text="{Binding Name, StringFormat='Hello {0}!'}"
                 TextColor="#333"
                 FontSize="24"
                 FontFamily="Cairo_Bold"
                 Margin="16, 4, 0, 0"></Label>
             <Grid
-                Grid.Row="1"
+                Grid.Row="2"
                 Margin="16, 6, 16, 0"
                 HeightRequest="40"
                 ColumnDefinitions="Auto, *, 40, 40">
@@ -32,27 +35,29 @@
                     VerticalOptions="Center"></Label>
                 <Button
                     Grid.Column="2"
+                    CornerRadius="16"
                     Text="&#xf053;"
                     TextColor="#333"
                     FontSize="18"
-                    FontFamily="FontAwesome-Solid"
+                    FontFamily="FontAwesome_Solid"
                     HorizontalOptions="EndAndExpand"
                     BackgroundColor="White"
                     Command="{Binding PreviousWeekCommand}"
                     CommandParameter="{Binding Week.StartDay}"></Button>
                 <Button
                     Grid.Column="3"
+                    CornerRadius="16"
                     Text="&#xf054;"
                     TextColor="#333"
                     FontSize="18"
-                    FontFamily="FontAwesome-Solid"
+                    FontFamily="FontAwesome_Solid"
                     HorizontalOptions="EndAndExpand"
                     BackgroundColor="White"
                     Command="{Binding NextWeekCommand}"
                     CommandParameter="{Binding Week.LastDay}"></Button>
             </Grid>
             <Grid
-                Grid.Row="2"
+                Grid.Row="3"
                 ColumnDefinitions="*, *, *, *, *, *"
                 BindableLayout.ItemsSource="{Binding DaysList}"
                 Margin="16, 0, 16, 0">
@@ -149,14 +154,14 @@
                 </BindableLayout.ItemTemplate>
             </Grid>
             <Label
-                Grid.Row="3"
+                Grid.Row="4"
                 Text="Tasks"
                 TextColor="#333"
                 FontSize="20"
                 FontFamily="Cairo_SemiBold"
                 Margin="16, 0, 0, 0"></Label>
             <sho:HorizontalListView
-                Grid.Row="4"
+                Grid.Row="5"
                 ItemHeight="50"
                 ListLayout="Vertical"
                 CollectionPadding="16, 0, 16, 16"
@@ -188,7 +193,7 @@
                                     <Label
                                         Text="{Binding IsDone, Converter={StaticResource DoneIconConverter}}"
                                         FontSize="24"
-                                        FontFamily="FontAwesome-Regular"
+                                        FontFamily="FontAwesome_Regular"
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center"
                                         Margin="16, 0, 0, 0">
@@ -246,7 +251,7 @@
                 </sho:HorizontalListView.ItemTemplate>
             </sho:HorizontalListView>
             <Frame 
-                Grid.Row="4" 
+                Grid.Row="5" 
                 BackgroundColor="#007965"
                 VerticalOptions="End" 
                 HorizontalOptions="End" 
@@ -257,7 +262,7 @@
                 <Label
                     Text="&#xf067;"
                     FontSize="30"
-                    FontFamily="FontAwesome-Solid"
+                    FontFamily="FontAwesome_Solid"
                     TextColor="White"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"></Label>
