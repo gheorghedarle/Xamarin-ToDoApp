@@ -19,7 +19,7 @@
                 ColumnDefinitions="Auto, *"
                 RowDefinitions="Auto, Auto"
                 RowSpacing="0"
-                Margin="16, 16, 0, 16">
+                Margin="16, 16, 0, 0">
                 <Ellipse
                     Grid.Column="0"
                     Grid.Row="0"
@@ -91,6 +91,7 @@
                     CommandParameter="{Binding Week.LastDay}"></Button>
             </Grid>
             <Grid
+                x:Name="daysList"
                 Grid.Row="3"
                 ColumnDefinitions="*, *, *, *, *, *"
                 BindableLayout.ItemsSource="{Binding DaysList}"
@@ -102,6 +103,9 @@
                             Padding="4"
                             CornerRadius="16"
                             HasShadow="False">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.DayCommand, Source={x:Reference daysList}}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                            </Frame.GestureRecognizers>
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup>
                                     <VisualState x:Name="normal">
@@ -139,6 +143,7 @@
                                                 <VisualState.Setters>
                                                     <Setter Property="FontFamily" Value="Cairo_Regular"/>
                                                     <Setter Property="TextColor" Value="#333"/>
+                                                    <Setter Property="TextTransform" Value="None"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                             <VisualState x:Name="active">
@@ -148,6 +153,7 @@
                                                 <VisualState.Setters>
                                                     <Setter Property="FontFamily" Value="Cairo_Bold"/>
                                                     <Setter Property="TextColor" Value="#FFF"/>
+                                                    <Setter Property="TextTransform" Value="Uppercase"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                         </VisualStateGroup>
@@ -157,7 +163,6 @@
                                     Text="{Binding Day}"
                                     FontSize="20"
                                     CharacterSpacing="-1"
-                                    Margin="0, -4, 0, 0"
                                     HorizontalTextAlignment="Center">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup>
@@ -167,6 +172,7 @@
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
                                                     <Setter Property="FontFamily" Value="Cairo_Regular"/>
+                                                    <Setter Property="Margin" Value="0, -4, 0, 0"/>
                                                     <Setter Property="TextColor" Value="#333"/>
                                                 </VisualState.Setters>
                                             </VisualState>
@@ -176,6 +182,7 @@
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
                                                     <Setter Property="FontFamily" Value="Cairo_Bold"/>
+                                                    <Setter Property="Margin" Value="0, -8, 0, 0"/>
                                                     <Setter Property="TextColor" Value="#FFF"/>
                                                 </VisualState.Setters>
                                             </VisualState>
@@ -191,7 +198,7 @@
                 Grid.Row="4"
                 Text="Tasks"
                 TextColor="#333"
-                FontSize="20"
+                FontSize="18"
                 FontFamily="Cairo_SemiBold"
                 Margin="16, 0, 0, 0"></Label>
             <sho:HorizontalListView
@@ -285,6 +292,7 @@
                                                     </VisualState.StateTriggers>
                                                     <VisualState.Setters>
                                                         <Setter Property="TextColor" Value="#222222"/>
+                                                        <Setter Property="TextDecorations" Value="None"/>
                                                     </VisualState.Setters>
                                                 </VisualState>
                                                 <VisualState x:Name="done">
@@ -293,6 +301,7 @@
                                                     </VisualState.StateTriggers>
                                                     <VisualState.Setters>
                                                         <Setter Property="TextColor" Value="#cacaca"/>
+                                                        <Setter Property="TextDecorations" Value="Strikethrough"/>
                                                     </VisualState.Setters>
                                                 </VisualState>
                                             </VisualStateGroup>

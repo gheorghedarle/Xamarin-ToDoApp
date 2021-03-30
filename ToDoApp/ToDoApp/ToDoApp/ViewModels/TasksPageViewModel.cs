@@ -19,6 +19,7 @@ namespace ToDoApp.ViewModels
         public WeekModel Week { get; set; }
 
         public ICommand CheckTaskCommand { get; set; }
+        public ICommand DayCommand { get; set; }
         public ICommand PreviousWeekCommand { get; set; }
         public ICommand NextWeekCommand { get; set; }
 
@@ -27,6 +28,7 @@ namespace ToDoApp.ViewModels
             CheckTaskCommand = new Command<TaskModel>(CheckTaskCommandHandler);
             PreviousWeekCommand = new Command<DateTime>(PreviousWeekCommandHandler);
             NextWeekCommand = new Command<DateTime>(NextWeekCommandHandler);
+            DayCommand = new Command<DayModel>(DayCommandHandler);
 
             var taskList = new List<TaskModel>()
             {
@@ -50,14 +52,22 @@ namespace ToDoApp.ViewModels
             TaskList = new ObservableCollection<TaskModel>(TaskList.OrderBy(t => t.IsDone).ToList());
         }
 
+        private void DayCommandHandler(DayModel day)
+        {
+            ResetActiveDay();
+            day.IsActive = true;
+        }
+
         private void PreviousWeekCommandHandler(DateTime startDate)
         {
+            ResetActiveDay();
             Week = DateService.GetWeek(startDate.AddDays(-1));
             DaysList = new ObservableCollection<DayModel>(DateService.GetDayList(Week.StartDay, Week.LastDay));
         }
 
         private void NextWeekCommandHandler(DateTime lastDate)
         {
+            ResetActiveDay();
             Week = DateService.GetWeek(lastDate.AddDays(1));
             DaysList = new ObservableCollection<DayModel>(DateService.GetDayList(Week.StartDay, Week.LastDay));
         }
@@ -65,6 +75,15 @@ namespace ToDoApp.ViewModels
         private void SetUserName()
         {
             Name = Preferences.Get("Name", "");
+        }
+
+        private void ResetActiveDay()
+        {
+            var selectedDay = DaysList.FirstOrDefault(d => d.IsActive);
+            if (selectedDay != null)
+            {
+                selectedDay.IsActive = false;
+            }
         }
     }
 }
