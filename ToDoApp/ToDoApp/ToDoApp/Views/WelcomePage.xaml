@@ -22,7 +22,8 @@
                     <Label
                         Text="Name"></Label>
                     <Entry
-                        Text="{Binding Name}">
+                        Text="{Binding Name}"
+                        ReturnCommand="{Binding StartCommand}">
                         <Entry.Effects>
                             <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                         </Entry.Effects>
