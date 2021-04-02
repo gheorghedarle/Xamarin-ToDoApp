@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using ToDoApp.Models;
@@ -22,6 +23,7 @@ namespace ToDoApp.ViewModels
         public ICommand DayCommand { get; set; }
         public ICommand PreviousWeekCommand { get; set; }
         public ICommand NextWeekCommand { get; set; }
+        public ICommand AddTaskCommand { get; set; }
 
         public TasksPageViewModel()
         {
@@ -29,6 +31,7 @@ namespace ToDoApp.ViewModels
             PreviousWeekCommand = new Command<DateTime>(PreviousWeekCommandHandler);
             NextWeekCommand = new Command<DateTime>(NextWeekCommandHandler);
             DayCommand = new Command<DayModel>(DayCommandHandler);
+            AddTaskCommand = new Command(AddTaskCommandHandler);
 
             var taskList = new List<TaskModel>()
             {
@@ -70,6 +73,11 @@ namespace ToDoApp.ViewModels
             ResetActiveDay();
             Week = DateService.GetWeek(lastDate.AddDays(1));
             DaysList = new ObservableCollection<DayModel>(DateService.GetDayList(Week.StartDay, Week.LastDay));
+        }
+
+        private void AddTaskCommandHandler()
+        {
+            Debug.WriteLine("Add Task Button");
         }
 
         private void SetUserName()
