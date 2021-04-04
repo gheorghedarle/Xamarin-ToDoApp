@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using ToDoApp.Models;
 
-namespace ToDoApp.Services
+namespace ToDoApp.Services.DateService
 {
-    public static class DateService
+    public class DateService: IDateService
     {
-        public static WeekModel GetWeek(DateTime date)
+        public WeekModel GetWeek(DateTime date)
         {
             DayOfWeek firstDay = new CultureInfo("ro-RO").DateTimeFormat.FirstDayOfWeek;
             DateTime firstDayInWeek = date.Date;
@@ -25,7 +24,7 @@ namespace ToDoApp.Services
             };
         }
 
-        public static List<DayModel> GetDayList(DateTime firstDayInWeek, DateTime lastDayInWeek)
+        public List<DayModel> GetDayList(DateTime firstDayInWeek, DateTime lastDayInWeek)
         {
             List<DayModel> dayList = new List<DayModel>();
             for (var i = 0; i < 7; i++)
