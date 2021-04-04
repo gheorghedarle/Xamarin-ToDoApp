@@ -1,6 +1,7 @@
 ﻿using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
+using ToDoApp.Services.DateService;
 using ToDoApp.ViewModels;
 using ToDoApp.Views;
 using Xamarin.Forms;
@@ -19,7 +20,10 @@ namespace ToDoApp
     {
         public App() : this(null) { }
 
-        public App(IPlatformInitializer initializer) : base(initializer) { }
+        public App(IPlatformInitializer initializer) : base(initializer) 
+        { 
+            Sharpnado.HorizontalListView.Initializer.Initialize(true, false);
+        }
 
         public new static App Current => Application.Current as App;
 
@@ -27,13 +31,13 @@ namespace ToDoApp
         {
             InitializeComponent();
 
-            Sharpnado.HorizontalListView.Initializer.Initialize(true, false);
-
             await NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(WelcomePage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IDateService, DateService>();
+
             containerRegistry.RegisterForNavigation<NavigationPage>("NavigationPage");
             containerRegistry.RegisterForNavigation<WelcomePage, WelcomePageViewModel>("WelcomePage");
             containerRegistry.RegisterForNavigation<TasksPage, TasksPageViewModel>("TasksPage");

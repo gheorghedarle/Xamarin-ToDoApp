@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sho="http://sharpnado.com"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:viewModels="clr-namespace:ToDoApp.ViewModels"
              xmlns:fragments="clr-namespace:ToDoApp.Views.Fragments"
              x:Class="ToDoApp.Views.TasksPage"
              NavigationPage.HasNavigationBar="False">

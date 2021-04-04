@@ -21,7 +21,7 @@ namespace ToDoApp.ViewModels
         private async void StartCommandHandler()
         {
             Preferences.Set("Name", Name);
-            await _navigationService.NavigateAsync("/TasksPage");
+            await _navigationService.NavigateAsync(nameof(TasksPage));
         }
     }
 }

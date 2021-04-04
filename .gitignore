@@ -349,3 +349,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 /WeatherApp/WeatherApp/WeatherApp/local.settings.json
+/ToDoApp/ToDoApp/ToDoApp.Android/google-services.json
