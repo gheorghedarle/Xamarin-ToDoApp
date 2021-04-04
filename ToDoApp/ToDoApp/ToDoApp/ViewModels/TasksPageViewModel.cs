@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.CloudFirestore;
+using Prism.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -25,23 +27,14 @@ namespace ToDoApp.ViewModels
         public ICommand NextWeekCommand { get; set; }
         public ICommand AddTaskCommand { get; set; }
 
-        public TasksPageViewModel()
+        public TasksPageViewModel(
+            INavigationService navigationService): base(navigationService)
         {
             CheckTaskCommand = new Command<TaskModel>(CheckTaskCommandHandler);
             PreviousWeekCommand = new Command<DateTime>(PreviousWeekCommandHandler);
             NextWeekCommand = new Command<DateTime>(NextWeekCommandHandler);
             DayCommand = new Command<DayModel>(DayCommandHandler);
             AddTaskCommand = new Command(AddTaskCommandHandler);
-
-            var taskList = new List<TaskModel>()
-            {
-                new TaskModel() { Title = "Title 1", Description = "Description", IsDone = true },
-                new TaskModel() { Title = "Title 2", Description = "Description", IsDone = false },
-                new TaskModel() { Title = "Title 3", Description = "Description", IsDone = true },
-                new TaskModel() { Title = "Title 4", Description = "Description", IsDone = false },
-                new TaskModel() { Title = "Title 5", Description = "Description", IsDone = true },
-            };
-            TaskList = new ObservableCollection<TaskModel>(taskList.OrderBy(t => t.IsDone).ToList());
 
             Week = DateService.GetWeek(DateTime.Now);
             DaysList = new ObservableCollection<DayModel>(DateService.GetDayList(Week.StartDay, Week.LastDay));
@@ -51,8 +44,8 @@ namespace ToDoApp.ViewModels
 
         private void CheckTaskCommandHandler(TaskModel task)
         {
-            task.IsDone = !task.IsDone;
-            TaskList = new ObservableCollection<TaskModel>(TaskList.OrderBy(t => t.IsDone).ToList());
+            task.archived = !task.archived;
+            TaskList = new ObservableCollection<TaskModel>(TaskList.OrderBy(t => t.archived).ToList());
         }
 
         private void DayCommandHandler(DayModel day)

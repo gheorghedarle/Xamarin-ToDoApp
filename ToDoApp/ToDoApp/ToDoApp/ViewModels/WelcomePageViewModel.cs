@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using Prism.Navigation;
+using System.Windows.Input;
 using ToDoApp.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -11,15 +12,16 @@ namespace ToDoApp.ViewModels
 
         public ICommand StartCommand { get; set; }
 
-        public WelcomePageViewModel()
-        {
+        public WelcomePageViewModel(
+            INavigationService navigationService) : base(navigationService)
+        { 
             StartCommand = new Command(StartCommandHandler);
         }
 
         private async void StartCommandHandler()
         {
             Preferences.Set("Name", Name);
-            await Application.Current.MainPage.Navigation.PushAsync(new TasksPage());
+            await _navigationService.NavigateAsync("/TasksPage");
         }
     }
 }

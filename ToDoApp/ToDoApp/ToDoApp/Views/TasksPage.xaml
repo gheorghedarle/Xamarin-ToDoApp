@@ -7,9 +7,6 @@
              xmlns:fragments="clr-namespace:ToDoApp.Views.Fragments"
              x:Class="ToDoApp.Views.TasksPage"
              NavigationPage.HasNavigationBar="False">
-    <ContentPage.BindingContext>
-        <viewModels:TasksPageViewModel />
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *">
             <fragments:ConnectionView
@@ -233,7 +230,7 @@
                                     <VisualStateGroup>
                                         <VisualState x:Name="normal">
                                             <VisualState.StateTriggers>
-                                                <StateTrigger IsActive="{Binding IsDone, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
                                             </VisualState.StateTriggers>
                                             <VisualState.Setters>
                                                 <Setter Property="BackgroundColor" Value="white"/>
@@ -241,7 +238,7 @@
                                         </VisualState>
                                         <VisualState x:Name="done">
                                             <VisualState.StateTriggers>
-                                                <StateTrigger IsActive="{Binding IsDone}"></StateTrigger>
+                                                <StateTrigger IsActive="{Binding archived}"></StateTrigger>
                                             </VisualState.StateTriggers>
                                             <VisualState.Setters>
                                                 <Setter Property="BackgroundColor" Value="#fafafa"/>
@@ -252,7 +249,7 @@
                                 <StackLayout
                                     Orientation="Horizontal">
                                     <Label
-                                        Text="{Binding IsDone, Converter={StaticResource DoneIconConverter}}"
+                                        Text="{Binding archived, Converter={StaticResource DoneIconConverter}}"
                                         FontSize="24"
                                         FontFamily="FontAwesome_Regular"
                                         HorizontalOptions="Start"
@@ -262,7 +259,7 @@
                                             <VisualStateGroup>
                                                 <VisualState x:Name="normal">
                                                     <VisualState.StateTriggers>
-                                                        <StateTrigger IsActive="{Binding IsDone, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                        <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
                                                     </VisualState.StateTriggers>
                                                     <VisualState.Setters>
                                                         <Setter Property="TextColor" Value="#222222"/>
@@ -270,7 +267,7 @@
                                                 </VisualState>
                                                 <VisualState x:Name="done">
                                                     <VisualState.StateTriggers>
-                                                        <StateTrigger IsActive="{Binding IsDone}"></StateTrigger>
+                                                        <StateTrigger IsActive="{Binding archived}"></StateTrigger>
                                                     </VisualState.StateTriggers>
                                                     <VisualState.Setters>
                                                         <Setter Property="TextColor" Value="#cacaca"/>
@@ -280,7 +277,7 @@
                                         </VisualStateManager.VisualStateGroups>
                                     </Label>
                                     <Label 
-                                        Text="{Binding Title}"
+                                        Text="{Binding task}"
                                         FontFamily="Cairo_Regular"
                                         Margin="8, 0, 8, 0"
                                         VerticalOptions="Center">
@@ -288,7 +285,7 @@
                                             <VisualStateGroup>
                                                 <VisualState x:Name="normal">
                                                     <VisualState.StateTriggers>
-                                                        <StateTrigger IsActive="{Binding IsDone, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                        <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
                                                     </VisualState.StateTriggers>
                                                     <VisualState.Setters>
                                                         <Setter Property="TextColor" Value="#222222"/>
@@ -297,7 +294,7 @@
                                                 </VisualState>
                                                 <VisualState x:Name="done">
                                                     <VisualState.StateTriggers>
-                                                        <StateTrigger IsActive="{Binding IsDone}"></StateTrigger>
+                                                        <StateTrigger IsActive="{Binding archived}"></StateTrigger>
                                                     </VisualState.StateTriggers>
                                                     <VisualState.Setters>
                                                         <Setter Property="TextColor" Value="#cacaca"/>

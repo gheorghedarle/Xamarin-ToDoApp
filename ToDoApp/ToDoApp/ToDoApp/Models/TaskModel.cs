@@ -2,8 +2,9 @@
 {
     public class TaskModel: BaseModel
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public bool IsDone { get; set; }
+        public string task { get; set; }
+        public string projectId { get; set; }
+        public string userId { get; set; }
+        public bool archived { get; set; }
     }
 }

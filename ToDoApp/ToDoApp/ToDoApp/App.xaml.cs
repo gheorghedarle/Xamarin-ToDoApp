@@ -1,4 +1,8 @@
-﻿using ToDoApp.Views;
+﻿using Prism;
+using Prism.DryIoc;
+using Prism.Ioc;
+using ToDoApp.ViewModels;
+using ToDoApp.Views;
 using Xamarin.Forms;
 
 [assembly: ExportFont("FontAwesome-Regular.ttf", Alias = "FontAwesome_Regular")]
@@ -11,14 +15,28 @@ using Xamarin.Forms;
 
 namespace ToDoApp
 {
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
-        public App()
+        public App() : this(null) { }
+
+        public App(IPlatformInitializer initializer) : base(initializer) { }
+
+        public new static App Current => Application.Current as App;
+
+        protected override async void OnInitialized()
         {
             InitializeComponent();
 
             Sharpnado.HorizontalListView.Initializer.Initialize(true, false);
-            MainPage = new NavigationPage(new WelcomePage());
+
+            await NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(WelcomePage)}");
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterForNavigation<NavigationPage>("NavigationPage");
+            containerRegistry.RegisterForNavigation<WelcomePage, WelcomePageViewModel>("WelcomePage");
+            containerRegistry.RegisterForNavigation<TasksPage, TasksPageViewModel>("TasksPage");
         }
 
         protected override void OnStart()

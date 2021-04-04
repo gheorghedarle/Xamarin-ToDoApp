@@ -5,9 +5,6 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ToDoApp.Views.WelcomePage"
              NavigationPage.HasNavigationBar="False">
-    <ContentPage.BindingContext>
-        <viewModels:WelcomePageViewModel />
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid
             BackgroundColor="#253864"
