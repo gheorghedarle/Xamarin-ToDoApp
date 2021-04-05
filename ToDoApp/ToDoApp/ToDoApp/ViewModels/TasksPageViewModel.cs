@@ -1,13 +1,12 @@
-﻿using Plugin.CloudFirestore;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using ToDoApp.Models;
-using ToDoApp.Services;
+using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Services.DateService;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -17,6 +16,7 @@ namespace ToDoApp.ViewModels
     public class TasksPageViewModel: BaseViewModel
     {
         private IDateService _dateService;
+        private IFirestoreRepository<TaskModel> _tasksRepository;
 
         public ObservableCollection<DayModel> DaysList { get; set; }
         public ObservableCollection<TaskModel> TaskList { get; set; }
@@ -32,8 +32,10 @@ namespace ToDoApp.ViewModels
 
         public TasksPageViewModel(
             INavigationService navigationService,
+            IFirestoreRepository<TaskModel> tasksRepository,
             IDateService dateService): base(navigationService)
         {
+            _tasksRepository = tasksRepository;
             _dateService = dateService;
 
             CheckTaskCommand = new Command<TaskModel>(CheckTaskCommandHandler);
@@ -80,14 +82,7 @@ namespace ToDoApp.ViewModels
             DaysList = new ObservableCollection<DayModel>(_dateService.GetDayList(Week.StartDay, Week.LastDay));
 
             SetUserName();
-
-            var document = await CrossCloudFirestore.Current
-                .Instance
-                .Collection("tasks")
-                .GetAsync();
-
-            var taskList = document.ToObjects<TaskModel>();
-            TaskList = new ObservableCollection<TaskModel>(taskList.OrderBy(t => t.archived).ToList());
+            await GetTasks();
         }
 
         private void SetUserName()
@@ -102,6 +97,12 @@ namespace ToDoApp.ViewModels
             {
                 selectedDay.IsActive = false;
             }
+        }
+
+        private async Task GetTasks()
+        {
+            var taskList = await _tasksRepository.GetAll();
+            TaskList = new ObservableCollection<TaskModel>(taskList.OrderBy(t => t.archived).ToList());
         }
     }
 }

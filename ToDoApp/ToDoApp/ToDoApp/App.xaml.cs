@@ -1,6 +1,8 @@
 ﻿using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
+using ToDoApp.Models;
+using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Services.DateService;
 using ToDoApp.ViewModels;
 using ToDoApp.Views;
@@ -37,6 +39,8 @@ namespace ToDoApp
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IDateService, DateService>();
+            containerRegistry.Register<IFirestoreRepository<TaskModel>, TasksRepository>();
+            containerRegistry.Register<IFirestoreRepository<ProjectModel>, ProjesctsRepository>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>("NavigationPage");
             containerRegistry.RegisterForNavigation<WelcomePage, WelcomePageViewModel>("WelcomePage");
