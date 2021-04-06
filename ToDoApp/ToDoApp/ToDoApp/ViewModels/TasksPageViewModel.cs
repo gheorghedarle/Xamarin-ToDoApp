@@ -51,10 +51,11 @@ namespace ToDoApp.ViewModels
             TaskList = new ObservableCollection<TaskModel>(TaskList.OrderBy(t => t.archived).ToList());
         }
 
-        private void DayCommandHandler(DayModel day)
+        private async void DayCommandHandler(DayModel day)
         {
             ResetActiveDay();
             day.IsActive = true;
+            await GetTasksByDate(day.Date);
         }
 
         private void PreviousWeekCommandHandler(DateTime startDate)
@@ -82,7 +83,7 @@ namespace ToDoApp.ViewModels
             DaysList = new ObservableCollection<DayModel>(_dateService.GetDayList(Week.StartDay, Week.LastDay));
 
             SetUserName();
-            await GetTasks();
+            await GetTasksByDate(DateTime.Now);
         }
 
         private void SetUserName()
@@ -99,9 +100,9 @@ namespace ToDoApp.ViewModels
             }
         }
 
-        private async Task GetTasks()
+        private async Task GetTasksByDate(DateTime date)
         {
-            var taskList = await _tasksRepository.GetAll();
+            var taskList = await _tasksRepository.GetAllContains("date", date.ToString("dd/MM/yyyy"));
             TaskList = new ObservableCollection<TaskModel>(taskList.OrderBy(t => t.archived).ToList());
         }
     }

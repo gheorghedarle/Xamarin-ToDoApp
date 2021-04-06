@@ -1,4 +1,5 @@
 ﻿using Plugin.CloudFirestore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ToDoApp.Models;
@@ -20,6 +21,11 @@ namespace ToDoApp.Repositories.FirestoreRepository
                     .GetAsync();
 
             return document.ToObjects<ProjectModel>();
+        }
+
+        public Task<IEnumerable<ProjectModel>> GetAllContains(string field, object value)
+        {
+            throw new NotImplementedException();
         }
     }
 }

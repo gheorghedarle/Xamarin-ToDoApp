@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ToDoApp.Repositories.FirestoreRepository
@@ -7,5 +8,6 @@ namespace ToDoApp.Repositories.FirestoreRepository
     {
         T Get();
         Task<IEnumerable<T>> GetAll();
+        Task<IEnumerable<T>> GetAllContains(string field, object value);
     }
 }

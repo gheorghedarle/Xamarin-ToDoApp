@@ -22,5 +22,16 @@ namespace ToDoApp.Repositories.FirestoreRepository
 
             return document.ToObjects<TaskModel>();
         }
+
+        public async Task<IEnumerable<TaskModel>> GetAllContains(string field, object value)
+        {
+            var document = await CrossCloudFirestore.Current
+                .Instance
+                .Collection("tasks")
+                .WhereEqualsTo("date", value)
+                .GetAsync();
+
+            return document.ToObjects<TaskModel>();
+        }
     }
 }

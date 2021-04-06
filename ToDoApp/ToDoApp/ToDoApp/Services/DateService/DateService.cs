@@ -32,6 +32,7 @@ namespace ToDoApp.Services.DateService
                 var date = firstDayInWeek.AddDays(i);
                 dayList.Add(new DayModel()
                 {
+                    Date = date,
                     Day = date.Day,
                     DayName = date.ToString("ddd"),
                     IsActive = date.Date == DateTime.Now.Date,
