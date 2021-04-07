@@ -11,9 +11,16 @@ namespace ToDoApp.Models
         public string WeekString { get; set; }
     }
 
+    public enum DayStateEnum
+    {
+        Active,
+        Past,
+        Future
+    }
+
     public class DayModel: BaseModel
     {
-        public bool IsActive { get; set; }
+        public DayStateEnum State { get; set; }
         public int Day { get; set; }
         public string DayName { get; set; }
         public DateTime Date { get; set; }

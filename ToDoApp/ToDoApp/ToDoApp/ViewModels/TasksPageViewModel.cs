@@ -54,7 +54,7 @@ namespace ToDoApp.ViewModels
         private async void DayCommandHandler(DayModel day)
         {
             ResetActiveDay();
-            day.IsActive = true;
+            day.State = DayStateEnum.Active;
             await GetTasksByDate(day.Date);
         }
 
@@ -93,10 +93,10 @@ namespace ToDoApp.ViewModels
 
         private void ResetActiveDay()
         {
-            var selectedDay = DaysList.FirstOrDefault(d => d.IsActive);
+            var selectedDay = DaysList.FirstOrDefault(d => d.State.Equals(DayStateEnum.Active));
             if (selectedDay != null)
             {
-                selectedDay.IsActive = false;
+                selectedDay.State = DayStateEnum.Future;
             }
         }
 
