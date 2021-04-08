@@ -96,7 +96,7 @@ namespace ToDoApp.ViewModels
             var selectedDay = DaysList.FirstOrDefault(d => d.State.Equals(DayStateEnum.Active));
             if (selectedDay != null)
             {
-                selectedDay.State = DayStateEnum.Future;
+                selectedDay.State = selectedDay.Date < DateTime.Now.Date ? DayStateEnum.Past : DayStateEnum.Normal;
             }
         }
 

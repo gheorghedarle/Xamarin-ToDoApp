@@ -15,7 +15,7 @@ namespace ToDoApp.Models
     {
         Active,
         Past,
-        Future
+        Normal
     }
 
     public class DayModel: BaseModel

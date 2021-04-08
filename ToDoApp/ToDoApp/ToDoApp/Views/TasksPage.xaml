@@ -107,7 +107,7 @@
                                 <VisualStateGroup>
                                     <VisualState x:Name="normal">
                                         <VisualState.StateTriggers>
-                                            <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Future}}"></StateTrigger>
+                                            <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Normal}}"></StateTrigger>
                                         </VisualState.StateTriggers>
                                         <VisualState.Setters>
                                             <Setter Property="BackgroundColor" Value="#FFF"/>
@@ -143,7 +143,7 @@
                                         <VisualStateGroup>
                                             <VisualState x:Name="normal">
                                                 <VisualState.StateTriggers>
-                                                    <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Future}}"></StateTrigger>
+                                                    <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Normal}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
                                                     <Setter Property="FontFamily" Value="Cairo_Regular"/>
@@ -183,7 +183,7 @@
                                         <VisualStateGroup>
                                             <VisualState x:Name="normal">
                                                 <VisualState.StateTriggers>
-                                                    <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Future}}"></StateTrigger>
+                                                    <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Normal}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
                                                     <Setter Property="FontFamily" Value="Cairo_Regular"/>

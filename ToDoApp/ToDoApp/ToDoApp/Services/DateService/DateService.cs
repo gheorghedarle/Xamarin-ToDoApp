@@ -37,7 +37,7 @@ namespace ToDoApp.Services.DateService
                     DayName = date.ToString("ddd"),
                     State = date.Date == DateTime.Now.Date ? DayStateEnum.Active :
                         date.Date < DateTime.Now.Date ? DayStateEnum.Past :
-                        DayStateEnum.Future,
+                        DayStateEnum.Normal,
                     Column = i
                 });
             }
