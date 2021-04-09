@@ -18,8 +18,8 @@
                     <Label
                         Text="Name"></Label>
                     <Entry
-                        Text="{Binding Name}"
-                        ReturnCommand="{Binding StartCommand}">
+                        ReturnCommand="{Binding StartCommand}"
+                        Text="{Binding Name}">
                         <Entry.Effects>
                             <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                         </Entry.Effects>
@@ -33,8 +33,8 @@
                 CornerRadius="32"
                 FontSize="16"
                 FontFamily="Cairo_Bold"
-                Padding="24, 16, 24, 16"
                 Margin="32, 16"
+                Padding="24, 16, 24, 16"
                 Text="GET STARTED"
                 TextColor="#253864"></Button>
         </Grid>
