@@ -5,7 +5,7 @@ namespace ToDoApp.Models
     public enum DayStateEnum
     {
         Active,
-        Normal
+        Normal,
         Past,
     }
 
