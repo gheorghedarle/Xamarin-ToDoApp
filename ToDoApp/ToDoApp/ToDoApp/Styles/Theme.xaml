@@ -13,6 +13,12 @@
         <Setter Property="FontSize" Value="{StaticResource Headline2FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
+    
+    <Style x:Key="Headline4_CairoBold" TargetType="Label">
+        <Setter Property="FontFamily" Value="Cairo_Bold" />
+        <Setter Property="FontSize" Value="{StaticResource Headline4FontSize}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+    </Style>
 
     <Style x:Key="Body1_CairoRegular" TargetType="Label">
         <Setter Property="FontFamily" Value="Cairo_Regular" />

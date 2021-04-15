@@ -39,18 +39,16 @@
                 <Label
                     Grid.Column="1"
                     Grid.Row="0"
+                    Style="{StaticResource Body1_CairoRegular}"
                     Text="Welcome back"
-                    TextColor="Gray"
-                    FontSize="16"
-                    FontFamily="Cairo_Regular"></Label>
+                    TextColor="Gray"></Label>
                 <Label
                     Grid.Column="1"
                     Grid.Row="1"
+                    Margin="0, -10, 0, 0"
+                    Style="{StaticResource Headline4_CairoBold}"
                     Text="{Binding Name}"
-                    TextColor="#333"
-                    FontSize="24"
-                    FontFamily="Cairo_Bold"
-                    Margin="0, -10, 0, 0"></Label>
+                    TextColor="#333"></Label>
             </Grid>
             <Grid
                 Grid.Row="2"
