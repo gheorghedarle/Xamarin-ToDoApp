@@ -17,9 +17,15 @@ namespace ToDoApp.ViewModels
 {
     public class TasksPageViewModel: BaseViewModel
     {
+        #region Private & Protected
+
         private IDateService _dateService;
         private IFirestoreRepository<TaskModel> _tasksRepository;
         private IDialogService _dialogService;
+
+        #endregion
+
+        #region Properties
 
         public ObservableCollection<DayModel> DaysList { get; set; }
         public ObservableCollection<TaskModel> TaskList { get; set; }
@@ -27,11 +33,19 @@ namespace ToDoApp.ViewModels
         public string Name { get; set; }
         public WeekModel Week { get; set; }
 
+        #endregion
+
+        #region Commands
+
         public ICommand CheckTaskCommand { get; set; }
         public ICommand DayCommand { get; set; }
         public ICommand PreviousWeekCommand { get; set; }
         public ICommand NextWeekCommand { get; set; }
         public ICommand AddTaskCommand { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         public TasksPageViewModel(
             INavigationService navigationService,
@@ -49,6 +63,11 @@ namespace ToDoApp.ViewModels
             DayCommand = new Command<DayModel>(DayCommandHandler);
             AddTaskCommand = new Command(AddTaskCommandHandler);
         }
+
+
+        #endregion
+
+        #region Command Handlers
 
         private void CheckTaskCommandHandler(TaskModel task)
         {
@@ -83,6 +102,14 @@ namespace ToDoApp.ViewModels
             await _dialogService.ShowDialogAsync(nameof(AddTaskDialog));
         }
 
+        #endregion
+
+        #region Navigation
+
+        #endregion
+
+        #region Private Methods
+
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             Week = _dateService.GetWeek(DateTime.Now);
@@ -111,5 +138,7 @@ namespace ToDoApp.ViewModels
             var taskList = await _tasksRepository.GetAllContains("date", date.ToString("dd/MM/yyyy"));
             TaskList = new ObservableCollection<TaskModel>(taskList.OrderBy(t => t.archived).ToList());
         }
+
+        #endregion
     }
 }
