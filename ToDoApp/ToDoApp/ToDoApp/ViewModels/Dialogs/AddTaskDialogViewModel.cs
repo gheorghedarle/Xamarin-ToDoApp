@@ -6,9 +6,15 @@ namespace ToDoApp.ViewModels.Dialogs
 {
     public class AddTaskDialogViewModel : BaseViewModel, IDialogAware
     {
+        #region Constructors
+
         public AddTaskDialogViewModel(
             INavigationService navigationService) : base(navigationService)
         { }
+
+        #endregion
+
+        #region Dialog
 
         public event Action<IDialogParameters> RequestClose;
 
@@ -26,5 +32,7 @@ namespace ToDoApp.ViewModels.Dialogs
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }
