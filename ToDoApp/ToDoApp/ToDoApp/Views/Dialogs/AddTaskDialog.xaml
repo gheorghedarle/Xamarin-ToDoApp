@@ -5,11 +5,12 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              prism:DialogLayout.CloseOnBackgroundTapped="True"
-             prism:DialogLayout.RelativeWidthRequest=".85"
-             VerticalOptions="End"
-             BackgroundColor="White">
+             prism:DialogLayout.RelativeWidthRequest="1"
+             prism:DialogLayout.RelativeHeightRequest="1"
+             BackgroundColor="White"
+             VerticalOptions="End">
     <prism:DialogLayout.Mask>
-        <StackLayout BackgroundColor="Red"
+        <StackLayout BackgroundColor="{StaticResource DarkTransparentBackgroundColor}"
                      HorizontalOptions="FillAndExpand"
                      VerticalOptions="FillAndExpand"></StackLayout>
     </prism:DialogLayout.Mask>

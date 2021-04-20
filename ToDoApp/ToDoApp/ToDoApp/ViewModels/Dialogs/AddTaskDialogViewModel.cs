@@ -19,19 +19,13 @@ namespace ToDoApp.ViewModels.Dialogs
         public event Action<IDialogParameters> RequestClose;
 
         public bool CanCloseDialog()
-        {
-            throw new NotImplementedException();
-        }
+        { return true; }
 
         public void OnDialogClosed()
-        {
-            throw new NotImplementedException();
-        }
+        { }
 
         public void OnDialogOpened(IDialogParameters parameters)
-        {
-            throw new NotImplementedException();
-        }
+        { }
 
         #endregion
     }
