@@ -10,7 +10,7 @@
              BackgroundColor="White"
              VerticalOptions="End">
     <prism:DialogLayout.Mask>
-        <StackLayout BackgroundColor="{StaticResource DarkTransparentBackgroundColor}"
+        <StackLayout BackgroundColor="{StaticResource LightTransparentBackgroundColor}"
                      HorizontalOptions="FillAndExpand"
                      VerticalOptions="FillAndExpand"></StackLayout>
     </prism:DialogLayout.Mask>
@@ -18,5 +18,12 @@
         <Label Text="Add new task"
                TextColor="Black"
                FontSize="{StaticResource Headline4FontSize}"/>
+        <Button 
+            Text="Close"
+            FontFamily="Cairo_Regular"
+            FontSize="{StaticResource ButtonFontSize}"
+            Padding="8, 0, 8, 0"
+            Command="{Binding CloseCommand}"
+            CornerRadius="36"/>
     </StackLayout>
 </Frame>
