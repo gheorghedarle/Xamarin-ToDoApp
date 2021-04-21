@@ -15,15 +15,36 @@
                      VerticalOptions="FillAndExpand"></StackLayout>
     </prism:DialogLayout.Mask>
     <StackLayout>
-        <Label Text="Add new task"
-               TextColor="Black"
-               FontSize="{StaticResource Headline4FontSize}"/>
-        <Button 
+        <Grid
+            ColumnDefinitions="*, Auto"
+            Padding="4, 0, 8, 0">
+            <Label
+                FontFamily="Cairo_Bold"
+                FontSize="{StaticResource Headline4FontSize}"
+                Grid.Column="0"
+                Text="Add new task"
+                TextColor="Black"/>
+            <ImageButton
+                Grid.Column="1"
+                VerticalOptions="Center"
+                BackgroundColor="Transparent"
+                Command="{Binding CloseCommand}">
+                <ImageButton.Source>
+                    <FontImageSource
+                        Glyph="&#xf00d;"
+                        Size="{StaticResource Headline4FontSize}"
+                        FontFamily="FontAwesome_Solid"
+                        Color="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></FontImageSource>
+                </ImageButton.Source>   
+            </ImageButton>
+        </Grid>
+        <Button
+            BackgroundColor="#007965"
             Text="Close"
-            FontFamily="Cairo_Regular"
+            TextColor="White"
+            FontFamily="Cairo_Bold"
             FontSize="{StaticResource ButtonFontSize}"
             Padding="8, 0, 8, 0"
-            Command="{Binding CloseCommand}"
             CornerRadius="36"/>
     </StackLayout>
 </Frame>
