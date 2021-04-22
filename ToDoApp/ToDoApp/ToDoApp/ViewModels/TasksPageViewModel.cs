@@ -99,7 +99,7 @@ namespace ToDoApp.ViewModels
         private async void AddTaskCommandHandler()
         {
             Debug.WriteLine("Add Task Button");
-            await _dialogService.ShowDialogAsync(nameof(AddTaskDialog));
+            await _dialogService.ShowDialogAsync(nameof(AddDialog));
         }
 
         #endregion

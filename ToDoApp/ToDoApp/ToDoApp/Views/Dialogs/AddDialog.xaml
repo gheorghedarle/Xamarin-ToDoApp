@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Frame xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ToDoApp.Views.Dialogs.AddTaskDialog"
+             x:Class="ToDoApp.Views.Dialogs.AddDialog"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              prism:DialogLayout.CloseOnBackgroundTapped="True"
@@ -17,12 +17,12 @@
     <StackLayout>
         <Grid
             ColumnDefinitions="*, Auto"
-            Padding="4, 0, 8, 0">
+            Padding="0, 0, 8, 0">
             <Label
                 FontFamily="Cairo_Bold"
                 FontSize="{StaticResource Headline4FontSize}"
                 Grid.Column="0"
-                Text="Add new task"
+                Text="New task or project"
                 TextColor="Black"/>
             <ImageButton
                 Grid.Column="1"
@@ -35,16 +35,27 @@
                         Size="{StaticResource Headline4FontSize}"
                         FontFamily="FontAwesome_Solid"
                         Color="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></FontImageSource>
-                </ImageButton.Source>   
+                </ImageButton.Source>
             </ImageButton>
         </Grid>
-        <Button
-            BackgroundColor="#007965"
-            Text="Close"
-            TextColor="White"
-            FontFamily="Cairo_Bold"
-            FontSize="{StaticResource ButtonFontSize}"
-            Padding="8, 0, 8, 0"
-            CornerRadius="36"/>
+        <StackLayout
+            BindableLayout.ItemsSource="{Binding OptionsList}"
+            x:Name="optionsList">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout
+                        Padding="0, 8, 0, 0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.OptionCommand, Source={x:Reference optionsList}}" CommandParameter="{Binding Label}"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Label
+                            Text="{Binding .}"
+                            TextColor="Black"
+                            FontSize="{StaticResource Body1FontSize}"
+                            FontFamily="Cairo_Bold"></Label>
+                    </StackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
     </StackLayout>
 </Frame>

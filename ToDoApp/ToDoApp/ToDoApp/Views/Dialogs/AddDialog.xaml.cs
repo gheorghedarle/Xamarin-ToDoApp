@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 namespace ToDoApp.Views.Dialogs
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddTaskDialog : Frame
+    public partial class AddDialog : Frame
     {
-        public AddTaskDialog()
+        public AddDialog()
         {
             InitializeComponent();
         }

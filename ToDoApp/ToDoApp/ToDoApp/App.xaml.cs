@@ -48,7 +48,7 @@ namespace ToDoApp
             containerRegistry.RegisterForNavigation<WelcomePage, WelcomePageViewModel>("WelcomePage");
             containerRegistry.RegisterForNavigation<TasksPage, TasksPageViewModel>("TasksPage");
 
-            containerRegistry.RegisterDialog<AddTaskDialog, AddTaskDialogViewModel>();
+            containerRegistry.RegisterDialog<AddDialog, AddDialogViewModel>();
         }
 
         protected override void OnStart()
