@@ -1,12 +1,8 @@
 ﻿using Prism.AppModel;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels
 {

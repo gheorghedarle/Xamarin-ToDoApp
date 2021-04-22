@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ToDoApp.Models
+﻿namespace ToDoApp.Models
 {
     public class ProjectModel : BaseModel
     {
