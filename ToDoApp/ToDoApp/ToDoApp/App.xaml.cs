@@ -48,6 +48,7 @@ namespace ToDoApp
             containerRegistry.RegisterForNavigation<WelcomePage, WelcomePageViewModel>("WelcomePage");
             containerRegistry.RegisterForNavigation<TasksPage, TasksPageViewModel>("TasksPage");
             containerRegistry.RegisterForNavigation<AddTaskPage, AddTaskPageViewModel>("AddTaskPage");
+            containerRegistry.RegisterForNavigation<AddProjectPage, AddProjectPageViewModel>("AddProjectPage");
 
             containerRegistry.RegisterDialog<AddDialog, AddDialogViewModel>();
         }
