@@ -41,7 +41,7 @@ namespace ToDoApp.ViewModels
         public ICommand DayCommand { get; set; }
         public ICommand PreviousWeekCommand { get; set; }
         public ICommand NextWeekCommand { get; set; }
-        public ICommand AddTaskCommand { get; set; }
+        public ICommand AddCommand { get; set; }
 
         #endregion
 
@@ -61,7 +61,7 @@ namespace ToDoApp.ViewModels
             PreviousWeekCommand = new Command<DateTime>(PreviousWeekCommandHandler);
             NextWeekCommand = new Command<DateTime>(NextWeekCommandHandler);
             DayCommand = new Command<DayModel>(DayCommandHandler);
-            AddTaskCommand = new Command(AddTaskCommandHandler);
+            AddCommand = new Command(AddCommandHandler);
         }
 
 
@@ -96,9 +96,8 @@ namespace ToDoApp.ViewModels
             DaysList = new ObservableCollection<DayModel>(_dateService.GetDayList(Week.StartDay, Week.LastDay));
         }
 
-        private async void AddTaskCommandHandler()
+        private async void AddCommandHandler()
         {
-            Debug.WriteLine("Add Task Button");
             await _dialogService.ShowDialogAsync(nameof(AddDialog));
         }
 

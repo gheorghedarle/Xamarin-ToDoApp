@@ -46,7 +46,7 @@
                     <StackLayout
                         Padding="0, 8, 0, 0">
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding BindingContext.OptionCommand, Source={x:Reference optionsList}}" CommandParameter="{Binding Label}"></TapGestureRecognizer>
+                            <TapGestureRecognizer Command="{Binding BindingContext.AddCommand, Source={x:Reference optionsList}}" CommandParameter="{Binding .}"></TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>
                         <Label
                             Text="{Binding .}"

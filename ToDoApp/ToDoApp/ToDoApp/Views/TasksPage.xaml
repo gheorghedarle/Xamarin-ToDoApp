@@ -340,7 +340,7 @@
                 TranslationX="-30"
                 Padding="18, 16, 18, 16">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding AddTaskCommand}"></TapGestureRecognizer>
+                    <TapGestureRecognizer Command="{Binding AddCommand}"></TapGestureRecognizer>
                 </Frame.GestureRecognizers>
                 <Label
                     Text="&#xf067;"
