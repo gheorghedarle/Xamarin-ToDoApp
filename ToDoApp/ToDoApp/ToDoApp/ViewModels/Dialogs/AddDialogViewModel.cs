@@ -33,17 +33,13 @@ namespace ToDoApp.ViewModels.Dialogs
             RequestClose(null);
         }
 
-        private async void AddCommandHandler(string option)
+        private void AddCommandHandler(string option)
         {
-            if(option == "Add a task")
+            var param = new DialogParameters()
             {
-                await _navigationService.NavigateAsync(nameof(AddTaskPage));
-            }
-            else
-            {
-                await _navigationService.NavigateAsync(nameof(AddProjectPage));
-            }
-            RequestClose(null);
+                { "option", option }
+            };
+            RequestClose(param);
         }
 
         #region Dialog

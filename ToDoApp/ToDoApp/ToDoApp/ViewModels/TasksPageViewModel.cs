@@ -9,6 +9,7 @@ using System.Windows.Input;
 using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Services.DateService;
+using ToDoApp.Views;
 using ToDoApp.Views.Dialogs;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -98,7 +99,17 @@ namespace ToDoApp.ViewModels
 
         private async void AddCommandHandler()
         {
-            await _dialogService.ShowDialogAsync(nameof(AddDialog));
+            _dialogService.ShowDialog(nameof(AddDialog), null, async (param) => {
+                var option = param.Parameters.GetValue<string>("option");
+                if (option == "Add a task")
+                {
+                    await _navigationService.NavigateAsync(nameof(AddTaskPage));
+                }
+                else
+                {
+                    await _navigationService.NavigateAsync(nameof(AddProjectPage));
+                }
+            });
         }
 
         #endregion
