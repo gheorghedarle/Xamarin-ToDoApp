@@ -97,17 +97,20 @@ namespace ToDoApp.ViewModels
             DaysList = new ObservableCollection<DayModel>(_dateService.GetDayList(Week.StartDay, Week.LastDay));
         }
 
-        private async void AddCommandHandler()
+        private void AddCommandHandler()
         {
             _dialogService.ShowDialog(nameof(AddDialog), null, async (param) => {
                 var option = param.Parameters.GetValue<string>("option");
-                if (option == "Add a task")
+                if(option != null)
                 {
-                    await _navigationService.NavigateAsync(nameof(AddTaskPage));
-                }
-                else
-                {
-                    await _navigationService.NavigateAsync(nameof(AddProjectPage));
+                    if (option == "Add a task")
+                    {
+                        await _navigationService.NavigateAsync(nameof(AddTaskPage));
+                    }
+                    else
+                    {
+                        await _navigationService.NavigateAsync(nameof(AddProjectPage));
+                    }
                 }
             });
         }
