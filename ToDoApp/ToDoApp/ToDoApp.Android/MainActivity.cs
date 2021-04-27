@@ -2,7 +2,6 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using Sharpnado.HorizontalListView.Droid;
 
 namespace ToDoApp.Droid
 {
@@ -15,8 +14,6 @@ namespace ToDoApp.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-
-            SharpnadoInitializer.Initialize();
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

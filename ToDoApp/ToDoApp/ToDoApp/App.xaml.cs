@@ -25,9 +25,7 @@ namespace ToDoApp
         public App() : this(null) { }
 
         public App(IPlatformInitializer initializer) : base(initializer) 
-        { 
-            Sharpnado.HorizontalListView.Initializer.Initialize(true, false);
-        }
+        { }
 
         public new static App Current => Application.Current as App;
 

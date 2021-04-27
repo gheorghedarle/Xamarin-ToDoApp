@@ -67,9 +67,6 @@
     <PackageReference Include="Prism.Forms">
       <Version>8.0.0.1909</Version>
     </PackageReference>
-    <PackageReference Include="Sharpnado.Forms.HorizontalListView">
-      <Version>1.8.1</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
       <Version>1.1.0</Version>
     </PackageReference>
