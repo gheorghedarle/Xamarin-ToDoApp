@@ -13,6 +13,7 @@ using ToDoApp.Views;
 using ToDoApp.Views.Dialogs;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace ToDoApp.ViewModels
 {
@@ -44,6 +45,11 @@ namespace ToDoApp.ViewModels
         public ICommand NextWeekCommand { get; set; }
         public ICommand AddCommand { get; set; }
 
+        public ICommand ItemDragged { get; }
+        public ICommand ItemDraggedOver { get; }
+        public ICommand ItemDragLeave { get; }
+        public ICommand ItemDropped { get; }
+
         #endregion
 
         #region Constructors
@@ -63,6 +69,11 @@ namespace ToDoApp.ViewModels
             NextWeekCommand = new Command<DateTime>(NextWeekCommandHandler);
             DayCommand = new Command<DayModel>(DayCommandHandler);
             AddCommand = new Command(AddCommandHandler);
+
+            ItemDragged = new Command<TaskModel>(OnItemDragged);
+            ItemDraggedOver = new Command<TaskModel>(OnItemDraggedOver);
+            ItemDragLeave = new Command<TaskModel>(OnItemDragLeave);
+            ItemDropped = new Command<TaskModel>(i => OnItemDropped(i));
         }
 
 
@@ -115,6 +126,41 @@ namespace ToDoApp.ViewModels
             });
         }
 
+        private void OnItemDragged(TaskModel item)
+        {
+            Debug.WriteLine($"OnItemDragged: {item?.task}");
+            TaskList.ForEach(i => i.isBeingDragged = item == i);
+        }
+
+        private void OnItemDraggedOver(TaskModel item)
+        {
+            Debug.WriteLine($"OnItemDraggedOver: {item?.task}");
+            var itemBeingDragged = TaskList.FirstOrDefault(i => i.isBeingDragged);
+            TaskList.ForEach(i => i.isBeingDraggedOver = item == i && item != itemBeingDragged);
+        }
+
+        private void OnItemDragLeave(TaskModel item)
+        {
+            Debug.WriteLine($"OnItemDragLeave: {item?.task}");
+            TaskList.ForEach(i => i.isBeingDraggedOver = false);
+        }
+
+        private async Task OnItemDropped(TaskModel item)
+        {
+            var itemToMove = TaskList.First(i => i.isBeingDragged);
+            var itemToInsertBefore = item;
+
+            if (itemToMove == null || itemToInsertBefore == null || itemToMove == itemToInsertBefore)
+                return;
+
+            var insertAtIndex = TaskList.IndexOf(itemToInsertBefore);
+            TaskList.Remove(itemToMove);
+            TaskList.Insert(insertAtIndex, itemToMove);
+            itemToMove.isBeingDragged = false;
+            itemToInsertBefore.isBeingDraggedOver = false;
+        }
+
+
         #endregion
 
         #region Navigation
@@ -148,8 +194,16 @@ namespace ToDoApp.ViewModels
 
         private async Task GetTasksByDate(DateTime date)
         {
-            var taskList = await _tasksRepository.GetAllContains("date", date.ToString("dd/MM/yyyy"));
-            TaskList = new ObservableCollection<TaskModel>(taskList.OrderBy(t => t.archived).ToList());
+            //var taskList = await _tasksRepository.GetAllContains("date", date.ToString("dd/MM/yyyy"));
+            //TaskList = new ObservableCollection<TaskModel>(taskList.OrderBy(t => t.archived).ToList());
+            TaskList = new ObservableCollection<TaskModel>()
+            {
+                new TaskModel() { task = "Task 1", projectId = "1", archived = false, userId = "1"},
+                new TaskModel() { task = "Task 2", projectId = "1", archived = false, userId = "1"},
+                new TaskModel() { task = "Task 3", projectId = "2", archived = false, userId = "1"},
+                new TaskModel() { task = "Task 4", projectId = "2", archived = false, userId = "1"},
+                new TaskModel() { task = "Task 4", projectId = "3", archived = false, userId = "1"},
+            };
         }
 
         #endregion
