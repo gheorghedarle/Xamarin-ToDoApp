@@ -254,6 +254,26 @@
                                         DragStartingCommandParameter="{Binding}" />
                                     <TapGestureRecognizer Command="{Binding BindingContext.CheckTaskCommand, Source={x:Reference TaskItems}}" CommandParameter="{Binding}"></TapGestureRecognizer>
                                 </Frame.GestureRecognizers>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup>
+                                        <VisualState x:Name="normal">
+                                            <VisualState.StateTriggers>
+                                                <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="HasShadow" Value="True"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="done">
+                                            <VisualState.StateTriggers>
+                                                <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Property="HasShadow" Value="False"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
                                 <StackLayout
                                     Orientation="Horizontal">
                                     <Label
