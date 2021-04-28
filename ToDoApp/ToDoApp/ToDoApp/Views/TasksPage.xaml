@@ -94,8 +94,7 @@
                         <Frame
                             Grid.Column="{Binding Column}"
                             Padding="4"
-                            CornerRadius="16"
-                            HasShadow="False">
+                            CornerRadius="16">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding BindingContext.DayCommand, Source={x:Reference daysList}}" CommandParameter="{Binding .}"></TapGestureRecognizer>
                             </Frame.GestureRecognizers>
@@ -107,6 +106,7 @@
                                         </VisualState.StateTriggers>
                                         <VisualState.Setters>
                                             <Setter Property="BackgroundColor" Value="#FFF"/>
+                                            <Setter Property="HasShadow" Value="True"/>
                                         </VisualState.Setters>
                                     </VisualState>
                                     <VisualState x:Name="active">
@@ -115,6 +115,7 @@
                                         </VisualState.StateTriggers>
                                         <VisualState.Setters>
                                             <Setter Property="BackgroundColor" Value="#007965"/>
+                                            <Setter Property="HasShadow" Value="True"/>
                                         </VisualState.Setters>
                                     </VisualState>
                                     <VisualState x:Name="past">
@@ -123,6 +124,7 @@
                                         </VisualState.StateTriggers>
                                         <VisualState.Setters>
                                             <Setter Property="BackgroundColor" Value="#fafafa"/>
+                                            <Setter Property="HasShadow" Value="False"/>
                                         </VisualState.Setters>
                                     </VisualState>
                                 </VisualStateGroup>
@@ -223,9 +225,7 @@
                 ItemsSource="{Binding TaskList}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout
-                            Padding="5"
-                            BackgroundColor="Azure">
+                        <StackLayout>
                             <StackLayout.GestureRecognizers>
                                 <DropGestureRecognizer
                                     AllowDrop="True"
@@ -238,23 +238,82 @@
                                     DropCommandParameter="{Binding}" />
                             </StackLayout.GestureRecognizers>
                             <Grid
-                                BackgroundColor="LightYellow"
-                                HeightRequest="50"
+                                BackgroundColor="#7fbcb2"
+                                HeightRequest="48"
                                 IsVisible="{Binding isBeingDraggedOver}" />
-                            <Label
-                                FontSize="Large"
-                                HeightRequest="50"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding task}"
-                                VerticalTextAlignment="Center">
-                                <Label.GestureRecognizers>
+                            <Frame
+                                Padding="8, 12, 8, 12"
+                                Margin="8, 4, 8, 4"
+                                BackgroundColor="White"
+                                CornerRadius="24">
+                                <Frame.GestureRecognizers>
                                     <DragGestureRecognizer
                                         CanDrag="True"
                                         DragStarting="DragGestureRecognizer_DragStarting_Collection"
                                         DragStartingCommand="{Binding BindingContext.ItemDragged, Source={x:Reference TaskItems}}"
                                         DragStartingCommandParameter="{Binding}" />
-                                </Label.GestureRecognizers>
-                            </Label>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.CheckTaskCommand, Source={x:Reference TaskItems}}" CommandParameter="{Binding}"></TapGestureRecognizer>
+                                </Frame.GestureRecognizers>
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Label
+                                        Text="{Binding archived, Converter={StaticResource DoneIconConverter}}"
+                                        FontSize="24"
+                                        FontFamily="FontAwesome_Regular"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center"
+                                        Margin="16, 0, 0, 0">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup>
+                                                <VisualState x:Name="normal">
+                                                    <VisualState.StateTriggers>
+                                                        <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="TextColor" Value="#222222"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                                <VisualState x:Name="done">
+                                                    <VisualState.StateTriggers>
+                                                        <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="TextColor" Value="#cacaca"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                    </Label>
+                                    <Label 
+                                        Text="{Binding task}"
+                                        FontFamily="Cairo_Regular"
+                                        Margin="8, 0, 8, 0"
+                                        VerticalOptions="Center">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup>
+                                                <VisualState x:Name="normal">
+                                                    <VisualState.StateTriggers>
+                                                        <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="TextColor" Value="#222222"/>
+                                                        <Setter Property="TextDecorations" Value="None"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                                <VisualState x:Name="done">
+                                                    <VisualState.StateTriggers>
+                                                        <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="TextColor" Value="#cacaca"/>
+                                                        <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                    </Label>
+                                </StackLayout>
+                            </Frame>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
