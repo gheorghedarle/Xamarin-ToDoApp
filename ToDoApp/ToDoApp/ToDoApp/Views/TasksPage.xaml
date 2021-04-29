@@ -7,7 +7,9 @@
              x:Class="ToDoApp.Views.TasksPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *">
+        <Grid 
+            BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
+            RowDefinitions="Auto, Auto, Auto, Auto, Auto, *">
             <fragments:ConnectionView
                 Grid.Row="0"/>
             <Grid
@@ -20,7 +22,7 @@
                     Grid.Column="0"
                     Grid.Row="0"
                     Grid.RowSpan="2"
-                    Fill="#007965"
+                    Fill="#007CD1"
                     Aspect="Uniform"
                     WidthRequest="52"
                     HeightRequest="54"></Ellipse>
@@ -40,14 +42,14 @@
                     Grid.Row="0"
                     Style="{StaticResource Body1_CairoRegular}"
                     Text="Welcome back"
-                    TextColor="Gray"></Label>
+                    TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"></Label>
                 <Label
                     Grid.Column="1"
                     Grid.Row="1"
                     Margin="0, -10, 0, 0"
                     Style="{StaticResource Headline4_CairoBold}"
                     Text="{Binding Name}"
-                    TextColor="#333"></Label>
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
             </Grid>
             <Grid
                 Grid.Row="2"
@@ -64,7 +66,7 @@
                     Grid.Column="2"
                     CornerRadius="16"
                     Text="&#xf053;"
-                    TextColor="#333"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                     FontSize="18"
                     FontFamily="FontAwesome_Solid"
                     HorizontalOptions="EndAndExpand"
@@ -75,7 +77,7 @@
                     Grid.Column="3"
                     CornerRadius="16"
                     Text="&#xf054;"
-                    TextColor="#333"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                     FontSize="18"
                     FontFamily="FontAwesome_Solid"
                     HorizontalOptions="EndAndExpand"
@@ -105,7 +107,7 @@
                                             <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Normal}}"></StateTrigger>
                                         </VisualState.StateTriggers>
                                         <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="#FFF"/>
+                                            <Setter Property="BackgroundColor" Value="White"/>
                                             <Setter Property="HasShadow" Value="True"/>
                                         </VisualState.Setters>
                                     </VisualState>
@@ -114,7 +116,7 @@
                                             <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Active}}"></StateTrigger>
                                         </VisualState.StateTriggers>
                                         <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="#007965"/>
+                                            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
                                             <Setter Property="HasShadow" Value="True"/>
                                         </VisualState.Setters>
                                     </VisualState>
@@ -123,7 +125,7 @@
                                             <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Past}}"></StateTrigger>
                                         </VisualState.StateTriggers>
                                         <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="#fafafa"/>
+                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardUnselectedBackgroundColor}, Dark={StaticResource DarkCardUnselectedBackgroundColor}}"/>
                                             <Setter Property="HasShadow" Value="False"/>
                                         </VisualState.Setters>
                                     </VisualState>
@@ -144,7 +146,7 @@
                                                     <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Normal}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="TextColor" Value="#333"/>
+                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
                                                     <Setter Property="TextTransform" Value="None"/>
                                                 </VisualState.Setters>
                                             </VisualState>
@@ -154,7 +156,7 @@
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
                                                     <Setter Property="FontFamily" Value="Cairo_Bold"/>
-                                                    <Setter Property="TextColor" Value="#FFF"/>
+                                                    <Setter Property="TextColor" Value="White"/>
                                                     <Setter Property="TextTransform" Value="Uppercase"/>
                                                 </VisualState.Setters>
                                             </VisualState>
@@ -163,7 +165,7 @@
                                                     <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Past}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="TextColor" Value="Gray"/>
+                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
                                                     <Setter Property="TextTransform" Value="None"/>
                                                 </VisualState.Setters>
                                             </VisualState>
@@ -183,7 +185,7 @@
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
                                                     <Setter Property="Margin" Value="0, -4, 0, 0"/>
-                                                    <Setter Property="TextColor" Value="#333"/>
+                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                             <VisualState x:Name="active">
@@ -193,7 +195,7 @@
                                                 <VisualState.Setters>
                                                     <Setter Property="FontFamily" Value="Cairo_Bold"/>
                                                     <Setter Property="Margin" Value="0, -8, 0, 0"/>
-                                                    <Setter Property="TextColor" Value="#FFF"/>
+                                                    <Setter Property="TextColor" Value="White"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                             <VisualState x:Name="past">
@@ -201,8 +203,8 @@
                                                     <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Past}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="Margin" Value="0, -8, 0, 0"/>
-                                                    <Setter Property="TextColor" Value="Gray"/>
+                                                    <Setter Property="Margin" Value="0, -4, 0, 0"/>
+                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                         </VisualStateGroup>
@@ -290,7 +292,7 @@
                                                         <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
                                                     </VisualState.StateTriggers>
                                                     <VisualState.Setters>
-                                                        <Setter Property="TextColor" Value="#222222"/>
+                                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
                                                     </VisualState.Setters>
                                                 </VisualState>
                                                 <VisualState x:Name="done">
@@ -298,7 +300,7 @@
                                                         <StateTrigger IsActive="{Binding archived}"></StateTrigger>
                                                     </VisualState.StateTriggers>
                                                     <VisualState.Setters>
-                                                        <Setter Property="TextColor" Value="#cacaca"/>
+                                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
                                                     </VisualState.Setters>
                                                 </VisualState>
                                             </VisualStateGroup>
@@ -316,7 +318,7 @@
                                                         <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
                                                     </VisualState.StateTriggers>
                                                     <VisualState.Setters>
-                                                        <Setter Property="TextColor" Value="#222222"/>
+                                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
                                                         <Setter Property="TextDecorations" Value="None"/>
                                                     </VisualState.Setters>
                                                 </VisualState>
@@ -325,7 +327,7 @@
                                                         <StateTrigger IsActive="{Binding archived}"></StateTrigger>
                                                     </VisualState.StateTriggers>
                                                     <VisualState.Setters>
-                                                        <Setter Property="TextColor" Value="#cacaca"/>
+                                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
                                                         <Setter Property="TextDecorations" Value="Strikethrough"/>
                                                     </VisualState.Setters>
                                                 </VisualState>
@@ -340,7 +342,7 @@
             </CollectionView>
             <Frame 
                 Grid.Row="5" 
-                BackgroundColor="#007965"
+                BackgroundColor="{StaticResource PrimaryColor}"
                 VerticalOptions="End" 
                 HorizontalOptions="End" 
                 CornerRadius="18" 
