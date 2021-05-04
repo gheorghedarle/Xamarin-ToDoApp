@@ -36,7 +36,7 @@
                     FontFamily="FontAwesome_Solid"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
-                    Margin="7, 0, 8, 0"></Label>
+                    Margin="8, 0, 8, 0"></Label>
                 <Label
                     Grid.Column="1"
                     Grid.Row="0"
@@ -276,15 +276,19 @@
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
-                                <StackLayout
-                                    Orientation="Horizontal">
+                                <Grid
+                                    ColumnDefinitions="Auto, Auto"
+                                    RowDefinitions="Auto, Auto">
                                     <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Grid.RowSpan="2"
                                         Text="{Binding archived, Converter={StaticResource DoneIconConverter}}"
                                         FontSize="24"
                                         FontFamily="FontAwesome_Regular"
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center"
-                                        Margin="16, 0, 0, 0">
+                                        Margin="12, 0, 0, 0">
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroup>
                                                 <VisualState x:Name="normal">
@@ -307,8 +311,11 @@
                                         </VisualStateManager.VisualStateGroups>
                                     </Label>
                                     <Label 
+                                        Grid.Row="0"
+                                        Grid.Column="1"
                                         Text="{Binding task}"
-                                        FontFamily="Cairo_Regular"
+                                        FontFamily="Cairo_SemiBold"
+                                        FontSize="{StaticResource Body1FontSize}"
                                         Margin="8, 0, 8, 0"
                                         VerticalOptions="Center">
                                         <VisualStateManager.VisualStateGroups>
@@ -334,7 +341,38 @@
                                             </VisualStateGroup>
                                         </VisualStateManager.VisualStateGroups>
                                     </Label>
-                                </StackLayout>
+                                    <Label 
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Text="Project 1"
+                                        FontFamily="Cairo_Regular"
+                                        FontSize="{StaticResource Body2FontSize}"
+                                        Margin="8, -10, 8, 0"
+                                        VerticalOptions="Center">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup>
+                                                <VisualState x:Name="normal">
+                                                    <VisualState.StateTriggers>
+                                                        <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                                                        <Setter Property="TextDecorations" Value="None"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                                <VisualState x:Name="done">
+                                                    <VisualState.StateTriggers>
+                                                        <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                                                        <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                    </Label>
+                                </Grid>
                             </Frame>
                         </StackLayout>
                     </DataTemplate>
