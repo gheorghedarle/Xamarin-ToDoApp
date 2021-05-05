@@ -1,13 +1,13 @@
-﻿namespace ToDoApp.Models
+﻿using ToDoApp.Models.Interfaces;
+
+namespace ToDoApp.Models
 {
-    public class TaskModel: BaseModel
+    public class TaskModel: DraggableItemModel
     {
         public bool archived { get; set; }
         public string projectId { get; set; }
         public string projectName { get; set; }
         public string task { get; set; }
         public string userId { get; set; }
-        public bool isBeingDragged { get; set; }
-        public bool isBeingDraggedOver { get; set; }
     }
 }
