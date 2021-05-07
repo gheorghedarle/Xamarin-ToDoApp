@@ -6,7 +6,7 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid
-            BackgroundColor="#253864"
+            BackgroundColor="{StaticResource PrimaryDarkColor}"
             RowDefinitions="*, Auto, Auto">
             <Frame
                 Grid.Row="1"
@@ -16,8 +16,11 @@
                 <StackLayout
                     Spacing="0">
                     <Label
-                        Text="Name"></Label>
+                        Text="Name"
+                        FontFamily="Cairo_Regular"
+                        FontSize="{StaticResource CaptionFontSize}"></Label>
                     <Entry
+                        FontFamily="Cairo_Regular"
                         ReturnCommand="{Binding StartCommand}"
                         Text="{Binding Name}">
                         <Entry.Effects>
@@ -28,10 +31,10 @@
             </Frame>
             <Button 
                 Grid.Row="2"
-                BackgroundColor="#FFCF5C"
+                BackgroundColor="{StaticResource AccentColor}"
                 Command="{Binding StartCommand}"
                 CornerRadius="32"
-                FontSize="16"
+                FontSize="{StaticResource ButtonFontSize}"
                 FontFamily="Cairo_Bold"
                 Margin="32, 16"
                 Padding="24, 16, 24, 16"
