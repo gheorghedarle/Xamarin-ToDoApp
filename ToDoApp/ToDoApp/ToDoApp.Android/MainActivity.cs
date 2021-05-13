@@ -2,6 +2,8 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Firebase;
+using ToDoApp.Droid.Auth;
 
 namespace ToDoApp.Droid
 {
@@ -17,6 +19,10 @@ namespace ToDoApp.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            Xamarin.Forms.DependencyService.Register<FirebaseAuthentication>();
+            FirebaseApp.InitializeApp(Application.Context);
+
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

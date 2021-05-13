@@ -1,5 +1,7 @@
 ﻿using Prism.Navigation;
+using System.Diagnostics;
 using System.Windows.Input;
+using ToDoApp.Auth;
 using ToDoApp.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -10,13 +12,15 @@ namespace ToDoApp.ViewModels
     {
         #region Properties
 
-        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
 
         #endregion
 
         #region Commands
 
-        public ICommand StartCommand { get; set; }
+        public ICommand LoginCommand { get; set; }
+        public ICommand RegisterCommand { get; set; }
 
         #endregion
 
@@ -25,17 +29,46 @@ namespace ToDoApp.ViewModels
         public WelcomePageViewModel(
             INavigationService navigationService) : base(navigationService)
         { 
-            StartCommand = new Command(StartCommandHandler);
+            LoginCommand = new Command(LoginCommandHandler);
+            RegisterCommand = new Command(RegisterCommandHandler);
         }
 
         #endregion
 
         #region Command Handlers
 
-        private async void StartCommandHandler()
+        private async void LoginCommandHandler()
         {
-            Preferences.Set("Name", Name);
-            await _navigationService.NavigateAsync(nameof(TasksPage));
+            Preferences.Set("Name", Email);
+
+            var auth = DependencyService.Get<IFirebaseAuthentication>();
+            var token = await auth.LoginWithEmailAndPassword(Email, Password);
+
+            if(token != string.Empty)
+            {
+                await _navigationService.NavigateAsync(nameof(TasksPage));
+            }
+            else
+            {
+                // display error
+            }
+        }
+
+        private async void RegisterCommandHandler()
+        {
+            Preferences.Set("Name", Email);
+
+            var auth = DependencyService.Get<IFirebaseAuthentication>();
+            var created = await auth.RegisterWithEmailAndPassword(Email, Password);
+
+            if (created)
+            {
+                Debug.WriteLine("User Created");
+            }
+            else
+            {
+                // display error
+            }
         }
 
         #endregion

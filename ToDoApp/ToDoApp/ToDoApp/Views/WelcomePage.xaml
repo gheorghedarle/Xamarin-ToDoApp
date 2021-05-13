@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <Grid
             BackgroundColor="{StaticResource PrimaryDarkColor}"
-            RowDefinitions="*, Auto, Auto">
+            RowDefinitions="*, Auto, Auto, Auto, Auto">
             <Frame
                 Grid.Row="1"
                 BackgroundColor="White"
@@ -22,7 +22,28 @@
                     <Entry
                         FontFamily="Cairo_Regular"
                         ReturnCommand="{Binding StartCommand}"
-                        Text="{Binding Name}">
+                        Text="{Binding Email}">
+                        <Entry.Effects>
+                            <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
+                        </Entry.Effects>
+                    </Entry>
+                </StackLayout>
+            </Frame>
+            <Frame
+                Grid.Row="2"
+                BackgroundColor="White"
+                CornerRadius="32"
+                Margin="16, 0">
+                <StackLayout
+                    Spacing="0">
+                    <Label
+                        Text="Name"
+                        FontFamily="Cairo_Regular"
+                        FontSize="{StaticResource CaptionFontSize}"></Label>
+                    <Entry
+                        FontFamily="Cairo_Regular"
+                        ReturnCommand="{Binding StartCommand}"
+                        Text="{Binding Password}">
                         <Entry.Effects>
                             <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                         </Entry.Effects>
@@ -30,15 +51,26 @@
                 </StackLayout>
             </Frame>
             <Button 
-                Grid.Row="2"
+                Grid.Row="3"
                 BackgroundColor="{StaticResource AccentColor}"
-                Command="{Binding StartCommand}"
+                Command="{Binding LoginCommand}"
                 CornerRadius="32"
                 FontSize="{StaticResource ButtonFontSize}"
                 FontFamily="Cairo_Bold"
                 Margin="32, 16"
                 Padding="24, 16, 24, 16"
-                Text="GET STARTED"
+                Text="Login"
+                TextColor="#253864"></Button>
+            <Button 
+                Grid.Row="4"
+                BackgroundColor="{StaticResource AccentColor}"
+                Command="{Binding RegisterCommand}"
+                CornerRadius="32"
+                FontSize="{StaticResource ButtonFontSize}"
+                FontFamily="Cairo_Bold"
+                Margin="32, 16"
+                Padding="24, 16, 24, 16"
+                Text="Register"
                 TextColor="#253864"></Button>
         </Grid>
     </ContentPage.Content>
