@@ -1,31 +1,31 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
 using ToDoApp.Auth;
+using Firebase.Auth;
+using ToDoApp.Models;
+using Android.Gms.Extensions;
 
 namespace ToDoApp.Droid.Auth
 {
     public class FirebaseAuthentication : IFirebaseAuthentication
     {
-        public async Task<string> LoginWithEmailAndPassword(string email, string password)
+        public async Task<UserModel> LoginWithEmailAndPassword(string email, string password)
         {
             try
             {
-                var user = await Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
-                var token = user.User.GetIdToken(false);
-                return token.Result.ToString();
+                var firebaseUser = await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
+                var token = await firebaseUser.User.GetIdToken(false).AsAsync<GetTokenResult>();
+                var user = new UserModel()
+                {
+                    DisplayName = firebaseUser.User.DisplayName,
+                    Email = firebaseUser.User.Email,
+                    Token = token.Token
+                };
+                return user;
             }
             catch (Exception ex)
             {
-                return string.Empty;
+                return null;
             }
         }
 
@@ -33,7 +33,10 @@ namespace ToDoApp.Droid.Auth
         {
             try
             {
-                var result = await Firebase.Auth.FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
+                var result = await FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
+                var userProfileBuilder = new UserProfileChangeRequest.Builder();
+                userProfileBuilder.SetDisplayName("Ghita");
+                await result.User.UpdateProfileAsync(userProfileBuilder.Build());
                 return result.User != null;
             }
             catch (Exception ex)
