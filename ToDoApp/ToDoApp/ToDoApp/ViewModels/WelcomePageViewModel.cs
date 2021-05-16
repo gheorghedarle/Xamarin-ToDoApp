@@ -42,9 +42,9 @@ namespace ToDoApp.ViewModels
             Preferences.Set("Name", Email);
 
             var auth = DependencyService.Get<IFirebaseAuthentication>();
-            var token = await auth.LoginWithEmailAndPassword(Email, Password);
+            var user = await auth.LoginWithEmailAndPassword(Email, Password);
 
-            if(token != string.Empty)
+            if(user != null)
             {
                 await _navigationService.NavigateAsync(nameof(TasksPage));
             }

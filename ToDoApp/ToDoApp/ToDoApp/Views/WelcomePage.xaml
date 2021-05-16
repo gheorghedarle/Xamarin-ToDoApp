@@ -16,7 +16,7 @@
                 <StackLayout
                     Spacing="0">
                     <Label
-                        Text="Name"
+                        Text="Email"
                         FontFamily="Cairo_Regular"
                         FontSize="{StaticResource CaptionFontSize}"></Label>
                     <Entry
@@ -37,13 +37,14 @@
                 <StackLayout
                     Spacing="0">
                     <Label
-                        Text="Name"
+                        Text="Password"
                         FontFamily="Cairo_Regular"
                         FontSize="{StaticResource CaptionFontSize}"></Label>
                     <Entry
                         FontFamily="Cairo_Regular"
                         ReturnCommand="{Binding StartCommand}"
-                        Text="{Binding Password}">
+                        Text="{Binding Password}"
+                        IsPassword="True">
                         <Entry.Effects>
                             <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                         </Entry.Effects>
