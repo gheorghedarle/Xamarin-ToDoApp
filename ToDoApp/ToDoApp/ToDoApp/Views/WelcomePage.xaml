@@ -1,78 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:templateSelector="clr-namespace:ToDoApp.Helpers.TemplateSelector"
              x:Class="ToDoApp.Views.WelcomePage"
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <templateSelector:AuthTemplateSelector x:Key="AuthTemplateSelector" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid
-            BackgroundColor="{StaticResource PrimaryDarkColor}"
-            RowDefinitions="*, Auto, Auto, Auto, Auto">
-            <Frame
+            RowDefinitions="3*, Auto">
+            <Grid.Background>
+                <LinearGradientBrush 
+                    StartPoint="0, 0" 
+                    EndPoint="0, 1">
+                    <GradientStop Color="#1eae98" Offset="0.1"></GradientStop>
+                    <GradientStop Color="#233e8b" Offset="0.8"></GradientStop>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <CarouselView
+                Margin="0"
                 Grid.Row="1"
-                BackgroundColor="White"
-                CornerRadius="32"
-                Margin="16, 0">
-                <StackLayout
-                    Spacing="0">
-                    <Label
-                        Text="Email"
-                        FontFamily="Cairo_Regular"
-                        FontSize="{StaticResource CaptionFontSize}"></Label>
-                    <Entry
-                        FontFamily="Cairo_Regular"
-                        ReturnCommand="{Binding StartCommand}"
-                        Text="{Binding Email}">
-                        <Entry.Effects>
-                            <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
-                        </Entry.Effects>
-                    </Entry>
-                </StackLayout>
-            </Frame>
-            <Frame
-                Grid.Row="2"
-                BackgroundColor="White"
-                CornerRadius="32"
-                Margin="16, 0">
-                <StackLayout
-                    Spacing="0">
-                    <Label
-                        Text="Password"
-                        FontFamily="Cairo_Regular"
-                        FontSize="{StaticResource CaptionFontSize}"></Label>
-                    <Entry
-                        FontFamily="Cairo_Regular"
-                        ReturnCommand="{Binding StartCommand}"
-                        Text="{Binding Password}"
-                        IsPassword="True">
-                        <Entry.Effects>
-                            <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
-                        </Entry.Effects>
-                    </Entry>
-                </StackLayout>
-            </Frame>
-            <Button 
-                Grid.Row="3"
-                BackgroundColor="{StaticResource AccentColor}"
-                Command="{Binding LoginCommand}"
-                CornerRadius="32"
-                FontSize="{StaticResource ButtonFontSize}"
-                FontFamily="Cairo_Bold"
-                Margin="32, 16"
-                Padding="24, 16, 24, 16"
-                Text="Login"
-                TextColor="#253864"></Button>
-            <Button 
-                Grid.Row="4"
-                BackgroundColor="{StaticResource AccentColor}"
-                Command="{Binding RegisterCommand}"
-                CornerRadius="32"
-                FontSize="{StaticResource ButtonFontSize}"
-                FontFamily="Cairo_Bold"
-                Margin="32, 16"
-                Padding="24, 16, 24, 16"
-                Text="Register"
-                TextColor="#253864"></Button>
+                CurrentItem="{Binding CurrentAuthScreen}"
+                ItemsSource="{Binding AuthScreenList}"
+                ItemTemplate="{StaticResource AuthTemplateSelector}"
+                IsBounceEnabled="True"
+                IsSwipeEnabled="False"
+                VerticalOptions="End">
+            </CarouselView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

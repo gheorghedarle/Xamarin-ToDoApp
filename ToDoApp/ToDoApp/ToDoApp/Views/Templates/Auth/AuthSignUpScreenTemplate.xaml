@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="ToDoApp.Views.Templates.Auth.AuthSignUpScreenTemplate"
+             x:Name="template">
+    <Label
+        Text="Sign Up"
+        TextColor="White"
+        FontFamily="Cairo_Bold"
+        FontSize="{StaticResource Headline3FontSize}"
+        Margin="20, 0"></Label>
+    <StackLayout
+        Spacing="5"
+        Margin="20, 0">
+        <Label
+            Text="Username"
+            TextColor="White"
+            FontFamily="Cairo_Regular"
+            FontSize="{StaticResource Body1FontSize}"></Label>
+        <Frame
+            BackgroundColor="Transparent"
+            BorderColor="White"
+            CornerRadius="8"
+            Padding="10, 0">
+            <Entry
+                FontFamily="Cairo_Regular"
+                Placeholder="Enter your username"
+                PlaceholderColor="#A6A3BD"
+                ReturnCommand="{Binding StartCommand}"
+                Text="{Binding Username}"
+                TextColor="White">
+                <Entry.Effects>
+                    <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
+                </Entry.Effects>
+            </Entry>
+        </Frame>
+    </StackLayout>
+    <StackLayout
+            Spacing="5"
+            Margin="20, 0">
+        <Label
+            Text="Email"
+            TextColor="White"
+            FontFamily="Cairo_Regular"
+            FontSize="{StaticResource Body1FontSize}"></Label>
+        <Frame
+            BackgroundColor="Transparent"
+            BorderColor="White"
+            CornerRadius="8"
+            Padding="10, 0">
+            <Entry
+                FontFamily="Cairo_Regular"
+                Placeholder="Enter your email"
+                PlaceholderColor="#A6A3BD"
+                ReturnCommand="{Binding StartCommand}"
+                Text="{Binding Email}"
+                TextColor="White">
+                <Entry.Effects>
+                    <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
+                </Entry.Effects>
+            </Entry>
+        </Frame>
+    </StackLayout>
+    <StackLayout
+        Spacing="5"
+        Margin="20, 0">
+        <Label
+            Text="Password"
+            TextColor="White"
+            FontFamily="Cairo_Regular"
+            FontSize="{StaticResource Body1FontSize}"></Label>
+        <Frame
+            BackgroundColor="Transparent"
+            BorderColor="White"
+            CornerRadius="8"
+            Padding="10, 0">
+            <Entry
+                FontFamily="Cairo_Regular"
+                IsPassword="True"
+                Placeholder="Enter your password"
+                PlaceholderColor="#A6A3BD"
+                ReturnCommand="{Binding StartCommand}"
+                Text="{Binding Password}"
+                TextColor="White">
+                <Entry.Effects>
+                    <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
+                </Entry.Effects>
+            </Entry>
+        </Frame>
+    </StackLayout>
+    <Button 
+        BackgroundColor="#FEB92F"
+        Command="{Binding LoginCommand}"
+        CornerRadius="28"
+        FontSize="{StaticResource ButtonFontSize}"
+        FontFamily="Cairo_Bold"
+        Margin="20, 20, 20, 10"
+        Padding="20, 10"
+        Text="Register"
+        TextColor="#253864"></Button>
+    <Label
+        HorizontalTextAlignment="Center"
+        Margin="20, 0, 20, 30">
+        <Label.FormattedText>
+            <FormattedString>
+                <Span
+                    Text="Already have an account? "
+                    TextColor="White"
+                    FontFamily="Cairo_Regular"
+                    FontSize="{StaticResource Body1FontSize}"></Span>
+                <Span
+                    Text="Login"
+                    TextColor="#FEB92F"
+                    FontFamily="Cairo_SemiBold"
+                    FontSize="{StaticResource Body1FontSize}"></Span>
+            </FormattedString>
+        </Label.FormattedText>
+        <Label.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding Parent.BindingContext.SwitchToLoginCommand, Source={x:Reference template}}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+        </Label.GestureRecognizers>
+    </Label>
+</StackLayout>

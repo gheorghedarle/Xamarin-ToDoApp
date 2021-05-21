@@ -1,4 +1,5 @@
 ﻿using Prism.Navigation;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using ToDoApp.Auth;
@@ -14,6 +15,8 @@ namespace ToDoApp.ViewModels
 
         public string Email { get; set; }
         public string Password { get; set; }
+        public ObservableCollection<string> AuthScreenList { get; set; }
+        public string CurrentAuthScreen { get; set; }
 
         #endregion
 
@@ -21,6 +24,8 @@ namespace ToDoApp.ViewModels
 
         public ICommand LoginCommand { get; set; }
         public ICommand RegisterCommand { get; set; }
+        public ICommand SwitchToLoginCommand { get; set; }
+        public ICommand SwitchToSignUpCommand { get; set; }
 
         #endregion
 
@@ -31,6 +36,11 @@ namespace ToDoApp.ViewModels
         { 
             LoginCommand = new Command(LoginCommandHandler);
             RegisterCommand = new Command(RegisterCommandHandler);
+            SwitchToLoginCommand = new Command(SwitchToLoginCommandHandler);
+            SwitchToSignUpCommand = new Command(SwitchToSignUpCommandHandler);
+
+            AuthScreenList = new ObservableCollection<string>() { "Login", "SignUp" };
+            CurrentAuthScreen = "Login";
         }
 
         #endregion
@@ -69,6 +79,18 @@ namespace ToDoApp.ViewModels
             {
                 // display error
             }
+        }
+
+
+        private void SwitchToLoginCommandHandler()
+        {
+            CurrentAuthScreen = "Login";
+        }
+
+
+        private void SwitchToSignUpCommandHandler()
+        {
+            CurrentAuthScreen = "SignUp";
         }
 
         #endregion
