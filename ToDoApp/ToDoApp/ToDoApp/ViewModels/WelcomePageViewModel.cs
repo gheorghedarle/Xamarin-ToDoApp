@@ -13,6 +13,7 @@ namespace ToDoApp.ViewModels
     {
         #region Properties
 
+        public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public ObservableCollection<string> AuthScreenList { get; set; }
@@ -69,7 +70,7 @@ namespace ToDoApp.ViewModels
             Preferences.Set("Name", Email);
 
             var auth = DependencyService.Get<IFirebaseAuthentication>();
-            var created = await auth.RegisterWithEmailAndPassword(Email, Password);
+            var created = await auth.RegisterWithEmailAndPassword(Username, Email, Password);
 
             if (created)
             {

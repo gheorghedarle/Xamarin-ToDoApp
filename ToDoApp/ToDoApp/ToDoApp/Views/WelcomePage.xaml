@@ -11,7 +11,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid
-            RowDefinitions="3*, Auto">
+            RowDefinitions="*, Auto">
             <Grid.Background>
                 <LinearGradientBrush 
                     StartPoint="0, 0" 
@@ -22,13 +22,10 @@
             </Grid.Background>
             <CarouselView
                 Margin="0"
-                Grid.Row="1"
                 CurrentItem="{Binding CurrentAuthScreen}"
                 ItemsSource="{Binding AuthScreenList}"
                 ItemTemplate="{StaticResource AuthTemplateSelector}"
-                IsBounceEnabled="True"
-                IsSwipeEnabled="False"
-                VerticalOptions="End">
+                IsSwipeEnabled="False">
             </CarouselView>
         </Grid>
     </ContentPage.Content>

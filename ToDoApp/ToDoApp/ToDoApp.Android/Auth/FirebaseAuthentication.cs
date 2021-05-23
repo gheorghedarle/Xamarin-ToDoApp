@@ -29,13 +29,13 @@ namespace ToDoApp.Droid.Auth
             }
         }
 
-        public async Task<bool> RegisterWithEmailAndPassword(string email, string password)
+        public async Task<bool> RegisterWithEmailAndPassword(string username, string email, string password)
         {
             try
             {
                 var result = await FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
                 var userProfileBuilder = new UserProfileChangeRequest.Builder();
-                userProfileBuilder.SetDisplayName("Ghita");
+                userProfileBuilder.SetDisplayName(username);
                 await result.User.UpdateProfileAsync(userProfileBuilder.Build());
                 return result.User != null;
             }
