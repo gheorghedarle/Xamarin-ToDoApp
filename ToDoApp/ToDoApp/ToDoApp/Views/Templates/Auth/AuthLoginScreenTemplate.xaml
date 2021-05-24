@@ -28,7 +28,7 @@
                     Placeholder="Enter your email"
                     PlaceholderColor="#A6A3BD"
                     ReturnCommand="{Binding StartCommand}"
-                    Text="{Binding Email}"
+                    Text="{Binding Parent.BindingContext.Email, Source={x:Reference template}}"
                     TextColor="White">
                     <Entry.Effects>
                         <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
@@ -55,7 +55,7 @@
                     Placeholder="Enter your password"
                     PlaceholderColor="#A6A3BD"
                     ReturnCommand="{Binding StartCommand}"
-                    Text="{Binding Password}"
+                    Text="{Binding Parent.BindingContext.Password, Source={x:Reference template}}"
                     TextColor="White">
                     <Entry.Effects>
                         <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
@@ -71,7 +71,7 @@
             Margin="20, 10"></Label>
         <Button 
             BackgroundColor="#FEB92F"
-            Command="{Binding LoginCommand}"
+            Command="{Binding Parent.BindingContext.LoginCommand, Source={x:Reference template}}"
             CornerRadius="28"
             FontSize="{StaticResource ButtonFontSize}"
             FontFamily="Cairo_Bold"

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ToDoApp.Auth;
 using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Services.DateService;
@@ -180,7 +181,8 @@ namespace ToDoApp.ViewModels
 
         private void SetUserName()
         {
-            Name = Preferences.Get("Name", "");
+            var auth = DependencyService.Get<IFirebaseAuthentication>();
+            Name = auth.GetUsername();
         }
 
         private void ResetActiveDay()

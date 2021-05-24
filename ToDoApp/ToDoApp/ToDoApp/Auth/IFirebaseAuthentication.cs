@@ -7,6 +7,8 @@ namespace ToDoApp.Auth
     {
         Task<UserModel> LoginWithEmailAndPassword(string email, string password);
         Task<bool> RegisterWithEmailAndPassword(string username, string email, string password);
+        Task<bool> ForgetPassword(string email);
+        string GetUsername();
         bool SignOut();
         bool SignIn();
     }

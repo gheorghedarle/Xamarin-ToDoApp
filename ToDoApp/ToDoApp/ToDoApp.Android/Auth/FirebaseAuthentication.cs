@@ -45,6 +45,17 @@ namespace ToDoApp.Droid.Auth
             }
         }
 
+        public Task<bool> ForgetPassword(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetUsername()
+        {
+            var user = FirebaseAuth.Instance.CurrentUser;
+            return user?.DisplayName;
+        }
+
         public bool SignIn()
         {
             var user = Firebase.Auth.FirebaseAuth.Instance.CurrentUser;

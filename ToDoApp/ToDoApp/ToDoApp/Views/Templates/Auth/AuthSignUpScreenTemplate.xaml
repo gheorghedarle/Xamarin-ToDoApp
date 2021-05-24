@@ -28,7 +28,7 @@
                 Placeholder="Enter your username"
                 PlaceholderColor="#A6A3BD"
                 ReturnCommand="{Binding StartCommand}"
-                Text="{Binding Username}"
+                Text="{Binding Parent.BindingContext.Username, Source={x:Reference template}}"
                 TextColor="White">
                 <Entry.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
@@ -54,7 +54,7 @@
                 Placeholder="Enter your email"
                 PlaceholderColor="#A6A3BD"
                 ReturnCommand="{Binding StartCommand}"
-                Text="{Binding Email}"
+                Text="{Binding Parent.BindingContext.Email, Source={x:Reference template}}"
                 TextColor="White">
                 <Entry.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
@@ -81,7 +81,33 @@
                 Placeholder="Enter your password"
                 PlaceholderColor="#A6A3BD"
                 ReturnCommand="{Binding StartCommand}"
-                Text="{Binding Password}"
+                Text="{Binding Parent.BindingContext.Password, Source={x:Reference template}}"
+                TextColor="White">
+                <Entry.Effects>
+                    <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
+                </Entry.Effects>
+            </Entry>
+        </Frame>
+    </StackLayout>
+    <StackLayout
+        Spacing="5"
+        Margin="20, 0">
+        <Label
+            Text="Confirm Password"
+            TextColor="White"
+            FontFamily="Cairo_Regular"
+            FontSize="{StaticResource Body1FontSize}"></Label>
+        <Frame
+            BackgroundColor="Transparent"
+            BorderColor="White"
+            CornerRadius="8"
+            Padding="10, 0">
+            <Entry
+                FontFamily="Cairo_Regular"
+                IsPassword="True"
+                Placeholder="Confirm your password"
+                PlaceholderColor="#A6A3BD"
+                Text="{Binding Parent.BindingContext.ConfirmPassword, Source={x:Reference template}}"
                 TextColor="White">
                 <Entry.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
@@ -91,7 +117,7 @@
     </StackLayout>
     <Button 
         BackgroundColor="#FEB92F"
-        Command="{Binding LoginCommand}"
+        Command="{Binding Parent.BindingContext.SignUpCommand, Source={x:Reference template}}"
         CornerRadius="28"
         FontSize="{StaticResource ButtonFontSize}"
         FontFamily="Cairo_Bold"

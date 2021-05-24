@@ -16,6 +16,7 @@ namespace ToDoApp.ViewModels
         public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
         public ObservableCollection<string> AuthScreenList { get; set; }
         public string CurrentAuthScreen { get; set; }
 
@@ -24,7 +25,7 @@ namespace ToDoApp.ViewModels
         #region Commands
 
         public ICommand LoginCommand { get; set; }
-        public ICommand RegisterCommand { get; set; }
+        public ICommand SignUpCommand { get; set; }
         public ICommand SwitchToLoginCommand { get; set; }
         public ICommand SwitchToSignUpCommand { get; set; }
 
@@ -36,7 +37,7 @@ namespace ToDoApp.ViewModels
             INavigationService navigationService) : base(navigationService)
         { 
             LoginCommand = new Command(LoginCommandHandler);
-            RegisterCommand = new Command(RegisterCommandHandler);
+            SignUpCommand = new Command(SignUpCommandHandler);
             SwitchToLoginCommand = new Command(SwitchToLoginCommandHandler);
             SwitchToSignUpCommand = new Command(SwitchToSignUpCommandHandler);
 
@@ -50,35 +51,40 @@ namespace ToDoApp.ViewModels
 
         private async void LoginCommandHandler()
         {
-            Preferences.Set("Name", Email);
-
-            var auth = DependencyService.Get<IFirebaseAuthentication>();
-            var user = await auth.LoginWithEmailAndPassword(Email, Password);
-
-            if(user != null)
+            if(ValidateLoginData())
             {
-                await _navigationService.NavigateAsync(nameof(TasksPage));
-            }
-            else
-            {
-                // display error
+                var auth = DependencyService.Get<IFirebaseAuthentication>();
+                var user = await auth.LoginWithEmailAndPassword(Email, Password);
+
+                if (user != null)
+                {
+                    ClearAuthData();
+                    await _navigationService.NavigateAsync(nameof(TasksPage));
+                }
+                else
+                {
+                    // display error
+                }
             }
         }
 
-        private async void RegisterCommandHandler()
+        private async void SignUpCommandHandler()
         {
-            Preferences.Set("Name", Email);
-
-            var auth = DependencyService.Get<IFirebaseAuthentication>();
-            var created = await auth.RegisterWithEmailAndPassword(Username, Email, Password);
-
-            if (created)
+            if(ValidateSignUpData())
             {
-                Debug.WriteLine("User Created");
-            }
-            else
-            {
-                // display error
+                var auth = DependencyService.Get<IFirebaseAuthentication>();
+                var created = await auth.RegisterWithEmailAndPassword(Username, Email, Password);
+
+                if (created)
+                {
+                    ClearAuthData();
+                    CurrentAuthScreen = "Login";
+                    Debug.WriteLine("User Created");
+                }
+                else
+                {
+                    // display error
+                }
             }
         }
 
@@ -92,6 +98,34 @@ namespace ToDoApp.ViewModels
         private void SwitchToSignUpCommandHandler()
         {
             CurrentAuthScreen = "SignUp";
+        }
+
+        #endregion
+
+        #region Private Functionality
+
+        private bool ValidateLoginData()
+        {
+            if (string.IsNullOrWhiteSpace(Email) ||
+                string.IsNullOrWhiteSpace(Password))
+                return false;
+            return true;
+        }
+
+        private bool ValidateSignUpData()
+        {
+            if (string.IsNullOrWhiteSpace(Username) ||
+                string.IsNullOrWhiteSpace(Email) ||
+                string.IsNullOrWhiteSpace(Password) ||
+                string.IsNullOrWhiteSpace(ConfirmPassword) ||
+                !Password.Equals(ConfirmPassword))
+                return false;
+            return true;
+        }
+
+        private void ClearAuthData()
+        {
+            Username = Email = Password = ConfirmPassword = string.Empty;
         }
 
         #endregion
