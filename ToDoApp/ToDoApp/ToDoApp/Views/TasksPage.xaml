@@ -22,7 +22,7 @@
                     Grid.Column="0"
                     Grid.Row="0"
                     Grid.RowSpan="2"
-                    Fill="#007CD1"
+                    Fill="#233e8b"
                     Aspect="Uniform"
                     WidthRequest="52"
                     HeightRequest="54"></Ellipse>
@@ -70,7 +70,7 @@
                     FontSize="18"
                     FontFamily="FontAwesome_Solid"
                     HorizontalOptions="EndAndExpand"
-                    BackgroundColor="#007CD1"
+                    BackgroundColor="#233e8b"
                     Command="{Binding PreviousWeekCommand}"
                     CommandParameter="{Binding Week.StartDay}"></Button>
                 <Button
@@ -81,7 +81,7 @@
                     FontSize="18"
                     FontFamily="FontAwesome_Solid"
                     HorizontalOptions="EndAndExpand"
-                    BackgroundColor="#007CD1"
+                    BackgroundColor="#233e8b"
                     Command="{Binding NextWeekCommand}"
                     CommandParameter="{Binding Week.LastDay}"></Button>
             </Grid>
@@ -116,7 +116,7 @@
                                             <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Active}}"></StateTrigger>
                                         </VisualState.StateTriggers>
                                         <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
+                                            <Setter Property="BackgroundColor" Value="#233e8b"/>
                                             <Setter Property="HasShadow" Value="True"/>
                                         </VisualState.Setters>
                                     </VisualState>
@@ -348,7 +348,7 @@
                                         Orientation="Horizontal"
                                         Margin="8, -8, 8, 0">
                                         <Ellipse
-                                            Fill="#007CD1"
+                                            Fill="#233e8b"
                                             Aspect="Uniform"
                                             WidthRequest="12"
                                             HeightRequest="12"
@@ -390,7 +390,7 @@
             </CollectionView>
             <Frame 
                 Grid.Row="5" 
-                BackgroundColor="{StaticResource PrimaryColor}"
+                BackgroundColor="#233e8b"
                 VerticalOptions="End" 
                 HorizontalOptions="End" 
                 CornerRadius="18" 
