@@ -1,9 +1,11 @@
 ﻿using Prism.Navigation;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using ToDoApp.Auth;
 using ToDoApp.Views;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -51,40 +53,64 @@ namespace ToDoApp.ViewModels
 
         private async void LoginCommandHandler()
         {
-            if(ValidateLoginData())
+            try
             {
-                var auth = DependencyService.Get<IFirebaseAuthentication>();
-                var user = await auth.LoginWithEmailAndPassword(Email, Password);
+                MainState = LayoutState.Loading;
+                if (ValidateLoginData())
+                {
+                    var auth = DependencyService.Get<IFirebaseAuthentication>();
+                    var user = await auth.LoginWithEmailAndPassword(Email, Password);
 
-                if (user != null)
-                {
-                    ClearAuthData();
-                    await _navigationService.NavigateAsync(nameof(TasksPage));
+                    if (user != null)
+                    {
+                        ClearAuthData();
+                        await _navigationService.NavigateAsync(nameof(TasksPage));
+                    }
+                    else
+                    {
+                        // display error
+                    }
                 }
-                else
-                {
-                    // display error
-                }
+            }
+            catch(Exception ex)
+            {
+                // display error
+            }
+            finally
+            {
+                MainState = LayoutState.None;
             }
         }
 
         private async void SignUpCommandHandler()
         {
-            if(ValidateSignUpData())
+            try
             {
-                var auth = DependencyService.Get<IFirebaseAuthentication>();
-                var created = await auth.RegisterWithEmailAndPassword(Username, Email, Password);
+                MainState = LayoutState.Loading;
+                if (ValidateSignUpData())
+                {
+                    var auth = DependencyService.Get<IFirebaseAuthentication>();
+                    var created = await auth.RegisterWithEmailAndPassword(Username, Email, Password);
 
-                if (created)
-                {
-                    ClearAuthData();
-                    CurrentAuthScreen = "Login";
-                    Debug.WriteLine("User Created");
+                    if (created)
+                    {
+                        ClearAuthData();
+                        CurrentAuthScreen = "Login";
+                        Debug.WriteLine("User Created");
+                    }
+                    else
+                    {
+                        // display error
+                    }
                 }
-                else
-                {
-                    // display error
-                }
+            }
+            catch(Exception ex)
+            {
+                // display error
+            }
+            finally
+            {
+                MainState = LayoutState.None;
             }
         }
 

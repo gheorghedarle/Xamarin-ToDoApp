@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:templateSelector="clr-namespace:ToDoApp.Helpers.TemplateSelector"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ToDoApp.Views.WelcomePage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
@@ -11,7 +12,8 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid
-            RowDefinitions="*, Auto">
+            RowDefinitions="*, Auto"
+            xct:StateLayout.CurrentState="{Binding MainState}">
             <Grid.Background>
                 <LinearGradientBrush 
                     StartPoint="0, 0" 
@@ -20,6 +22,27 @@
                     <GradientStop Color="#233e8b" Offset="0.8"></GradientStop>
                 </LinearGradientBrush>
             </Grid.Background>
+            <xct:StateLayout.StateViews>
+                <xct:StateView 
+                    StateKey="Loading"
+                    VerticalOptions="FillAndExpand">
+                    <Grid>
+                        <Grid.Background>
+                            <LinearGradientBrush 
+                                StartPoint="0, 0" 
+                                EndPoint="0, 1">
+                                <GradientStop Color="#1eae98" Offset="0.1"></GradientStop>
+                                <GradientStop Color="#233e8b" Offset="0.8"></GradientStop>
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                        <StackLayout 
+                            VerticalOptions="Center">
+                            <ActivityIndicator Color="White" IsRunning="True"/>
+                            <Label Text="Loading..." HorizontalOptions="Center" TextColor="White"/>
+                        </StackLayout>
+                    </Grid>
+                </xct:StateView>
+            </xct:StateLayout.StateViews>
             <CarouselView
                 Margin="0"
                 CurrentItem="{Binding CurrentAuthScreen}"
