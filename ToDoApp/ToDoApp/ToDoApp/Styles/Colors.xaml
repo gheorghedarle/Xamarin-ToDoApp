@@ -2,9 +2,9 @@
 <ResourceDictionary  xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToDoApp.Styles.Colors">
-    <Color x:Key="PrimaryColor">#007CD1</Color>
+    <Color x:Key="PrimaryColor">#233E8B</Color>
     <Color x:Key="PrimaryDarkColor">#001532</Color>
-    <Color x:Key="AccentColor">#F3C623</Color>
+    <Color x:Key="AccentColor">#feb92f</Color>
 
     <Color x:Key="FailColor">#D04C41</Color>
     <Color x:Key="SuccessColor">#00AF49</Color>
