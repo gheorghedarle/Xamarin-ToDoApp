@@ -35,8 +35,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Plugin.CloudFirestore" Version="4.1.0" />
-    <PackageReference Include="Prism.DryIoc.Forms" Version="8.0.0.1909" />
-    <PackageReference Include="Prism.Forms" Version="8.0.0.1909" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
+    <PackageReference Include="Prism.Forms" Version="8.1.97" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.3.3" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0-pre2" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
