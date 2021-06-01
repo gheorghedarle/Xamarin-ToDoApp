@@ -196,16 +196,8 @@ namespace ToDoApp.ViewModels
 
         private async Task GetTasksByDate(DateTime date)
         {
-            //var taskList = await _tasksRepository.GetAllContains("date", date.ToString("dd/MM/yyyy"));
-            //TaskList = new ObservableCollection<TaskModel>(taskList.OrderBy(t => t.archived).ToList());
-            TaskList = new ObservableCollection<TaskModel>()
-            {
-                new TaskModel() { task = "Task 1", projectId = "1", projectName = "Project number 1", archived = false, userId = "1"},
-                new TaskModel() { task = "Task 2", projectId = "1", projectName = "Project number 1", archived = false, userId = "1"},
-                new TaskModel() { task = "Task 3", projectId = "2", projectName = "Project number 2", archived = false, userId = "1"},
-                new TaskModel() { task = "Task 4", projectId = "2", projectName = "Project number 2", archived = false, userId = "1"},
-                new TaskModel() { task = "Task 5", projectId = "3", projectName = "Project number 3", archived = false, userId = "1"},
-            };
+            var taskList = await _tasksRepository.GetAllContains("date", date.ToString("dd/MM/yyyy"));
+            TaskList = new ObservableCollection<TaskModel>(taskList.OrderBy(t => t.archived).ToList());
         }
 
         #endregion
