@@ -196,7 +196,9 @@ namespace ToDoApp.ViewModels
 
         private async Task GetTasksByDate(DateTime date)
         {
-            var taskList = await _tasksRepository.GetAllContains("date", date.ToString("dd/MM/yyyy"));
+            var auth = DependencyService.Get<IFirebaseAuthentication>();
+            var userId = auth.GetUserId();
+            var taskList = await _tasksRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"));
             TaskList = new ObservableCollection<TaskModel>(taskList.OrderBy(t => t.archived).ToList());
         }
 

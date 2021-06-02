@@ -13,17 +13,18 @@ namespace ToDoApp.Repositories.FirestoreRepository
             throw new System.NotImplementedException();
         }
 
-        public async Task<IEnumerable<ProjectModel>> GetAll()
+        public async Task<IEnumerable<ProjectModel>> GetAll(string userId)
         {
             var document = await CrossCloudFirestore.Current
                     .Instance
                     .Collection("projects")
+                    .WhereEqualsTo("userId", userId)
                     .GetAsync();
 
             return document.ToObjects<ProjectModel>();
         }
 
-        public Task<IEnumerable<ProjectModel>> GetAllContains(string field, object value)
+        public Task<IEnumerable<ProjectModel>> GetAllContains(string userId, string field, object value)
         {
             throw new NotImplementedException();
         }

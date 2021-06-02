@@ -56,6 +56,13 @@ namespace ToDoApp.Droid.Auth
             return user?.DisplayName;
         }
 
+        public string GetUserId()
+        {
+            var user = FirebaseAuth.Instance.CurrentUser;
+            return user?.Uid;
+        }
+
+
         public bool SignIn()
         {
             var user = Firebase.Auth.FirebaseAuth.Instance.CurrentUser;

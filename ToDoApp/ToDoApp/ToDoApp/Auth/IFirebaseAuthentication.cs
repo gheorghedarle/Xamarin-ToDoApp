@@ -9,6 +9,7 @@ namespace ToDoApp.Auth
         Task<bool> RegisterWithEmailAndPassword(string username, string email, string password);
         Task<bool> ForgetPassword(string email);
         string GetUsername();
+        string GetUserId();
         bool SignOut();
         bool SignIn();
     }
