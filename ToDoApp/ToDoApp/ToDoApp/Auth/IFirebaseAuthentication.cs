@@ -10,7 +10,7 @@ namespace ToDoApp.Auth
         Task<bool> ForgetPassword(string email);
         string GetUsername();
         string GetUserId();
+        bool IsLoggedIn();
         bool SignOut();
-        bool SignIn();
     }
 }

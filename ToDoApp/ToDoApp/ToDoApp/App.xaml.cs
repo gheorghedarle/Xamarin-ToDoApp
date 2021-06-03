@@ -1,6 +1,7 @@
 ﻿using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
+using ToDoApp.Auth;
 using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Services.DateService;
@@ -33,7 +34,16 @@ namespace ToDoApp
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(WelcomePage)}");
+            var auth = DependencyService.Get<IFirebaseAuthentication>();
+            var isLoggedIn = auth.IsLoggedIn();
+            if(isLoggedIn)
+            {
+                await NavigationService.NavigateAsync($"/{nameof(TasksPage)}");
+            }
+            else
+            {
+                await NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(WelcomePage)}");
+            }
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

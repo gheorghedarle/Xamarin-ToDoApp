@@ -63,9 +63,9 @@ namespace ToDoApp.Droid.Auth
         }
 
 
-        public bool SignIn()
+        public bool IsLoggedIn()
         {
-            var user = Firebase.Auth.FirebaseAuth.Instance.CurrentUser;
+            var user = FirebaseAuth.Instance.CurrentUser;
             return user != null;
         }
 
@@ -73,7 +73,7 @@ namespace ToDoApp.Droid.Auth
         {
             try
             {
-                Firebase.Auth.FirebaseAuth.Instance.SignOut();
+                FirebaseAuth.Instance.SignOut();
                 return true;
             }
             catch (Exception ex)
