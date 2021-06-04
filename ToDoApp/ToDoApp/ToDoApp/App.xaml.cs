@@ -36,7 +36,7 @@ namespace ToDoApp
 
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var isLoggedIn = auth.IsLoggedIn();
-            if(isLoggedIn)
+            if (isLoggedIn)
             {
                 await NavigationService.NavigateAsync($"/{nameof(TasksPage)}");
             }

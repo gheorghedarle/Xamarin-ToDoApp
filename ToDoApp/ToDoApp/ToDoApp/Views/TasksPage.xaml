@@ -53,7 +53,7 @@
             </Grid>
             <Grid
                 Grid.Row="2"
-                Margin="16, 6, 16, 0"
+                Margin="16, 0, 16, 0"
                 HeightRequest="40"
                 ColumnDefinitions="Auto, *, 40, 40">
                 <Label
@@ -221,143 +221,132 @@
                 TextColor="#333"
                 Style="{StaticResource Subtitle1_CairoBold}"
                 Margin="16, 0, 0, 0"></Label>
-            <CollectionView
+            <StackLayout
                 Grid.Row="5"
-                x:Name="TaskItems"
-                ItemsSource="{Binding TaskList}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <DropGestureRecognizer
-                                    AllowDrop="True"
-                                    DragLeaveCommand="{Binding BindingContext.ItemDragLeave, Source={x:Reference TaskItems}}"
-                                    DragLeaveCommandParameter="{Binding}"
-                                    DragOverCommand="{Binding BindingContext.ItemDraggedOver, Source={x:Reference TaskItems}}"
-                                    DragOverCommandParameter="{Binding}"
-                                    Drop="DropGestureRecognizer_Drop_Collection"
-                                    DropCommand="{Binding BindingContext.ItemDropped, Source={x:Reference TaskItems}}"
-                                    DropCommandParameter="{Binding}" />
-                            </StackLayout.GestureRecognizers>
-                            <Grid
-                                BackgroundColor="#e5f1fa"
-                                HeightRequest="76"
-                                Margin="0, 4, 0, 0"
-                                IsVisible="{Binding isBeingDraggedOver}" />
-                            <Frame
-                                Padding="8, 12, 8, 12"
-                                Margin="8, 4, 8, 4"
-                                BackgroundColor="White"
-                                CornerRadius="24">
-                                <Frame.GestureRecognizers>
-                                    <DragGestureRecognizer
-                                        CanDrag="True"
-                                        DragStarting="DragGestureRecognizer_DragStarting_Collection"
-                                        DragStartingCommand="{Binding BindingContext.ItemDragged, Source={x:Reference TaskItems}}"
-                                        DragStartingCommandParameter="{Binding}" />
-                                    <TapGestureRecognizer Command="{Binding BindingContext.CheckTaskCommand, Source={x:Reference TaskItems}}" CommandParameter="{Binding}"></TapGestureRecognizer>
-                                </Frame.GestureRecognizers>
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup>
-                                        <VisualState x:Name="normal">
-                                            <VisualState.StateTriggers>
-                                                <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
-                                            </VisualState.StateTriggers>
-                                            <VisualState.Setters>
-                                                <Setter Property="HasShadow" Value="True"/>
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                        <VisualState x:Name="done">
-                                            <VisualState.StateTriggers>
-                                                <StateTrigger IsActive="{Binding archived}"></StateTrigger>
-                                            </VisualState.StateTriggers>
-                                            <VisualState.Setters>
-                                                <Setter Property="HasShadow" Value="False"/>
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
+                xct:StateLayout.CurrentState="{Binding TaskListState}">
+                <xct:StateLayout.StateViews>
+                    <xct:StateView 
+                        StateKey="Loading"
+                        VerticalOptions="FillAndExpand">
+                        <StackLayout 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
+                            <ActivityIndicator
+                                Color="#233e8b"
+                                IsRunning="True"/>
+                            <Label 
+                                Text="Loading..." 
+                                HorizontalOptions="Center" />
+                        </StackLayout>
+                    </xct:StateView>
+                    <xct:StateView 
+                        StateKey="Empty"
+                        VerticalOptions="FillAndExpand">
+                        <StackLayout
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
+                            <Label
+                                Text="No tasks for this day."></Label>
+                        </StackLayout>
+                    </xct:StateView>
+                </xct:StateLayout.StateViews>
+                <CollectionView
+                    x:Name="TaskItems"
+                    ItemsSource="{Binding TaskList}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <DropGestureRecognizer
+                                        AllowDrop="True"
+                                        DragLeaveCommand="{Binding BindingContext.ItemDragLeave, Source={x:Reference TaskItems}}"
+                                        DragLeaveCommandParameter="{Binding}"
+                                        DragOverCommand="{Binding BindingContext.ItemDraggedOver, Source={x:Reference TaskItems}}"
+                                        DragOverCommandParameter="{Binding}"
+                                        Drop="DropGestureRecognizer_Drop_Collection"
+                                        DropCommand="{Binding BindingContext.ItemDropped, Source={x:Reference TaskItems}}"
+                                        DropCommandParameter="{Binding}" />
+                                </StackLayout.GestureRecognizers>
                                 <Grid
-                                    ColumnDefinitions="Auto, Auto"
-                                    RowDefinitions="Auto, Auto">
-                                    <Label
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Grid.RowSpan="2"
-                                        Text="{Binding archived, Converter={StaticResource DoneIconConverter}}"
-                                        FontSize="24"
-                                        FontFamily="FontAwesome_Regular"
-                                        HorizontalOptions="Start"
-                                        VerticalOptions="Center"
-                                        Margin="12, 0, 0, 0">
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup>
-                                                <VisualState x:Name="normal">
-                                                    <VisualState.StateTriggers>
-                                                        <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
-                                                    </VisualState.StateTriggers>
-                                                    <VisualState.Setters>
-                                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                                <VisualState x:Name="done">
-                                                    <VisualState.StateTriggers>
-                                                        <StateTrigger IsActive="{Binding archived}"></StateTrigger>
-                                                    </VisualState.StateTriggers>
-                                                    <VisualState.Setters>
-                                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
-                                    </Label>
-                                    <Label 
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Text="{Binding task}"
-                                        FontFamily="Cairo_SemiBold"
-                                        FontSize="{StaticResource Body1FontSize}"
-                                        Margin="8, 0, 8, 0"
-                                        VerticalOptions="Center">
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup>
-                                                <VisualState x:Name="normal">
-                                                    <VisualState.StateTriggers>
-                                                        <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
-                                                    </VisualState.StateTriggers>
-                                                    <VisualState.Setters>
-                                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
-                                                        <Setter Property="TextDecorations" Value="None"/>
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                                <VisualState x:Name="done">
-                                                    <VisualState.StateTriggers>
-                                                        <StateTrigger IsActive="{Binding archived}"></StateTrigger>
-                                                    </VisualState.StateTriggers>
-                                                    <VisualState.Setters>
-                                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
-                                                        <Setter Property="TextDecorations" Value="Strikethrough"/>
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
-                                    </Label>
-                                    <StackLayout
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Orientation="Horizontal"
-                                        Margin="8, -8, 8, 0">
-                                        <Ellipse
-                                            Fill="#233e8b"
-                                            Aspect="Uniform"
-                                            WidthRequest="12"
-                                            HeightRequest="12"
-                                            VerticalOptions="CenterAndExpand"></Ellipse>
+                                    BackgroundColor="#e5f1fa"
+                                    HeightRequest="76"
+                                    Margin="0, 4, 0, 0"
+                                    IsVisible="{Binding isBeingDraggedOver}" />
+                                <Frame
+                                    Padding="8, 12, 8, 12"
+                                    Margin="8, 4, 8, 4"
+                                    BackgroundColor="White"
+                                    CornerRadius="24">
+                                    <Frame.GestureRecognizers>
+                                        <DragGestureRecognizer
+                                            CanDrag="True"
+                                            DragStarting="DragGestureRecognizer_DragStarting_Collection"
+                                            DragStartingCommand="{Binding BindingContext.ItemDragged, Source={x:Reference TaskItems}}"
+                                            DragStartingCommandParameter="{Binding}" />
+                                        <TapGestureRecognizer Command="{Binding BindingContext.CheckTaskCommand, Source={x:Reference TaskItems}}" CommandParameter="{Binding}"></TapGestureRecognizer>
+                                    </Frame.GestureRecognizers>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup>
+                                            <VisualState x:Name="normal">
+                                                <VisualState.StateTriggers>
+                                                    <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                </VisualState.StateTriggers>
+                                                <VisualState.Setters>
+                                                    <Setter Property="HasShadow" Value="True"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="done">
+                                                <VisualState.StateTriggers>
+                                                    <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                </VisualState.StateTriggers>
+                                                <VisualState.Setters>
+                                                    <Setter Property="HasShadow" Value="False"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Grid
+                                        ColumnDefinitions="Auto, Auto"
+                                        RowDefinitions="Auto, Auto">
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Grid.RowSpan="2"
+                                            Text="{Binding archived, Converter={StaticResource DoneIconConverter}}"
+                                            FontSize="24"
+                                            FontFamily="FontAwesome_Regular"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                            Margin="12, 0, 0, 0">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup>
+                                                    <VisualState x:Name="normal">
+                                                        <VisualState.StateTriggers>
+                                                            <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                        </VisualState.StateTriggers>
+                                                        <VisualState.Setters>
+                                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                    <VisualState x:Name="done">
+                                                        <VisualState.StateTriggers>
+                                                            <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                        </VisualState.StateTriggers>
+                                                        <VisualState.Setters>
+                                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                        </Label>
                                         <Label 
-                                            Text="{Binding projectName}"
-                                            FontFamily="Cairo_Regular"
-                                            FontSize="{StaticResource Body2FontSize}"
-                                            VerticalOptions="CenterAndExpand">
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Text="{Binding task}"
+                                            FontFamily="Cairo_SemiBold"
+                                            FontSize="{StaticResource Body1FontSize}"
+                                            Margin="8, 0, 8, 0"
+                                            VerticalOptions="Center">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup>
                                                     <VisualState x:Name="normal">
@@ -381,13 +370,53 @@
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
                                         </Label>
-                                    </StackLayout>
-                                 </Grid>
-                            </Frame>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                        <StackLayout
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Orientation="Horizontal"
+                                            Margin="8, -8, 8, 0">
+                                            <Ellipse
+                                                Fill="#233e8b"
+                                                Aspect="Uniform"
+                                                WidthRequest="12"
+                                                HeightRequest="12"
+                                                VerticalOptions="CenterAndExpand"></Ellipse>
+                                            <Label 
+                                                Text="{Binding projectName}"
+                                                FontFamily="Cairo_Regular"
+                                                FontSize="{StaticResource Body2FontSize}"
+                                                VerticalOptions="CenterAndExpand">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup>
+                                                        <VisualState x:Name="normal">
+                                                            <VisualState.StateTriggers>
+                                                                <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                            </VisualState.StateTriggers>
+                                                            <VisualState.Setters>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                                                                <Setter Property="TextDecorations" Value="None"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                        <VisualState x:Name="done">
+                                                            <VisualState.StateTriggers>
+                                                                <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                            </VisualState.StateTriggers>
+                                                            <VisualState.Setters>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                                                                <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                            </Label>
+                                        </StackLayout>
+                                     </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
             <Frame 
                 Grid.Row="5" 
                 BackgroundColor="#233e8b"

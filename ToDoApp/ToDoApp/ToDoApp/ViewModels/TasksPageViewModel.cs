@@ -12,13 +12,13 @@ using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Services.DateService;
 using ToDoApp.Views;
 using ToDoApp.Views.Dialogs;
-using Xamarin.Essentials;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace ToDoApp.ViewModels
 {
-    public class TasksPageViewModel: BaseViewModel
+    public class TasksPageViewModel : BaseViewModel
     {
         #region Private & Protected
 
@@ -32,6 +32,8 @@ namespace ToDoApp.ViewModels
 
         public ObservableCollection<DayModel> DaysList { get; set; }
         public ObservableCollection<TaskModel> TaskList { get; set; }
+
+        public LayoutState TaskListState {get;set;}
 
         public string Name { get; set; }
         public WeekModel Week { get; set; }
@@ -196,10 +198,19 @@ namespace ToDoApp.ViewModels
 
         private async Task GetTasksByDate(DateTime date)
         {
+            TaskListState = LayoutState.Loading;
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var userId = auth.GetUserId();
             var taskList = await _tasksRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"));
             TaskList = new ObservableCollection<TaskModel>(taskList.OrderBy(t => t.archived).ToList());
+            if(TaskList.Count == 0)
+            {
+                TaskListState = LayoutState.Empty;
+            }
+            else
+            {
+                TaskListState = LayoutState.None;
+            }
         }
 
         #endregion
