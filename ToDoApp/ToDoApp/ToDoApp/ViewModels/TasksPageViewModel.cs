@@ -11,7 +11,6 @@ using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Services.DateService;
 using ToDoApp.Views;
-using ToDoApp.Views.Dialogs;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -113,20 +112,7 @@ namespace ToDoApp.ViewModels
 
         private void AddCommandHandler()
         {
-            _dialogService.ShowDialog(nameof(AddDialog), null, async (param) => {
-                var option = param.Parameters.GetValue<string>("option");
-                if(option != null)
-                {
-                    if (option == "Add a task")
-                    {
-                        await _navigationService.NavigateAsync(nameof(AddTaskPage));
-                    }
-                    else
-                    {
-                        await _navigationService.NavigateAsync(nameof(AddProjectPage));
-                    }
-                }
-            });
+            _navigationService.NavigateAsync(nameof(AddPage));
         }
 
         private void OnItemDragged(TaskModel item)

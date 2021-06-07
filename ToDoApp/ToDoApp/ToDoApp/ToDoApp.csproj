@@ -44,12 +44,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\AddTaskPage.xaml.cs">
-      <DependentUpon>AddTaskPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Dialogs\AddDialog.xaml.cs">
-      <DependentUpon>AddDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\Templates\Auth\AuthSignUpScreenTemplate.xaml.cs">
       <DependentUpon>AuthSignUpScreenTemplate.xaml</DependentUpon>
     </Compile>
@@ -66,12 +60,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AddProjectPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\AddTaskPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Dialogs\AddDialog.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Fragments\ConnectionView.xaml">

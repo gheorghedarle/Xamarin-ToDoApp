@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ToDoApp.Views.AddProjectPage"
+             x:Class="ToDoApp.Views.AddPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
             <Label
                 Margin="16, 16, 0, 0"
                 Style="{StaticResource Headline4_CairoBold}"
-                Text="Add a project"
+                Text="Add new task"
                 TextColor="#333"/>
         </StackLayout>
     </ContentPage.Content>

@@ -6,9 +6,7 @@ using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Services.DateService;
 using ToDoApp.ViewModels;
-using ToDoApp.ViewModels.Dialogs;
 using ToDoApp.Views;
-using ToDoApp.Views.Dialogs;
 using Xamarin.Forms;
 
 [assembly: ExportFont("FontAwesome-Regular.ttf", Alias = "FontAwesome_Regular")]
@@ -55,11 +53,8 @@ namespace ToDoApp
             containerRegistry.RegisterForNavigation<NavigationPage>("NavigationPage");
             containerRegistry.RegisterForNavigation<WelcomePage, WelcomePageViewModel>("WelcomePage");
             containerRegistry.RegisterForNavigation<TasksPage, TasksPageViewModel>("TasksPage");
-            containerRegistry.RegisterForNavigation<AddTaskPage, AddTaskPageViewModel>("AddTaskPage");
-            containerRegistry.RegisterForNavigation<AddProjectPage, AddProjectPageViewModel>("AddProjectPage");
+            containerRegistry.RegisterForNavigation<AddPage, AddPageViewModel>("AddPage");
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>("ProfilePage");
-
-            containerRegistry.RegisterDialog<AddDialog, AddDialogViewModel>();
         }
 
         protected override void OnStart()

@@ -2,9 +2,9 @@
 
 namespace ToDoApp.ViewModels
 {
-    public class AddProjectPageViewModel : BaseViewModel
+    public class AddPageViewModel : BaseViewModel
     {
-        public AddProjectPageViewModel(
+        public AddPageViewModel(
             INavigationService navigationService) : base(navigationService)
         { }
     }
