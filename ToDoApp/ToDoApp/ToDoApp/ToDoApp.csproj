@@ -44,6 +44,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\AddPage.xaml.cs">
+      <DependentUpon>AddPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Templates\Auth\AuthSignUpScreenTemplate.xaml.cs">
       <DependentUpon>AuthSignUpScreenTemplate.xaml</DependentUpon>
     </Compile>
@@ -59,7 +62,7 @@
     <EmbeddedResource Update="Styles\Theme.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\AddProjectPage.xaml">
+    <EmbeddedResource Update="Views\AddPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Fragments\ConnectionView.xaml">
