@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ToDoApp.Views.AddPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
@@ -13,18 +14,124 @@
             <Grid
                 ColumnDefinitions="*, *"
                 Padding="16, 0, 16, 0">
-                <Button
+                <Frame
                     Grid.Column="0"
-                    Text="Task"
-                    TextTransform="None"
                     CornerRadius="16"
-                    Margin="0, 0, 4, 0"></Button>
-                <Button
+                    Padding="0, 10, 0, 10"
+                    Margin="0, 0, 2, 0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Command="{Binding ChangeTypeCommand}"
+                            CommandParameter="task"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup>
+                            <VisualState x:Name="selected">
+                                <VisualState.StateTriggers>
+                                    <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="White"/>
+                                    <Setter Property="HasShadow" Value="True"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="notSelected">
+                                <VisualState.StateTriggers>
+                                    <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#F1F0F7"/>
+                                    <Setter Property="HasShadow" Value="False"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <Label
+                        Text="Task"
+                        FontSize="{StaticResource Body1FontSize}"
+                        FontFamily="Cairo_SemiBold"
+                        HorizontalTextAlignment="Center">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup>
+                                <VisualState x:Name="selected">
+                                    <VisualState.StateTriggers>
+                                        <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#0E1837"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="notSelected">
+                                    <VisualState.StateTriggers>
+                                        <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#A6A3BD"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Label>
+                </Frame>
+                <Frame
                     Grid.Column="1"
-                    Text="List"
-                    TextTransform="None"
                     CornerRadius="16"
-                    Margin="4, 0, 0, 0"></Button>
+                    Padding="0, 10, 0, 10"
+                    Margin="2, 0, 0, 0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Command="{Binding ChangeTypeCommand}"
+                            CommandParameter="list"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup>
+                            <VisualState x:Name="selected">
+                                <VisualState.StateTriggers>
+                                    <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="White"/>
+                                    <Setter Property="HasShadow" Value="True"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="notSelected">
+                                <VisualState.StateTriggers>
+                                    <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#F1F0F7"/>
+                                    <Setter Property="HasShadow" Value="False"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <Label
+                        Text="List"
+                        FontSize="{StaticResource Body1FontSize}"
+                        FontFamily="Cairo_SemiBold"
+                        HorizontalTextAlignment="Center">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup>
+                                <VisualState x:Name="selected">
+                                    <VisualState.StateTriggers>
+                                        <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#0E1837"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="notSelected">
+                                    <VisualState.StateTriggers>
+                                        <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="TextColor" Value="#A6A3BD"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Label>
+                </Frame>
             </Grid>
         </StackLayout>
     </ContentPage.Content>
