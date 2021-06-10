@@ -11,6 +11,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Fonts\Barlow-Bold.ttf" />
+    <None Remove="Resources\Fonts\Barlow-Light.ttf" />
+    <None Remove="Resources\Fonts\Barlow-Medium.ttf" />
+    <None Remove="Resources\Fonts\Barlow-Regular.ttf" />
+    <None Remove="Resources\Fonts\Barlow-SemiBold.ttf" />
     <None Remove="Resources\Fonts\Cairo-Bold.ttf" />
     <None Remove="Resources\Fonts\Cairo-Light.ttf" />
     <None Remove="Resources\Fonts\Cairo-Regular.ttf" />
@@ -21,10 +26,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Fonts\Cairo-Bold.ttf" />
-    <EmbeddedResource Include="Resources\Fonts\Cairo-Light.ttf" />
-    <EmbeddedResource Include="Resources\Fonts\Cairo-Regular.ttf" />
-    <EmbeddedResource Include="Resources\Fonts\Cairo-SemiBold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Barlow-Bold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Barlow-Light.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Barlow-Medium.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Barlow-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Barlow-SemiBold.ttf" />
     <EmbeddedResource Include="Resources\Fonts\FontAwesome-Regular.ttf" />
     <EmbeddedResource Include="Resources\Fonts\FontAwesome-Solid.ttf" />
   </ItemGroup>

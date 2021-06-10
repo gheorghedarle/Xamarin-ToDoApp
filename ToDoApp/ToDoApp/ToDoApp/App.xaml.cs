@@ -12,10 +12,11 @@ using Xamarin.Forms;
 [assembly: ExportFont("FontAwesome-Regular.ttf", Alias = "FontAwesome_Regular")]
 [assembly: ExportFont("FontAwesome-Solid.ttf", Alias = "FontAwesome_Solid")]
 
-[assembly: ExportFont("Cairo-Bold.ttf", Alias = "Cairo_Bold")]
-[assembly: ExportFont("Cairo-SemiBold.ttf", Alias = "Cairo_SemiBold")]
-[assembly: ExportFont("Cairo-Regular.ttf", Alias = "Cairo_Regular")]
-[assembly: ExportFont("Cairo-Light.ttf", Alias = "Cairo_Light")]
+[assembly: ExportFont("Barlow-Bold.ttf", Alias = "Barlow_Bold")]
+[assembly: ExportFont("Barlow-SemiBold.ttf", Alias = "Barlow_SemiBold")]
+[assembly: ExportFont("Barlow-Medium.ttf", Alias = "Barlow_Medium")]
+[assembly: ExportFont("Barlow-Regular.ttf", Alias = "Barlow_Regular")]
+[assembly: ExportFont("Barlow-Light.ttf", Alias = "Barlow_Light")]
 
 namespace ToDoApp
 {

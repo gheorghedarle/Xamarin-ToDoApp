@@ -19,12 +19,12 @@
     <Label
         Grid.Column="1"
         Grid.Row="0"
-        Style="{StaticResource Body1_CairoRegular}"
+        Style="{StaticResource Body1_BarlowRegular}"
         Text="No Internet Connection"
         TextColor="{StaticResource FailColor}"/>
     <Label
         Grid.Column="1"
         Grid.Row="1"
-        Style="{StaticResource Body2_CairoRegular}"
+        Style="{StaticResource Body2_BarlowRegular}"
         Text="It looks like you do not have internet connection"/>
 </Grid>

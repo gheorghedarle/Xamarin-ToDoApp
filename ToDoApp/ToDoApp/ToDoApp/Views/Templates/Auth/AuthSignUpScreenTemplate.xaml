@@ -7,7 +7,7 @@
     <Label
         Text="Sign Up"
         TextColor="White"
-        FontFamily="Cairo_Bold"
+        FontFamily="Barlow_Bold"
         FontSize="{StaticResource Headline3FontSize}"
         Margin="20, 0"></Label>
     <StackLayout
@@ -16,7 +16,7 @@
         <Label
             Text="Username"
             TextColor="White"
-            FontFamily="Cairo_Regular"
+            FontFamily="Barlow_Regular"
             FontSize="{StaticResource Body1FontSize}"></Label>
         <Frame
             BackgroundColor="Transparent"
@@ -24,7 +24,7 @@
             CornerRadius="8"
             Padding="10, 0">
             <Entry
-                FontFamily="Cairo_Regular"
+                FontFamily="Barlow_Regular"
                 Placeholder="Enter your username"
                 PlaceholderColor="#A6A3BD"
                 ReturnCommand="{Binding StartCommand}"
@@ -42,7 +42,7 @@
         <Label
             Text="Email"
             TextColor="White"
-            FontFamily="Cairo_Regular"
+            FontFamily="Barlow_Regular"
             FontSize="{StaticResource Body1FontSize}"></Label>
         <Frame
             BackgroundColor="Transparent"
@@ -50,7 +50,7 @@
             CornerRadius="8"
             Padding="10, 0">
             <Entry
-                FontFamily="Cairo_Regular"
+                FontFamily="Barlow_Regular"
                 Placeholder="Enter your email"
                 PlaceholderColor="#A6A3BD"
                 ReturnCommand="{Binding StartCommand}"
@@ -68,7 +68,7 @@
         <Label
             Text="Password"
             TextColor="White"
-            FontFamily="Cairo_Regular"
+            FontFamily="Barlow_Regular"
             FontSize="{StaticResource Body1FontSize}"></Label>
         <Frame
             BackgroundColor="Transparent"
@@ -76,7 +76,7 @@
             CornerRadius="8"
             Padding="10, 0">
             <Entry
-                FontFamily="Cairo_Regular"
+                FontFamily="Barlow_Regular"
                 IsPassword="True"
                 Placeholder="Enter your password"
                 PlaceholderColor="#A6A3BD"
@@ -95,7 +95,7 @@
         <Label
             Text="Confirm Password"
             TextColor="White"
-            FontFamily="Cairo_Regular"
+            FontFamily="Barlow_Regular"
             FontSize="{StaticResource Body1FontSize}"></Label>
         <Frame
             BackgroundColor="Transparent"
@@ -103,7 +103,7 @@
             CornerRadius="8"
             Padding="10, 0">
             <Entry
-                FontFamily="Cairo_Regular"
+                FontFamily="Barlow_Regular"
                 IsPassword="True"
                 Placeholder="Confirm your password"
                 PlaceholderColor="#A6A3BD"
@@ -120,7 +120,7 @@
         Command="{Binding Parent.BindingContext.SignUpCommand, Source={x:Reference template}}"
         CornerRadius="28"
         FontSize="{StaticResource ButtonFontSize}"
-        FontFamily="Cairo_Bold"
+        FontFamily="Barlow_Bold"
         Margin="20, 20, 20, 10"
         Padding="20, 10"
         Text="Register"
@@ -133,12 +133,12 @@
                 <Span
                     Text="Already have an account? "
                     TextColor="White"
-                    FontFamily="Cairo_Regular"
+                    FontFamily="Barlow_Regular"
                     FontSize="{StaticResource Body1FontSize}"></Span>
                 <Span
                     Text="Login"
                     TextColor="#FEB92F"
-                    FontFamily="Cairo_SemiBold"
+                    FontFamily="Barlow_SemiBold"
                     FontSize="{StaticResource Body1FontSize}"></Span>
             </FormattedString>
         </Label.FormattedText>

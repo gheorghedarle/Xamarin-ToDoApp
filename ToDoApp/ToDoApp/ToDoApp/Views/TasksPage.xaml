@@ -40,14 +40,14 @@
                 <Label
                     Grid.Column="1"
                     Grid.Row="0"
-                    Style="{StaticResource Body1_CairoRegular}"
+                    Style="{StaticResource Body1_BarlowRegular}"
                     Text="Welcome back"
                     TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"></Label>
                 <Label
                     Grid.Column="1"
                     Grid.Row="1"
                     Margin="0, -10, 0, 0"
-                    Style="{StaticResource Headline4_CairoBold}"
+                    Style="{StaticResource Headline4_BarlowBold}"
                     Text="{Binding Name}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
             </Grid>
@@ -60,7 +60,7 @@
                     Grid.Column="0"
                     Text="{Binding Week.WeekString}"
                     TextColor="#333"
-                    Style="{StaticResource Subtitle1_CairoBold}"
+                    Style="{StaticResource Subtitle1_BarlowBold}"
                     VerticalOptions="Center"></Label>
                 <Button
                     Grid.Column="2"
@@ -135,7 +135,7 @@
                                 Spacing="0">
                                 <Label
                                     Text="{Binding DayName}"
-                                    Style="{StaticResource Body1_CairoRegular}"
+                                    Style="{StaticResource Body1_BarlowRegular}"
                                     CharacterSpacing="-1"
                                     Margin="0"
                                     HorizontalTextAlignment="Center">
@@ -155,7 +155,7 @@
                                                     <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Active}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="FontFamily" Value="Cairo_Bold"/>
+                                                    <Setter Property="FontFamily" Value="Barlow_Bold"/>
                                                     <Setter Property="TextColor" Value="White"/>
                                                     <Setter Property="TextTransform" Value="Uppercase"/>
                                                 </VisualState.Setters>
@@ -175,7 +175,7 @@
                                 <Label
                                     CharacterSpacing="-1"
                                     HorizontalTextAlignment="Center"
-                                    Style="{StaticResource Subtitle1_CairoRegular}"
+                                    Style="{StaticResource Subtitle1_BarlowRegular}"
                                     Text="{Binding Day}">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup>
@@ -193,7 +193,7 @@
                                                     <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Active}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="FontFamily" Value="Cairo_Bold"/>
+                                                    <Setter Property="FontFamily" Value="Barlow_Bold"/>
                                                     <Setter Property="Margin" Value="0, -8, 0, 0"/>
                                                     <Setter Property="TextColor" Value="White"/>
                                                 </VisualState.Setters>
@@ -219,7 +219,7 @@
                 Grid.Row="4"
                 Text="Tasks"
                 TextColor="#333"
-                Style="{StaticResource Subtitle1_CairoBold}"
+                Style="{StaticResource Subtitle1_BarlowBold}"
                 Margin="16, 0, 0, 0"></Label>
             <StackLayout
                 Grid.Row="5"
@@ -343,7 +343,7 @@
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             Text="{Binding task}"
-                                            FontFamily="Cairo_SemiBold"
+                                            FontFamily="Barlow_SemiBold"
                                             FontSize="{StaticResource Body1FontSize}"
                                             Margin="8, 0, 8, 0"
                                             VerticalOptions="Center">
@@ -383,7 +383,7 @@
                                                 VerticalOptions="CenterAndExpand"></Ellipse>
                                             <Label 
                                                 Text="{Binding projectName}"
-                                                FontFamily="Cairo_Regular"
+                                                FontFamily="Barlow_Regular"
                                                 FontSize="{StaticResource Body2FontSize}"
                                                 VerticalOptions="CenterAndExpand">
                                                 <VisualStateManager.VisualStateGroups>

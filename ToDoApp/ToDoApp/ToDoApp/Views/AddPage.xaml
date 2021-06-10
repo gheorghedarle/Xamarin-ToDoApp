@@ -8,7 +8,7 @@
         <StackLayout>
             <Label
                 Margin="16, 16, 0, 0"
-                Style="{StaticResource Headline4_CairoBold}"
+                Style="{StaticResource Headline4_BarlowBold}"
                 Text="{Binding Type, StringFormat='Add new {0}'}"
                 TextColor="#333"/>
             <Grid
@@ -49,7 +49,7 @@
                     <Label
                         Text="Task"
                         FontSize="{StaticResource Body1FontSize}"
-                        FontFamily="Cairo_SemiBold"
+                        FontFamily="Barlow_SemiBold"
                         HorizontalTextAlignment="Center">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>
@@ -108,7 +108,7 @@
                     <Label
                         Text="List"
                         FontSize="{StaticResource Body1FontSize}"
-                        FontFamily="Cairo_SemiBold"
+                        FontFamily="Barlow_SemiBold"
                         HorizontalTextAlignment="Center">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>
