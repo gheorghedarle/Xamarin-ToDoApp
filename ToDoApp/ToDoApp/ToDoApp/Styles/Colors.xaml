@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToDoApp.Styles.Colors">
     <Color x:Key="PrimaryColor">#233E8B</Color>
-    <Color x:Key="PrimaryDarkColor">#001532</Color>
+    <Color x:Key="PrimaryDarkColor">#0E1837</Color>
     <Color x:Key="AccentColor">#feb92f</Color>
 
     <Color x:Key="FailColor">#D04C41</Color>
@@ -11,13 +11,13 @@
 
     <!--App Theme Light-->
     <Color x:Key="LightPrimaryTextColor">#001532</Color>
-    <Color x:Key="LightSecondaryTextColor">#667284</Color>
+    <Color x:Key="LightSecondaryTextColor">#A6A3BD</Color>
 
-    <Color x:Key="LightPageBackgroundColor">#F5F5F5</Color>
+    <Color x:Key="LightPageBackgroundColor">#F7F7FC</Color>
     <Color x:Key="LightCardBackgroundColor">#FFF</Color>
-    <Color x:Key="LightCardUnselectedBackgroundColor">#E0E0E0</Color>
+    <Color x:Key="LightCardUnselectedBackgroundColor">#F1F0F7</Color>
 
-    <Color x:Key="LightTransparentBackgroundColor">#99F5F5F5</Color>
+    <Color x:Key="LightTransparentBackgroundColor">#99F7F7FC</Color>
 
     <!--App Theme Dark-->
     <Color x:Key="DarkPrimaryTextColor">#F5F5F5</Color>

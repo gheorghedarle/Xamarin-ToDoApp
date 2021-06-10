@@ -22,10 +22,10 @@
                     Grid.Column="0"
                     Grid.Row="0"
                     Grid.RowSpan="2"
-                    Fill="#233e8b"
+                    Fill="#233E8B"
                     Aspect="Uniform"
-                    WidthRequest="52"
-                    HeightRequest="54"></Ellipse>
+                    WidthRequest="56"
+                    HeightRequest="56"></Ellipse>
                 <Label
                     Grid.Column="0"
                     Grid.Row="0"
@@ -40,13 +40,12 @@
                 <Label
                     Grid.Column="1"
                     Grid.Row="0"
-                    Style="{StaticResource Body1_BarlowRegular}"
-                    Text="Welcome back"
+                    Style="{StaticResource Body1_BarlowSemiBold}"
+                    Text="Hello"
                     TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"></Label>
                 <Label
                     Grid.Column="1"
                     Grid.Row="1"
-                    Margin="0, -10, 0, 0"
                     Style="{StaticResource Headline4_BarlowBold}"
                     Text="{Binding Name}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
@@ -59,7 +58,7 @@
                 <Label
                     Grid.Column="0"
                     Text="{Binding Week.WeekString}"
-                    TextColor="#333"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                     Style="{StaticResource Subtitle1_BarlowBold}"
                     VerticalOptions="Center"></Label>
                 <Button
@@ -95,8 +94,9 @@
                     <DataTemplate>
                         <Frame
                             Grid.Column="{Binding Column}"
-                            Padding="4"
-                            CornerRadius="16">
+                            Padding="4, 8, 4, 8"
+                            CornerRadius="16"
+                            xct:TouchEffect.NativeAnimation="True">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding BindingContext.DayCommand, Source={x:Reference daysList}}" CommandParameter="{Binding .}"></TapGestureRecognizer>
                             </Frame.GestureRecognizers>
@@ -127,6 +127,7 @@
                                         <VisualState.Setters>
                                             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardUnselectedBackgroundColor}, Dark={StaticResource DarkCardUnselectedBackgroundColor}}"/>
                                             <Setter Property="HasShadow" Value="False"/>
+                                            <Setter Property="IsEnabled" Value="False"/>
                                         </VisualState.Setters>
                                     </VisualState>
                                 </VisualStateGroup>
@@ -135,6 +136,7 @@
                                 Spacing="0">
                                 <Label
                                     Text="{Binding DayName}"
+                                    TextTransform="Uppercase"
                                     Style="{StaticResource Body1_BarlowRegular}"
                                     CharacterSpacing="-1"
                                     Margin="0"
@@ -147,7 +149,6 @@
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
                                                     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
-                                                    <Setter Property="TextTransform" Value="None"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                             <VisualState x:Name="active">
@@ -157,7 +158,6 @@
                                                 <VisualState.Setters>
                                                     <Setter Property="FontFamily" Value="Barlow_Bold"/>
                                                     <Setter Property="TextColor" Value="White"/>
-                                                    <Setter Property="TextTransform" Value="Uppercase"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                             <VisualState x:Name="past">
@@ -166,7 +166,6 @@
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
                                                     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
-                                                    <Setter Property="TextTransform" Value="None"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                         </VisualStateGroup>
@@ -175,7 +174,7 @@
                                 <Label
                                     CharacterSpacing="-1"
                                     HorizontalTextAlignment="Center"
-                                    Style="{StaticResource Subtitle1_BarlowRegular}"
+                                    Style="{StaticResource Subtitle1_BarlowBold}"
                                     Text="{Binding Day}">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup>
@@ -184,7 +183,6 @@
                                                     <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Normal}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="Margin" Value="0, -4, 0, 0"/>
                                                     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
                                                 </VisualState.Setters>
                                             </VisualState>
@@ -193,8 +191,6 @@
                                                     <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Active}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="FontFamily" Value="Barlow_Bold"/>
-                                                    <Setter Property="Margin" Value="0, -8, 0, 0"/>
                                                     <Setter Property="TextColor" Value="White"/>
                                                 </VisualState.Setters>
                                             </VisualState>
@@ -203,7 +199,6 @@
                                                     <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Past}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="Margin" Value="0, -4, 0, 0"/>
                                                     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
                                                 </VisualState.Setters>
                                             </VisualState>
@@ -218,7 +213,7 @@
             <Label
                 Grid.Row="4"
                 Text="Tasks"
-                TextColor="#333"
+                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                 Style="{StaticResource Subtitle1_BarlowBold}"
                 Margin="16, 0, 0, 0"></Label>
             <StackLayout
@@ -425,7 +420,8 @@
                 CornerRadius="18" 
                 TranslationY="-30" 
                 TranslationX="-30"
-                Padding="18, 16, 18, 16">
+                Padding="18, 16, 18, 16"
+                xct:TouchEffect.NativeAnimation="True">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding AddCommand}"></TapGestureRecognizer>
                 </Frame.GestureRecognizers>

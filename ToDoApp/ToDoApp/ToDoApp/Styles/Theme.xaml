@@ -41,6 +41,16 @@
         <Setter Property="FontSize" Value="{StaticResource Body1FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
+    <Style x:Key="Body1_BarlowSemiBold" TargetType="Label">
+        <Setter Property="FontFamily" Value="Barlow_Regular" />
+        <Setter Property="FontSize" Value="{StaticResource Body1FontSize}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+    </Style>
+    <Style x:Key="Body1_BarlowBold" TargetType="Label">
+        <Setter Property="FontFamily" Value="Barlow_Bold" />
+        <Setter Property="FontSize" Value="{StaticResource Body1FontSize}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+    </Style>
 
     <Style x:Key="Body2_BarlowRegular" TargetType="Label">
         <Setter Property="FontFamily" Value="Barlow_Regular" />
