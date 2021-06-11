@@ -56,6 +56,7 @@ namespace ToDoApp
             containerRegistry.RegisterForNavigation<TasksPage, TasksPageViewModel>("TasksPage");
             containerRegistry.RegisterForNavigation<AddPage, AddPageViewModel>("AddPage");
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>("ProfilePage");
+            containerRegistry.RegisterForNavigation<AuthPage, AuthPageViewModel>("AuthPage");
         }
 
         protected override void OnStart()
