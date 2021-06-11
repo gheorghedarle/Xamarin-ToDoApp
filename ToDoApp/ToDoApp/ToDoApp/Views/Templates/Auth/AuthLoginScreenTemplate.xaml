@@ -6,7 +6,7 @@
              x:Name="template">
     <Label
         Text="Login"
-        TextColor="White"
+        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
         FontFamily="Barlow_Bold"
         FontSize="{StaticResource Headline3FontSize}"
         Margin="20, 0"></Label>
@@ -15,12 +15,12 @@
             Margin="20, 0">
             <Label
                 Text="Email"
-                TextColor="White"
+                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                 FontFamily="Barlow_Regular"
                 FontSize="{StaticResource Body1FontSize}"></Label>
             <Frame
                 BackgroundColor="Transparent"
-                BorderColor="White"
+                BorderColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                 CornerRadius="8"
                 Padding="10, 0">
                 <Entry
@@ -29,7 +29,7 @@
                     PlaceholderColor="#A6A3BD"
                     ReturnCommand="{Binding StartCommand}"
                     Text="{Binding Parent.BindingContext.Email, Source={x:Reference template}}"
-                    TextColor="White">
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
                     <Entry.Effects>
                         <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                     </Entry.Effects>
@@ -41,12 +41,12 @@
             Margin="20, 0">
             <Label
                 Text="Password"
-                TextColor="White"
+                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                 FontFamily="Barlow_Regular"
                 FontSize="{StaticResource Body1FontSize}"></Label>
             <Frame
                 BackgroundColor="Transparent"
-                BorderColor="White"
+                BorderColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                 CornerRadius="8"
                 Padding="10, 0">
                 <Entry
@@ -56,7 +56,7 @@
                     PlaceholderColor="#A6A3BD"
                     ReturnCommand="{Binding StartCommand}"
                     Text="{Binding Parent.BindingContext.Password, Source={x:Reference template}}"
-                    TextColor="White">
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
                     <Entry.Effects>
                         <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                     </Entry.Effects>
@@ -65,33 +65,34 @@
         </StackLayout>
         <Label
             Text="Forgot password?"
-            TextColor="#FEB92F"
+            TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+            TextDecorations="Underline"
             FontFamily="Barlow_SemiBold"
             FontSize="{StaticResource Body1FontSize}"
             Margin="20, 10"></Label>
         <Button 
-            BackgroundColor="#FEB92F"
+            BackgroundColor="{StaticResource PrimaryColor}"
             Command="{Binding Parent.BindingContext.LoginCommand, Source={x:Reference template}}"
             CornerRadius="28"
             FontSize="{StaticResource ButtonFontSize}"
             FontFamily="Barlow_Bold"
             Margin="20, 0, 20, 10"
-            Padding="20, 10"
+            Padding="20, 18"
             Text="Login"
-            TextColor="#253864"></Button>
+            TextColor="White"></Button>
     <Label
         HorizontalTextAlignment="Center"
-        Margin="20, 0, 20, 30">
+        Margin="20, 0, 20, 30"
+        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
         <Label.FormattedText>
             <FormattedString>
                 <Span
                     Text="Don't have an account? "
-                    TextColor="White"
                     FontFamily="Barlow_Regular"
                     FontSize="{StaticResource Body1FontSize}"></Span>
                 <Span
                     Text="Sign Up"
-                    TextColor="#FEB92F"
+                    TextDecorations="Underline"
                     FontFamily="Barlow_SemiBold"
                     FontSize="{StaticResource Body1FontSize}"></Span>
             </FormattedString>

@@ -10,7 +10,7 @@
     <Color x:Key="SuccessColor">#00AF49</Color>
 
     <!--App Theme Light-->
-    <Color x:Key="LightPrimaryTextColor">#001532</Color>
+    <Color x:Key="LightPrimaryTextColor">#0E1837</Color>
     <Color x:Key="LightSecondaryTextColor">#A6A3BD</Color>
 
     <Color x:Key="LightPageBackgroundColor">#F7F7FC</Color>
@@ -23,7 +23,7 @@
     <Color x:Key="DarkPrimaryTextColor">#F5F5F5</Color>
     <Color x:Key="DarkSecondaryTextColor">#B2B8C1</Color>
 
-    <Color x:Key="DarkPageBackgroundColor">#001532</Color>
+    <Color x:Key="DarkPageBackgroundColor">#0E1837</Color>
     <Color x:Key="DarkCardBackgroundColor">#192C46</Color>
     <Color x:Key="DarkCardUnselectedBackgroundColor">#000E23</Color>
 

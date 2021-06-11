@@ -11,17 +11,9 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid
-            RowDefinitions="*, Auto"
+        <StackLayout
+            BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
             xct:StateLayout.CurrentState="{Binding MainState}">
-            <Grid.Background>
-                <LinearGradientBrush 
-                    StartPoint="0, 0" 
-                    EndPoint="0, 1">
-                    <GradientStop Color="#1eae98" Offset="0.1"></GradientStop>
-                    <GradientStop Color="#233e8b" Offset="0.8"></GradientStop>
-                </LinearGradientBrush>
-            </Grid.Background>
             <xct:StateLayout.StateViews>
                 <xct:StateView 
                     StateKey="Loading"
@@ -44,12 +36,12 @@
                 </xct:StateView>
             </xct:StateLayout.StateViews>
             <CarouselView
-                Margin="0"
+                Margin="0, 20, 0, 0"
                 CurrentItem="{Binding CurrentAuthScreen}"
                 ItemsSource="{Binding AuthScreenList}"
                 ItemTemplate="{StaticResource AuthTemplateSelector}"
                 IsSwipeEnabled="False">
             </CarouselView>
-        </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
