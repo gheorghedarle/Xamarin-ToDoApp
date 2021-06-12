@@ -10,19 +10,27 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout
-            BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
-            <Button 
+        <Grid
+            Margin="20, 0, 20, 0"
+            BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
+            RowDefinitions="*, Auto, Auto">
+            <Label
+                Grid.Row="1"
+                Text="Manage your daily tasks"
+                Style="{StaticResource Headline4_BarlowBold}"
+                Margin="0, 20, 0, 20"></Label>
+            <Button
+                Grid.Row="2"
                 BackgroundColor="{StaticResource PrimaryColor}"
                 Command="{Binding GetStartedCommand}"
                 CornerRadius="28"
                 FontSize="{StaticResource ButtonFontSize}"
                 FontFamily="Barlow_Bold"
-                Margin="20, 0, 20, 30"
+                Margin="0, 0, 0, 30"
                 Padding="20, 18"
                 Text="Login"
                 TextColor="White"
                 VerticalOptions="End"></Button>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
