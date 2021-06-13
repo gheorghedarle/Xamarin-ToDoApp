@@ -12,17 +12,17 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid
-            RowDefinitions="Auto, Auto, *">
+            RowDefinitions="Auto, Auto, *, Auto"
+            Padding="20, 0, 20, 0">
             <Label
                 Grid.Row="0"
-                Margin="16, 16, 0, 8"
+                Margin="0, 20, 0, 10"
                 Style="{StaticResource Headline4_BarlowBold}"
                 Text="{Binding Type, StringFormat='Add new {0}'}"
                 TextColor="#333"/>
             <Grid
                 Grid.Row="1"
-                ColumnDefinitions="*, *"
-                Padding="16, 0, 16, 0">
+                ColumnDefinitions="*, *">
                 <Frame
                     Grid.Column="0"
                     CornerRadius="16"
@@ -31,13 +31,13 @@
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer 
                             Command="{Binding ChangeTypeCommand}"
-                            CommandParameter="Task"></TapGestureRecognizer>
+                            CommandParameter="task"></TapGestureRecognizer>
                     </Frame.GestureRecognizers>
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup>
                             <VisualState x:Name="selected">
                                 <VisualState.StateTriggers>
-                                    <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='Task'}"></StateTrigger>
+                                    <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="White"/>
@@ -46,7 +46,7 @@
                             </VisualState>
                             <VisualState x:Name="notSelected">
                                 <VisualState.StateTriggers>
-                                    <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='List'}"></StateTrigger>
+                                    <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="#F1F0F7"/>
@@ -64,7 +64,7 @@
                             <VisualStateGroup>
                                 <VisualState x:Name="selected">
                                     <VisualState.StateTriggers>
-                                        <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='Task'}"></StateTrigger>
+                                        <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
                                         <Setter Property="TextColor" Value="#0E1837"/>
@@ -72,7 +72,7 @@
                                 </VisualState>
                                 <VisualState x:Name="notSelected">
                                     <VisualState.StateTriggers>
-                                        <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='List'}"></StateTrigger>
+                                        <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
                                         <Setter Property="TextColor" Value="#A6A3BD"/>
@@ -90,13 +90,13 @@
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer 
                             Command="{Binding ChangeTypeCommand}"
-                            CommandParameter="List"></TapGestureRecognizer>
+                            CommandParameter="list"></TapGestureRecognizer>
                     </Frame.GestureRecognizers>
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup>
                             <VisualState x:Name="selected">
                                 <VisualState.StateTriggers>
-                                    <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='List'}"></StateTrigger>
+                                    <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="White"/>
@@ -105,7 +105,7 @@
                             </VisualState>
                             <VisualState x:Name="notSelected">
                                 <VisualState.StateTriggers>
-                                    <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='Task'}"></StateTrigger>
+                                    <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="#F1F0F7"/>
@@ -123,7 +123,7 @@
                             <VisualStateGroup>
                                 <VisualState x:Name="selected">
                                     <VisualState.StateTriggers>
-                                        <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='List'}"></StateTrigger>
+                                        <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
                                         <Setter Property="TextColor" Value="#0E1837"/>
@@ -131,7 +131,7 @@
                                 </VisualState>
                                 <VisualState x:Name="notSelected">
                                     <VisualState.StateTriggers>
-                                        <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='Task'}"></StateTrigger>
+                                        <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
                                         <Setter Property="TextColor" Value="#A6A3BD"/>
@@ -148,6 +148,18 @@
                 ItemsSource="{Binding ItemList}"
                 ItemTemplate="{StaticResource AddItemTemplateSelector}"
                 IsSwipeEnabled="False"></CarouselView>
+            <Button
+                Grid.Row="3"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                Command="{Binding GetStartedCommand}"
+                CornerRadius="28"
+                FontSize="{StaticResource ButtonFontSize}"
+                FontFamily="Barlow_Bold"
+                Margin="0, 0, 0, 10"
+                Padding="20, 18"
+                Text="{Binding Type, StringFormat='Add new {0}'}"
+                TextColor="White"
+                VerticalOptions="End"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

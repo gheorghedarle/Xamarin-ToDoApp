@@ -19,7 +19,7 @@ namespace ToDoApp.Helpers.TemplateSelector
             if (item.GetType() == typeof(string))
             {
                 var screen = item as string;
-                if (screen == "Task")
+                if (screen == "task")
                 {
                     return AddTaskTemplate;
                 }

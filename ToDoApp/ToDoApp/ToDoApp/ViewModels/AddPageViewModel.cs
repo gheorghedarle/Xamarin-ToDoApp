@@ -29,9 +29,9 @@ namespace ToDoApp.ViewModels
         {
             ChangeTypeCommand = new Command<string>(ChangeTypeCommandHandler);
 
-            ItemList = new ObservableCollection<string>() { "Task", "List" };
+            ItemList = new ObservableCollection<string>() { "task", "list" };
 
-            Type = "Task";
+            Type = "task";
         }
 
         #endregion
