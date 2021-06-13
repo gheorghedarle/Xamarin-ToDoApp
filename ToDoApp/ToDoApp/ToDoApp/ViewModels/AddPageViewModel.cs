@@ -1,4 +1,5 @@
 ﻿using Prism.Navigation;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -10,6 +11,7 @@ namespace ToDoApp.ViewModels
         #region Properties
 
         public string Type { get; set; }
+        public ObservableCollection<string> ItemList { get; set; }
 
         #endregion
 
@@ -27,7 +29,9 @@ namespace ToDoApp.ViewModels
         {
             ChangeTypeCommand = new Command<string>(ChangeTypeCommandHandler);
 
-            Type = "task";
+            ItemList = new ObservableCollection<string>() { "Task", "List" };
+
+            Type = "Task";
         }
 
         #endregion
