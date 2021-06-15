@@ -37,17 +37,8 @@
             TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
             FontFamily="Barlow_Regular"
             FontSize="{StaticResource Body1FontSize}"></Label>
-        <CollectionView>
-            <CollectionView.ItemsSource>
-                <x:Array Type="{x:Type Color}">
-                    <Color>#F9371C</Color>
-                    <Color>#F97C1C</Color>
-                    <Color>#F9C81C</Color>
-                    <Color>#41D0B6</Color>
-                    <Color>#2CADF6</Color>
-                    <Color>#6562FC</Color>
-                </x:Array>
-            </CollectionView.ItemsSource>
+        <CollectionView
+            ItemsSource="{Binding Parent.BindingContext.ColorList, Source={x:Reference template}}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"></LinearItemsLayout>
             </CollectionView.ItemsLayout>
@@ -55,7 +46,7 @@
                 <DataTemplate>
                     <Ellipse
                         WidthRequest="40"
-                        Fill="#F9371C">
+                        Fill="{Binding ., Converter={StaticResource ColorToSolidColorBrushConverter}}">
                     </Ellipse>
                 </DataTemplate>    
             </CollectionView.ItemTemplate>

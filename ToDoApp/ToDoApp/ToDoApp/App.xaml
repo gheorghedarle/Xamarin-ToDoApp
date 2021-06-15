@@ -8,6 +8,7 @@
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
             <converters:DoneIconConverter x:Key="DoneIconConverter"/>
+            <converters:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter"/>
 
             <ResourceDictionary.MergedDictionaries>
                 <styles:Theme></styles:Theme>

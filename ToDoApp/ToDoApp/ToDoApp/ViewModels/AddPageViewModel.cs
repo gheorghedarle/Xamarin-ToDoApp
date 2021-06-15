@@ -1,17 +1,18 @@
 ﻿using Prism.Navigation;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using ToDoApp.Helpers;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels
 {
     public class AddPageViewModel : BaseViewModel
     {
-
         #region Properties
 
         public string Type { get; set; }
         public ObservableCollection<string> ItemList { get; set; }
+        public ObservableCollection<Color> ColorList { get; set; }
 
         #endregion
 
@@ -29,7 +30,8 @@ namespace ToDoApp.ViewModels
         {
             ChangeTypeCommand = new Command<string>(ChangeTypeCommandHandler);
 
-            ItemList = new ObservableCollection<string>() { "task", "list" };
+            ItemList = Constants.AddOptions;
+            ColorList = Constants.ListColorList;
 
             Type = "task";
         }
