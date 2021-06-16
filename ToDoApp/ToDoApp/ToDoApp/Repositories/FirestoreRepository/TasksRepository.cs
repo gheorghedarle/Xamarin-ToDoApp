@@ -1,7 +1,5 @@
 ﻿using Plugin.CloudFirestore;
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using ToDoApp.Models;
 
 namespace ToDoApp.Repositories.FirestoreRepository
@@ -13,27 +11,24 @@ namespace ToDoApp.Repositories.FirestoreRepository
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<TaskModel>> GetAll(string userId)
+        public IQuery GetAll(string userId)
         {
-            var document = await CrossCloudFirestore.Current
+            var query = CrossCloudFirestore.Current
                 .Instance
                 .Collection("tasks")
-                .WhereEqualsTo("userId", userId)
-                .GetAsync();
+                .WhereEqualsTo("userId", userId);
 
-            return document.ToObjects<TaskModel>();
+            return query;
         }
 
-        public async Task<IEnumerable<TaskModel>> GetAllContains(string userId, string field, object value)
+        public IQuery GetAllContains(string userId, string field, object value)
         {
-            var document = await CrossCloudFirestore.Current
+            var query = CrossCloudFirestore.Current
                 .Instance
                 .Collection("tasks")
                 .WhereEqualsTo("date", value)
-                .WhereEqualsTo("userId", userId)
-                .GetAsync();
-
-            return document.ToObjects<TaskModel>();
+                .WhereEqualsTo("userId", userId);
+            return query;
         }
     }
 }

@@ -50,48 +50,25 @@
             </Picker>
         </Frame>
     </StackLayout>
-    <Grid
-        ColumnDefinitions="*, *">
-        <StackLayout
-            Grid.Column="0"
-            Spacing="10">
-            <Label
-                Text="Date"
-                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Barlow_Regular"
-                FontSize="{StaticResource Body1FontSize}"></Label>
-            <Frame
-                BackgroundColor="Transparent"
-                BorderColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                CornerRadius="8"
-                Padding="10, 0">
-                <DatePicker
-                    >
-                    <DatePicker.Effects>
-                        <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
-                    </DatePicker.Effects>
-                </DatePicker>
-            </Frame>
-        </StackLayout>
-        <StackLayout
-            Grid.Column="1"
-            Spacing="10">
-            <Label
-                Text="Time"
-                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Barlow_Regular"
-                FontSize="{StaticResource Body1FontSize}"></Label>
-            <Frame
-                BackgroundColor="Transparent"
-                BorderColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                CornerRadius="8"
-                Padding="10, 0">
-                <TimePicker>
-                    <TimePicker.Effects>
-                        <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
-                    </TimePicker.Effects>
-                </TimePicker>
-            </Frame>
-        </StackLayout>
-    </Grid>
+    <StackLayout
+        Grid.Column="0"
+        Spacing="10">
+        <Label
+            Text="Date"
+            TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+            FontFamily="Barlow_Regular"
+            FontSize="{StaticResource Body1FontSize}"></Label>
+        <Frame
+            BackgroundColor="Transparent"
+            BorderColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+            CornerRadius="8"
+            Padding="10, 0">
+            <DatePicker
+                >
+                <DatePicker.Effects>
+                    <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
+                </DatePicker.Effects>
+            </DatePicker>
+        </Frame>
+    </StackLayout>
 </StackLayout>

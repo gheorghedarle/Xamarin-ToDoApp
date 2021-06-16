@@ -6,7 +6,7 @@ using Xamarin.Essentials;
 
 namespace ToDoApp.ViewModels
 {
-    public class BaseViewModel: INavigationAware, IPageLifecycleAware, INotifyPropertyChanged
+    public class BaseViewModel: INavigationAware, IPageLifecycleAware, INotifyPropertyChanged, IDestructible
     {
         #region Private & Protected
 
@@ -59,6 +59,14 @@ namespace ToDoApp.ViewModels
         public virtual void OnAppearing() { }
 
         public virtual void OnDisappearing() { }
+
+        #endregion
+
+        #region IDestructible
+
+        public virtual void Destroy()
+        {
+        }
 
         #endregion
     }

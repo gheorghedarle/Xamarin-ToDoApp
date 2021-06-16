@@ -1,5 +1,6 @@
 ﻿using Prism.Navigation;
 using Prism.Services.Dialogs;
+using Reactive.Bindings;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -14,23 +15,31 @@ using ToDoApp.Views;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Reactive.Bindings.Extensions;
+using Plugin.CloudFirestore.Reactive;
+using System.Reactive.Linq;
+using Plugin.CloudFirestore;
+using System.Reactive.Disposables;
 
 namespace ToDoApp.ViewModels
 {
-    public class TasksPageViewModel : BaseViewModel
+    public class TasksPageViewModel : 
+        BaseViewModel,
+        IInitialize
     {
         #region Private & Protected
 
         private IDateService _dateService;
         private IFirestoreRepository<TaskModel> _tasksRepository;
         private IDialogService _dialogService;
+        private readonly CompositeDisposable _disposables = new CompositeDisposable();
 
         #endregion
 
         #region Properties
 
         public ObservableCollection<DayModel> DaysList { get; set; }
-        public ObservableCollection<TaskModel> TaskList { get; set; }
+        public ReactiveCollection<TaskModel> TaskList { get; set; }
 
         public LayoutState TaskListState {get;set;}
 
@@ -78,6 +87,10 @@ namespace ToDoApp.ViewModels
             ItemDropped = new Command<TaskModel>(i => OnItemDropped(i));
         }
 
+        public void Initialize(INavigationParameters parameters)
+        {
+            TaskList = new ReactiveCollection<TaskModel>();
+        }
 
         #endregion
 
@@ -86,14 +99,14 @@ namespace ToDoApp.ViewModels
         private void CheckTaskCommandHandler(TaskModel task)
         {
             task.archived = !task.archived;
-            TaskList = new ObservableCollection<TaskModel>(TaskList.OrderBy(t => t.archived).ToList());
+            //TaskList = new ObservableCollection<TaskModel>(TaskList.OrderBy(t => t.archived).ToList());
         }
 
-        private async void DayCommandHandler(DayModel day)
+        private void DayCommandHandler(DayModel day)
         {
             ResetActiveDay();
             day.State = DayStateEnum.Active;
-            await GetTasksByDate(day.Date);
+            GetTasksByDate(day.Date);
         }
 
         private void PreviousWeekCommandHandler(DateTime startDate)
@@ -158,13 +171,13 @@ namespace ToDoApp.ViewModels
 
         #region Private Methods
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             Week = _dateService.GetWeek(DateTime.Now);
             DaysList = new ObservableCollection<DayModel>(_dateService.GetDayList(Week.StartDay, Week.LastDay));
 
             SetUserName();
-            await GetTasksByDate(DateTime.Now);
+            GetTasksByDate(DateTime.Now);
         }
 
         private void SetUserName()
@@ -182,23 +195,45 @@ namespace ToDoApp.ViewModels
             }
         }
 
-        private async Task GetTasksByDate(DateTime date)
+        private void GetTasksByDate(DateTime date)
         {
-            TaskListState = LayoutState.Loading;
+            //TaskListState = LayoutState.Loading;
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var userId = auth.GetUserId();
-            var taskList = await _tasksRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"));
-            TaskList = new ObservableCollection<TaskModel>(taskList.OrderBy(t => t.archived).ToList());
-            if(TaskList.Count == 0)
-            {
-                TaskListState = LayoutState.Empty;
-            }
-            else
-            {
-                TaskListState = LayoutState.None;
-            }
+            var query = _tasksRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"));
+
+            query.ObserveAdded()
+                .Select(change => (Object: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), Index: change.NewIndex))
+                .Subscribe(t => TaskList.InsertOnScheduler(t.Index, t.Object))
+                .AddTo(_disposables);
+
+            query.ObserveModified()
+                 .Select(change => change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate))
+                 .Select(todoItem => (TodoItem: todoItem, ViewModel: TaskList.FirstOrDefault(x => x.id == todoItem.id)))
+                 .Subscribe(t => Debug.WriteLine(t))
+                 .AddTo(_disposables);
+
+            query.ObserveRemoved()
+                 .Select(change => TaskList.FirstOrDefault(x => x.id == change.Document.Id))
+                 .Subscribe(viewModel => TaskList.RemoveOnScheduler(viewModel))
+                 .AddTo(_disposables);
+
+            //if(TaskList.Count == 0)
+            //{
+            //    TaskListState = LayoutState.Empty;
+            //}
+            //else
+            //{
+            //    TaskListState = LayoutState.None;
+            //}
         }
 
         #endregion
+
+        public override void Destroy()
+        {
+            base.Destroy();
+            _disposables.Dispose();
+        }
     }
 }

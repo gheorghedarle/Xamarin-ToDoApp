@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
+﻿using Plugin.CloudFirestore;
 namespace ToDoApp.Repositories.FirestoreRepository
 {
     public interface IFirestoreRepository<T>
     {
         T Get();
-        Task<IEnumerable<T>> GetAll(string userId);
-        Task<IEnumerable<T>> GetAllContains(string userId, string field, object value);
+        IQuery GetAll(string userId);
+        IQuery GetAllContains(string userId, string field, object value);
     }
 }
