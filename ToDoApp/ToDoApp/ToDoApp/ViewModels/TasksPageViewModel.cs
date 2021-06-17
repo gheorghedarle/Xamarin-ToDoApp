@@ -89,7 +89,48 @@ namespace ToDoApp.ViewModels
 
         public void Initialize(INavigationParameters parameters)
         {
+            TaskListState = LayoutState.Loading;
+
             TaskList = new ReactiveCollection<TaskModel>();
+            var auth = DependencyService.Get<IFirebaseAuthentication>();
+            var userId = auth.GetUserId();
+            var query = _tasksRepository.GetAllContains(userId, "date", DateTime.Today.ToString("dd/MM/yyyy"));
+            query.ObserveAdded()
+                .Select(change => (Object: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), Index: change.NewIndex))
+                .Subscribe(t =>
+                {
+                    TaskList.InsertOnScheduler(t.Index, t.Object);
+                })
+                .AddTo(_disposables);
+            query.ObserveModified()
+                 .Select(change => change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate))
+                 .Select(taskItem => (TaskItem: taskItem, ViewModel: TaskList.FirstOrDefault(x => x.id == taskItem.id)))
+                 .Where(t => t.ViewModel != null)
+                 .Subscribe(t =>
+                 {
+                     t.ViewModel.Update(t.TaskItem);
+                 })
+                 .AddTo(_disposables);
+            query.ObserveRemoved()
+                 .Select(change => TaskList.FirstOrDefault(x => x.id == change.Document.Id))
+                 .Subscribe(viewModel =>
+                 {
+                     TaskList.RemoveOnScheduler(viewModel);
+                 })
+                 .AddTo(_disposables);
+            TaskList.ToCollectionChanged()
+                .Subscribe(a =>
+                {
+                    if (TaskList.Count == 0)
+                    {
+                        TaskListState = LayoutState.Empty;
+                    }
+                    else
+                    {
+                        TaskListState = LayoutState.None;
+                    }
+                })
+                .AddTo(_disposables);
         }
 
         #endregion
@@ -197,35 +238,7 @@ namespace ToDoApp.ViewModels
 
         private void GetTasksByDate(DateTime date)
         {
-            //TaskListState = LayoutState.Loading;
-            var auth = DependencyService.Get<IFirebaseAuthentication>();
-            var userId = auth.GetUserId();
-            var query = _tasksRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"));
 
-            query.ObserveAdded()
-                .Select(change => (Object: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), Index: change.NewIndex))
-                .Subscribe(t => TaskList.InsertOnScheduler(t.Index, t.Object))
-                .AddTo(_disposables);
-
-            query.ObserveModified()
-                 .Select(change => change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate))
-                 .Select(todoItem => (TodoItem: todoItem, ViewModel: TaskList.FirstOrDefault(x => x.id == todoItem.id)))
-                 .Subscribe(t => Debug.WriteLine(t))
-                 .AddTo(_disposables);
-
-            query.ObserveRemoved()
-                 .Select(change => TaskList.FirstOrDefault(x => x.id == change.Document.Id))
-                 .Subscribe(viewModel => TaskList.RemoveOnScheduler(viewModel))
-                 .AddTo(_disposables);
-
-            //if(TaskList.Count == 0)
-            //{
-            //    TaskListState = LayoutState.Empty;
-            //}
-            //else
-            //{
-            //    TaskListState = LayoutState.None;
-            //}
         }
 
         #endregion
