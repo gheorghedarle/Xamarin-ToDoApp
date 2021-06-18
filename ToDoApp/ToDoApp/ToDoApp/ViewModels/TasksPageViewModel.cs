@@ -40,9 +40,7 @@ namespace ToDoApp.ViewModels
 
         public ObservableCollection<DayModel> DaysList { get; set; }
         public ReactiveCollection<TaskModel> TaskList { get; set; }
-
         public LayoutState TaskListState {get;set;}
-
         public string Name { get; set; }
         public WeekModel Week { get; set; }
 
@@ -90,47 +88,7 @@ namespace ToDoApp.ViewModels
         public void Initialize(INavigationParameters parameters)
         {
             TaskListState = LayoutState.Loading;
-
-            TaskList = new ReactiveCollection<TaskModel>();
-            var auth = DependencyService.Get<IFirebaseAuthentication>();
-            var userId = auth.GetUserId();
-            var query = _tasksRepository.GetAllContains(userId, "date", DateTime.Today.ToString("dd/MM/yyyy"));
-            query.ObserveAdded()
-                .Select(change => (Object: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), Index: change.NewIndex))
-                .Subscribe(t =>
-                {
-                    TaskList.InsertOnScheduler(t.Index, t.Object);
-                })
-                .AddTo(_disposables);
-            query.ObserveModified()
-                 .Select(change => change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate))
-                 .Select(taskItem => (TaskItem: taskItem, ViewModel: TaskList.FirstOrDefault(x => x.id == taskItem.id)))
-                 .Where(t => t.ViewModel != null)
-                 .Subscribe(t =>
-                 {
-                     t.ViewModel.Update(t.TaskItem);
-                 })
-                 .AddTo(_disposables);
-            query.ObserveRemoved()
-                 .Select(change => TaskList.FirstOrDefault(x => x.id == change.Document.Id))
-                 .Subscribe(viewModel =>
-                 {
-                     TaskList.RemoveOnScheduler(viewModel);
-                 })
-                 .AddTo(_disposables);
-            TaskList.ToCollectionChanged()
-                .Subscribe(a =>
-                {
-                    if (TaskList.Count == 0)
-                    {
-                        TaskListState = LayoutState.Empty;
-                    }
-                    else
-                    {
-                        TaskListState = LayoutState.None;
-                    }
-                })
-                .AddTo(_disposables);
+            CreateQueryForTasks(DateTime.Today);
         }
 
         #endregion
@@ -140,14 +98,13 @@ namespace ToDoApp.ViewModels
         private void CheckTaskCommandHandler(TaskModel task)
         {
             task.archived = !task.archived;
-            //TaskList = new ObservableCollection<TaskModel>(TaskList.OrderBy(t => t.archived).ToList());
         }
 
         private void DayCommandHandler(DayModel day)
         {
             ResetActiveDay();
             day.State = DayStateEnum.Active;
-            GetTasksByDate(day.Date);
+            CreateQueryForTasks(day.Date);
         }
 
         private void PreviousWeekCommandHandler(DateTime startDate)
@@ -206,10 +163,6 @@ namespace ToDoApp.ViewModels
 
         #endregion
 
-        #region Navigation
-
-        #endregion
-
         #region Private Methods
 
         public override void OnNavigatedTo(INavigationParameters parameters)
@@ -218,7 +171,51 @@ namespace ToDoApp.ViewModels
             DaysList = new ObservableCollection<DayModel>(_dateService.GetDayList(Week.StartDay, Week.LastDay));
 
             SetUserName();
-            GetTasksByDate(DateTime.Now);
+        }
+
+        private void CreateQueryForTasks(DateTime date)
+        {
+            _disposables.Clear();
+            TaskList = new ReactiveCollection<TaskModel>();
+            var auth = DependencyService.Get<IFirebaseAuthentication>();
+            var userId = auth.GetUserId();
+            var query = _tasksRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"));
+            query.ObserveAdded()
+                .Select(change => (Object: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), Index: change.NewIndex))
+                .Subscribe(t =>
+                {
+                    TaskList.InsertOnScheduler(t.Index, t.Object);
+                })
+                .AddTo(_disposables);
+            query.ObserveModified()
+                 .Select(change => change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate))
+                 .Select(taskItem => (TaskItem: taskItem, ViewModel: TaskList.FirstOrDefault(x => x.id == taskItem.id)))
+                 .Where(t => t.ViewModel != null)
+                 .Subscribe(t =>
+                 {
+                     t.ViewModel.Update(t.TaskItem);
+                 })
+                 .AddTo(_disposables);
+            query.ObserveRemoved()
+                 .Select(change => TaskList.FirstOrDefault(x => x.id == change.Document.Id))
+                 .Subscribe(viewModel =>
+                 {
+                     TaskList.RemoveOnScheduler(viewModel);
+                 })
+                 .AddTo(_disposables);
+            query.AsObservable()
+                .Subscribe(list =>
+                {
+                    if (list.Count == 0)
+                    {
+                        TaskListState = LayoutState.Empty;
+                    }
+                    else
+                    {
+                        TaskListState = LayoutState.None;
+                    }
+                })
+                .AddTo(_disposables);
         }
 
         private void SetUserName()
@@ -234,11 +231,6 @@ namespace ToDoApp.ViewModels
             {
                 selectedDay.State = selectedDay.Date < DateTime.Now.Date ? DayStateEnum.Past : DayStateEnum.Normal;
             }
-        }
-
-        private void GetTasksByDate(DateTime date)
-        {
-
         }
 
         #endregion
