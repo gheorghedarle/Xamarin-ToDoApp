@@ -103,7 +103,7 @@ namespace ToDoApp.ViewModels
         private void DayCommandHandler(DayModel day)
         {
             ResetActiveDay();
-            day.State = DayStateEnum.Active;
+            SetActiveDay(day);
             CreateQueryForTasks(day.Date);
         }
 
@@ -171,6 +171,7 @@ namespace ToDoApp.ViewModels
             DaysList = new ObservableCollection<DayModel>(_dateService.GetDayList(Week.StartDay, Week.LastDay));
 
             SetUserName();
+            SetActiveDay();
         }
 
         private void CreateQueryForTasks(DateTime date)
@@ -222,6 +223,19 @@ namespace ToDoApp.ViewModels
         {
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             Name = auth.GetUsername();
+        }
+
+        private void SetActiveDay(DayModel day = null)
+        {
+            if (day != null)
+            {
+                day.State = DayStateEnum.Active;
+            }
+            else
+            {
+                var today = DaysList.FirstOrDefault(d => d.Date == DateTime.Today);
+                today.State = DayStateEnum.Active;
+            }
         }
 
         private void ResetActiveDay()
