@@ -145,19 +145,20 @@ namespace ToDoApp.ViewModels
             TaskList.ForEach(i => i.isBeingDraggedOver = false);
         }
 
-        private async Task OnItemDropped(TaskModel item)
+        private Task OnItemDropped(TaskModel item)
         {
             var itemToMove = TaskList.First(i => i.isBeingDragged);
             var itemToInsertBefore = item;
 
             if (itemToMove == null || itemToInsertBefore == null || itemToMove == itemToInsertBefore)
-                return;
+                return Task.CompletedTask;
 
             var insertAtIndex = TaskList.IndexOf(itemToInsertBefore);
             TaskList.Remove(itemToMove);
             TaskList.Insert(insertAtIndex, itemToMove);
             itemToMove.isBeingDragged = false;
             itemToInsertBefore.isBeingDraggedOver = false;
+            return Task.CompletedTask;
         }
 
 
@@ -249,10 +250,14 @@ namespace ToDoApp.ViewModels
 
         #endregion
 
+        #region Override
+
         public override void Destroy()
         {
             base.Destroy();
             _disposables.Dispose();
         }
+
+#end
     }
 }
