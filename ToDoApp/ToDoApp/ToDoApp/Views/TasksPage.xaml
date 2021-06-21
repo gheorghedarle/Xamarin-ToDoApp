@@ -263,8 +263,8 @@
                                         DropCommandParameter="{Binding}" />
                                 </StackLayout.GestureRecognizers>
                                 <Grid
-                                    BackgroundColor="#e5f1fa"
-                                    HeightRequest="76"
+                                    BackgroundColor="#233e8b"
+                                    HeightRequest="6"
                                     Margin="0, 4, 0, 0"
                                     IsVisible="{Binding isBeingDraggedOver}" />
                                 <Frame
@@ -369,7 +369,7 @@
                                             Grid.Row="1"
                                             Grid.Column="1"
                                             Orientation="Horizontal"
-                                            Margin="8, -8, 8, 0">
+                                            Margin="8, 0, 8, 0">
                                             <Ellipse
                                                 Fill="#233e8b"
                                                 Aspect="Uniform"
@@ -377,8 +377,8 @@
                                                 HeightRequest="12"
                                                 VerticalOptions="CenterAndExpand"></Ellipse>
                                             <Label 
-                                                Text="{Binding projectName}"
-                                                FontFamily="Barlow_Regular"
+                                                Text="Project Name"
+                                                FontFamily="Barlow_Medium"
                                                 FontSize="{StaticResource Body2FontSize}"
                                                 VerticalOptions="CenterAndExpand">
                                                 <VisualStateManager.VisualStateGroups>

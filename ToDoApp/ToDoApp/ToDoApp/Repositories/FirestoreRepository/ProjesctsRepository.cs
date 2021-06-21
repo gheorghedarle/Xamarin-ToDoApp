@@ -1,5 +1,6 @@
 ﻿using Plugin.CloudFirestore;
 using System;
+using System.Threading.Tasks;
 using ToDoApp.Models;
 
 namespace ToDoApp.Repositories.FirestoreRepository
@@ -24,6 +25,11 @@ namespace ToDoApp.Repositories.FirestoreRepository
         public IQuery GetAllContains(string userId, string field, object value)
         {
             throw new NotImplementedException();
+        }
+
+        public Task<bool> Update(ProjectModel model)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

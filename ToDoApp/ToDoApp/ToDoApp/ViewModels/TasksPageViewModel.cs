@@ -98,6 +98,7 @@ namespace ToDoApp.ViewModels
         private void CheckTaskCommandHandler(TaskModel task)
         {
             task.archived = !task.archived;
+            _tasksRepository.Update(task);
         }
 
         private void DayCommandHandler(DayModel day)
@@ -177,6 +178,7 @@ namespace ToDoApp.ViewModels
 
         private void CreateQueryForTasks(DateTime date)
         {
+            TaskListState = LayoutState.Loading;
             _disposables.Clear();
             TaskList = new ReactiveCollection<TaskModel>();
             var auth = DependencyService.Get<IFirebaseAuthentication>();
@@ -258,6 +260,6 @@ namespace ToDoApp.ViewModels
             _disposables.Dispose();
         }
 
-#end
+        #endregion
     }
 }

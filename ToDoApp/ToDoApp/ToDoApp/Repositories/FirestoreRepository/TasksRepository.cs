@@ -1,5 +1,6 @@
 ﻿using Plugin.CloudFirestore;
 using System;
+using System.Threading.Tasks;
 using ToDoApp.Models;
 
 namespace ToDoApp.Repositories.FirestoreRepository
@@ -29,6 +30,23 @@ namespace ToDoApp.Repositories.FirestoreRepository
                 .WhereEqualsTo("date", value)
                 .WhereEqualsTo("userId", userId);
             return query;
+        }
+
+        public async Task<bool> Update(TaskModel model)
+        {
+            try
+            {
+                await CrossCloudFirestore.Current
+                        .Instance
+                        .Collection("tasks")
+                        .Document(model.id)
+                        .UpdateAsync(model);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
