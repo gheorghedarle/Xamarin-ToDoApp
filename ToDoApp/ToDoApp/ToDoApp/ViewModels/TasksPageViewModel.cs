@@ -32,7 +32,9 @@ namespace ToDoApp.ViewModels
         private IDateService _dateService;
         private IFirestoreRepository<TaskModel> _tasksRepository;
         private IDialogService _dialogService;
+
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
+        private DayModel _selectedDay;
 
         #endregion
 
@@ -88,7 +90,14 @@ namespace ToDoApp.ViewModels
         public void Initialize(INavigationParameters parameters)
         {
             TaskListState = LayoutState.Loading;
+
+            Week = _dateService.GetWeek(DateTime.Now);
+            DaysList = new ObservableCollection<DayModel>(_dateService.GetDayList(Week.StartDay, Week.LastDay));
+            _selectedDay = new DayModel() { Date = DateTime.Today };
+
+            SetUserName();
             CreateQueryForTasks(DateTime.Today);
+            SetActiveDay();
         }
 
         #endregion
@@ -103,23 +112,22 @@ namespace ToDoApp.ViewModels
 
         private void DayCommandHandler(DayModel day)
         {
-            ResetActiveDay();
             SetActiveDay(day);
             CreateQueryForTasks(day.Date);
         }
 
         private void PreviousWeekCommandHandler(DateTime startDate)
         {
-            ResetActiveDay();
             Week = _dateService.GetWeek(startDate.AddDays(-1));
             DaysList = new ObservableCollection<DayModel>(_dateService.GetDayList(Week.StartDay, Week.LastDay));
+            SetActiveDay();
         }
 
         private void NextWeekCommandHandler(DateTime lastDate)
         {
-            ResetActiveDay();
             Week = _dateService.GetWeek(lastDate.AddDays(1));
             DaysList = new ObservableCollection<DayModel>(_dateService.GetDayList(Week.StartDay, Week.LastDay));
+            SetActiveDay();
         }
 
         private void AddCommandHandler()
@@ -166,15 +174,6 @@ namespace ToDoApp.ViewModels
         #endregion
 
         #region Private Methods
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            Week = _dateService.GetWeek(DateTime.Now);
-            DaysList = new ObservableCollection<DayModel>(_dateService.GetDayList(Week.StartDay, Week.LastDay));
-
-            SetUserName();
-            SetActiveDay();
-        }
 
         private void CreateQueryForTasks(DateTime date)
         {
@@ -230,20 +229,26 @@ namespace ToDoApp.ViewModels
 
         private void SetActiveDay(DayModel day = null)
         {
+            ResetActiveDay();
             if (day != null)
             {
+                _selectedDay = day;
                 day.State = DayStateEnum.Active;
             }
             else
             {
-                var today = DaysList.FirstOrDefault(d => d.Date == DateTime.Today);
-                today.State = DayStateEnum.Active;
+                var selectedDate = DaysList.FirstOrDefault(d => d.Date == _selectedDay.Date);
+                if(selectedDate != null)
+                {
+                    selectedDate.State = DayStateEnum.Active;
+                }
             }
+            
         }
 
         private void ResetActiveDay()
         {
-            var selectedDay = DaysList.FirstOrDefault(d => d.State.Equals(DayStateEnum.Active));
+            var selectedDay = DaysList?.FirstOrDefault(d => d.State.Equals(DayStateEnum.Active));
             if (selectedDay != null)
             {
                 selectedDay.State = selectedDay.Date < DateTime.Now.Date ? DayStateEnum.Past : DayStateEnum.Normal;

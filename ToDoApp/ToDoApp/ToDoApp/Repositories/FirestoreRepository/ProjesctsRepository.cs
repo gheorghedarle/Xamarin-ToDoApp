@@ -5,9 +5,9 @@ using ToDoApp.Models;
 
 namespace ToDoApp.Repositories.FirestoreRepository
 {
-    public class ProjesctsRepository : IFirestoreRepository<ProjectModel>
+    public class ProjesctsRepository : IFirestoreRepository<ListModel>
     {
-        public ProjectModel Get()
+        public ListModel Get()
         {
             throw new System.NotImplementedException();
         }
@@ -27,7 +27,7 @@ namespace ToDoApp.Repositories.FirestoreRepository
             throw new NotImplementedException();
         }
 
-        public Task<bool> Update(ProjectModel model)
+        public Task<bool> Update(ListModel model)
         {
             throw new System.NotImplementedException();
         }

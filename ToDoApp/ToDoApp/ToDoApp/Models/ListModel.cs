@@ -1,6 +1,6 @@
 ﻿namespace ToDoApp.Models
 {
-    public class ProjectModel : BaseModel
+    public class ListModel : BaseModel
     {
         public string name { get; set; }
         public string projectId { get; set; }

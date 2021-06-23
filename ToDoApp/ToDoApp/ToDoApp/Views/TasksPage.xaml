@@ -365,46 +365,37 @@
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
                                         </Label>
-                                        <StackLayout
+                                        <Label 
                                             Grid.Row="1"
                                             Grid.Column="1"
-                                            Orientation="Horizontal"
-                                            Margin="8, 0, 8, 0">
-                                            <Ellipse
-                                                Fill="#233e8b"
-                                                Aspect="Uniform"
-                                                WidthRequest="12"
-                                                HeightRequest="12"
-                                                VerticalOptions="CenterAndExpand"></Ellipse>
-                                            <Label 
-                                                Text="Project Name"
-                                                FontFamily="Barlow_Medium"
-                                                FontSize="{StaticResource Body2FontSize}"
-                                                VerticalOptions="CenterAndExpand">
-                                                <VisualStateManager.VisualStateGroups>
-                                                    <VisualStateGroup>
-                                                        <VisualState x:Name="normal">
-                                                            <VisualState.StateTriggers>
-                                                                <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
-                                                            </VisualState.StateTriggers>
-                                                            <VisualState.Setters>
-                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
-                                                                <Setter Property="TextDecorations" Value="None"/>
-                                                            </VisualState.Setters>
-                                                        </VisualState>
-                                                        <VisualState x:Name="done">
-                                                            <VisualState.StateTriggers>
-                                                                <StateTrigger IsActive="{Binding archived}"></StateTrigger>
-                                                            </VisualState.StateTriggers>
-                                                            <VisualState.Setters>
-                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
-                                                                <Setter Property="TextDecorations" Value="Strikethrough"/>
-                                                            </VisualState.Setters>
-                                                        </VisualState>
-                                                    </VisualStateGroup>
-                                                </VisualStateManager.VisualStateGroups>
-                                            </Label>
-                                        </StackLayout>
+                                            Text="{Binding list}"
+                                            FontFamily="Barlow_Medium"
+                                            FontSize="{StaticResource Body2FontSize}"
+                                            Margin="8, 0, 8, 0"
+                                            VerticalOptions="CenterAndExpand">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup>
+                                                    <VisualState x:Name="normal">
+                                                        <VisualState.StateTriggers>
+                                                            <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                        </VisualState.StateTriggers>
+                                                        <VisualState.Setters>
+                                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                                                            <Setter Property="TextDecorations" Value="None"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                    <VisualState x:Name="done">
+                                                        <VisualState.StateTriggers>
+                                                            <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                        </VisualState.StateTriggers>
+                                                        <VisualState.Setters>
+                                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                                                            <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                        </Label>
                                      </Grid>
                                 </Frame>
                             </StackLayout>
