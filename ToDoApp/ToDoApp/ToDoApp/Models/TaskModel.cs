@@ -10,6 +10,7 @@ namespace ToDoApp.Models
         public bool archived { get; set; }
         public string list { get; set; }
         public string task { get; set; }
+        public string date { get; set; }
         public string userId { get; set; }
 
         public void Update(TaskModel t)

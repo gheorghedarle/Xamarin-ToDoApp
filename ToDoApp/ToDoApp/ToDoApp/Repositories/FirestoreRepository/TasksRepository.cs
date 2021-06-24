@@ -1,5 +1,6 @@
 ﻿using Plugin.CloudFirestore;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using ToDoApp.Models;
 
@@ -45,6 +46,24 @@ namespace ToDoApp.Repositories.FirestoreRepository
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<bool> Add(TaskModel model)
+        {
+            try
+            {
+                await CrossCloudFirestore.Current
+                        .Instance
+                        .Collection("tasks")
+                        .AddAsync(model);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
                 return false;
             }
         }

@@ -31,5 +31,10 @@ namespace ToDoApp.Repositories.FirestoreRepository
         {
             throw new System.NotImplementedException();
         }
+
+        public Task<bool> Add(ListModel model)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

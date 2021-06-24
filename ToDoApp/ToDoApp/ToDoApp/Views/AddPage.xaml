@@ -151,7 +151,7 @@
             <Button
                 Grid.Row="3"
                 BackgroundColor="{StaticResource PrimaryColor}"
-                Command="{Binding GetStartedCommand}"
+                Command="{Binding CreateCommand}"
                 CornerRadius="28"
                 FontSize="{StaticResource ButtonFontSize}"
                 FontFamily="Barlow_Bold"
