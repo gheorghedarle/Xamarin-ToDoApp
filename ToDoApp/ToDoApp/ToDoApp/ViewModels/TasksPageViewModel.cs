@@ -31,7 +31,6 @@ namespace ToDoApp.ViewModels
 
         private IDateService _dateService;
         private IFirestoreRepository<TaskModel> _tasksRepository;
-        private IDialogService _dialogService;
 
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
         private DayModel _selectedDay;
@@ -68,12 +67,10 @@ namespace ToDoApp.ViewModels
         public TasksPageViewModel(
             INavigationService navigationService,
             IFirestoreRepository<TaskModel> tasksRepository,
-            IDateService dateService,
-            IDialogService dialogService): base(navigationService)
+            IDateService dateService): base(navigationService)
         {
             _tasksRepository = tasksRepository;
             _dateService = dateService;
-            _dialogService = dialogService;
 
             CheckTaskCommand = new Command<TaskModel>(CheckTaskCommandHandler);
             PreviousWeekCommand = new Command<DateTime>(PreviousWeekCommandHandler);
