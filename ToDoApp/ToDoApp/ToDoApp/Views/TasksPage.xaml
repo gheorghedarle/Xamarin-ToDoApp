@@ -268,9 +268,9 @@
                                     Margin="0, 4, 0, 0"
                                     IsVisible="{Binding isBeingDraggedOver}" />
                                 <Frame
+                                    BorderColor="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"
                                     Padding="8, 12, 8, 12"
                                     Margin="8, 4, 8, 4"
-                                    BackgroundColor="White"
                                     CornerRadius="24">
                                     <Frame.GestureRecognizers>
                                         <DragGestureRecognizer
@@ -287,7 +287,9 @@
                                                     <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="White"/>
                                                     <Setter Property="HasShadow" Value="True"/>
+                                                    <Setter Property="BorderColor" Value="White"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                             <VisualState x:Name="done">
@@ -295,21 +297,23 @@
                                                     <StateTrigger IsActive="{Binding archived}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardUnselectedBackgroundColor}, Dark={StaticResource DarkCardUnselectedBackgroundColor}}"/>
                                                     <Setter Property="HasShadow" Value="False"/>
+                                                    <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                         </VisualStateGroup>
                                     </VisualStateManager.VisualStateGroups>
                                     <Grid
                                         ColumnDefinitions="Auto, Auto"
-                                        RowDefinitions="Auto, Auto">
+                                        RowDefinitions="Auto, Auto"
+                                        RowSpacing="0">
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="0"
                                             Grid.RowSpan="2"
                                             Text="{Binding archived, Converter={StaticResource DoneIconConverter}}"
                                             FontSize="24"
-                                            FontFamily="FontAwesome_Regular"
                                             HorizontalOptions="Start"
                                             VerticalOptions="Center"
                                             Margin="12, 0, 0, 0">
@@ -321,6 +325,7 @@
                                                         </VisualState.StateTriggers>
                                                         <VisualState.Setters>
                                                             <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                                                            <Setter Property="FontFamily" Value="FontAwesome_Regular"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                     <VisualState x:Name="done">
@@ -329,6 +334,7 @@
                                                         </VisualState.StateTriggers>
                                                         <VisualState.Setters>
                                                             <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                                                            <Setter Property="FontFamily" Value="FontAwesome_Solid"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                 </VisualStateGroup>
@@ -350,7 +356,6 @@
                                                         </VisualState.StateTriggers>
                                                         <VisualState.Setters>
                                                             <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
-                                                            <Setter Property="TextDecorations" Value="None"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                     <VisualState x:Name="done">
@@ -359,7 +364,6 @@
                                                         </VisualState.StateTriggers>
                                                         <VisualState.Setters>
                                                             <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
-                                                            <Setter Property="TextDecorations" Value="Strikethrough"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                 </VisualStateGroup>
@@ -381,7 +385,6 @@
                                                         </VisualState.StateTriggers>
                                                         <VisualState.Setters>
                                                             <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
-                                                            <Setter Property="TextDecorations" Value="None"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                     <VisualState x:Name="done">
@@ -390,7 +393,6 @@
                                                         </VisualState.StateTriggers>
                                                         <VisualState.Setters>
                                                             <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
-                                                            <Setter Property="TextDecorations" Value="Strikethrough"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                 </VisualStateGroup>

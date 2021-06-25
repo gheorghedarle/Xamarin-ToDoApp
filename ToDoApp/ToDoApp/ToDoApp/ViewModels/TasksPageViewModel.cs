@@ -1,6 +1,4 @@
 ﻿using Prism.Navigation;
-using Prism.Services.Dialogs;
-using Reactive.Bindings;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -40,7 +38,7 @@ namespace ToDoApp.ViewModels
         #region Properties
 
         public ObservableCollection<DayModel> DaysList { get; set; }
-        public ReactiveCollection<TaskModel> TaskList { get; set; }
+        public ObservableCollection<TaskModel> TaskList { get; set; }
         public LayoutState TaskListState {get;set;}
         public string Name { get; set; }
         public WeekModel Week { get; set; }
@@ -90,6 +88,7 @@ namespace ToDoApp.ViewModels
 
             Week = _dateService.GetWeek(DateTime.Now);
             DaysList = new ObservableCollection<DayModel>(_dateService.GetDayList(Week.StartDay, Week.LastDay));
+            TaskList = new ObservableCollection<TaskModel>();
             _selectedDay = new DayModel() { Date = DateTime.Today };
 
             SetUserName();
@@ -176,7 +175,7 @@ namespace ToDoApp.ViewModels
         {
             TaskListState = LayoutState.Loading;
             _disposables.Clear();
-            TaskList = new ReactiveCollection<TaskModel>();
+            TaskList.Clear();
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var userId = auth.GetUserId();
             var query = _tasksRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"));
@@ -184,7 +183,7 @@ namespace ToDoApp.ViewModels
                 .Select(change => (Object: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), Index: change.NewIndex))
                 .Subscribe(t =>
                 {
-                    TaskList.InsertOnScheduler(t.Index, t.Object);
+                    TaskList.Insert(t.Index, t.Object);
                 })
                 .AddTo(_disposables);
             query.ObserveModified()
@@ -200,7 +199,7 @@ namespace ToDoApp.ViewModels
                  .Select(change => TaskList.FirstOrDefault(x => x.id == change.Document.Id))
                  .Subscribe(viewModel =>
                  {
-                     TaskList.RemoveOnScheduler(viewModel);
+                     TaskList.Remove(viewModel);
                  })
                  .AddTo(_disposables);
             query.AsObservable()
@@ -240,7 +239,6 @@ namespace ToDoApp.ViewModels
                     selectedDate.State = DayStateEnum.Active;
                 }
             }
-            
         }
 
         private void ResetActiveDay()
