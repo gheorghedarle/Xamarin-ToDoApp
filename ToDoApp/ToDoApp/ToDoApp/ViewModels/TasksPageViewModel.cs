@@ -13,7 +13,6 @@ using ToDoApp.Views;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Reactive.Bindings.Extensions;
 using Plugin.CloudFirestore.Reactive;
 using System.Reactive.Linq;
 using Plugin.CloudFirestore;
@@ -179,30 +178,27 @@ namespace ToDoApp.ViewModels
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var userId = auth.GetUserId();
             var query = _tasksRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"));
-            query.ObserveAdded()
+            _disposables.Add(query.ObserveAdded()
                 .Select(change => (Object: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), Index: change.NewIndex))
                 .Subscribe(t =>
                 {
                     TaskList.Insert(t.Index, t.Object);
-                })
-                .AddTo(_disposables);
-            query.ObserveModified()
+                }));
+            _disposables.Add(query.ObserveModified()
                  .Select(change => change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate))
                  .Select(taskItem => (TaskItem: taskItem, ViewModel: TaskList.FirstOrDefault(x => x.id == taskItem.id)))
                  .Where(t => t.ViewModel != null)
                  .Subscribe(t =>
                  {
                      t.ViewModel.Update(t.TaskItem);
-                 })
-                 .AddTo(_disposables);
-            query.ObserveRemoved()
+                 }));
+            _disposables.Add(query.ObserveRemoved()
                  .Select(change => TaskList.FirstOrDefault(x => x.id == change.Document.Id))
                  .Subscribe(viewModel =>
                  {
                      TaskList.Remove(viewModel);
-                 })
-                 .AddTo(_disposables);
-            query.AsObservable()
+                 }));
+            _disposables.Add(query.AsObservable()
                 .Subscribe(list =>
                 {
                     if (list.Count == 0)
@@ -213,8 +209,7 @@ namespace ToDoApp.ViewModels
                     {
                         TaskListState = LayoutState.None;
                     }
-                })
-                .AddTo(_disposables);
+                }));
         }
 
         private void SetUserName()
