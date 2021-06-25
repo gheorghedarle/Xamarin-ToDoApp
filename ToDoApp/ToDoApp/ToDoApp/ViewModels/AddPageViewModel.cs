@@ -29,6 +29,7 @@ namespace ToDoApp.ViewModels
         public string Type { get; set; }
         public ObservableCollection<string> ItemList { get; set; }
         public ObservableCollection<Color> ColorList { get; set; }
+        public TaskModel AddTask { get; set; }
 
         #endregion
 
@@ -49,6 +50,8 @@ namespace ToDoApp.ViewModels
 
             ChangeTypeCommand = new Command<string>(ChangeTypeCommandHandler);
             CreateCommand = ReactiveCommand.Create(CreateCommandHandler);
+
+            AddTask = new TaskModel();
 
             ItemList = Constants.AddOptions;
             ColorList = Constants.ListColorList;
@@ -75,9 +78,9 @@ namespace ToDoApp.ViewModels
                 {
                     archived = false,
                     list = "Inbox",
-                    task = "First Add",
+                    task = AddTask.task,
                     userId = auth.GetUserId(),
-                    date = DateTime.Today.ToString("dd/MM/yyyy")
+                    date = DateTime.Parse(AddTask.date).ToString("dd/MM/yyyy")
                 };
                 await _tasksRepository.Add(model);
                 await _navigationService.GoBackAsync();

@@ -21,7 +21,7 @@
                 Placeholder="Enter your name"
                 PlaceholderColor="#A6A3BD"
                 ReturnCommand="{Binding StartCommand}"
-                Text="{Binding Parent.BindingContext.Email, Source={x:Reference template}}"
+                Text="{Binding Parent.BindingContext.AddTask.task, Source={x:Reference template}}"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
                 <Entry.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
@@ -64,7 +64,8 @@
             CornerRadius="8"
             Padding="10, 0">
             <DatePicker
-                >
+                Date="{Binding Parent.BindingContext.AddTask.date, Source={x:Reference template}}"
+                Format="dd/MM/yyyy">
                 <DatePicker.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                 </DatePicker.Effects>
