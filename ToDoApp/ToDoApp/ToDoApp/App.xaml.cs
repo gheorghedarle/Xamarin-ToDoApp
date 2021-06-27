@@ -49,7 +49,7 @@ namespace ToDoApp
         {
             containerRegistry.Register<IDateService, DateService>();
             containerRegistry.Register<IFirestoreRepository<TaskModel>, TasksRepository>();
-            containerRegistry.Register<IFirestoreRepository<ListModel>, ProjesctsRepository>();
+            containerRegistry.Register<IFirestoreRepository<ListModel>, ListsRepository>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>("NavigationPage");
             containerRegistry.RegisterForNavigation<WelcomePage, WelcomePageViewModel>("WelcomePage");

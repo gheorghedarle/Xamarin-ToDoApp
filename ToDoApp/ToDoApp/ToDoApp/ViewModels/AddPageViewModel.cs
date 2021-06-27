@@ -1,8 +1,10 @@
 ﻿using Prism.Navigation;
 using ReactiveUI;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Reactive.Disposables;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -19,6 +21,7 @@ namespace ToDoApp.ViewModels
         #region Private & Protected
 
         private IFirestoreRepository<TaskModel> _tasksRepository;
+        private IFirestoreRepository<ListModel> _listsRepository;
 
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
 
@@ -29,6 +32,7 @@ namespace ToDoApp.ViewModels
         public string Type { get; set; }
         public ObservableCollection<string> ItemList { get; set; }
         public ObservableCollection<Color> ColorList { get; set; }
+        public ObservableCollection<TaskModel> TaskList { get; set; }
         public TaskModel AddTask { get; set; }
 
         #endregion
@@ -44,14 +48,28 @@ namespace ToDoApp.ViewModels
 
         public AddPageViewModel(
             INavigationService navigationService,
-            IFirestoreRepository<TaskModel> tasksRepository) : base(navigationService)
+            IFirestoreRepository<TaskModel> tasksRepository,
+            IFirestoreRepository<ListModel> listsRepository) : base(navigationService)
         {
             _tasksRepository = tasksRepository;
+            _listsRepository = listsRepository;
 
             ChangeTypeCommand = new Command<string>(ChangeTypeCommandHandler);
             CreateCommand = ReactiveCommand.Create(CreateCommandHandler);
+        }
 
+        public async void Initialize(INavigationParameters parameters)
+        {
+            var auth = DependencyService.Get<IFirebaseAuthentication>();
+            var userId = auth.GetUserId();
+
+            TaskList = new ObservableCollection<TaskModel>();
             AddTask = new TaskModel();
+
+            //var querySnapshot = await _listsRepository.GetAll(userId).GetAsync();
+            //var list = querySnapshot.ToObjects<ListModel>();
+            //var listToAdd = list.Count<ListModel>() == 0 ? list.ToList() : new List<ListModel>().Add(Constants.DefaultList);
+            //TaskList.Add(listToAdd);
 
             ItemList = Constants.AddOptions;
             ColorList = Constants.ListColorList;

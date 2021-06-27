@@ -5,7 +5,7 @@ using ToDoApp.Models;
 
 namespace ToDoApp.Repositories.FirestoreRepository
 {
-    public class ProjesctsRepository : IFirestoreRepository<ListModel>
+    public class ListsRepository : IFirestoreRepository<ListModel>
     {
         public ListModel Get()
         {
@@ -16,7 +16,7 @@ namespace ToDoApp.Repositories.FirestoreRepository
         {
             var query = CrossCloudFirestore.Current
                     .Instance
-                    .Collection("projects")
+                    .Collection("lists")
                     .WhereEqualsTo("userId", userId);
 
             return query;
