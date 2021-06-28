@@ -16,7 +16,9 @@ using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels
 {
-    public class AddPageViewModel : BaseViewModel
+    public class AddPageViewModel :
+        BaseViewModel,
+        IInitialize
     {
         #region Private & Protected
 
@@ -32,6 +34,7 @@ namespace ToDoApp.ViewModels
         public string Type { get; set; }
         public ObservableCollection<string> ItemList { get; set; }
         public ObservableCollection<Color> ColorList { get; set; }
+        public ObservableCollection<ListModel> ProjectList { get; set; }
         public ObservableCollection<TaskModel> TaskList { get; set; }
         public TaskModel AddTask { get; set; }
 
@@ -56,6 +59,11 @@ namespace ToDoApp.ViewModels
 
             ChangeTypeCommand = new Command<string>(ChangeTypeCommandHandler);
             CreateCommand = ReactiveCommand.Create(CreateCommandHandler);
+
+            ItemList = Constants.AddOptions;
+            ColorList = Constants.ListColorList;
+
+            Type = "task";
         }
 
         public async void Initialize(INavigationParameters parameters)
@@ -63,18 +71,22 @@ namespace ToDoApp.ViewModels
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var userId = auth.GetUserId();
 
-            TaskList = new ObservableCollection<TaskModel>();
             AddTask = new TaskModel();
 
-            //var querySnapshot = await _listsRepository.GetAll(userId).GetAsync();
-            //var list = querySnapshot.ToObjects<ListModel>();
-            //var listToAdd = list.Count<ListModel>() == 0 ? list.ToList() : new List<ListModel>().Add(Constants.DefaultList);
-            //TaskList.Add(listToAdd);
-
-            ItemList = Constants.AddOptions;
-            ColorList = Constants.ListColorList;
-
-            Type = "task";
+            var querySnapshot = await _listsRepository.GetAll(userId).GetAsync();
+            var list = querySnapshot.ToObjects<ListModel>();
+            var listToAdd = new List<ListModel>();
+            if (list.Count() > 0)
+            {
+                listToAdd = list.ToList();
+                listToAdd.Insert(0, Constants.InboxList);
+            }
+            else
+            {
+                listToAdd.Add(Constants.InboxList);
+            }
+            ProjectList = new ObservableCollection<ListModel>(listToAdd);
+            AddTask = Constants.DefaultTask;
         }
 
         #endregion
@@ -95,15 +107,15 @@ namespace ToDoApp.ViewModels
                 var model = new TaskModel()
                 {
                     archived = false,
-                    list = "Inbox",
+                    list = AddTask.listObject.name,
                     task = AddTask.task,
-                    userId = auth.GetUserId(),
+                    userId = userId,
                     date = DateTime.Parse(AddTask.date).ToString("dd/MM/yyyy")
                 };
                 await _tasksRepository.Add(model);
                 await _navigationService.GoBackAsync();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //display error message
                 Debug.Write(ex.Message);

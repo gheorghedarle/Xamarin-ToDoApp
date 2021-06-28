@@ -9,6 +9,8 @@ namespace ToDoApp.Models
         public string id { get; set; }
         public bool archived { get; set; }
         public string list { get; set; }
+        [Ignored]
+        public ListModel listObject { get; set; }
         public string task { get; set; }
         public string date { get; set; }
         public string userId { get; set; }

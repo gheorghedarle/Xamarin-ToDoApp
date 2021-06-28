@@ -42,6 +42,9 @@
             CornerRadius="8"
             Padding="10, 0">
             <Picker
+                SelectedItem="{Binding Parent.BindingContext.AddTask.listObject, Source={x:Reference template}}"
+                ItemsSource="{Binding Parent.BindingContext.ProjectList, Source={x:Reference template}}"
+                ItemDisplayBinding="{Binding name}"
                 FontFamily="Barlow_Regular"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
                 <Picker.Effects>

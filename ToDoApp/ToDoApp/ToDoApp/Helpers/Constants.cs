@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using ToDoApp.Models;
 using Xamarin.Forms;
 
@@ -6,10 +7,22 @@ namespace ToDoApp.Helpers
 {
     public static class Constants
     {
-        public static ListModel DefaultList = new ListModel() {
+        public static ListModel InboxList = new ListModel() {
             id = "zlDZNn3sNmyirSNs3mRY",
             name = "Inbox",
             userId = "Default",
+        };
+
+        public static TaskModel DefaultTask = new TaskModel()
+        {
+            archived = false,
+            date = DateTime.Today.ToString("dd/MM/yyyy"),
+            list = "Inbox",
+        };
+
+        public static ListModel DefaultList = new ListModel()
+        {
+            name = "",
         };
 
         public static ObservableCollection<string> AddOptions = new ObservableCollection<string>() {
