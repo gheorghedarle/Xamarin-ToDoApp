@@ -42,6 +42,7 @@
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="White"/>
                                     <Setter Property="HasShadow" Value="True"/>
+                                    <Setter Property="BorderColor" Value="White"/>
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="notSelected">
@@ -51,6 +52,7 @@
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="#F1F0F7"/>
                                     <Setter Property="HasShadow" Value="False"/>
+                                    <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -101,6 +103,7 @@
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="White"/>
                                     <Setter Property="HasShadow" Value="True"/>
+                                    <Setter Property="BorderColor" Value="White"/>
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="notSelected">
@@ -110,6 +113,7 @@
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="#F1F0F7"/>
                                     <Setter Property="HasShadow" Value="False"/>
+                                    <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>

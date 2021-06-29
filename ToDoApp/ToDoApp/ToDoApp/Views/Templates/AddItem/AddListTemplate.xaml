@@ -13,7 +13,7 @@
             FontSize="{StaticResource Body1FontSize}"></Label>
         <Frame
             BackgroundColor="Transparent"
-            BorderColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+            BorderColor="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"
             CornerRadius="8"
             Padding="10, 0">
             <Entry
@@ -47,6 +47,26 @@
                     <Ellipse
                         WidthRequest="40"
                         Fill="{Binding ., Converter={StaticResource ColorToSolidColorBrushConverter}}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup>
+                                <VisualState x:Name="selected">
+                                    <VisualState.StateTriggers>
+                                        <StateTrigger IsActive="True"></StateTrigger>
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="unselected">
+                                    <VisualState.StateTriggers>
+                                        <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                    </VisualState.StateTriggers>
+                                    <VisualState.Setters>
+                                        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                     </Ellipse>
                 </DataTemplate>    
             </CollectionView.ItemTemplate>
