@@ -267,138 +267,158 @@
                                     HeightRequest="6"
                                     Margin="0, 4, 0, 0"
                                     IsVisible="{Binding isBeingDraggedOver}" />
-                                <Frame
-                                    Padding="8, 12, 8, 12"
-                                    Margin="8, 4, 8, 4"
-                                    CornerRadius="24">
-                                    <Frame.GestureRecognizers>
-                                        <DragGestureRecognizer
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItemView 
+                                                Command="{Binding BindingContext.DeleteTaskCommand, Source={x:Reference TaskItems}}"
+                                                CommandParameter="{Binding}">
+                                                <Button
+                                                    CornerRadius="16"
+                                                    Text="&#xf2ed;"
+                                                    TextColor="#233e8b"
+                                                    FontSize="23"
+                                                    FontFamily="FontAwesome_Solid"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    BackgroundColor="Transparent"
+                                                    Command="{Binding NextWeekCommand}"
+                                                    CommandParameter="{Binding Week.LastDay}"></Button>
+                                            </SwipeItemView>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <Frame
+                                        Padding="8, 12, 8, 12"
+                                        Margin="8, 4, 8, 4"
+                                        CornerRadius="24">
+                                        <Frame.GestureRecognizers>
+                                            <DragGestureRecognizer
                                             CanDrag="True"
                                             DragStarting="DragGestureRecognizer_DragStarting_Collection"
                                             DragStartingCommand="{Binding BindingContext.ItemDragged, Source={x:Reference TaskItems}}"
                                             DragStartingCommandParameter="{Binding}" />
-                                        <TapGestureRecognizer Command="{Binding BindingContext.CheckTaskCommand, Source={x:Reference TaskItems}}" CommandParameter="{Binding}"></TapGestureRecognizer>
-                                    </Frame.GestureRecognizers>
-                                    <VisualStateManager.VisualStateGroups>
-                                        <VisualStateGroup>
-                                            <VisualState x:Name="normal">
-                                                <VisualState.StateTriggers>
-                                                    <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
-                                                </VisualState.StateTriggers>
-                                                <VisualState.Setters>
-                                                    <Setter Property="BackgroundColor" Value="White"/>
-                                                    <Setter Property="HasShadow" Value="True"/>
-                                                    <Setter Property="BorderColor" Value="White"/>
-                                                </VisualState.Setters>
-                                            </VisualState>
-                                            <VisualState x:Name="done">
-                                                <VisualState.StateTriggers>
-                                                    <StateTrigger IsActive="{Binding archived}"></StateTrigger>
-                                                </VisualState.StateTriggers>
-                                                <VisualState.Setters>
-                                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardUnselectedBackgroundColor}, Dark={StaticResource DarkCardUnselectedBackgroundColor}}"/>
-                                                    <Setter Property="HasShadow" Value="False"/>
-                                                    <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
-                                                </VisualState.Setters>
-                                            </VisualState>
-                                        </VisualStateGroup>
-                                    </VisualStateManager.VisualStateGroups>
-                                    <Grid
-                                        ColumnDefinitions="Auto, Auto"
-                                        RowDefinitions="Auto, Auto"
-                                        RowSpacing="0">
-                                        <Label
-                                            Grid.Row="0"
-                                            Grid.Column="0"
-                                            Grid.RowSpan="2"
-                                            Text="{Binding archived, Converter={StaticResource DoneIconConverter}}"
-                                            FontSize="24"
-                                            HorizontalOptions="Start"
-                                            VerticalOptions="Center"
-                                            Margin="12, 0, 0, 0">
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup>
-                                                    <VisualState x:Name="normal">
-                                                        <VisualState.StateTriggers>
-                                                            <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
-                                                        </VisualState.StateTriggers>
-                                                        <VisualState.Setters>
-                                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
-                                                            <Setter Property="FontFamily" Value="FontAwesome_Regular"/>
-                                                        </VisualState.Setters>
-                                                    </VisualState>
-                                                    <VisualState x:Name="done">
-                                                        <VisualState.StateTriggers>
-                                                            <StateTrigger IsActive="{Binding archived}"></StateTrigger>
-                                                        </VisualState.StateTriggers>
-                                                        <VisualState.Setters>
-                                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
-                                                            <Setter Property="FontFamily" Value="FontAwesome_Solid"/>
-                                                        </VisualState.Setters>
-                                                    </VisualState>
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                        </Label>
-                                        <Label 
-                                            Grid.Row="0"
-                                            Grid.Column="1"
-                                            Text="{Binding task}"
-                                            FontFamily="Barlow_SemiBold"
-                                            FontSize="{StaticResource Body1FontSize}"
-                                            Margin="8, 0, 8, 0"
-                                            VerticalOptions="Center">
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup>
-                                                    <VisualState x:Name="normal">
-                                                        <VisualState.StateTriggers>
-                                                            <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
-                                                        </VisualState.StateTriggers>
-                                                        <VisualState.Setters>
-                                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
-                                                        </VisualState.Setters>
-                                                    </VisualState>
-                                                    <VisualState x:Name="done">
-                                                        <VisualState.StateTriggers>
-                                                            <StateTrigger IsActive="{Binding archived}"></StateTrigger>
-                                                        </VisualState.StateTriggers>
-                                                        <VisualState.Setters>
-                                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
-                                                        </VisualState.Setters>
-                                                    </VisualState>
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                        </Label>
-                                        <Label 
-                                            Grid.Row="1"
-                                            Grid.Column="1"
-                                            Text="{Binding list}"
-                                            FontFamily="Barlow_Medium"
-                                            FontSize="{StaticResource Body2FontSize}"
-                                            Margin="8, 0, 8, 0"
-                                            VerticalOptions="CenterAndExpand">
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup>
-                                                    <VisualState x:Name="normal">
-                                                        <VisualState.StateTriggers>
-                                                            <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
-                                                        </VisualState.StateTriggers>
-                                                        <VisualState.Setters>
-                                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
-                                                        </VisualState.Setters>
-                                                    </VisualState>
-                                                    <VisualState x:Name="done">
-                                                        <VisualState.StateTriggers>
-                                                            <StateTrigger IsActive="{Binding archived}"></StateTrigger>
-                                                        </VisualState.StateTriggers>
-                                                        <VisualState.Setters>
-                                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
-                                                        </VisualState.Setters>
-                                                    </VisualState>
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                        </Label>
-                                     </Grid>
-                                </Frame>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.CheckTaskCommand, Source={x:Reference TaskItems}}" CommandParameter="{Binding}"></TapGestureRecognizer>
+                                        </Frame.GestureRecognizers>
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup>
+                                                <VisualState x:Name="normal">
+                                                    <VisualState.StateTriggers>
+                                                        <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="White"/>
+                                                        <Setter Property="HasShadow" Value="True"/>
+                                                        <Setter Property="BorderColor" Value="White"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                                <VisualState x:Name="done">
+                                                    <VisualState.StateTriggers>
+                                                        <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                    </VisualState.StateTriggers>
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardUnselectedBackgroundColor}, Dark={StaticResource DarkCardUnselectedBackgroundColor}}"/>
+                                                        <Setter Property="HasShadow" Value="False"/>
+                                                        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Grid
+                                            ColumnDefinitions="Auto, Auto"
+                                            RowDefinitions="Auto, Auto"
+                                            RowSpacing="0">
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.RowSpan="2"
+                                                Text="{Binding archived, Converter={StaticResource DoneIconConverter}}"
+                                                FontSize="24"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Center"
+                                                Margin="12, 0, 0, 0">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup>
+                                                        <VisualState x:Name="normal">
+                                                            <VisualState.StateTriggers>
+                                                                <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                            </VisualState.StateTriggers>
+                                                            <VisualState.Setters>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                                                                <Setter Property="FontFamily" Value="FontAwesome_Regular"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                        <VisualState x:Name="done">
+                                                            <VisualState.StateTriggers>
+                                                                <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                            </VisualState.StateTriggers>
+                                                            <VisualState.Setters>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                                                                <Setter Property="FontFamily" Value="FontAwesome_Solid"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                            </Label>
+                                            <Label 
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Text="{Binding task}"
+                                                FontFamily="Barlow_SemiBold"
+                                                FontSize="{StaticResource Body1FontSize}"
+                                                Margin="8, 0, 8, 0"
+                                                VerticalOptions="Center">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup>
+                                                        <VisualState x:Name="normal">
+                                                            <VisualState.StateTriggers>
+                                                                <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                            </VisualState.StateTriggers>
+                                                            <VisualState.Setters>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                        <VisualState x:Name="done">
+                                                            <VisualState.StateTriggers>
+                                                                <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                            </VisualState.StateTriggers>
+                                                            <VisualState.Setters>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                            </Label>
+                                            <Label 
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                Text="{Binding list}"
+                                                FontFamily="Barlow_Medium"
+                                                FontSize="{StaticResource Body2FontSize}"
+                                                Margin="8, 0, 8, 0"
+                                                VerticalOptions="CenterAndExpand">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup>
+                                                        <VisualState x:Name="normal">
+                                                            <VisualState.StateTriggers>
+                                                                <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                            </VisualState.StateTriggers>
+                                                            <VisualState.Setters>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                        <VisualState x:Name="done">
+                                                            <VisualState.StateTriggers>
+                                                                <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                            </VisualState.StateTriggers>
+                                                            <VisualState.Setters>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                            </Label>
+                                        </Grid>
+                                    </Frame>
+                                </SwipeView>
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

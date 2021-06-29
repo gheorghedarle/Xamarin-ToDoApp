@@ -36,5 +36,10 @@ namespace ToDoApp.Repositories.FirestoreRepository
         {
             throw new System.NotImplementedException();
         }
+
+        public Task<bool> Delete(ListModel model)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

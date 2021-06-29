@@ -67,5 +67,23 @@ namespace ToDoApp.Repositories.FirestoreRepository
                 return false;
             }
         }
+
+        public async Task<bool> Delete(TaskModel model)
+        {
+            try
+            {
+                await CrossCloudFirestore.Current
+                        .Instance
+                        .Collection("tasks")
+                        .Document(model.id)
+                        .DeleteAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return false;
+            }
+        }
     }
 }

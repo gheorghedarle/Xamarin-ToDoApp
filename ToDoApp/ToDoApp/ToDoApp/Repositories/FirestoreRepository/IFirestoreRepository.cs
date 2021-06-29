@@ -10,5 +10,6 @@ namespace ToDoApp.Repositories.FirestoreRepository
         IQuery GetAllContains(string userId, string field, object value);
         Task<bool> Update(T model);
         Task<bool> Add(T model);
+        Task<bool> Delete(T model);
     }
 }

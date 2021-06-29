@@ -51,6 +51,7 @@ namespace ToDoApp.ViewModels
         public ICommand PreviousWeekCommand { get; set; }
         public ICommand NextWeekCommand { get; set; }
         public ICommand AddCommand { get; set; }
+        public ICommand DeleteTaskCommand { get; set; }
 
         public ICommand ItemDragged { get; }
         public ICommand ItemDraggedOver { get; }
@@ -74,6 +75,7 @@ namespace ToDoApp.ViewModels
             NextWeekCommand = new Command<DateTime>(NextWeekCommandHandler);
             DayCommand = new Command<DayModel>(DayCommandHandler);
             AddCommand = new Command(AddCommandHandler);
+            DeleteTaskCommand = new Command<TaskModel>(DeleteTaskCommandHandler);
 
             ItemDragged = new Command<TaskModel>(OnItemDragged);
             ItemDraggedOver = new Command<TaskModel>(OnItemDraggedOver);
@@ -128,6 +130,11 @@ namespace ToDoApp.ViewModels
         private void AddCommandHandler()
         {
             _navigationService.NavigateAsync(nameof(AddPage));
+        }
+
+        private void DeleteTaskCommandHandler(TaskModel taskModel)
+        {
+            _tasksRepository.Delete(taskModel);
         }
 
         private void OnItemDragged(TaskModel item)
