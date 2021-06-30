@@ -20,8 +20,7 @@
                 FontFamily="Barlow_Regular"
                 Placeholder="Enter your name"
                 PlaceholderColor="#A6A3BD"
-                ReturnCommand="{Binding StartCommand}"
-                Text="{Binding Parent.BindingContext.Email, Source={x:Reference template}}"
+                Text="{Binding Parent.BindingContext.name, Source={x:Reference template}}"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
                 <Entry.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
@@ -46,20 +45,13 @@
                 <DataTemplate>
                     <Ellipse
                         WidthRequest="40"
+                        Stroke="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"
                         Fill="{Binding ., Converter={StaticResource ColorToSolidColorBrushConverter}}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>
                                 <VisualState x:Name="selected">
                                     <VisualState.StateTriggers>
-                                        <StateTrigger IsActive="True"></StateTrigger>
-                                    </VisualState.StateTriggers>
-                                    <VisualState.Setters>
-                                        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
-                                    </VisualState.Setters>
-                                </VisualState>
-                                <VisualState x:Name="unselected">
-                                    <VisualState.StateTriggers>
-                                        <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                        <StateTrigger IsActive="{Binding ., Source={x:Reference template}, Converter={xct:EqualConverter}, ConverterParameter={Binding Parent.BindingContext.AddList.color}}"></StateTrigger>
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
                                         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>

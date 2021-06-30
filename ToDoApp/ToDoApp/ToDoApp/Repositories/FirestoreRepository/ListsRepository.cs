@@ -1,5 +1,6 @@
 ﻿using Plugin.CloudFirestore;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using ToDoApp.Models;
 
@@ -32,9 +33,21 @@ namespace ToDoApp.Repositories.FirestoreRepository
             throw new System.NotImplementedException();
         }
 
-        public Task<bool> Add(ListModel model)
+        public async Task<bool> Add(ListModel model)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                await CrossCloudFirestore.Current
+                        .Instance
+                        .Collection("lists")
+                        .AddAsync(model);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return false;
+            }
         }
 
         public Task<bool> Delete(ListModel model)

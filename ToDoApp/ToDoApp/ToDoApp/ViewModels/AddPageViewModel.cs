@@ -37,6 +37,7 @@ namespace ToDoApp.ViewModels
         public ObservableCollection<ListModel> ProjectList { get; set; }
         public ObservableCollection<TaskModel> TaskList { get; set; }
         public TaskModel AddTask { get; set; }
+        public ListModel AddList { get; set; }
 
         #endregion
 
@@ -104,15 +105,28 @@ namespace ToDoApp.ViewModels
             {
                 var auth = DependencyService.Get<IFirebaseAuthentication>();
                 var userId = auth.GetUserId();
-                var model = new TaskModel()
+                if(Type == "task")
                 {
-                    archived = false,
-                    list = AddTask.listObject.name,
-                    task = AddTask.task,
-                    userId = userId,
-                    date = DateTime.Parse(AddTask.date).ToString("dd/MM/yyyy")
-                };
-                await _tasksRepository.Add(model);
+                    var model = new TaskModel()
+                    {
+                        archived = false,
+                        list = AddTask.listObject.name,
+                        task = AddTask.task,
+                        userId = userId,
+                        date = DateTime.Parse(AddTask.date).ToString("dd/MM/yyyy")
+                    };
+                    await _tasksRepository.Add(model);
+                }
+                else
+                {
+                    var model = new ListModel()
+                    {
+                        name = AddList.name,
+                        color = AddList.color,
+                        userId = userId
+                    };
+                    await _listsRepository.Add(model);
+                }
                 await _navigationService.GoBackAsync();
             }
             catch (Exception ex)
