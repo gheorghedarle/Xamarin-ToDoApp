@@ -20,7 +20,7 @@
                 FontFamily="Barlow_Regular"
                 Placeholder="Enter your name"
                 PlaceholderColor="#A6A3BD"
-                Text="{Binding Parent.BindingContext.name, Source={x:Reference template}}"
+                Text="{Binding Parent.BindingContext.AddList.name, Source={x:Reference template}}"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
                 <Entry.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
@@ -37,29 +37,51 @@
             FontFamily="Barlow_Regular"
             FontSize="{StaticResource Body1FontSize}"></Label>
         <CollectionView
-            ItemsSource="{Binding Parent.BindingContext.ColorList, Source={x:Reference template}}">
+            x:Name="collectionView"
+            ItemsSource="{Binding Parent.BindingContext.ColorList, Source={x:Reference template}}"
+            SelectedItem="{Binding Parent.BindingContext.AddList.color, Source={x:Reference template}}"
+            SelectionMode="Single">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"></LinearItemsLayout>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Ellipse
+                    <!--<Ellipse
+                        StrokeThickness="3"
                         WidthRequest="40"
-                        Stroke="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"
                         Fill="{Binding ., Converter={StaticResource ColorToSolidColorBrushConverter}}">
                         <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup>
-                                <VisualState x:Name="selected">
-                                    <VisualState.StateTriggers>
-                                        <StateTrigger IsActive="{Binding ., Source={x:Reference template}, Converter={xct:EqualConverter}, ConverterParameter={Binding Parent.BindingContext.AddList.color}}"></StateTrigger>
-                                    </VisualState.StateTriggers>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Selected">
                                     <VisualState.Setters>
-                                        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
+                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}" />
+                                        <Setter Property="Stroke" Value="Black" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                    </Ellipse>
+                    </Ellipse>-->
+                    <StackLayout
+                        Margin="0"
+                        Spacing="0"
+                        Padding="0">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}" />
+                                        <Setter TargetName="Circle" Property="Frame.BorderColor" Value="Black"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Frame
+                            x:Name="Circle"
+                            xct:TouchEffect.NativeAnimation="True"
+                            BackgroundColor="{Binding .}"
+                            CornerRadius="40">
+                        </Frame>
+                    </StackLayout>
                 </DataTemplate>    
             </CollectionView.ItemTemplate>
         </CollectionView>

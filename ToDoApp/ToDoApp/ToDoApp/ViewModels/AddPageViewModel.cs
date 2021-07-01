@@ -33,7 +33,7 @@ namespace ToDoApp.ViewModels
 
         public string Type { get; set; }
         public ObservableCollection<string> ItemList { get; set; }
-        public ObservableCollection<Color> ColorList { get; set; }
+        public ObservableCollection<string> ColorList { get; set; }
         public ObservableCollection<ListModel> ProjectList { get; set; }
         public ObservableCollection<TaskModel> TaskList { get; set; }
         public TaskModel AddTask { get; set; }
@@ -73,6 +73,7 @@ namespace ToDoApp.ViewModels
             var userId = auth.GetUserId();
 
             AddTask = new TaskModel();
+            AddList = new ListModel();
 
             var querySnapshot = await _listsRepository.GetAll(userId).GetAsync();
             var list = querySnapshot.ToObjects<ListModel>();
@@ -87,7 +88,9 @@ namespace ToDoApp.ViewModels
                 listToAdd.Add(Constants.InboxList);
             }
             ProjectList = new ObservableCollection<ListModel>(listToAdd);
+
             AddTask = Constants.DefaultTask;
+            AddList = Constants.DefaultList;
         }
 
         #endregion

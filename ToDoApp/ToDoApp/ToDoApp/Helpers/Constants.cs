@@ -11,18 +11,20 @@ namespace ToDoApp.Helpers
             id = "zlDZNn3sNmyirSNs3mRY",
             name = "Inbox",
             userId = "Default",
+            color = "#F9371C"
         };
 
         public static TaskModel DefaultTask = new TaskModel()
         {
             archived = false,
             date = DateTime.Today.ToString("dd/MM/yyyy"),
-            list = "Inbox",
+            list = "Inbox"
         };
 
         public static ListModel DefaultList = new ListModel()
         {
             name = "",
+            color = "#F9371C"
         };
 
         public static ObservableCollection<string> AddOptions = new ObservableCollection<string>() {
@@ -30,13 +32,13 @@ namespace ToDoApp.Helpers
             "list"
         };
 
-        public static ObservableCollection<Color> ListColorList = new ObservableCollection<Color>() {
-            Color.FromHex("#F9371C"),
-            Color.FromHex("#F97C1C"),
-            Color.FromHex("#F9C81C"),
-            Color.FromHex("#41D0B6"),
-            Color.FromHex("#2CADF6"),
-            Color.FromHex("#6562FC"),
+        public static ObservableCollection<string> ListColorList = new ObservableCollection<string>() {
+            "#F9371C",
+            "#F97C1C",
+            "#F9C81C",
+            "#41D0B6",
+            "#2CADF6",
+            "#6562FC",
         };
     }
 }

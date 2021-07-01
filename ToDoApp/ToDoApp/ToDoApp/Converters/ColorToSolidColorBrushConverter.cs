@@ -8,7 +8,19 @@ namespace ToDoApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is Color color ? new SolidColorBrush(color) : null;
+            if (value == null)
+                return null;
+            if(value is Color)
+            {
+                var color = (Color)value;
+                return new SolidColorBrush(color);
+            }
+            else
+            {
+                var hex = (string)value;
+                var color = Color.FromHex(hex);
+                return new SolidColorBrush(color);
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
