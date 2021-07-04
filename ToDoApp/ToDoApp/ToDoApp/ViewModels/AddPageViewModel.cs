@@ -65,15 +65,29 @@ namespace ToDoApp.ViewModels
             ColorList = Constants.ListColorList;
 
             Type = "task";
+
+            AddTask = new TaskModel();
+            AddList = new ListModel();
         }
 
         public async void Initialize(INavigationParameters parameters)
         {
+            var projectList = await GetProjectList();
+
+            ProjectList = new ObservableCollection<ListModel>(projectList);
+
+            AddTask = Constants.DefaultTask;
+            AddList = Constants.DefaultList;
+        }
+
+        #endregion
+
+        #region Command Handlers
+
+        private async Task<List<ListModel>> GetProjectList()
+        {
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var userId = auth.GetUserId();
-
-            AddTask = new TaskModel();
-            AddList = new ListModel();
 
             var querySnapshot = await _listsRepository.GetAll(userId).GetAsync();
             var list = querySnapshot.ToObjects<ListModel>();
@@ -87,15 +101,8 @@ namespace ToDoApp.ViewModels
             {
                 listToAdd.Add(Constants.InboxList);
             }
-            ProjectList = new ObservableCollection<ListModel>(listToAdd);
-
-            AddTask = Constants.DefaultTask;
-            AddList = Constants.DefaultList;
+            return listToAdd;
         }
-
-        #endregion
-
-        #region Command Handlers
 
         private void ChangeTypeCommandHandler(string type)
         {
