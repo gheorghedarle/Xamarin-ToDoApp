@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoApp.Views.Fragments.ZeroStateView"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="100, -50, 100, 0">
+        <Image
+            Source="flame.png"
+            WidthRequest="200"
+            HeightRequest="200"></Image>
+        <Label
+            Text="All clear"
+            FontFamily="Barlow_Bold"
+            FontSize="{StaticResource Headline2FontSize}"
+            HorizontalTextAlignment="Center"
+            TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
+        <Label
+            Text="Looks like you don't have any tasks for this day"
+            FontFamily="Barlow_Regular"
+            FontSize="{StaticResource Body1FontSize}"
+            HorizontalTextAlignment="Center"
+            TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
+</StackLayout>
