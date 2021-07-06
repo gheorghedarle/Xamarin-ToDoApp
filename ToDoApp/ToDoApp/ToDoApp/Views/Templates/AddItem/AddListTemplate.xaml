@@ -12,7 +12,7 @@
             FontFamily="Barlow_Regular"
             FontSize="{StaticResource Body1FontSize}"></Label>
         <Frame
-            BackgroundColor="Transparent"
+            BackgroundColor="White"
             BorderColor="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"
             CornerRadius="8"
             Padding="10, 0">
@@ -39,28 +39,13 @@
         <CollectionView
             x:Name="collectionView"
             ItemsSource="{Binding Parent.BindingContext.ColorList, Source={x:Reference template}}"
-            SelectedItem="{Binding Parent.BindingContext.AddList.color, Source={x:Reference template}}"
+            SelectedItem="{Binding Parent.BindingContext.AddList.color, Source={x:Reference template},Mode=TwoWay}"
             SelectionMode="Single">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"></LinearItemsLayout>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <!--<Ellipse
-                        StrokeThickness="3"
-                        WidthRequest="40"
-                        Fill="{Binding ., Converter={StaticResource ColorToSolidColorBrushConverter}}">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="CommonStates">
-                                <VisualState Name="Selected">
-                                    <VisualState.Setters>
-                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}" />
-                                        <Setter Property="Stroke" Value="Black" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                    </Ellipse>-->
                     <StackLayout
                         Margin="0"
                         Spacing="0"

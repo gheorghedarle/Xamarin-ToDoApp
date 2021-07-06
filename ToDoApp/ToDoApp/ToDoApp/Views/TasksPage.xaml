@@ -239,9 +239,24 @@
                         VerticalOptions="FillAndExpand">
                         <StackLayout
                             HorizontalOptions="Center"
-                            VerticalOptions="Center">
+                            VerticalOptions="Center"
+                            Margin="100, -50, 100, 0">
+                            <Image
+                                Source="flame.png"
+                                WidthRequest="200"
+                                HeightRequest="200"></Image>
                             <Label
-                                Text="No tasks for this day."></Label>
+                                Text="All clear"
+                                FontFamily="Barlow_Bold"
+                                FontSize="{StaticResource Headline2FontSize}"
+                                HorizontalTextAlignment="Center"
+                                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
+                            <Label
+                                Text="Looks like you don't have any tasks for this day"
+                                FontFamily="Barlow_Regular"
+                                FontSize="{StaticResource Body1FontSize}"
+                                HorizontalTextAlignment="Center"
+                                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
                         </StackLayout>
                     </xct:StateView>
                 </xct:StateLayout.StateViews>

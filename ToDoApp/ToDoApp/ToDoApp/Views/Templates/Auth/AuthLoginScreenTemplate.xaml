@@ -19,7 +19,7 @@
                 FontFamily="Barlow_Regular"
                 FontSize="{StaticResource Body1FontSize}"></Label>
             <Frame
-                BackgroundColor="Transparent"
+                BackgroundColor="White"
                 BorderColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                 CornerRadius="8"
                 Padding="10, 0">
@@ -45,7 +45,7 @@
                 FontFamily="Barlow_Regular"
                 FontSize="{StaticResource Body1FontSize}"></Label>
             <Frame
-                BackgroundColor="Transparent"
+                BackgroundColor="White"
                 BorderColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                 CornerRadius="8"
                 Padding="10, 0">
