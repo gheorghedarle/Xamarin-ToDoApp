@@ -18,6 +18,9 @@
                 RowDefinitions="Auto, Auto"
                 RowSpacing="0"
                 Margin="16, 16, 0, 0">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ProfileCommand}"></TapGestureRecognizer>
+                </Grid.GestureRecognizers>
                 <Ellipse
                     Grid.Column="0"
                     Grid.Row="0"
