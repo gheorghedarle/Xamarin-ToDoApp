@@ -14,13 +14,10 @@
                 Grid.Row="0"/>
             <Grid
                 Grid.Row="1"
-                ColumnDefinitions="Auto, *"
+                ColumnDefinitions="Auto, *, Auto"
                 RowDefinitions="Auto, Auto"
                 RowSpacing="0"
-                Margin="16, 16, 0, 0">
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ProfileCommand}"></TapGestureRecognizer>
-                </Grid.GestureRecognizers>
+                Margin="16, 16, 16, 0">
                 <Ellipse
                     Grid.Column="0"
                     Grid.Row="0"
@@ -39,7 +36,11 @@
                     FontFamily="FontAwesome_Solid"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
-                    Margin="8, 0, 8, 0"></Label>
+                    Margin="8, 0, 8, 0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ProfileCommand}"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
                 <Label
                     Grid.Column="1"
                     Grid.Row="0"
@@ -52,6 +53,16 @@
                     Style="{StaticResource Headline4_BarlowBold}"
                     Text="{Binding Name}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
+                <Label
+                    Grid.Column="2"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Text="&#xf142;"
+                    TextColor="#233e8b"
+                    FontSize="{StaticResource Headline4FontSize}"
+                    FontFamily="FontAwesome_Solid"
+                    VerticalOptions="Center"
+                    Margin="0, 0, 16, 0"></Label>
             </Grid>
             <Grid
                 Grid.Row="2"
