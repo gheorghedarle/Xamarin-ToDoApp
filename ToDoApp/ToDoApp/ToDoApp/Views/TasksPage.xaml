@@ -62,7 +62,11 @@
                     FontSize="{StaticResource Headline4FontSize}"
                     FontFamily="FontAwesome_Solid"
                     VerticalOptions="Center"
-                    Margin="0, 0, 16, 0"></Label>
+                    Margin="0, 0, 16, 0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MoreCommand}"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
             </Grid>
             <Grid
                 Grid.Row="2"
