@@ -2,8 +2,11 @@
 <StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="ToDoApp.Views.Templates.AddItem.AddTaskTemplate"
-             x:Name="template">
+             xmlns:vm="clr-namespace:ToDoApp.ViewModels.Templates"
+             x:Class="ToDoApp.Views.Templates.AddItem.AddTaskTemplate">
+    <StackLayout.BindingContext>
+        <vm:AddTaskViewModel />
+    </StackLayout.BindingContext>
     <StackLayout
         Spacing="10">
         <Label
@@ -20,8 +23,7 @@
                 FontFamily="Barlow_Regular"
                 Placeholder="Enter your name"
                 PlaceholderColor="#A6A3BD"
-                ReturnCommand="{Binding StartCommand}"
-                Text="{Binding Parent.BindingContext.AddTask.task, Source={x:Reference template}}"
+                Text="{Binding AddTask.task}"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
                 <Entry.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
@@ -42,8 +44,8 @@
             CornerRadius="8"
             Padding="10, 0">
             <Picker
-                SelectedItem="{Binding Parent.BindingContext.AddTask.listObject, Source={x:Reference template}}"
-                ItemsSource="{Binding Parent.BindingContext.ProjectList, Source={x:Reference template}}"
+                SelectedItem="{Binding AddTask.listObject}"
+                ItemsSource="{Binding ProjectList}"
                 ItemDisplayBinding="{Binding name}"
                 FontFamily="Barlow_Regular"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
@@ -67,7 +69,7 @@
             CornerRadius="8"
             Padding="10, 0">
             <DatePicker
-                Date="{Binding Parent.BindingContext.AddTask.date, Source={x:Reference template}}"
+                Date="{Binding AddTask.date}"
                 Format="dd/MM/yyyy">
                 <DatePicker.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>

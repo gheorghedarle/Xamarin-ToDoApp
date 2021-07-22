@@ -1,9 +1,7 @@
 ﻿using Prism.Navigation;
 using ReactiveUI;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Threading.Tasks;
@@ -33,11 +31,8 @@ namespace ToDoApp.ViewModels
 
         public string Type { get; set; }
         public ObservableCollection<string> ItemList { get; set; }
-        public ObservableCollection<string> ColorList { get; set; }
         public ObservableCollection<ListModel> ProjectList { get; set; }
         public ObservableCollection<TaskModel> TaskList { get; set; }
-        public TaskModel AddTask { get; set; }
-        public ListModel AddList { get; set; }
 
         #endregion
 
@@ -62,12 +57,8 @@ namespace ToDoApp.ViewModels
             CreateCommand = ReactiveCommand.Create(CreateCommandHandler);
 
             ItemList = Constants.AddOptions;
-            ColorList = Constants.ListColorList;
 
             Type = "task";
-
-            AddTask = new TaskModel();
-            AddList = new ListModel();
         }
 
         public async void Initialize(INavigationParameters parameters)
@@ -75,9 +66,6 @@ namespace ToDoApp.ViewModels
             var projectList = await GetProjectList();
 
             ProjectList = new ObservableCollection<ListModel>(projectList);
-
-            AddTask = Constants.DefaultTask;
-            AddList = Constants.DefaultList;
         }
 
         #endregion
@@ -111,39 +99,39 @@ namespace ToDoApp.ViewModels
 
         private async Task CreateCommandHandler()
         {
-            try
-            {
-                var auth = DependencyService.Get<IFirebaseAuthentication>();
-                var userId = auth.GetUserId();
-                if(Type == "task")
-                {
-                    var model = new TaskModel()
-                    {
-                        archived = false,
-                        list = AddTask.listObject.name,
-                        task = AddTask.task,
-                        userId = userId,
-                        date = DateTime.Parse(AddTask.date).ToString("dd/MM/yyyy")
-                    };
-                    await _tasksRepository.Add(model);
-                }
-                else
-                {
-                    var model = new ListModel()
-                    {
-                        name = AddList.name,
-                        color = AddList.color,
-                        userId = userId
-                    };
-                    await _listsRepository.Add(model);
-                }
-                await _navigationService.GoBackAsync();
-            }
-            catch (Exception ex)
-            {
-                //display error message
-                Debug.Write(ex.Message);
-            }
+            //try
+            //{
+            //    var auth = DependencyService.Get<IFirebaseAuthentication>();
+            //    var userId = auth.GetUserId();
+            //    if(Type == "task")
+            //    {
+            //        var model = new TaskModel()
+            //        {
+            //            archived = false,
+            //            list = AddTask.listObject.name,
+            //            task = AddTask.task,
+            //            userId = userId,
+            //            date = DateTime.Parse(AddTask.date).ToString("dd/MM/yyyy")
+            //        };
+            //        await _tasksRepository.Add(model);
+            //    }
+            //    else
+            //    {
+            //        var model = new ListModel()
+            //        {
+            //            name = AddList.name,
+            //            color = AddList.color,
+            //            userId = userId
+            //        };
+            //        await _listsRepository.Add(model);
+            //    }
+            //    await _navigationService.GoBackAsync();
+            //}
+            //catch (Exception ex)
+            //{
+            //    //display error message
+            //    Debug.Write(ex.Message);
+            //}
         }
 
         #endregion

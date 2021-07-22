@@ -2,8 +2,11 @@
 <StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="ToDoApp.Views.Templates.AddItem.AddListTemplate"
-             x:Name="template">
+             xmlns:vm="clr-namespace:ToDoApp.ViewModels.Templates"
+             x:Class="ToDoApp.Views.Templates.AddItem.AddListTemplate">
+    <StackLayout.BindingContext>
+        <vm:AddListViewModel />
+    </StackLayout.BindingContext>
     <StackLayout
         Spacing="10">
         <Label
@@ -20,7 +23,7 @@
                 FontFamily="Barlow_Regular"
                 Placeholder="Enter your name"
                 PlaceholderColor="#A6A3BD"
-                Text="{Binding Parent.BindingContext.AddList.name, Source={x:Reference template}}"
+                Text="{Binding AddList.name}"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
                 <Entry.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
@@ -37,9 +40,8 @@
             FontFamily="Barlow_Regular"
             FontSize="{StaticResource Body1FontSize}"></Label>
         <CollectionView
-            x:Name="collectionView"
-            ItemsSource="{Binding Parent.BindingContext.ColorList, Source={x:Reference template}}"
-            SelectedItem="{Binding Parent.BindingContext.AddList.color, Source={x:Reference template},Mode=TwoWay}"
+            ItemsSource="{Binding ColorList}"
+            SelectedItem="{Binding AddList.color}"
             SelectionMode="Single">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"></LinearItemsLayout>
