@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
-
-  <style name="MainTheme" parent="MainTheme.Base">
-    <!-- As of Xamarin.Forms 4.6 the theme has moved into the Forms binary -->
-    <!-- If you want to override anything you can do that here. -->
-    <!-- Underneath are a couple of entries to get you started. -->
-
-    <!-- Set theme colors from https://aka.ms/material-colors -->
-    <!-- colorPrimary is used for the default action bar background -->
-    <!--<item name="colorPrimary">#2196F3</item>-->
-    <!-- colorPrimaryDark is used for the status bar -->
-    <!--<item name="colorPrimaryDark">#1976D2</item>-->
-    <!-- colorAccent is used as the default value for colorControlActivated
-         which is used to tint widgets -->
-    <!--<item name="colorAccent">#FF4081</item>-->
+  <style name="MainTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+    <!--<item name="android:windowBackground">@drawable/splash_screen</item>-->
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowIsTranslucent">false</item>
+    <item name="android:windowIsFloating">false</item>
+    <item name="android:backgroundDimEnabled">true</item>
+    <item name="android:statusBarColor">#001532</item>
+  </style>
+  <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">#233E8B</item>
+    <item name="colorPrimaryDark">#0E1837</item>
+    <item name="colorAccent">#feb92f</item>
+    <item name="android:statusBarColor">#001532</item>
+    <!--<item name="android:windowBackground">@drawable/splash_screen</item>-->
   </style>
 </resources>
