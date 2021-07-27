@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
   <style name="MainTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
-    <!--<item name="android:windowBackground">@drawable/splash_screen</item>-->
+    <item name="android:windowBackground">@drawable/splash_screen</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowIsTranslucent">false</item>
     <item name="android:windowIsFloating">false</item>
@@ -13,6 +13,6 @@
     <item name="colorPrimaryDark">#0E1837</item>
     <item name="colorAccent">#feb92f</item>
     <item name="android:statusBarColor">#001532</item>
-    <!--<item name="android:windowBackground">@drawable/splash_screen</item>-->
+    <item name="android:windowBackground">@drawable/splash_screen</item>
   </style>
 </resources>
