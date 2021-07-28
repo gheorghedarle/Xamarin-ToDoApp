@@ -35,6 +35,15 @@ namespace ToDoApp.ViewModels
 
         #endregion
 
+        #region
+
+        protected async void BackCommandHandler()
+        {
+            await _navigationService.GoBackAsync();
+        }
+
+        #endregion
+
         #region Internet Connection
 
         private void ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)

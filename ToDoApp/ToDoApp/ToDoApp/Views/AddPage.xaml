@@ -12,14 +12,34 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid
+            BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
             RowDefinitions="Auto, Auto, *, Auto"
             Padding="20, 0, 20, 0">
-            <Label
+            <Grid
                 Grid.Row="0"
+                ColumnDefinitions="Auto, Auto"
                 Margin="0, 20, 0, 10"
-                Style="{StaticResource Headline4_BarlowBold}"
-                Text="{Binding Type, StringFormat='Add new {0}'}"
-                TextColor="#333"/>
+                HorizontalOptions="Start">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}"></TapGestureRecognizer>
+                </Grid.GestureRecognizers>
+                <Label
+                    Grid.Column="0"
+                    Text="&#xf060;"
+                    FontSize="{StaticResource Headline4FontSize}"
+                    FontFamily="FontAwesome_Solid"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"></Label>
+                <Label
+                    Grid.Column="1"
+                    Style="{StaticResource Headline4_BarlowBold}"
+                    Text="{Binding Type, StringFormat='Add new {0}'}"
+                    TextColor="#333"
+                    Margin="10, 0, 0, 0"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center"/>
+            </Grid>
             <Grid
                 Grid.Row="1"
                 ColumnDefinitions="*, *">

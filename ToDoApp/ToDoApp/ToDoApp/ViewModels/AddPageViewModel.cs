@@ -39,7 +39,8 @@ namespace ToDoApp.ViewModels
         #region Commands
 
         public ICommand ChangeTypeCommand { get; set; }
-        public ICommand CreateCommand { get; }
+        public ICommand CreateCommand { get; set; }
+        public ICommand BackCommand { get; set; }
 
         #endregion
 
@@ -53,6 +54,7 @@ namespace ToDoApp.ViewModels
             _tasksRepository = tasksRepository;
             _listsRepository = listsRepository;
 
+            BackCommand = new Command(BackCommandHandler);
             ChangeTypeCommand = new Command<string>(ChangeTypeCommandHandler);
             CreateCommand = ReactiveCommand.Create(CreateCommandHandler);
 
