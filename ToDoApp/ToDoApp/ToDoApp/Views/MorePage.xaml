@@ -1,13 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ToDoApp.Views.MorePage">
     <ContentPage.Content>
-        <StackLayout
-            BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
-            <Label Text="More Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid
+            BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
+            RowDefinitions="Auto, *"
+            Padding="20, 0, 20, 0">
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="Auto, Auto"
+                Margin="0, 20, 0, 10"
+                HorizontalOptions="Start">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}"></TapGestureRecognizer>
+                </Grid.GestureRecognizers>
+                <Label
+                    Grid.Column="0"
+                    Text="&#xf060;"
+                    FontSize="{StaticResource Headline4FontSize}"
+                    FontFamily="FontAwesome_Solid"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"></Label>
+                <Label
+                    Grid.Column="1"
+                    Style="{StaticResource Headline4_BarlowBold}"
+                    Text="More"
+                    TextColor="#333"
+                    Margin="10, 0, 0, 0"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center"/>
+            </Grid>
+            <StackLayout
+                Grid.Row="1"
+                Spacing="10">
+                <Label
+                    Text="Display tasks from"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    FontFamily="Barlow_Regular"
+                    FontSize="{StaticResource Body1FontSize}"></Label>
+                <Frame
+                    BackgroundColor="White"
+                    BorderColor="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"
+                    CornerRadius="8"
+                    Padding="10, 0">
+                    <Picker
+                        SelectedItem="{Binding SelectedList}"
+                        ItemsSource="{Binding Lists}"
+                        ItemDisplayBinding="{Binding name}"
+                        FontFamily="Barlow_Regular"
+                        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
+                        <Picker.Effects>
+                            <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
+                        </Picker.Effects>
+                    </Picker>
+                </Frame>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
