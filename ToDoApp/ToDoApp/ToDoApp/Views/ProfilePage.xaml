@@ -125,7 +125,7 @@
                     Grid.Row="2"
                     Text="Hide done tasks"></Label>
                 <Switch
-                    IsToggled="{Binding IsDarkMode}"
+                    IsToggled="{Binding IsHideEnabled}"
                     HorizontalOptions="EndAndExpand"
                     BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
                     ThumbColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
