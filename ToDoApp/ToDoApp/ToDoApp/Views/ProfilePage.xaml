@@ -1,12 +1,140 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ToDoApp.Views.ProfilePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Profile Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid
+            BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
+            RowDefinitions="Auto, Auto, Auto"
+            Padding="20, 0, 20, 0">
+            <Grid
+                Grid.Row="0"
+                Margin="0, 20, 0, 20"
+                HorizontalOptions="FillAndExpand">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}"></TapGestureRecognizer>
+                </Grid.GestureRecognizers>
+                <Label
+                    Text="&#xf060;"
+                    FontSize="{StaticResource Headline4FontSize}"
+                    FontFamily="FontAwesome_Solid"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"></Label>
+                <StackLayout
+                    HorizontalOptions="CenterAndExpand">
+                    <Grid>
+                        <Ellipse
+                            Fill="#233E8B"
+                            Aspect="Uniform"
+                            WidthRequest="80"
+                            HeightRequest="80"></Ellipse>
+                        <Label
+                            Text="&#xf2bd;"
+                            TextColor="White"
+                            FontSize="70"
+                            FontFamily="FontAwesome_Solid"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ProfileCommand}"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                    <Label
+                        Style="{StaticResource Headline4_BarlowBold}"
+                        HorizontalOptions="Center"
+                        Text="John"
+                        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
+                    <Grid
+                        ColumnDefinitions="*, *, *"
+                        Margin="30, 0, 30, 0">
+                        <StackLayout
+                            Grid.Column="0"
+                            Spacing="0">
+                            <Label
+                                Text="Tasks"
+                                FontFamily="Barlow_Medium"
+                                FontSize="{StaticResource Body1FontSize}"
+                                TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
+                                HorizontalTextAlignment="Center"></Label>
+                            <Label
+                                Text="184"
+                                FontFamily="Barlow_SemiBold"
+                                FontSize="{StaticResource Body1FontSize}"
+                                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                                HorizontalTextAlignment="Center"></Label>
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="1"
+                            Spacing="0">
+                            <Label
+                                Text="Done"
+                                FontFamily="Barlow_Medium"
+                                FontSize="{StaticResource Body1FontSize}"
+                                TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
+                                HorizontalTextAlignment="Center"></Label>
+                            <Label
+                                Text="92"
+                                FontFamily="Barlow_SemiBold"
+                                FontSize="{StaticResource Body1FontSize}"
+                                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                                HorizontalTextAlignment="Center"></Label>
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Column="2"
+                            Spacing="0">
+                            <Label
+                                Text="Lists"
+                                FontFamily="Barlow_Medium"
+                                FontSize="{StaticResource Body1FontSize}"
+                                TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
+                                HorizontalTextAlignment="Center"></Label>
+                            <Label
+                                Text="7"
+                                FontFamily="Barlow_SemiBold"
+                                FontSize="{StaticResource Body1FontSize}"
+                                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                                HorizontalTextAlignment="Center"></Label>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </Grid>
+            <StackLayout
+                Grid.Row="1"
+                Orientation="Horizontal">
+                <Label
+                    Grid.Row="2"
+                    Text="Dark mode"></Label>
+                <Switch
+                    IsToggled="{Binding IsDarkMode}"
+                    HorizontalOptions="EndAndExpand"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
+                    ThumbColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    OnColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}">
+                    <Switch.Behaviors>
+                        <xct:EventToCommandBehavior EventName="Toggled" Command="{Binding DarkModeToggleCommand}"></xct:EventToCommandBehavior>
+                    </Switch.Behaviors>
+                </Switch>
+            </StackLayout>
+            <StackLayout
+                Grid.Row="2"
+                Orientation="Horizontal">
+                <Label
+                    Grid.Row="2"
+                    Text="Hide done tasks"></Label>
+                <Switch
+                    IsToggled="{Binding IsDarkMode}"
+                    HorizontalOptions="EndAndExpand"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
+                    ThumbColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    OnColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}">
+                    <Switch.Behaviors>
+                        <xct:EventToCommandBehavior EventName="Toggled" Command="{Binding HideDoneToggleCommand}"></xct:EventToCommandBehavior>
+                    </Switch.Behaviors>
+                </Switch>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
