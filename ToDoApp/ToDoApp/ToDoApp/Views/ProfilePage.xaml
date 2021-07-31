@@ -106,7 +106,8 @@
                 Orientation="Horizontal">
                 <Label
                     Grid.Row="2"
-                    Text="Dark mode"></Label>
+                    Text="Dark mode"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
                 <Switch
                     IsToggled="{Binding IsDarkMode}"
                     HorizontalOptions="EndAndExpand"
@@ -123,7 +124,8 @@
                 Orientation="Horizontal">
                 <Label
                     Grid.Row="2"
-                    Text="Hide done tasks"></Label>
+                    Text="Hide done tasks"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
                 <Switch
                     IsToggled="{Binding IsHideEnabled}"
                     HorizontalOptions="EndAndExpand"

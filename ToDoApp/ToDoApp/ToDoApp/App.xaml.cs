@@ -10,6 +10,7 @@ using ToDoApp.ViewModels;
 using ToDoApp.ViewModels.Templates;
 using ToDoApp.Views;
 using ToDoApp.Views.Templates.AddItem;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 [assembly: ExportFont("FontAwesome-Regular.ttf", Alias = "FontAwesome_Regular")]
@@ -35,6 +36,7 @@ namespace ToDoApp
         protected override async void OnInitialized()
         {
             InitializeComponent();
+            SetAppTheme();
 
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var isLoggedIn = auth.IsLoggedIn();
@@ -73,6 +75,19 @@ namespace ToDoApp
 
         protected override void OnResume()
         {
+        }
+
+        private void SetAppTheme()
+        {
+            var theme = Preferences.Get("theme", string.Empty);
+            if (string.IsNullOrEmpty(theme) || theme == "light")
+            {
+                Application.Current.UserAppTheme = OSAppTheme.Light;
+            }
+            else
+            {
+                Application.Current.UserAppTheme = OSAppTheme.Dark;
+            }
         }
     }
 }
