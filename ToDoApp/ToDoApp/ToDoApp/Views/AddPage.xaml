@@ -35,7 +35,7 @@
                     Grid.Column="1"
                     Style="{StaticResource Headline4_BarlowBold}"
                     Text="{Binding Type, StringFormat='Add new {0}'}"
-                    TextColor="#333"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                     Margin="10, 0, 0, 0"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center"/>
