@@ -125,7 +125,7 @@
                                             <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Normal}}"></StateTrigger>
                                         </VisualState.StateTriggers>
                                         <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="White"/>
+                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardUnselectedBackgroundColor}, Dark={StaticResource DarkCardUnselectedBackgroundColor}}"/>
                                             <Setter Property="HasShadow" Value="True"/>
                                         </VisualState.Setters>
                                     </VisualState>
@@ -134,7 +134,7 @@
                                             <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Active}}"></StateTrigger>
                                         </VisualState.StateTriggers>
                                         <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="#233e8b"/>
+                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"/>
                                             <Setter Property="HasShadow" Value="True"/>
                                         </VisualState.Setters>
                                     </VisualState>
@@ -175,7 +175,7 @@
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
                                                     <Setter Property="FontFamily" Value="Barlow_Bold"/>
-                                                    <Setter Property="TextColor" Value="White"/>
+                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                             <VisualState x:Name="past">
@@ -280,7 +280,8 @@
                                     HeightRequest="6"
                                     Margin="0, 4, 0, 0"
                                     IsVisible="{Binding isBeingDraggedOver}" />
-                                <SwipeView>
+                                <SwipeView
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
                                     <SwipeView.RightItems>
                                         <SwipeItems>
                                             <SwipeItemView 
@@ -318,9 +319,9 @@
                                                         <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
                                                     </VisualState.StateTriggers>
                                                     <VisualState.Setters>
-                                                        <Setter Property="BackgroundColor" Value="White"/>
+                                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"/>
                                                         <Setter Property="HasShadow" Value="True"/>
-                                                        <Setter Property="BorderColor" Value="White"/>
+                                                        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"/>
                                                     </VisualState.Setters>
                                                 </VisualState>
                                                 <VisualState x:Name="done">

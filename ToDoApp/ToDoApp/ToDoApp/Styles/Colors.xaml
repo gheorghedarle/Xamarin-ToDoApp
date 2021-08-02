@@ -25,9 +25,9 @@
     <Color x:Key="DarkSecondaryTextColor">#B2B8C1</Color>
 
     <Color x:Key="DarkPageBackgroundColor">#0E1837</Color>
-    <Color x:Key="DarkCardBackgroundColor">#192C46</Color>
-    <Color x:Key="DarkCardUnselectedBackgroundColor">#000E23</Color>
-    <Color x:Key="DarkCardBorderColor">#D2D1DE</Color>
+    <Color x:Key="DarkCardBackgroundColor">#3E465E</Color>
+    <Color x:Key="DarkCardUnselectedBackgroundColor">#262F4B</Color>
+    <Color x:Key="DarkCardBorderColor">#3E465E</Color>
 
     <Color x:Key="DarkTransparentBackgroundColor">#99001532</Color>
 </ResourceDictionary>
