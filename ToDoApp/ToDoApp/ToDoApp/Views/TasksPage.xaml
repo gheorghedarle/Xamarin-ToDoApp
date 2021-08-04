@@ -18,20 +18,12 @@
                 RowDefinitions="Auto, Auto"
                 RowSpacing="0"
                 Margin="16, 16, 16, 0">
-                <Ellipse
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    Grid.RowSpan="2"
-                    Fill="#233E8B"
-                    Aspect="Uniform"
-                    WidthRequest="56"
-                    HeightRequest="56"></Ellipse>
                 <Label
                     Grid.Column="0"
                     Grid.Row="0"
                     Grid.RowSpan="2"
                     Text="&#xf2bd;"
-                    TextColor="White"
+                    TextColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
                     FontSize="48"
                     FontFamily="FontAwesome_Solid"
                     VerticalOptions="Center"
@@ -58,7 +50,7 @@
                     Grid.Row="0"
                     Grid.RowSpan="2"
                     Text="&#xf142;"
-                    TextColor="#233e8b"
+                    TextColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
                     FontSize="{StaticResource Headline4FontSize}"
                     FontFamily="FontAwesome_Solid"
                     VerticalOptions="Center"
@@ -83,22 +75,22 @@
                     Grid.Column="2"
                     CornerRadius="16"
                     Text="&#xf053;"
-                    TextColor="White"
+                    TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
                     FontSize="18"
                     FontFamily="FontAwesome_Solid"
                     HorizontalOptions="EndAndExpand"
-                    BackgroundColor="#233e8b"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
                     Command="{Binding PreviousWeekCommand}"
                     CommandParameter="{Binding Week.StartDay}"></Button>
                 <Button
                     Grid.Column="3"
                     CornerRadius="16"
                     Text="&#xf054;"
-                    TextColor="White"
+                    TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
                     FontSize="18"
                     FontFamily="FontAwesome_Solid"
                     HorizontalOptions="EndAndExpand"
-                    BackgroundColor="#233e8b"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
                     Command="{Binding NextWeekCommand}"
                     CommandParameter="{Binding Week.LastDay}"></Button>
             </Grid>
@@ -125,7 +117,7 @@
                                             <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Normal}}"></StateTrigger>
                                         </VisualState.StateTriggers>
                                         <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardUnselectedBackgroundColor}, Dark={StaticResource DarkCardUnselectedBackgroundColor}}"/>
+                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"/>
                                             <Setter Property="HasShadow" Value="True"/>
                                         </VisualState.Setters>
                                     </VisualState>
@@ -134,7 +126,7 @@
                                             <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Active}}"></StateTrigger>
                                         </VisualState.StateTriggers>
                                         <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"/>
+                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"/>
                                             <Setter Property="HasShadow" Value="True"/>
                                         </VisualState.Setters>
                                     </VisualState>
@@ -157,7 +149,6 @@
                                     TextTransform="Uppercase"
                                     Style="{StaticResource Body1_BarlowRegular}"
                                     CharacterSpacing="-1"
-                                    Margin="0"
                                     HorizontalTextAlignment="Center">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup>
@@ -166,7 +157,7 @@
                                                     <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Normal}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                             <VisualState x:Name="active">
@@ -175,7 +166,7 @@
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
                                                     <Setter Property="FontFamily" Value="Barlow_Bold"/>
-                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                             <VisualState x:Name="past">
@@ -183,7 +174,7 @@
                                                     <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Past}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDisabledTextColor}, Dark={StaticResource DarkDisabledTextColor}}"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                         </VisualStateGroup>
@@ -192,7 +183,7 @@
                                 <Label
                                     CharacterSpacing="-1"
                                     HorizontalTextAlignment="Center"
-                                    Style="{StaticResource Subtitle1_BarlowBold}"
+                                    Style="{StaticResource Headline4_BarlowBold}"
                                     Text="{Binding Day}">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup>
@@ -209,7 +200,7 @@
                                                     <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Active}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="TextColor" Value="White"/>
+                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                             <VisualState x:Name="past">
@@ -217,7 +208,7 @@
                                                     <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Past}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDisabledTextColor}, Dark={StaticResource DarkDisabledTextColor}}"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                         </VisualStateGroup>
@@ -276,7 +267,7 @@
                                         DropCommandParameter="{Binding}" />
                                 </StackLayout.GestureRecognizers>
                                 <Grid
-                                    BackgroundColor="#233e8b"
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
                                     HeightRequest="6"
                                     Margin="0, 4, 0, 0"
                                     IsVisible="{Binding isBeingDraggedOver}" />
@@ -365,7 +356,7 @@
                                                                 <StateTrigger IsActive="{Binding archived}"></StateTrigger>
                                                             </VisualState.StateTriggers>
                                                             <VisualState.Setters>
-                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDisabledTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
                                                                 <Setter Property="FontFamily" Value="FontAwesome_Solid"/>
                                                             </VisualState.Setters>
                                                         </VisualState>
@@ -395,7 +386,7 @@
                                                                 <StateTrigger IsActive="{Binding archived}"></StateTrigger>
                                                             </VisualState.StateTriggers>
                                                             <VisualState.Setters>
-                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDisabledTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                     </VisualStateGroup>
@@ -424,7 +415,7 @@
                                                                 <StateTrigger IsActive="{Binding archived}"></StateTrigger>
                                                             </VisualState.StateTriggers>
                                                             <VisualState.Setters>
-                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDisabledTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                     </VisualStateGroup>
@@ -440,7 +431,7 @@
             </StackLayout>
             <Frame 
                 Grid.Row="5" 
-                BackgroundColor="#233e8b"
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
                 VerticalOptions="End" 
                 HorizontalOptions="End" 
                 CornerRadius="18" 
@@ -455,7 +446,7 @@
                     Text="&#xf067;"
                     FontSize="30"
                     FontFamily="FontAwesome_Solid"
-                    TextColor="White"
+                    TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"></Label>
             </Frame>

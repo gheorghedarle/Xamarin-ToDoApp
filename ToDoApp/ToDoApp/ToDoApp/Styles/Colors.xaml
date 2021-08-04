@@ -12,6 +12,10 @@
     <!--App Theme Light-->
     <Color x:Key="LightPrimaryTextColor">#0E1837</Color>
     <Color x:Key="LightSecondaryTextColor">#7B769D</Color>
+    <Color x:Key="LightDisabledTextColor">#565D73</Color>
+
+    <Color x:Key="LightButtonColor">#233E8B</Color>
+    <Color x:Key="LightButtonTextColor">#FFF</Color>
 
     <Color x:Key="LightPageBackgroundColor">#F7F7FC</Color>
     <Color x:Key="LightCardBackgroundColor">#FFF</Color>
@@ -23,6 +27,10 @@
     <!--App Theme Dark-->
     <Color x:Key="DarkPrimaryTextColor">#F5F5F5</Color>
     <Color x:Key="DarkSecondaryTextColor">#B2B8C1</Color>
+    <Color x:Key="DarkDisabledTextColor">#A6A3BD</Color>
+
+    <Color x:Key="DarkButtonColor">#F7F7FC</Color>
+    <Color x:Key="DarkButtonTextColor">#0E1837</Color>
 
     <Color x:Key="DarkPageBackgroundColor">#0E1837</Color>
     <Color x:Key="DarkCardBackgroundColor">#3E465E</Color>
