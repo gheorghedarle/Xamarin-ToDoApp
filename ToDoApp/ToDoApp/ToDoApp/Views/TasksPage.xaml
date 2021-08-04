@@ -9,7 +9,15 @@
     <ContentPage.Content>
         <Grid 
             BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
-            RowDefinitions="Auto, Auto, Auto, Auto, Auto, *">
+            RowDefinitions="Auto, Auto, Auto, Auto, Auto, *"
+            xct:StateLayout.CurrentState="{Binding MainState}">
+            <xct:StateLayout.StateViews>
+                <xct:StateView 
+                    StateKey="Loading"
+                    VerticalOptions="FillAndExpand">
+                    <fragments:LoadingView></fragments:LoadingView>
+                </xct:StateView>
+            </xct:StateLayout.StateViews>
             <fragments:ConnectionView
                 Grid.Row="0"/>
             <Grid
@@ -232,16 +240,7 @@
                     <xct:StateView 
                         StateKey="Loading"
                         VerticalOptions="FillAndExpand">
-                        <StackLayout 
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center">
-                            <ActivityIndicator
-                                Color="#233e8b"
-                                IsRunning="True"/>
-                            <Label 
-                                Text="Loading..." 
-                                HorizontalOptions="Center" />
-                        </StackLayout>
+                        <fragments:LoadingView></fragments:LoadingView>
                     </xct:StateView>
                     <xct:StateView 
                         StateKey="Empty"

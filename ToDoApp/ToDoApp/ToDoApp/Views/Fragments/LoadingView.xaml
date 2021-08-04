@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="ToDoApp.Views.Fragments.LoadingView"
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
+        <ActivityIndicator
+            Color="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+            IsRunning="True"/>
+        <Label 
+            Text="Loading..." 
+            TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
+            HorizontalOptions="Center" />
+</StackLayout>

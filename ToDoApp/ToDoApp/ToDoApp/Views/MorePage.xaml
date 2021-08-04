@@ -28,7 +28,7 @@
                     Grid.Column="1"
                     Style="{StaticResource Headline4_BarlowBold}"
                     Text="More"
-                    TextColor="#333"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                     Margin="10, 0, 0, 0"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center"/>
