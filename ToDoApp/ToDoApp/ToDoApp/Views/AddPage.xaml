@@ -60,9 +60,9 @@
                                     <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="White"/>
+                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"/>
                                     <Setter Property="HasShadow" Value="True"/>
-                                    <Setter Property="BorderColor" Value="White"/>
+                                    <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"/>
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="notSelected">
@@ -70,7 +70,7 @@
                                     <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#F1F0F7"/>
+                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardUnselectedBackgroundColor}, Dark={StaticResource DarkCardUnselectedBackgroundColor}}"/>
                                     <Setter Property="HasShadow" Value="False"/>
                                     <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
                                 </VisualState.Setters>
@@ -89,7 +89,7 @@
                                         <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Property="TextColor" Value="#0E1837"/>
+                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="notSelected">
@@ -97,7 +97,7 @@
                                         <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Property="TextColor" Value="#A6A3BD"/>
+                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDisabledTextColor}, Dark={StaticResource DarkDisabledTextColor}}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -121,9 +121,9 @@
                                     <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="White"/>
+                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"/>
                                     <Setter Property="HasShadow" Value="True"/>
-                                    <Setter Property="BorderColor" Value="White"/>
+                                    <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"/>
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="notSelected">
@@ -131,7 +131,7 @@
                                     <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#F1F0F7"/>
+                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardUnselectedBackgroundColor}, Dark={StaticResource DarkCardUnselectedBackgroundColor}}"/>
                                     <Setter Property="HasShadow" Value="False"/>
                                     <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
                                 </VisualState.Setters>
@@ -150,7 +150,7 @@
                                         <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Property="TextColor" Value="#0E1837"/>
+                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="notSelected">
@@ -158,7 +158,7 @@
                                         <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Property="TextColor" Value="#A6A3BD"/>
+                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDisabledTextColor}, Dark={StaticResource DarkDisabledTextColor}}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -174,7 +174,7 @@
                 IsSwipeEnabled="False"></CarouselView>
             <Button
                 Grid.Row="3"
-                BackgroundColor="{StaticResource PrimaryColor}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
                 Command="{Binding CreateCommand}"
                 CornerRadius="28"
                 FontSize="{StaticResource ButtonFontSize}"
@@ -182,7 +182,7 @@
                 Margin="0, 0, 0, 16"
                 Padding="20, 18"
                 Text="{Binding Type, StringFormat='Add new {0}'}"
-                TextColor="White"
+                TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
                 VerticalOptions="End"></Button>
         </Grid>
     </ContentPage.Content>
