@@ -24,24 +24,14 @@
                     VerticalOptions="Start"></Label>
                 <StackLayout
                     HorizontalOptions="CenterAndExpand">
-                    <Grid>
-                        <Ellipse
-                            Fill="#233E8B"
-                            Aspect="Uniform"
-                            WidthRequest="80"
-                            HeightRequest="80"></Ellipse>
-                        <Label
-                            Text="&#xf2bd;"
-                            TextColor="White"
-                            FontSize="70"
-                            FontFamily="FontAwesome_Solid"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Center">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ProfileCommand}"></TapGestureRecognizer>
-                            </Label.GestureRecognizers>
-                        </Label>
-                    </Grid>
+                    <Label
+                        Text="&#xf2bd;"
+                        TextColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
+                        FontSize="70"
+                        FontFamily="FontAwesome_Solid"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center">
+                    </Label>
                     <Label
                         Style="{StaticResource Headline4_BarlowBold}"
                         HorizontalOptions="Center"
@@ -106,6 +96,7 @@
                 Orientation="Horizontal">
                 <Label
                     Grid.Row="2"
+                    FontSize="{StaticResource Body2FontSize}"
                     Text="Dark mode"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
                 <Switch
@@ -124,6 +115,7 @@
                 Orientation="Horizontal">
                 <Label
                     Grid.Row="2"
+                    FontSize="{StaticResource Body2FontSize}"
                     Text="Hide done tasks"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
                 <Switch
@@ -137,6 +129,17 @@
                     </Switch.Behaviors>
                 </Switch>
             </StackLayout>
+            <Label
+                Grid.Row="3"
+                FontFamily="Barlow_SemiBold"
+                FontSize="{StaticResource Body1FontSize}"
+                Text="Log out"
+                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LogOutCommand}"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -69,7 +69,7 @@ namespace ToDoApp.Droid.Auth
             return user != null;
         }
 
-        public bool SignOut()
+        public bool LogOut()
         {
             try
             {

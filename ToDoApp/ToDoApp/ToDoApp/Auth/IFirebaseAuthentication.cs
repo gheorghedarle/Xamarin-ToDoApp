@@ -11,6 +11,6 @@ namespace ToDoApp.Auth
         string GetUsername();
         string GetUserId();
         bool IsLoggedIn();
-        bool SignOut();
+        bool LogOut();
     }
 }

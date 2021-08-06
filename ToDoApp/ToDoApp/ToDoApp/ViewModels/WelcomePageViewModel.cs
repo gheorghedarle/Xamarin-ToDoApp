@@ -1,12 +1,6 @@
 ﻿using Prism.Navigation;
-using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows.Input;
-using ToDoApp.Auth;
 using ToDoApp.Views;
-using Xamarin.CommunityToolkit.UI.Views;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels

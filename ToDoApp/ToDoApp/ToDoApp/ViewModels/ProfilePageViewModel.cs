@@ -1,5 +1,8 @@
 ﻿using Prism.Navigation;
+using System.Diagnostics;
 using System.Windows.Input;
+using ToDoApp.Auth;
+using ToDoApp.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -12,6 +15,7 @@ namespace ToDoApp.ViewModels
         #region Commands
 
         public ICommand BackCommand { get; set; }
+        public ICommand LogOutCommand { get; set; }
         public ICommand DarkModeToggleCommand { get; set; }
         public ICommand HideDoneToggleCommand { get; set; }
 
@@ -28,6 +32,7 @@ namespace ToDoApp.ViewModels
         public ProfilePageViewModel(INavigationService navigationService) : base(navigationService)
         {
             BackCommand = new Command(BackCommandHandler);
+            LogOutCommand = new Command(LogOutCommandHandler);
             DarkModeToggleCommand = new Command(DarkModeToggleCommandHandler);
             HideDoneToggleCommand = new Command(HideDoneToggleCommandHandler);
         }
@@ -57,6 +62,20 @@ namespace ToDoApp.ViewModels
 
         private void HideDoneToggleCommandHandler()
         { }
+
+        private void LogOutCommandHandler()
+        {
+            var auth = DependencyService.Get<IFirebaseAuthentication>();
+            var response = auth.LogOut();
+            if(response)
+            {
+                _navigationService.NavigateAsync($"/{nameof(WelcomePage)}");
+            }
+            else
+            {
+                Debug.WriteLine("Failed to log out");
+            }
+        }
 
         #endregion
     }
