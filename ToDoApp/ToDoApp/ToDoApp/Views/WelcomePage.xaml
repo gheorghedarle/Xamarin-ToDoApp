@@ -11,7 +11,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid
-            Margin="20, 0, 20, 0"
+            Padding="20, 0, 20, 0"
             BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
             RowDefinitions="*, Auto, Auto">
             <Label
@@ -21,7 +21,7 @@
                 Margin="0, 20, 0, 20"></Label>
             <Button
                 Grid.Row="2"
-                BackgroundColor="{StaticResource PrimaryColor}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
                 Command="{Binding GetStartedCommand}"
                 CornerRadius="28"
                 FontSize="{StaticResource ButtonFontSize}"
@@ -29,7 +29,7 @@
                 Margin="0, 0, 0, 30"
                 Padding="20, 18"
                 Text="Login"
-                TextColor="White"
+                TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
                 VerticalOptions="End"></Button>
         </Grid>
     </ContentPage.Content>

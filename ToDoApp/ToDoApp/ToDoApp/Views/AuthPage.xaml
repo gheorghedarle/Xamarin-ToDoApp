@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:templateSelector="clr-namespace:ToDoApp.Helpers.TemplateSelector"
+             xmlns:fragments="clr-namespace:ToDoApp.Views.Fragments"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ToDoApp.Views.AuthPage"
              NavigationPage.HasNavigationBar="False">
@@ -18,21 +19,7 @@
                 <xct:StateView 
                     StateKey="Loading"
                     VerticalOptions="FillAndExpand">
-                    <Grid>
-                        <Grid.Background>
-                            <LinearGradientBrush 
-                                StartPoint="0, 0" 
-                                EndPoint="0, 1">
-                                <GradientStop Color="#1eae98" Offset="0.1"></GradientStop>
-                                <GradientStop Color="#233e8b" Offset="0.8"></GradientStop>
-                            </LinearGradientBrush>
-                        </Grid.Background>
-                        <StackLayout 
-                            VerticalOptions="Center">
-                            <ActivityIndicator Color="White" IsRunning="True"/>
-                            <Label Text="Loading..." HorizontalOptions="Center" TextColor="White"/>
-                        </StackLayout>
-                    </Grid>
+                    <fragments:LoadingView></fragments:LoadingView>
                 </xct:StateView>
             </xct:StateLayout.StateViews>
             <CarouselView

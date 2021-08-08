@@ -27,6 +27,7 @@ namespace ToDoApp.ViewModels
 
         #region Commands
 
+        public ICommand BackCommand { get; set; }
         public ICommand LoginCommand { get; set; }
         public ICommand SignUpCommand { get; set; }
         public ICommand SwitchToLoginCommand { get; set; }
@@ -39,6 +40,7 @@ namespace ToDoApp.ViewModels
         public AuthPageViewModel(
             INavigationService navigationService) : base(navigationService)
         {
+            BackCommand = new Command(BackCommandHandler);
             LoginCommand = new Command(LoginCommandHandler);
             SignUpCommand = new Command(SignUpCommandHandler);
             SwitchToLoginCommand = new Command(SwitchToLoginCommandHandler);

@@ -4,12 +4,31 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ToDoApp.Views.Templates.Auth.AuthSignUpScreenTemplate"
              x:Name="template">
-    <Label
-        Text="Sign Up"
-        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-        FontFamily="Barlow_Bold"
-        FontSize="{StaticResource Headline3FontSize}"
-        Margin="20, 0"></Label>
+    <Grid
+        Grid.Row="0"
+        ColumnDefinitions="Auto, Auto"
+        Margin="20, 0, 0, 10"
+        HorizontalOptions="Start">
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding Parent.BindingContext.BackCommand, Source={x:Reference template}}"></TapGestureRecognizer>
+        </Grid.GestureRecognizers>
+        <Label
+            Grid.Column="0"
+            Text="&#xf060;"
+            FontSize="{StaticResource Headline4FontSize}"
+            FontFamily="FontAwesome_Solid"
+            TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+            HorizontalOptions="Start"
+            VerticalOptions="Center"></Label>
+        <Label
+            Grid.Column="1"
+            Text="Sign Up"
+            TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+            FontFamily="Barlow_Bold"
+            FontSize="{StaticResource Headline3FontSize}"
+            Margin="10, 0, 0, 0"
+            VerticalOptions="Center"></Label>
+    </Grid>
     <StackLayout
         Spacing="5"
         Margin="20, 0">
@@ -19,17 +38,17 @@
             FontFamily="Barlow_Regular"
             FontSize="{StaticResource Body1FontSize}"></Label>
         <Frame
-            BackgroundColor="White"
-            BorderColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+            BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
             CornerRadius="8"
             Padding="10, 0">
             <Entry
                 FontFamily="Barlow_Regular"
                 Placeholder="Enter your username"
-                PlaceholderColor="#A6A3BD"
                 ReturnCommand="{Binding StartCommand}"
                 Text="{Binding Parent.BindingContext.Username, Source={x:Reference template}}"
-                TextColor="White">
+                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
                 <Entry.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                 </Entry.Effects>
@@ -45,17 +64,17 @@
             FontFamily="Barlow_Regular"
             FontSize="{StaticResource Body1FontSize}"></Label>
         <Frame
-            BackgroundColor="White"
-            BorderColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+            BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
             CornerRadius="8"
             Padding="10, 0">
             <Entry
                 FontFamily="Barlow_Regular"
                 Placeholder="Enter your email"
-                PlaceholderColor="#A6A3BD"
                 ReturnCommand="{Binding StartCommand}"
                 Text="{Binding Parent.BindingContext.Email, Source={x:Reference template}}"
-                TextColor="White">
+                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
                 <Entry.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                 </Entry.Effects>
@@ -71,18 +90,18 @@
             FontFamily="Barlow_Regular"
             FontSize="{StaticResource Body1FontSize}"></Label>
         <Frame
-            BackgroundColor="White"
-            BorderColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+            BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
             CornerRadius="8"
             Padding="10, 0">
             <Entry
                 FontFamily="Barlow_Regular"
                 IsPassword="True"
                 Placeholder="Enter your password"
-                PlaceholderColor="#A6A3BD"
                 ReturnCommand="{Binding StartCommand}"
                 Text="{Binding Parent.BindingContext.Password, Source={x:Reference template}}"
-                TextColor="White">
+                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
                 <Entry.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                 </Entry.Effects>
@@ -98,17 +117,17 @@
             FontFamily="Barlow_Regular"
             FontSize="{StaticResource Body1FontSize}"></Label>
         <Frame
-            BackgroundColor="White"
-            BorderColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+            BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
             CornerRadius="8"
             Padding="10, 0">
             <Entry
                 FontFamily="Barlow_Regular"
                 IsPassword="True"
                 Placeholder="Confirm your password"
-                PlaceholderColor="#A6A3BD"
                 Text="{Binding Parent.BindingContext.ConfirmPassword, Source={x:Reference template}}"
-                TextColor="White">
+                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
                 <Entry.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                 </Entry.Effects>
@@ -116,7 +135,7 @@
         </Frame>
     </StackLayout>
     <Button 
-        BackgroundColor="{StaticResource PrimaryColor}"
+        BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
         Command="{Binding Parent.BindingContext.SignUpCommand, Source={x:Reference template}}"
         CornerRadius="28"
         FontSize="{StaticResource ButtonFontSize}"
@@ -124,7 +143,7 @@
         Margin="20, 20, 20, 10"
         Padding="20, 18"
         Text="Register"
-        TextColor="White"></Button>
+        TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"></Button>
     <Label
         HorizontalTextAlignment="Center"
         Margin="20, 0, 20, 30"
