@@ -15,16 +15,16 @@
             FontFamily="Barlow_Regular"
             FontSize="{StaticResource Body1FontSize}"></Label>
         <Frame
-            BackgroundColor="White"
-            BorderColor="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"
+            BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
             CornerRadius="8"
             Padding="10, 0">
             <Entry
                 FontFamily="Barlow_Regular"
                 Placeholder="Enter your name"
-                PlaceholderColor="#A6A3BD"
                 Text="{Binding AddList.name}"
-                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
+                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
                 <Entry.Effects>
                     <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                 </Entry.Effects>
