@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using ToDoApp.Models;
-using Xamarin.Forms;
 
 namespace ToDoApp.Helpers
 {
@@ -16,6 +15,7 @@ namespace ToDoApp.Helpers
 
         public static TaskModel DefaultTask = new TaskModel()
         {
+            task = "Hello ViewModel",
             archived = false,
             date = DateTime.Today.ToString("dd/MM/yyyy"),
             list = "Inbox"

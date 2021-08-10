@@ -4,7 +4,7 @@ using Xamarin.Forms.Xaml;
 namespace ToDoApp.Views.Templates.AddItem
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddListTemplate : StackLayout
+    public partial class AddListTemplate : ContentView
     {
         public AddListTemplate()
         {

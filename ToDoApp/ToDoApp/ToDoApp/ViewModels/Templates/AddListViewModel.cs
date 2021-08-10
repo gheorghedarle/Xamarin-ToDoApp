@@ -13,7 +13,7 @@ namespace ToDoApp.ViewModels.Templates
         public ListModel AddList { get; set; }
         public ObservableCollection<string> ColorList { get; set; }
 
-        public AddListViewModel(): base()
+        public AddListViewModel()
         {
             ColorList = Constants.ListColorList;
             AddList = Constants.DefaultList;

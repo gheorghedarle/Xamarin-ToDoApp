@@ -1,8 +1,13 @@
 ﻿using Prism.Mvvm;
-using Prism.Navigation;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Threading.Tasks;
+using ToDoApp.Auth;
 using ToDoApp.Helpers;
 using ToDoApp.Models;
+using ToDoApp.Repositories.FirestoreRepository;
+using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels.Templates
 {
@@ -12,7 +17,7 @@ namespace ToDoApp.ViewModels.Templates
 
         public TaskModel AddTask { get; set; }
 
-        public AddTaskViewModel() : base()
+        public AddTaskViewModel()
         {
             AddTask = Constants.DefaultTask;
         }

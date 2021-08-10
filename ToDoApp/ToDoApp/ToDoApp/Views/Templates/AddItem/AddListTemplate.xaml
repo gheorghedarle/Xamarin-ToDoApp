@@ -1,76 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:vm="clr-namespace:ToDoApp.ViewModels.Templates"
              x:Class="ToDoApp.Views.Templates.AddItem.AddListTemplate">
-    <StackLayout.BindingContext>
-        <vm:AddListViewModel />
-    </StackLayout.BindingContext>
-    <StackLayout
+    <StackLayout>
+        <StackLayout
         Spacing="10">
-        <Label
-            Text="Name"
-            TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-            FontFamily="Barlow_Regular"
-            FontSize="{StaticResource Body1FontSize}"></Label>
-        <Frame
-            BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
-            CornerRadius="8"
-            Padding="10, 0">
-            <Entry
-                FontFamily="Barlow_Regular"
-                Placeholder="Enter your name"
-                Text="{Binding AddList.name}"
+            <Label
+                Text="Name"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
-                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
-                <Entry.Effects>
-                    <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
-                </Entry.Effects>
-            </Entry>
-        </Frame>
-    </StackLayout>
-    <StackLayout
+                FontFamily="Barlow_Regular"
+                FontSize="{StaticResource Body1FontSize}"></Label>
+            <Frame
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
+                CornerRadius="8"
+                Padding="10, 0">
+                <Entry
+                    FontFamily="Barlow_Regular"
+                    Placeholder="Enter your name"
+                    Text="{Binding AddList.name}"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                    <Entry.Effects>
+                        <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
+                    </Entry.Effects>
+                </Entry>
+            </Frame>
+        </StackLayout>
+        <StackLayout
         Spacing="10"
         HeightRequest="20">
-        <Label
+            <Label
             Text="Color"
             TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
             FontFamily="Barlow_Regular"
             FontSize="{StaticResource Body1FontSize}"></Label>
-        <CollectionView
+            <CollectionView
             ItemsSource="{Binding ColorList}"
             SelectedItem="{Binding AddList.color}"
             SelectionMode="Single">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"></LinearItemsLayout>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"></LinearItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout
                         Margin="0"
                         Spacing="0"
                         Padding="0">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="CommonStates">
-                                <VisualState Name="Selected">
-                                    <VisualState.Setters>
-                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}" />
-                                        <Setter TargetName="Circle" Property="Frame.BorderColor" Value="Black"/>
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Frame
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}" />
+                                            <Setter TargetName="Circle" Property="Frame.BorderColor" Value="Black"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Frame
                             x:Name="Circle"
                             xct:TouchEffect.NativeAnimation="True"
                             BackgroundColor="{Binding .}"
                             CornerRadius="40">
-                        </Frame>
-                    </StackLayout>
-                </DataTemplate>    
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
     </StackLayout>
-</StackLayout>
+</ContentView>

@@ -2,12 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:templateSelector="clr-namespace:ToDoApp.Helpers.TemplateSelector"
+             xmlns:templateViews="clr-namespace:ToDoApp.Views.Templates.AddItem"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ToDoApp.Views.AddPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <templateSelector:AddItemTemplateSelector x:Key="AddItemTemplateSelector" />
+            <!--<templateSelector:AddItemTemplateSelector x:Key="AddItemTemplateSelector" />-->
+            <DataTemplate x:Key="AddTaskTemplateView">
+                <templateViews:AddTaskTemplate BindingContext="{Binding AddTaskTemplateViewModel}" />
+            </DataTemplate>
+            <DataTemplate x:Key="AddListTemplateView">
+                <templateViews:AddListTemplate BindingContext="{Binding AddListTemplateViewModel}" />
+            </DataTemplate>
+            <templateSelector:AddItemTemplateSelector x:Key="AddItemTemplateSelector"
+                                AddTaskTemplate="{StaticResource AddTaskTemplateView}"
+                                AddListTemplate="{StaticResource AddListTemplateView}"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -171,7 +181,8 @@
                 CurrentItem="{Binding Type}"
                 ItemsSource="{Binding ItemList}"
                 ItemTemplate="{StaticResource AddItemTemplateSelector}"
-                IsSwipeEnabled="False"></CarouselView>
+                IsSwipeEnabled="False">
+            </CarouselView>
             <Button
                 Grid.Row="3"
                 BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
@@ -181,7 +192,7 @@
                 FontFamily="Barlow_Bold"
                 Margin="0, 0, 0, 16"
                 Padding="20, 18"
-                Text="{Binding Type, StringFormat='Add new {0}'}"
+                Text="{Binding Position, StringFormat='Add new {0}'}"
                 TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
                 VerticalOptions="End"></Button>
         </Grid>

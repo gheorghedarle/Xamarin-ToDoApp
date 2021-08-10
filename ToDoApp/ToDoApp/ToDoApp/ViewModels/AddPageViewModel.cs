@@ -10,6 +10,7 @@ using ToDoApp.Auth;
 using ToDoApp.Helpers;
 using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
+using ToDoApp.ViewModels.Templates;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels
@@ -33,6 +34,8 @@ namespace ToDoApp.ViewModels
         public ObservableCollection<string> ItemList { get; set; }
         public ObservableCollection<ListModel> ProjectList { get; set; }
         public ObservableCollection<TaskModel> TaskList { get; set; }
+        public AddTaskViewModel AddTaskTemplateViewModel { get; set; }
+        public AddListViewModel AddListTemplateViewModel { get; set; }
 
         #endregion
 
@@ -57,6 +60,9 @@ namespace ToDoApp.ViewModels
             BackCommand = new Command(BackCommandHandler);
             ChangeTypeCommand = new Command<string>(ChangeTypeCommandHandler);
             CreateCommand = ReactiveCommand.Create(CreateCommandHandler);
+
+            AddTaskTemplateViewModel = new AddTaskViewModel();
+            AddListTemplateViewModel = new AddListViewModel();
 
             ItemList = Constants.AddOptions;
 
@@ -95,7 +101,7 @@ namespace ToDoApp.ViewModels
         }
 
         private void ChangeTypeCommandHandler(string type)
-        {
+        { 
             Type = type;
         }
 
