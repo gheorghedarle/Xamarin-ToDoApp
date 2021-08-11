@@ -15,7 +15,7 @@ namespace ToDoApp.Helpers
 
         public static TaskModel DefaultTask = new TaskModel()
         {
-            task = "Hello ViewModel",
+            task = "",
             archived = false,
             date = DateTime.Today.ToString("dd/MM/yyyy"),
             list = "Inbox"

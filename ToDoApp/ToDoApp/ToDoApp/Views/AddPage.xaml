@@ -10,10 +10,10 @@
         <ResourceDictionary>
             <!--<templateSelector:AddItemTemplateSelector x:Key="AddItemTemplateSelector" />-->
             <DataTemplate x:Key="AddTaskTemplateView">
-                <templateViews:AddTaskTemplate BindingContext="{Binding AddTaskTemplateViewModel}" />
+                <templateViews:AddTaskTemplate/>
             </DataTemplate>
             <DataTemplate x:Key="AddListTemplateView">
-                <templateViews:AddListTemplate BindingContext="{Binding AddListTemplateViewModel}" />
+                <templateViews:AddListTemplate/>
             </DataTemplate>
             <templateSelector:AddItemTemplateSelector x:Key="AddItemTemplateSelector"
                                 AddTaskTemplate="{StaticResource AddTaskTemplateView}"
@@ -192,7 +192,7 @@
                 FontFamily="Barlow_Bold"
                 Margin="0, 0, 0, 16"
                 Padding="20, 18"
-                Text="{Binding Position, StringFormat='Add new {0}'}"
+                Text="{Binding Type, StringFormat='Add new {0}'}"
                 TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
                 VerticalOptions="End"></Button>
         </Grid>

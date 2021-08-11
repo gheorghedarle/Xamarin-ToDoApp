@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+<base:BaseAddItemTemplate xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="ToDoApp.Views.Templates.AddItem.AddTaskTemplate">
+             xmlns:base="clr-namespace:ToDoApp.Views.Templates.AddItem"
+             x:Class="ToDoApp.Views.Templates.AddItem.AddTaskTemplate"
+                          x:Name="cartCell">
     <StackLayout>
         <StackLayout
-        Spacing="10">
+            Spacing="10">
             <Label
                 Text="Name"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
@@ -18,7 +20,7 @@
                 <Entry
                     FontFamily="Barlow_Regular"
                     Placeholder="Enter your name"
-                    Text="{Binding AddTask.task}"
+                    Text="{Binding ParentBindingContext.AddTask.task, Source={x:Reference cartCell}}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                     PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
                     BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
@@ -29,23 +31,23 @@
             </Frame>
         </StackLayout>
         <StackLayout
-        Spacing="10">
+            Spacing="10">
             <Label
-            Text="List"
-            TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-            FontFamily="Barlow_Regular"
-            FontSize="{StaticResource Body1FontSize}"></Label>
-            <Frame
-            BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
-            CornerRadius="8"
-            Padding="10, 0">
-                <Picker
-                SelectedItem="{Binding AddTask.listObject}"
-                ItemsSource="{Binding ProjectList}"
-                ItemDisplayBinding="{Binding name}"
-                FontFamily="Barlow_Regular"
+                Text="List"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                FontFamily="Barlow_Regular"
+                FontSize="{StaticResource Body1FontSize}"></Label>
+            <Frame
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
+                CornerRadius="8"
+                Padding="10, 0">
+                <Picker
+                    SelectedItem="{Binding ParentBindingContext.AddTask.listObject, Source={x:Reference cartCell}}"
+                    ItemsSource="{Binding ParentBindingContext.ProjectList, Source={x:Reference cartCell}}"
+                    ItemDisplayBinding="{Binding name}"
+                    FontFamily="Barlow_Regular"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
                     <Picker.Effects>
                         <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                     </Picker.Effects>
@@ -66,7 +68,7 @@
             Padding="10, 0">
                 <DatePicker
                 FontFamily="Barlow_Regular"
-                Date="{Binding AddTask.date}"
+                Date="{Binding ParentBindingContext.AddTask.date, Source={x:Reference cartCell}}"
                 Format="dd/MM/yyyy"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                 BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
@@ -77,4 +79,4 @@
             </Frame>
         </StackLayout>
     </StackLayout>
-</ContentView>
+</base:BaseAddItemTemplate>

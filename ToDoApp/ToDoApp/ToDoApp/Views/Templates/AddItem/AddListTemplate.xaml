@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+<base:BaseAddItemTemplate xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="ToDoApp.Views.Templates.AddItem.AddListTemplate">
+             xmlns:base="clr-namespace:ToDoApp.Views.Templates.AddItem"
+             x:Class="ToDoApp.Views.Templates.AddItem.AddListTemplate"
+                          x:Name="cartCell">
     <StackLayout>
         <StackLayout
         Spacing="10">
@@ -18,7 +20,7 @@
                 <Entry
                     FontFamily="Barlow_Regular"
                     Placeholder="Enter your name"
-                    Text="{Binding AddList.name}"
+                    Text="{Binding ParentBindingContext.AddList.name, Source={x:Reference cartCell}}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                     PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
                     BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
@@ -29,46 +31,28 @@
             </Frame>
         </StackLayout>
         <StackLayout
-        Spacing="10"
-        HeightRequest="20">
+            Spacing="10">
             <Label
-            Text="Color"
-            TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-            FontFamily="Barlow_Regular"
-            FontSize="{StaticResource Body1FontSize}"></Label>
-            <CollectionView
-            ItemsSource="{Binding ColorList}"
-            SelectedItem="{Binding AddList.color}"
-            SelectionMode="Single">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"></LinearItemsLayout>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout
-                        Margin="0"
-                        Spacing="0"
-                        Padding="0">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup Name="CommonStates">
-                                    <VisualState Name="Selected">
-                                        <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}" />
-                                            <Setter TargetName="Circle" Property="Frame.BorderColor" Value="Black"/>
-                                        </VisualState.Setters>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Frame
-                            x:Name="Circle"
-                            xct:TouchEffect.NativeAnimation="True"
-                            BackgroundColor="{Binding .}"
-                            CornerRadius="40">
-                            </Frame>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                Text="Color"
+                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                FontFamily="Barlow_Regular"
+                FontSize="{StaticResource Body1FontSize}"></Label>
+            <Frame
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
+                CornerRadius="8"
+                Padding="10, 0">
+                <Picker
+                    SelectedItem="{Binding ParentBindingContext.AddList.color, Source={x:Reference cartCell}}"
+                    ItemsSource="{Binding ParentBindingContext.ColorList, Source={x:Reference cartCell}}"
+                    ItemDisplayBinding="{Binding .}"
+                    FontFamily="Barlow_Regular"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                    <Picker.Effects>
+                        <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
+                    </Picker.Effects>
+                </Picker>
+            </Frame>
         </StackLayout>
     </StackLayout>
-</ContentView>
+</base:BaseAddItemTemplate>

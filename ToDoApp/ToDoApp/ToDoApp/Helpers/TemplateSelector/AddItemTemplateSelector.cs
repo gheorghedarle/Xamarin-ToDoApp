@@ -18,6 +18,9 @@ namespace ToDoApp.Helpers.TemplateSelector
         {
             if (item.GetType() == typeof(string))
             {
+                AddTaskTemplate.SetValue(BaseAddItemTemplate.ParentContextProperty, container.BindingContext);
+                AddListTemplate.SetValue(BaseAddItemTemplate.ParentContextProperty, container.BindingContext);
+
                 var screen = item as string;
                 if (screen == "task")
                 {
