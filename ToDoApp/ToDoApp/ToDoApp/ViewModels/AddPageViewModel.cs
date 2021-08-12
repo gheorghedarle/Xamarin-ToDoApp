@@ -10,7 +10,6 @@ using ToDoApp.Auth;
 using ToDoApp.Helpers;
 using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
-using ToDoApp.ViewModels.Templates;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels
@@ -31,21 +30,18 @@ namespace ToDoApp.ViewModels
         #region Properties
 
         public string Type { get; set; }
+        public TaskModel AddTask { get; set; }
+        public ListModel AddList { get; set; }
         public ObservableCollection<string> ItemList { get; set; }
         public ObservableCollection<ListModel> ProjectList { get; set; }
         public ObservableCollection<TaskModel> TaskList { get; set; }
-        public AddTaskViewModel AddTaskTemplateViewModel { get; set; }
-        public AddListViewModel AddListTemplateViewModel { get; set; }
-        public TaskModel AddTask { get; set; }
-        public ListModel AddList { get; set; }
-        public ObservableCollection<string> ColorList { get; set; }
+        public ObservableCollection<ColorModel> ColorList { get; set; }
 
         #endregion
 
         #region Commands
 
         public ICommand ChangeTypeCommand { get; set; }
-        public ICommand ChangeColorCommand { get; set; }
         public ICommand CreateCommand { get; set; }
         public ICommand BackCommand { get; set; }
 
@@ -63,11 +59,7 @@ namespace ToDoApp.ViewModels
 
             BackCommand = new Command(BackCommandHandler);
             ChangeTypeCommand = new Command<string>(ChangeTypeCommandHandler);
-            ChangeColorCommand = new Command(ChangeColorCommandHandler);
             CreateCommand = ReactiveCommand.Create(CreateCommandHandler);
-
-            AddTaskTemplateViewModel = new AddTaskViewModel();
-            AddListTemplateViewModel = new AddListViewModel();
 
             ItemList = Constants.AddOptions;
         }
@@ -76,12 +68,13 @@ namespace ToDoApp.ViewModels
         {
             var projectList = await GetProjectList();
 
-            AddTask = Constants.DefaultTask;
             ColorList = Constants.ListColorList;
-            AddList = Constants.DefaultList;
-
             ProjectList = new ObservableCollection<ListModel>(projectList);
+
             Type = "task";
+
+            AddTask = Constants.DefaultTask;
+            AddList = Constants.DefaultList;
         }
 
         #endregion
@@ -111,10 +104,6 @@ namespace ToDoApp.ViewModels
         private void ChangeTypeCommandHandler(string type)
         { 
             Type = type;
-        }
-        private void ChangeColorCommandHandler()
-        {
-            AddList.color = "000000";
         }
 
         private async Task CreateCommandHandler()

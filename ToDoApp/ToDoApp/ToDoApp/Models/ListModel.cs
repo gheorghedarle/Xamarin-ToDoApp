@@ -8,6 +8,8 @@ namespace ToDoApp.Models
         public string id { get; set; }
         public string name { get; set; }
         public string color { get; set; }
+        [Ignored]
+        public ColorModel colorObject { get; set; }
         public string userId { get; set; }
     }
 }

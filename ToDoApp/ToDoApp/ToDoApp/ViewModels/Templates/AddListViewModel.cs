@@ -11,7 +11,7 @@ namespace ToDoApp.ViewModels.Templates
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ListModel AddList { get; set; }
-        public ObservableCollection<string> ColorList { get; set; }
+        public ObservableCollection<ColorModel> ColorList { get; set; }
 
         public AddListViewModel()
         {

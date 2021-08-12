@@ -1,4 +1,5 @@
 ﻿using Plugin.CloudFirestore.Attributes;
+using System;
 using ToDoApp.Models.Interfaces;
 
 namespace ToDoApp.Models
@@ -13,6 +14,8 @@ namespace ToDoApp.Models
         public ListModel listObject { get; set; }
         public string task { get; set; }
         public string date { get; set; }
+        [Ignored]
+        public DateTime dateObject { get; set; }
         public string userId { get; set; }
 
         public void Update(TaskModel t)

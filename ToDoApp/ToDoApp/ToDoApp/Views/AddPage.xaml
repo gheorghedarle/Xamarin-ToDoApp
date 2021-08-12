@@ -8,16 +8,7 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <!--<templateSelector:AddItemTemplateSelector x:Key="AddItemTemplateSelector" />-->
-            <DataTemplate x:Key="AddTaskTemplateView">
-                <templateViews:AddTaskTemplate/>
-            </DataTemplate>
-            <DataTemplate x:Key="AddListTemplateView">
-                <templateViews:AddListTemplate/>
-            </DataTemplate>
-            <templateSelector:AddItemTemplateSelector x:Key="AddItemTemplateSelector"
-                                AddTaskTemplate="{StaticResource AddTaskTemplateView}"
-                                AddListTemplate="{StaticResource AddListTemplateView}"/>
+            <templateSelector:AddItemTemplateSelector x:Key="AddItemTemplateSelector" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>

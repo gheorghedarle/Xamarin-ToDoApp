@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<base:BaseAddItemTemplate xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:base="clr-namespace:ToDoApp.Views.Templates.AddItem"
              x:Class="ToDoApp.Views.Templates.AddItem.AddTaskTemplate"
-                          x:Name="cartCell">
+             x:Name="template">
     <StackLayout>
         <StackLayout
             Spacing="10">
@@ -20,7 +19,7 @@
                 <Entry
                     FontFamily="Barlow_Regular"
                     Placeholder="Enter your name"
-                    Text="{Binding ParentBindingContext.AddTask.task, Source={x:Reference cartCell}}"
+                    Text="{Binding Parent.BindingContext.AddTask.task, Source={x:Reference template}}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                     PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
                     BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
@@ -42,8 +41,8 @@
                 CornerRadius="8"
                 Padding="10, 0">
                 <Picker
-                    SelectedItem="{Binding ParentBindingContext.AddTask.listObject, Source={x:Reference cartCell}}"
-                    ItemsSource="{Binding ParentBindingContext.ProjectList, Source={x:Reference cartCell}}"
+                    SelectedItem="{Binding Parent.BindingContext.AddTask.listObject, Source={x:Reference template}}"
+                    ItemsSource="{Binding Parent.BindingContext.ProjectList, Source={x:Reference template}}"
                     ItemDisplayBinding="{Binding name}"
                     FontFamily="Barlow_Regular"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
@@ -58,20 +57,20 @@
         Grid.Column="0"
         Spacing="10">
             <Label
-            Text="Date"
-            TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-            FontFamily="Barlow_Regular"
-            FontSize="{StaticResource Body1FontSize}"></Label>
-            <Frame
-            BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
-            CornerRadius="8"
-            Padding="10, 0">
-                <DatePicker
-                FontFamily="Barlow_Regular"
-                Date="{Binding ParentBindingContext.AddTask.date, Source={x:Reference cartCell}}"
-                Format="dd/MM/yyyy"
+                Text="Date"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                FontFamily="Barlow_Regular"
+                FontSize="{StaticResource Body1FontSize}"></Label>
+            <Frame
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
+                CornerRadius="8"
+                Padding="10, 0">
+                <DatePicker
+                    FontFamily="Barlow_Regular"
+                    Date="{Binding Parent.BindingContext.AddTask.dateObject, Source={x:Reference template}}"
+                    Format="dd/MM/yyyy"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
                     <DatePicker.Effects>
                         <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                     </DatePicker.Effects>
@@ -79,4 +78,4 @@
             </Frame>
         </StackLayout>
     </StackLayout>
-</base:BaseAddItemTemplate>
+</ContentView>

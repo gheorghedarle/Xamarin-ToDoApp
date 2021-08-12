@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<base:BaseAddItemTemplate xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:base="clr-namespace:ToDoApp.Views.Templates.AddItem"
              x:Class="ToDoApp.Views.Templates.AddItem.AddListTemplate"
-                          x:Name="cartCell">
+             x:Name="template">
     <StackLayout>
         <StackLayout
         Spacing="10">
@@ -20,7 +19,7 @@
                 <Entry
                     FontFamily="Barlow_Regular"
                     Placeholder="Enter your name"
-                    Text="{Binding ParentBindingContext.AddList.name, Source={x:Reference cartCell}}"
+                    Text="{Binding Parent.BindingContext.AddList.name, Source={x:Reference template}}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                     PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
                     BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
@@ -42,9 +41,9 @@
                 CornerRadius="8"
                 Padding="10, 0">
                 <Picker
-                    SelectedItem="{Binding ParentBindingContext.AddList.color, Source={x:Reference cartCell}}"
-                    ItemsSource="{Binding ParentBindingContext.ColorList, Source={x:Reference cartCell}}"
-                    ItemDisplayBinding="{Binding .}"
+                    SelectedItem="{Binding Parent.BindingContext.AddList.colorObject, Source={x:Reference template}}"
+                    ItemsSource="{Binding Parent.BindingContext.ColorList, Source={x:Reference template}}"
+                    ItemDisplayBinding="{Binding Color}"
                     FontFamily="Barlow_Regular"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                     BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
@@ -55,4 +54,4 @@
             </Frame>
         </StackLayout>
     </StackLayout>
-</base:BaseAddItemTemplate>
+</ContentView>

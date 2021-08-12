@@ -1,15 +1,12 @@
 ﻿using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
-using Prism.Mvvm;
 using ToDoApp.Auth;
 using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Services.DateService;
 using ToDoApp.ViewModels;
-using ToDoApp.ViewModels.Templates;
 using ToDoApp.Views;
-using ToDoApp.Views.Templates.AddItem;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
