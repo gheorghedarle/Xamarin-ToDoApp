@@ -3,8 +3,10 @@ using Prism.Navigation;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ToDoApp.Helpers;
 using ToDoApp.Models;
+using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels.Templates
 {

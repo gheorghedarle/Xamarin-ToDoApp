@@ -35,22 +35,45 @@
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                 FontFamily="Barlow_Regular"
                 FontSize="{StaticResource Body1FontSize}"></Label>
-            <Frame
-                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
-                CornerRadius="8"
-                Padding="10, 0">
-                <Picker
-                    ItemsSource="{Binding ColorList}"
-                    SelectedItem="{Binding AddList.colorObject}"
-                    ItemDisplayBinding="{Binding name}"
-                    FontFamily="Barlow_Regular"
-                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
-                    <Picker.Effects>
-                        <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
-                    </Picker.Effects>
-                </Picker>
-            </Frame>
+            <CollectionView
+                ItemsSource="{Binding ColorList}"
+                SelectedItem="{Binding AddList.colorObject}"
+                SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"></LinearItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout
+                            Margin="0"
+                            Spacing="5"
+                            Padding="0">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}" />
+                                            <Setter TargetName="Circle" Property="Frame.BorderColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}" />
+                                            <Setter TargetName="Circle" Property="Frame.BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Frame
+                                x:Name="Circle"
+                                xct:TouchEffect.NativeAnimation="True"
+                                BackgroundColor="{Binding name}"
+                                CornerRadius="40">
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </StackLayout>
 </ContentView>
