@@ -1,4 +1,5 @@
 ﻿using Prism.Navigation;
+using Prism.Regions;
 using ReactiveUI;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,8 +21,9 @@ namespace ToDoApp.ViewModels
     {
         #region Private & Protected
 
+        private IRegionManager _regionManager { get; }
+
         private IFirestoreRepository<TaskModel> _tasksRepository;
-        private IFirestoreRepository<ListModel> _listsRepository;
 
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
 
@@ -30,12 +32,7 @@ namespace ToDoApp.ViewModels
         #region Properties
 
         public string Type { get; set; }
-        public TaskModel AddTask { get; set; }
-        public ListModel AddList { get; set; }
         public ObservableCollection<string> ItemList { get; set; }
-        public ObservableCollection<ListModel> ProjectList { get; set; }
-        public ObservableCollection<TaskModel> TaskList { get; set; }
-        public ObservableCollection<ColorModel> ColorList { get; set; }
 
         #endregion
 
@@ -50,12 +47,11 @@ namespace ToDoApp.ViewModels
         #region Constructors
 
         public AddPageViewModel(
-            INavigationService navigationService,
-            IFirestoreRepository<TaskModel> tasksRepository,
-            IFirestoreRepository<ListModel> listsRepository) : base(navigationService)
+            INavigationService navigationService, 
+            IRegionManager regionManager,
+            IFirestoreRepository<TaskModel> tasksRepository) : base(navigationService)
         {
-            _tasksRepository = tasksRepository;
-            _listsRepository = listsRepository;
+            _regionManager = regionManager;
 
             BackCommand = new Command(BackCommandHandler);
             ChangeTypeCommand = new Command<string>(ChangeTypeCommandHandler);
@@ -64,42 +60,17 @@ namespace ToDoApp.ViewModels
             ItemList = Constants.AddOptions;
         }
 
-        public async void Initialize(INavigationParameters parameters)
+        public void Initialize(INavigationParameters parameters)
         {
-            var projectList = await GetProjectList();
-
-            ColorList = Constants.ListColorList;
-            ProjectList = new ObservableCollection<ListModel>(projectList);
-
             Type = "task";
 
-            AddTask = Constants.DefaultTask;
-            AddList = Constants.DefaultList;
+            _regionManager.RequestNavigate("AddTaskRegion", "AddTaskTemplate");
+            _regionManager.RequestNavigate("AddListRegion", "AddListTemplate");
         }
 
         #endregion
 
         #region Command Handlers
-
-        private async Task<List<ListModel>> GetProjectList()
-        {
-            var auth = DependencyService.Get<IFirebaseAuthentication>();
-            var userId = auth.GetUserId();
-
-            var querySnapshot = await _listsRepository.GetAll(userId).GetAsync();
-            var list = querySnapshot.ToObjects<ListModel>();
-            var listToAdd = new List<ListModel>();
-            if (list.Count() > 0)
-            {
-                listToAdd = list.ToList();
-                listToAdd.Insert(0, Constants.InboxList);
-            }
-            else
-            {
-                listToAdd.Add(Constants.InboxList);
-            }
-            return listToAdd;
-        }
 
         private void ChangeTypeCommandHandler(string type)
         { 

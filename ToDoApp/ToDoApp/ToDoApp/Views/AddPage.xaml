@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:templateSelector="clr-namespace:ToDoApp.Helpers.TemplateSelector"
-             xmlns:templateViews="clr-namespace:ToDoApp.Views.Templates.AddItem"
+             xmlns:prism="http://prismlibrary.com"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ToDoApp.Views.AddPage"
              NavigationPage.HasNavigationBar="False">
@@ -167,13 +167,12 @@
                     </Label>
                 </Frame>
             </Grid>
-            <CarouselView
-                Grid.Row="2"
-                CurrentItem="{Binding Type}"
-                ItemsSource="{Binding ItemList}"
-                ItemTemplate="{StaticResource AddItemTemplateSelector}"
-                IsSwipeEnabled="False">
-            </CarouselView>
+            <ContentView prism:RegionManager.RegionName="AddTaskRegion"
+                         IsVisible="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"
+                         Grid.Row="2"/>
+            <ContentView prism:RegionManager.RegionName="AddListRegion"
+                         IsVisible="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"
+                         Grid.Row="2"/>
             <Button
                 Grid.Row="3"
                 BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"

@@ -6,7 +6,9 @@ using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Services.DateService;
 using ToDoApp.ViewModels;
+using ToDoApp.ViewModels.Templates;
 using ToDoApp.Views;
+using ToDoApp.Views.Templates.AddItem;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -49,6 +51,8 @@ namespace ToDoApp
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterRegionServices();
+
             containerRegistry.Register<IDateService, DateService>();
             containerRegistry.Register<IFirestoreRepository<TaskModel>, TasksRepository>();
             containerRegistry.Register<IFirestoreRepository<ListModel>, ListsRepository>();
@@ -60,6 +64,9 @@ namespace ToDoApp
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>("ProfilePage");
             containerRegistry.RegisterForNavigation<AuthPage, AuthPageViewModel>("AuthPage");
             containerRegistry.RegisterForNavigation<MorePage, MorePageViewModel>("MorePage");
+
+            containerRegistry.RegisterForRegionNavigation<AddListTemplate, AddListViewModel>("AddListTemplate");
+            containerRegistry.RegisterForRegionNavigation<AddTaskTemplate, AddTaskViewModel>("AddTaskTemplate");
         }
 
         protected override void OnStart()

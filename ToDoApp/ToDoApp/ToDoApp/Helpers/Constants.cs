@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using ToDoApp.Models;
@@ -12,13 +13,13 @@ namespace ToDoApp.Helpers
             "list"
         };
 
-        public static ObservableCollection<ColorModel> ListColorList = new ObservableCollection<ColorModel>() {
-            new ColorModel() { Name="Red", Color = "#F9371C" },
-            new ColorModel() { Name="Orange", Color = "#F97C1C" },
-            new ColorModel() { Name="Yellow", Color = "#F9C81C" },
-            new ColorModel() { Name="Turquoise", Color = "#41D0B6" },
-            new ColorModel() { Name="Cyan", Color = "#2CADF6" },
-            new ColorModel() { Name="Purple", Color = "#6562FC" },
+        public static List<ColorModel> ListColorList = new List<ColorModel>() {
+            new ColorModel() { name="Red", color = "#F9371C" },
+            new ColorModel() { name="Orange", color = "#F97C1C" },
+            new ColorModel() { name="Yellow", color = "#F9C81C" },
+            new ColorModel() { name="Turquoise", color = "#41D0B6" },
+            new ColorModel() { name="Cyan", color = "#2CADF6" },
+            new ColorModel() { name="Purple", color = "#6562FC" },
         };
 
         public static ListModel InboxList = new ListModel() {

@@ -1,8 +1,8 @@
 ﻿namespace ToDoApp.Models
 {
-    public class ColorModel
+    public class ColorModel: BaseModel
     {
-        public string Name { get; set; }
-        public string Color { get; set; }
+        public string name { get; set; }
+        public string color { get; set; }
     }
 }
