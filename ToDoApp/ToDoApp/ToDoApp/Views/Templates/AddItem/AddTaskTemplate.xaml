@@ -3,78 +3,94 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ToDoApp.Views.Templates.AddItem.AddTaskTemplate">
-    <StackLayout>
+    <Grid
+        RowDefinitions="*, Auto">
         <StackLayout
-            Spacing="10">
-            <Label
-                Text="Name"
-                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Barlow_Regular"
-                FontSize="{StaticResource Body1FontSize}"></Label>
-            <Frame
-                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
-                CornerRadius="8"
-                Padding="10, 0">
-                <Entry
-                    FontFamily="Barlow_Regular"
-                    Placeholder="Enter your name"
-                    Text="{Binding AddTask.task}"
+            Grid.Row="0">
+            <StackLayout
+                Spacing="10">
+                <Label
+                    Text="Name"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
-                    <Entry.Effects>
-                        <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
-                    </Entry.Effects>
-                </Entry>
-            </Frame>
-        </StackLayout>
-        <StackLayout
-            Spacing="10">
-            <Label
-                Text="List"
-                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Barlow_Regular"
-                FontSize="{StaticResource Body1FontSize}"></Label>
-            <Frame
-                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
-                CornerRadius="8"
-                Padding="10, 0">
-                <Picker
-                    ItemsSource="{Binding ProjectList}"
-                    SelectedItem="{Binding AddTask.listObject}"
-                    ItemDisplayBinding="{Binding name}"
                     FontFamily="Barlow_Regular"
+                    FontSize="{StaticResource Body1FontSize}"></Label>
+                <Frame
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
+                    CornerRadius="8"
+                    Padding="10, 0">
+                    <Entry
+                        FontFamily="Barlow_Regular"
+                        Placeholder="Enter your name"
+                        Text="{Binding AddTask.task}"
+                        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                        PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                        <Entry.Effects>
+                            <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
+                        </Entry.Effects>
+                    </Entry>
+                </Frame>
+            </StackLayout>
+            <StackLayout
+                Spacing="10">
+                <Label
+                    Text="List"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
-                    <Picker.Effects>
-                        <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
-                    </Picker.Effects>
-                </Picker>
-            </Frame>
-        </StackLayout>
-        <StackLayout
-        Grid.Column="0"
-        Spacing="10">
-            <Label
-                Text="Date"
-                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Barlow_Regular"
-                FontSize="{StaticResource Body1FontSize}"></Label>
-            <Frame
-                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
-                CornerRadius="8"
-                Padding="10, 0">
-                <DatePicker
                     FontFamily="Barlow_Regular"
-                    Date="{Binding AddTask.dateObject}"
-                    Format="dd/MM/yyyy"
+                    FontSize="{StaticResource Body1FontSize}"></Label>
+                <Frame
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
+                    CornerRadius="8"
+                    Padding="10, 0">
+                    <Picker
+                        ItemsSource="{Binding ProjectList}"
+                        SelectedItem="{Binding AddTask.listObject}"
+                        ItemDisplayBinding="{Binding name}"
+                        FontFamily="Barlow_Regular"
+                        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                        <Picker.Effects>
+                            <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
+                        </Picker.Effects>
+                    </Picker>
+                </Frame>
+            </StackLayout>
+            <StackLayout
+                Grid.Column="0"
+                Spacing="10">
+                <Label
+                    Text="Date"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
-                    <DatePicker.Effects>
-                        <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
-                    </DatePicker.Effects>
-                </DatePicker>
-            </Frame>
+                    FontFamily="Barlow_Regular"
+                    FontSize="{StaticResource Body1FontSize}"></Label>
+                <Frame
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
+                    CornerRadius="8"
+                    Padding="10, 0">
+                    <DatePicker
+                        FontFamily="Barlow_Regular"
+                        Date="{Binding AddTask.dateObject}"
+                        Format="dd/MM/yyyy"
+                        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                        <DatePicker.Effects>
+                            <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
+                        </DatePicker.Effects>
+                    </DatePicker>
+                </Frame>
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
+        <Button
+            Grid.Row="1"
+            BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
+            Command="{Binding CreateCommand}"
+            CornerRadius="28"
+            FontSize="{StaticResource ButtonFontSize}"
+            FontFamily="Barlow_Bold"
+            Margin="0, 0, 0, 16"
+            Padding="20, 18"
+            Text="Add new task"
+            TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
+            VerticalOptions="End"></Button>
+    </Grid>
 </ContentView>

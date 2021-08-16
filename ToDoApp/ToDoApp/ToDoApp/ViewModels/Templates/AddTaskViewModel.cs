@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ToDoApp.Auth;
 using ToDoApp.Helpers;
 using ToDoApp.Models;
@@ -23,11 +24,15 @@ namespace ToDoApp.ViewModels.Templates
 
         public TaskModel AddTask { get; set; }
 
+        public ICommand CreateCommand { get; set; }
+
         public AddTaskViewModel(
             INavigationService navigationService,
             IFirestoreRepository<ListModel> listsRepository): base(navigationService)
         {
             _listsRepository = listsRepository;
+
+            CreateCommand = new Command(CreateCommandHandler);
 
             Initialization = Initialize();
         }
@@ -38,6 +43,43 @@ namespace ToDoApp.ViewModels.Templates
             ProjectList = new ObservableCollection<ListModel>(projectList);
 
             AddTask = Constants.DefaultTask;
+        }
+
+        private void CreateCommandHandler()
+        {
+            //try
+            //{
+            //    var auth = DependencyService.Get<IFirebaseAuthentication>();
+            //    var userId = auth.GetUserId();
+            //    if(Type == "task")
+            //    {
+            //        var model = new TaskModel()
+            //        {
+            //            archived = false,
+            //            list = AddTask.listObject.name,
+            //            task = AddTask.task,
+            //            userId = userId,
+            //            date = DateTime.Parse(AddTask.date).ToString("dd/MM/yyyy")
+            //        };
+            //        await _tasksRepository.Add(model);
+            //    }
+            //    else
+            //    {
+            //        var model = new ListModel()
+            //        {
+            //            name = AddList.name,
+            //            color = AddList.color,
+            //            userId = userId
+            //        };
+            //        await _listsRepository.Add(model);
+            //    }
+            //    await _navigationService.GoBackAsync();
+            //}
+            //catch (Exception ex)
+            //{
+            //    //display error message
+            //    Debug.Write(ex.Message);
+            //}
         }
 
         private async Task<List<ListModel>> GetProjectList()

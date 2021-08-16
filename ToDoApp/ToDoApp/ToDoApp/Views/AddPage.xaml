@@ -173,18 +173,6 @@
             <ContentView prism:RegionManager.RegionName="AddListRegion"
                          IsVisible="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"
                          Grid.Row="2"/>
-            <Button
-                Grid.Row="3"
-                BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
-                Command="{Binding CreateCommand}"
-                CornerRadius="28"
-                FontSize="{StaticResource ButtonFontSize}"
-                FontFamily="Barlow_Bold"
-                Margin="0, 0, 0, 16"
-                Padding="20, 18"
-                Text="{Binding Type, StringFormat='Add new {0}'}"
-                TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
-                VerticalOptions="End"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

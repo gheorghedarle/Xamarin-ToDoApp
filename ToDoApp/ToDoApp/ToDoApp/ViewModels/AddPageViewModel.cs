@@ -1,16 +1,9 @@
 ﻿using Prism.Navigation;
 using Prism.Regions;
-using ReactiveUI;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reactive.Disposables;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using ToDoApp.Auth;
 using ToDoApp.Helpers;
-using ToDoApp.Models;
-using ToDoApp.Repositories.FirestoreRepository;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels
@@ -22,10 +15,6 @@ namespace ToDoApp.ViewModels
         #region Private & Protected
 
         private IRegionManager _regionManager { get; }
-
-        private IFirestoreRepository<TaskModel> _tasksRepository;
-
-        private readonly CompositeDisposable _disposables = new CompositeDisposable();
 
         #endregion
 
@@ -39,7 +28,6 @@ namespace ToDoApp.ViewModels
         #region Commands
 
         public ICommand ChangeTypeCommand { get; set; }
-        public ICommand CreateCommand { get; set; }
         public ICommand BackCommand { get; set; }
 
         #endregion
@@ -48,14 +36,12 @@ namespace ToDoApp.ViewModels
 
         public AddPageViewModel(
             INavigationService navigationService, 
-            IRegionManager regionManager,
-            IFirestoreRepository<TaskModel> tasksRepository) : base(navigationService)
+            IRegionManager regionManager) : base(navigationService)
         {
             _regionManager = regionManager;
 
             BackCommand = new Command(BackCommandHandler);
             ChangeTypeCommand = new Command<string>(ChangeTypeCommandHandler);
-            CreateCommand = ReactiveCommand.Create(CreateCommandHandler);
 
             ItemList = Constants.AddOptions;
         }
