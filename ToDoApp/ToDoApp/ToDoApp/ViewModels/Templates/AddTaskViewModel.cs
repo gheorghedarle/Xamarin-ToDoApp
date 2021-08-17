@@ -1,8 +1,10 @@
 ﻿using Prism.Mvvm;
 using Prism.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -16,9 +18,10 @@ namespace ToDoApp.ViewModels.Templates
 {
     public class AddTaskViewModel : BaseViewModel
     {
-        private IFirestoreRepository<ListModel> _listsRepository;
+        private IFirestoreRepository<ListModel> _listRepository;
+        private IFirestoreRepository<TaskModel> _taskRepository;
 
-        public Task Initialization { get; private set; }
+        private Task Initialization { get; set; }
 
         public ObservableCollection<ListModel> ProjectList { get; set; }
 
@@ -28,9 +31,11 @@ namespace ToDoApp.ViewModels.Templates
 
         public AddTaskViewModel(
             INavigationService navigationService,
-            IFirestoreRepository<ListModel> listsRepository): base(navigationService)
+            IFirestoreRepository<TaskModel> taskRepository,
+            IFirestoreRepository<ListModel> listRepository) : base(navigationService)
         {
-            _listsRepository = listsRepository;
+            _taskRepository = taskRepository;
+            _listRepository = listRepository;
 
             CreateCommand = new Command(CreateCommandHandler);
 
@@ -45,41 +50,28 @@ namespace ToDoApp.ViewModels.Templates
             AddTask = Constants.DefaultTask;
         }
 
-        private void CreateCommandHandler()
+        private async void CreateCommandHandler()
         {
-            //try
-            //{
-            //    var auth = DependencyService.Get<IFirebaseAuthentication>();
-            //    var userId = auth.GetUserId();
-            //    if(Type == "task")
-            //    {
-            //        var model = new TaskModel()
-            //        {
-            //            archived = false,
-            //            list = AddTask.listObject.name,
-            //            task = AddTask.task,
-            //            userId = userId,
-            //            date = DateTime.Parse(AddTask.date).ToString("dd/MM/yyyy")
-            //        };
-            //        await _tasksRepository.Add(model);
-            //    }
-            //    else
-            //    {
-            //        var model = new ListModel()
-            //        {
-            //            name = AddList.name,
-            //            color = AddList.color,
-            //            userId = userId
-            //        };
-            //        await _listsRepository.Add(model);
-            //    }
-            //    await _navigationService.GoBackAsync();
-            //}
-            //catch (Exception ex)
-            //{
-            //    //display error message
-            //    Debug.Write(ex.Message);
-            //}
+            try
+            {
+                var auth = DependencyService.Get<IFirebaseAuthentication>();
+                var userId = auth.GetUserId();
+                var model = new TaskModel()
+                {
+                    archived = false,
+                    list = AddTask.listObject.name,
+                    task = AddTask.task,
+                    userId = userId,
+                    date = DateTime.Parse(AddTask.date).ToString("dd/MM/yyyy")
+                };
+                await _taskRepository.Add(model);
+                await _navigationService.GoBackAsync();
+            }
+            catch (Exception ex)
+            {
+                //display error message
+                Debug.Write(ex.Message);
+            }
         }
 
         private async Task<List<ListModel>> GetProjectList()
@@ -87,7 +79,7 @@ namespace ToDoApp.ViewModels.Templates
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var userId = auth.GetUserId();
 
-            var querySnapshot = await _listsRepository.GetAll(userId).GetAsync();
+            var querySnapshot = await _listRepository.GetAll(userId).GetAsync();
             var list = querySnapshot.ToObjects<ListModel>();
             var listToAdd = new List<ListModel>();
             if (list.Count() > 0)
