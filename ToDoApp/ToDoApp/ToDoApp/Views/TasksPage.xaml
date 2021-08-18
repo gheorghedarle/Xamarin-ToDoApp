@@ -280,7 +280,7 @@
                                                 <Button
                                                     CornerRadius="16"
                                                     Text="&#xf2ed;"
-                                                    TextColor="#233e8b"
+                                                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                                                     FontSize="23"
                                                     FontFamily="FontAwesome_Solid"
                                                     HorizontalOptions="EndAndExpand"

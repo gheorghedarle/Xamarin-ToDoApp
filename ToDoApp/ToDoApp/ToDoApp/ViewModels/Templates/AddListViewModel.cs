@@ -36,7 +36,12 @@ namespace ToDoApp.ViewModels.Templates
         public Task Initialize()
         {
             ColorList = new ObservableCollection<ColorModel>(Constants.ListColorList);
-            AddList = Constants.DefaultList;
+
+            AddList = new ListModel()
+            {
+                name = Constants.DefaultList.name,
+                colorObject = Constants.DefaultList.colorObject,
+            };
 
             return Task.CompletedTask;
         }
@@ -50,7 +55,7 @@ namespace ToDoApp.ViewModels.Templates
                 var model = new ListModel()
                 {
                     name = AddList.name,
-                    color = AddList.color,
+                    color = AddList.colorObject.color,
                     userId = userId
                 };
                 await _listRepository.Add(model);

@@ -47,7 +47,12 @@ namespace ToDoApp.ViewModels.Templates
             var projectList = await GetProjectList();
             ProjectList = new ObservableCollection<ListModel>(projectList);
 
-            AddTask = Constants.DefaultTask;
+            AddTask = new TaskModel() { 
+                task = Constants.DefaultTask.task,
+                archived = Constants.DefaultTask.archived,
+                dateObject = Constants.DefaultTask.dateObject,
+                listObject = Constants.DefaultTask.listObject,
+            };
         }
 
         private async void CreateCommandHandler()
@@ -62,7 +67,7 @@ namespace ToDoApp.ViewModels.Templates
                     list = AddTask.listObject.name,
                     task = AddTask.task,
                     userId = userId,
-                    date = DateTime.Parse(AddTask.date).ToString("dd/MM/yyyy")
+                    date = AddTask.dateObject.ToString("dd/MM/yyyy")
                 };
                 await _taskRepository.Add(model);
                 await _navigationService.GoBackAsync();

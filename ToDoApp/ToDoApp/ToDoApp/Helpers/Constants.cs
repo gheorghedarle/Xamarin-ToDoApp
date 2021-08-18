@@ -31,18 +31,15 @@ namespace ToDoApp.Helpers
 
         public static TaskModel DefaultTask = new TaskModel()
         {
-            task = "Test",
+            task = "",
             archived = false,
-            date = DateTime.Today.ToString("dd/MM/yyyy"),
             dateObject = DateTime.Today,
             listObject = InboxList,
-            list = "Inbox"
         };
 
         public static ListModel DefaultList = new ListModel()
         {
-            name = "Test 2",
-            color = "#F9371C",
+            name = "",
             colorObject = ListColorList.First()
         };
     }
