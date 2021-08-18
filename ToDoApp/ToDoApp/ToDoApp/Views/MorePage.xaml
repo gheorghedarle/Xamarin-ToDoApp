@@ -42,8 +42,7 @@
                     FontFamily="Barlow_Regular"
                     FontSize="{StaticResource Body1FontSize}"></Label>
                 <Frame
-                    BackgroundColor="White"
-                    BorderColor="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
                     CornerRadius="8"
                     Padding="10, 0">
                     <Picker
@@ -51,7 +50,8 @@
                         ItemsSource="{Binding Lists}"
                         ItemDisplayBinding="{Binding name}"
                         FontFamily="Barlow_Regular"
-                        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
+                        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
                         <Picker.Effects>
                             <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                         </Picker.Effects>

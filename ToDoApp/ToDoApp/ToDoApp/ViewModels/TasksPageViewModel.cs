@@ -186,7 +186,6 @@ namespace ToDoApp.ViewModels
             return Task.CompletedTask;
         }
 
-
         #endregion
 
         #region Private Methods

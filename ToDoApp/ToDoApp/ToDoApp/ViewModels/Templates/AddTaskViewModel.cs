@@ -1,9 +1,7 @@
-﻿using Prism.Mvvm;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,16 +16,29 @@ namespace ToDoApp.ViewModels.Templates
 {
     public class AddTaskViewModel : BaseViewModel
     {
+        #region Private & Protected
+
         private IFirestoreRepository<ListModel> _listRepository;
         private IFirestoreRepository<TaskModel> _taskRepository;
 
         private Task Initialization { get; set; }
 
-        public ObservableCollection<ListModel> ProjectList { get; set; }
+        #endregion
 
+        #region Properties
+
+        public ObservableCollection<ListModel> ProjectList { get; set; }
         public TaskModel AddTask { get; set; }
 
+        #endregion
+
+        #region Commands
+
         public ICommand CreateCommand { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         public AddTaskViewModel(
             INavigationService navigationService,
@@ -55,6 +66,10 @@ namespace ToDoApp.ViewModels.Templates
             };
         }
 
+        #endregion
+
+        #region Command Handlers
+
         private async void CreateCommandHandler()
         {
             try
@@ -79,6 +94,10 @@ namespace ToDoApp.ViewModels.Templates
             }
         }
 
+        #endregion
+
+        #region Private Methods
+
         private async Task<List<ListModel>> GetProjectList()
         {
             var auth = DependencyService.Get<IFirebaseAuthentication>();
@@ -98,5 +117,7 @@ namespace ToDoApp.ViewModels.Templates
             }
             return listToAdd;
         }
+
+        #endregion
     }
 }

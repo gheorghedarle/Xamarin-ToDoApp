@@ -12,9 +12,13 @@ namespace ToDoApp.ViewModels
 
         #endregion
 
+        #region Constructors
+
         public MorePageViewModel(INavigationService navigationService) : base(navigationService)
         {
             BackCommand = new Command(BackCommandHandler);
         }
+
+        #endregion
     }
 }

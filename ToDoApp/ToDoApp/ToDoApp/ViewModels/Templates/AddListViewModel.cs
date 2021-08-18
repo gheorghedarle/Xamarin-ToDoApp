@@ -14,14 +14,28 @@ namespace ToDoApp.ViewModels.Templates
 {
     public class AddListViewModel : BaseViewModel
     {
+        #region Private & Protected
+
         private IFirestoreRepository<ListModel> _listRepository;
 
         private Task Initialization { get; set; }
 
+        #endregion
+
+        #region Properties
+
         public ListModel AddList { get; set; }
         public ObservableCollection<ColorModel> ColorList { get; set; }
 
+        #endregion
+
+        #region Commands
+
         public ICommand CreateCommand { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         public AddListViewModel(
             INavigationService navigationService,
@@ -33,6 +47,7 @@ namespace ToDoApp.ViewModels.Templates
 
             Initialization = Initialize();
         }
+
         public Task Initialize()
         {
             ColorList = new ObservableCollection<ColorModel>(Constants.ListColorList);
@@ -45,6 +60,10 @@ namespace ToDoApp.ViewModels.Templates
 
             return Task.CompletedTask;
         }
+
+        #endregion
+
+        #region Command Handlers
 
         private async void CreateCommandHandler()
         {
@@ -67,5 +86,7 @@ namespace ToDoApp.ViewModels.Templates
                 Debug.Write(ex.Message);
             }
         }
+
+        #endregion
     }
 }
