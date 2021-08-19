@@ -1,7 +1,11 @@
 ﻿using Prism.Navigation;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using ToDoApp.Auth;
+using ToDoApp.Models;
+using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -12,6 +16,13 @@ namespace ToDoApp.ViewModels
         BaseViewModel,
         IInitialize
     {
+        #region Private & Protected
+
+        private IFirestoreRepository<TaskModel> _taskRepository;
+        private IFirestoreRepository<ListModel> _listRepository;
+
+        #endregion
+
         #region Commands
 
         public ICommand BackCommand { get; set; }
@@ -23,23 +34,38 @@ namespace ToDoApp.ViewModels
 
         #region Properties
 
+        public ProfileDetailsModel ProfileDetails { get; set; }
+        public string Username { get; set; }
         public bool IsDarkMode { get; set; }
+        public bool HideDoneTasks { get; set; }
 
         #endregion
 
         #region Constructors
 
-        public ProfilePageViewModel(INavigationService navigationService) : base(navigationService)
+        public ProfilePageViewModel(
+            INavigationService navigationService,
+            IFirestoreRepository<TaskModel> taskRepository,
+            IFirestoreRepository<ListModel> listRepository) : base(navigationService)
         {
+            _taskRepository = taskRepository;
+            _listRepository = listRepository;
+
             BackCommand = new Command(BackCommandHandler);
             LogOutCommand = new Command(LogOutCommandHandler);
             DarkModeToggleCommand = new Command(DarkModeToggleCommandHandler);
             HideDoneToggleCommand = new Command(HideDoneToggleCommandHandler);
         }
 
-        public void Initialize(INavigationParameters parameters)
+        public async void Initialize(INavigationParameters parameters)
         {
+            await GetProfileDetails();
+
             IsDarkMode = Application.Current.UserAppTheme.Equals(OSAppTheme.Dark);
+            HideDoneTasks = Preferences.Get("hideDoneTasks", false);
+
+            var auth = DependencyService.Get<IFirebaseAuthentication>();
+            Username = auth.GetUsername();
         }
 
         #endregion
@@ -61,7 +87,10 @@ namespace ToDoApp.ViewModels
         }
 
         private void HideDoneToggleCommandHandler()
-        { }
+        {
+            HideDoneTasks = !HideDoneTasks;
+            Preferences.Set("hideDoneTasks", HideDoneTasks);
+        }
 
         private void LogOutCommandHandler()
         {
@@ -75,6 +104,25 @@ namespace ToDoApp.ViewModels
             {
                 Debug.WriteLine("Failed to log out");
             }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private async Task GetProfileDetails()
+        {
+            var auth = DependencyService.Get<IFirebaseAuthentication>();
+            var userId = auth.GetUserId();
+            var lists = await _listRepository.GetAll(userId).GetAsync();
+            var tasks = await _taskRepository.GetAll(userId).GetAsync();
+
+            ProfileDetails = new ProfileDetailsModel()
+            {
+                TotalLists = lists.Count,
+                TotalTasks = tasks.Count,
+                DoneTasks = tasks.ToObjects<TaskModel>().Count(t => t.archived == true)
+            };
         }
 
         #endregion

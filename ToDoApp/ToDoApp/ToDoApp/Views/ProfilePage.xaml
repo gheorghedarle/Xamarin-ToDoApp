@@ -35,7 +35,7 @@
                     <Label
                         Style="{StaticResource Headline4_BarlowBold}"
                         HorizontalOptions="Center"
-                        Text="John"
+                        Text="{Binding Username}"
                         TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
                     <Grid
                         ColumnDefinitions="*, *, *"
@@ -50,7 +50,7 @@
                                 TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
                             <Label
-                                Text="184"
+                                Text="{Binding ProfileDetails.TotalTasks}"
                                 FontFamily="Barlow_SemiBold"
                                 FontSize="{StaticResource Body1FontSize}"
                                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
@@ -66,7 +66,7 @@
                                 TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
                             <Label
-                                Text="92"
+                                Text="{Binding ProfileDetails.DoneTasks}"
                                 FontFamily="Barlow_SemiBold"
                                 FontSize="{StaticResource Body1FontSize}"
                                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
@@ -82,7 +82,7 @@
                                 TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
                             <Label
-                                Text="7"
+                                Text="{Binding ProfileDetails.TotalLists}"
                                 FontFamily="Barlow_SemiBold"
                                 FontSize="{StaticResource Body1FontSize}"
                                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"

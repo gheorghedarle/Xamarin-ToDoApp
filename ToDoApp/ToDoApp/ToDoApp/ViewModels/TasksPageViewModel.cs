@@ -20,7 +20,7 @@ using System.Reactive.Disposables;
 
 namespace ToDoApp.ViewModels
 {
-    public class TasksPageViewModel : 
+    public class TasksPageViewModel :
         BaseViewModel,
         IInitialize
     {
@@ -38,7 +38,7 @@ namespace ToDoApp.ViewModels
 
         public ObservableCollection<DayModel> DaysList { get; set; }
         public ObservableCollection<TaskModel> TaskList { get; set; }
-        public LayoutState TaskListState {get;set;}
+        public LayoutState TaskListState { get; set; }
         public string Name { get; set; }
         public WeekModel Week { get; set; }
 
@@ -67,7 +67,7 @@ namespace ToDoApp.ViewModels
         public TasksPageViewModel(
             INavigationService navigationService,
             IFirestoreRepository<TaskModel> tasksRepository,
-            IDateService dateService): base(navigationService)
+            IDateService dateService) : base(navigationService)
         {
             _tasksRepository = tasksRepository;
             _dateService = dateService;
@@ -249,7 +249,7 @@ namespace ToDoApp.ViewModels
             else
             {
                 var selectedDate = DaysList.FirstOrDefault(d => d.Date == _selectedDay.Date);
-                if(selectedDate != null)
+                if (selectedDate != null)
                 {
                     selectedDate.State = DayStateEnum.Active;
                 }
