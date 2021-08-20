@@ -7,6 +7,7 @@ using ToDoApp.Auth;
 using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Views;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -59,6 +60,8 @@ namespace ToDoApp.ViewModels
 
         public async void Initialize(INavigationParameters parameters)
         {
+            MainState = LayoutState.Loading;
+
             await GetProfileDetails();
 
             IsDarkMode = Application.Current.UserAppTheme.Equals(OSAppTheme.Dark);
@@ -66,6 +69,8 @@ namespace ToDoApp.ViewModels
 
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             Username = auth.GetUsername();
+
+            MainState = LayoutState.None;
         }
 
         #endregion

@@ -2,15 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:fragments="clr-namespace:ToDoApp.Views.Fragments"
              x:Class="ToDoApp.Views.ProfilePage">
     <ContentPage.Content>
         <Grid
             BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
-            RowDefinitions="Auto, Auto, Auto"
-            Padding="20, 0, 20, 0">
+            RowDefinitions="Auto, Auto, *"
+            xct:StateLayout.CurrentState="{Binding MainState}">
+            <xct:StateLayout.StateViews>
+                <xct:StateView 
+                    StateKey="Loading"
+                    VerticalOptions="FillAndExpand">
+                    <fragments:LoadingView></fragments:LoadingView>
+                </xct:StateView>
+            </xct:StateLayout.StateViews>
             <Grid
                 Grid.Row="0"
-                Margin="0, 20, 0, 20"
+                Margin="20, 20, 0, 20"
                 HorizontalOptions="FillAndExpand">
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding BackCommand}"></TapGestureRecognizer>
@@ -92,11 +100,12 @@
                 </StackLayout>
             </Grid>
             <StackLayout
-                Grid.Row="1"
+                Grid.Row="2"
+                Padding="20, 0, 20, 0">
+            <StackLayout
                 Orientation="Horizontal">
                 <Label
-                    Grid.Row="2"
-                    FontSize="{StaticResource Body2FontSize}"
+                    FontSize="{StaticResource Body1FontSize}"
                     Text="Dark mode"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
                 <Switch
@@ -111,11 +120,9 @@
                 </Switch>
             </StackLayout>
             <StackLayout
-                Grid.Row="2"
                 Orientation="Horizontal">
                 <Label
-                    Grid.Row="2"
-                    FontSize="{StaticResource Body2FontSize}"
+                    FontSize="{StaticResource Body1FontSize}"
                     Text="Hide done tasks"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
                 <Switch
@@ -130,7 +137,6 @@
                 </Switch>
             </StackLayout>
             <Label
-                Grid.Row="3"
                 FontFamily="Barlow_SemiBold"
                 FontSize="{StaticResource Body1FontSize}"
                 Text="Log out"
@@ -140,6 +146,7 @@
                     <TapGestureRecognizer Command="{Binding LogOutCommand}"></TapGestureRecognizer>
                 </Label.GestureRecognizers>
             </Label>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
