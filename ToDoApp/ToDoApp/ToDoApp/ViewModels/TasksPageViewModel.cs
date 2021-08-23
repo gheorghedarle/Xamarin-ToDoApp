@@ -27,7 +27,7 @@ namespace ToDoApp.ViewModels
         #region Private & Protected
 
         private IDateService _dateService;
-        private IFirestoreRepository<TaskModel> _tasksRepository;
+        private IFirestoreRepository<TaskModel> _taskRepository;
 
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
         private DayModel _selectedDay;
@@ -69,7 +69,7 @@ namespace ToDoApp.ViewModels
             IFirestoreRepository<TaskModel> tasksRepository,
             IDateService dateService) : base(navigationService)
         {
-            _tasksRepository = tasksRepository;
+            _taskRepository = tasksRepository;
             _dateService = dateService;
 
             CheckTaskCommand = new Command<TaskModel>(CheckTaskCommandHandler);
@@ -108,7 +108,7 @@ namespace ToDoApp.ViewModels
         private void CheckTaskCommandHandler(TaskModel task)
         {
             task.archived = !task.archived;
-            _tasksRepository.Update(task);
+            _taskRepository.Update(task);
         }
 
         private void DayCommandHandler(DayModel day)
@@ -143,7 +143,7 @@ namespace ToDoApp.ViewModels
 
         private void DeleteTaskCommandHandler(TaskModel taskModel)
         {
-            _tasksRepository.Delete(taskModel);
+            _taskRepository.Delete(taskModel);
         }
 
         private void ProfileCommandHandler()
@@ -197,7 +197,7 @@ namespace ToDoApp.ViewModels
             TaskList.Clear();
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var userId = auth.GetUserId();
-            var query = _tasksRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"));
+            var query = _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"));
             _disposables.Add(query.ObserveAdded()
                 .Select(change => (Object: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), Index: change.NewIndex))
                 .Subscribe(t =>
