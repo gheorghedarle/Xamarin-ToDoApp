@@ -46,8 +46,8 @@
                     CornerRadius="8"
                     Padding="10, 0">
                     <Picker
+                        ItemsSource="{Binding ProjectList}"
                         SelectedItem="{Binding SelectedList}"
-                        ItemsSource="{Binding Lists}"
                         ItemDisplayBinding="{Binding name}"
                         FontFamily="Barlow_Regular"
                         TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"

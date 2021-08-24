@@ -1,5 +1,7 @@
 ﻿using Prism.Navigation;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ToDoApp.Auth;
@@ -10,11 +12,20 @@ using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels
 {
-    public class MorePageViewModel : BaseViewModel
+    public class MorePageViewModel : 
+        BaseViewModel,
+        IInitialize
     {
         #region Private & Protected
 
         private IFirestoreRepository<ListModel> _listRepository;
+
+        #endregion
+
+        #region Properties
+
+        public ObservableCollection<ListModel> ProjectList { get; set; }
+        public ListModel SelectedList { get; set; }
 
         #endregion
 
@@ -33,6 +44,14 @@ namespace ToDoApp.ViewModels
             _listRepository = listRepository;
 
             BackCommand = new Command(BackCommandHandler);
+        }
+
+        public async void Initialize(INavigationParameters parameters)
+        {
+            var projectList = await GetProjectList();
+            ProjectList = new ObservableCollection<ListModel>(projectList);
+
+            SelectedList = ProjectList.First();
         }
 
         #endregion
