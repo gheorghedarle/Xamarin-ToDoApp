@@ -20,4 +20,4 @@ Todo App is a simple to do app developed with Xamarin and Firebase
 ## Setup
 
 ## Resources
-Illustrations are from [Icons8](https://icons8.com/)
+Illustrations are from [Icons8](https://icons8.com/illustrations/style--3d-flame)
