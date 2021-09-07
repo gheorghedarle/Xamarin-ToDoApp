@@ -10,7 +10,7 @@ using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
 using Xamarin.Forms;
 
-namespace ToDoApp.ViewModels.Templates
+namespace ToDoApp.ViewModels.Templates.AddItem
 {
     public class AddListViewModel : BaseViewModel
     {
