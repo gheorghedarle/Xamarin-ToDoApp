@@ -19,6 +19,7 @@ namespace ToDoApp.ViewModels
         #region Properties
 
         public ObservableCollection<string> AuthScreenList { get; set; }
+        public string Title { get; set; }
         public string CurrentAuthScreen { get; set; }
 
         #endregion
@@ -49,6 +50,7 @@ namespace ToDoApp.ViewModels
         public void Initialize(INavigationParameters parameters)
         {
             CurrentAuthScreen = "login";
+            Title = "Login";
 
             _regionManager.RequestNavigate("LoginRegion", "LoginTemplate");
             _regionManager.RequestNavigate("SignUpRegion", "SignUpTemplate");
@@ -58,16 +60,17 @@ namespace ToDoApp.ViewModels
 
         #region Command Handlers
 
-
         private void SwitchToLoginCommandHandler()
         {
             CurrentAuthScreen = "login";
+            Title = "Login";
         }
 
 
         private void SwitchToSignUpCommandHandler()
         {
             CurrentAuthScreen = "signup";
+            Title = "Sign Up";
         }
 
         #endregion

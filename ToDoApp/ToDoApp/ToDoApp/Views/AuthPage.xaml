@@ -18,10 +18,78 @@
                     <fragments:LoadingView></fragments:LoadingView>
                 </xct:StateView>
             </xct:StateLayout.StateViews>
+            <Grid
+                ColumnDefinitions="Auto, Auto"
+                Margin="20, 0, 0, 10"
+                HorizontalOptions="Start">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}"></TapGestureRecognizer>
+                </Grid.GestureRecognizers>
+                <Label
+                    Grid.Column="0"
+                    Text="&#xf060;"
+                    FontSize="{StaticResource Headline4FontSize}"
+                    FontFamily="FontAwesome_Solid"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"></Label>
+                <Label
+                    Grid.Column="1"
+                    Text="{Binding Title}"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    FontFamily="Barlow_Bold"
+                    FontSize="{StaticResource Headline3FontSize}"
+                    Margin="10, -2, 0, 0"
+                    VerticalOptions="Center"></Label>
+            </Grid>
             <ContentView prism:RegionManager.RegionName="LoginRegion"
                          IsVisible="{Binding CurrentAuthScreen, Converter={xct:EqualConverter}, ConverterParameter='login'}"/>
             <ContentView prism:RegionManager.RegionName="SignUpRegion"
                          IsVisible="{Binding CurrentAuthScreen, Converter={xct:EqualConverter}, ConverterParameter='signup'}"/>
+            <Label
+                IsVisible="{Binding CurrentAuthScreen, Converter={xct:EqualConverter}, ConverterParameter='login'}"
+                HorizontalTextAlignment="Center"
+                Margin="20, 0, 20, 30"
+                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                        Text="Don't have an account? "
+                        FontFamily="Barlow_Regular"
+                        FontSize="{StaticResource Body1FontSize}"></Span>
+                        <Span
+                        Text="Sign Up"
+                        TextDecorations="Underline"
+                        FontFamily="Barlow_SemiBold"
+                        FontSize="{StaticResource Body1FontSize}"></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SwitchToSignUpCommand}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label
+                IsVisible="{Binding CurrentAuthScreen, Converter={xct:EqualConverter}, ConverterParameter='signup'}"
+                HorizontalTextAlignment="Center"
+                Margin="20, 0, 20, 30"
+                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                        Text="Already have an account? "
+                        FontFamily="Barlow_Regular"
+                        FontSize="{StaticResource Body1FontSize}"></Span>
+                        <Span
+                        Text="Login"
+                        TextDecorations="Underline"
+                        FontFamily="Barlow_SemiBold"
+                        FontSize="{StaticResource Body1FontSize}"></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SwitchToLoginCommand}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
