@@ -70,6 +70,7 @@ namespace ToDoApp.ViewModels
             {
                 listToAdd = list.ToList();
                 listToAdd.Insert(0, Constants.InboxList);
+                listToAdd.Insert(0, Constants.AllLists);
             }
             else
             {
