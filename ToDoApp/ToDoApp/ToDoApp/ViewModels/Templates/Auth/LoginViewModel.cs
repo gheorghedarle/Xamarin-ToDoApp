@@ -5,6 +5,7 @@ using System.Windows.Input;
 using ToDoApp.Auth;
 using ToDoApp.Views;
 using Xamarin.CommunityToolkit.UI.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels.Templates.Auth
@@ -54,6 +55,7 @@ namespace ToDoApp.ViewModels.Templates.Auth
                     if (user != null)
                     {
                         ClearAuthData();
+                        Preferences.Set("taskFilterByList", "all");
                         await _navigationService.NavigateAsync(nameof(TasksPage));
                     }
                     else

@@ -28,7 +28,18 @@ namespace ToDoApp.Repositories.FirestoreRepository
             var query = CrossCloudFirestore.Current
                 .Instance
                 .Collection("tasks")
-                .WhereEqualsTo("date", value)
+                .WhereEqualsTo(field, value)
+                .WhereEqualsTo("userId", userId);
+            return query;
+        }
+
+        public IQuery GetAllContains(string userId, string field1, object value1, string field2, object value2)
+        {
+            var query = CrossCloudFirestore.Current
+                .Instance
+                .Collection("tasks")
+                .WhereEqualsTo(field1, value1)
+                .WhereEqualsTo(field2, value2)
                 .WhereEqualsTo("userId", userId);
             return query;
         }

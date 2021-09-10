@@ -17,6 +17,7 @@ using Plugin.CloudFirestore.Reactive;
 using System.Reactive.Linq;
 using Plugin.CloudFirestore;
 using System.Reactive.Disposables;
+using Xamarin.Essentials;
 
 namespace ToDoApp.ViewModels
 {
@@ -195,9 +196,13 @@ namespace ToDoApp.ViewModels
             TaskListState = LayoutState.Loading;
             _disposables.Clear();
             TaskList.Clear();
+            IQuery query;
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var userId = auth.GetUserId();
-            var query = _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"));
+            var list = Preferences.Get("taskFilterByList", "all");
+            query = list == "all" ?
+                _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy")) :
+                _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "list", list);
             _disposables.Add(query.ObserveAdded()
                 .Select(change => (Object: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), Index: change.NewIndex))
                 .Subscribe(t =>
