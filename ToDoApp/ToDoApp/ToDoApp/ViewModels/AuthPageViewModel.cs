@@ -66,7 +66,6 @@ namespace ToDoApp.ViewModels
             Title = "Login";
         }
 
-
         private void SwitchToSignUpCommandHandler()
         {
             CurrentAuthScreen = "signup";

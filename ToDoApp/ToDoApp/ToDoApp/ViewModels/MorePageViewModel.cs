@@ -8,6 +8,7 @@ using ToDoApp.Auth;
 using ToDoApp.Helpers;
 using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels
@@ -57,6 +58,18 @@ namespace ToDoApp.ViewModels
         #endregion
 
         #region Private Methods
+
+        private void OnSelectedListChanged()
+        {
+            if(SelectedList == Constants.AllLists)
+            {
+                Preferences.Set("taskFilterByList", "all");
+            }
+            else
+            {
+                Preferences.Set("taskFilterByList", SelectedList.name);
+            }
+        }
 
         private async Task<List<ListModel>> GetProjectList()
         {
