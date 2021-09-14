@@ -52,7 +52,8 @@ namespace ToDoApp.ViewModels
             var projectList = await GetProjectList();
             ProjectList = new ObservableCollection<ListModel>(projectList);
 
-            SelectedList = ProjectList.First();
+            var list = Preferences.Get("taskFilterByList", "all");
+            SelectedList = list == "all" ? Constants.AllLists : ProjectList.First(a => a.name == list);
         }
 
         #endregion

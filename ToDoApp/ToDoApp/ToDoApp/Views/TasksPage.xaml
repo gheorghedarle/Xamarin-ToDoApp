@@ -227,12 +227,22 @@
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </Grid>
-            <Label
+            <StackLayout
                 Grid.Row="4"
-                Text="Tasks"
-                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                Style="{StaticResource Subtitle1_BarlowBold}"
-                Margin="16, 0, 0, 0"></Label>
+                Orientation="Horizontal"
+                HorizontalOptions="FillAndExpand"
+                Margin="16, 0, 16, 0">
+                <Label
+                    Text="Tasks"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    Style="{StaticResource Subtitle1_BarlowBold}"></Label>
+                <Label
+                    Text="{Binding Filter}"
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                    Style="{StaticResource Body1_BarlowRegular}"
+                    HorizontalOptions="EndAndExpand"
+                    VerticalOptions="End"></Label>
+            </StackLayout>
             <StackLayout
                 Grid.Row="5"
                 xct:StateLayout.CurrentState="{Binding TaskListState}">

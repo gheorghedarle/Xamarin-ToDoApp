@@ -42,6 +42,7 @@ namespace ToDoApp.ViewModels
         public LayoutState TaskListState { get; set; }
         public string Name { get; set; }
         public WeekModel Week { get; set; }
+        public string Filter { get; set; }
 
         #endregion
 
@@ -189,6 +190,18 @@ namespace ToDoApp.ViewModels
 
         #endregion
 
+        #region Navigation
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.GetNavigationMode() == Prism.Navigation.NavigationMode.Back)
+            {
+                CreateQueryForTasks(DateTime.Today);
+            }
+        }
+
+        #endregion
+
         #region Private Methods
 
         private void CreateQueryForTasks(DateTime date)
@@ -200,6 +213,7 @@ namespace ToDoApp.ViewModels
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var userId = auth.GetUserId();
             var list = Preferences.Get("taskFilterByList", "all");
+            SetFilterName(list);
             query = list == "all" ?
                 _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy")) :
                 _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "list", list);
@@ -241,6 +255,13 @@ namespace ToDoApp.ViewModels
         {
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             Name = auth.GetUsername();
+        }
+
+        private void SetFilterName(string list)
+        {
+            Filter = list == "all" ?
+                "All lists" :
+                list;
         }
 
         private void SetActiveDay(DayModel day = null)
