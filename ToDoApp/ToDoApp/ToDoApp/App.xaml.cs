@@ -6,7 +6,6 @@ using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Services.DateService;
 using ToDoApp.ViewModels;
-using ToDoApp.ViewModels.Templates;
 using ToDoApp.ViewModels.Templates.AddItem;
 using ToDoApp.ViewModels.Templates.Auth;
 using ToDoApp.Views;
@@ -18,11 +17,14 @@ using Xamarin.Forms;
 [assembly: ExportFont("FontAwesome-Regular.ttf", Alias = "FontAwesome_Regular")]
 [assembly: ExportFont("FontAwesome-Solid.ttf", Alias = "FontAwesome_Solid")]
 
-[assembly: ExportFont("Barlow-Bold.ttf", Alias = "Barlow_Bold")]
-[assembly: ExportFont("Barlow-SemiBold.ttf", Alias = "Barlow_SemiBold")]
-[assembly: ExportFont("Barlow-Medium.ttf", Alias = "Barlow_Medium")]
-[assembly: ExportFont("Barlow-Regular.ttf", Alias = "Barlow_Regular")]
-[assembly: ExportFont("Barlow-Light.ttf", Alias = "Barlow_Light")]
+[assembly: ExportFont("Mulish-Black.ttf", Alias = "Mulish_Black")]
+[assembly: ExportFont("Mulish-Bold.ttf", Alias = "Mulish_Bold")]
+[assembly: ExportFont("Mulish-ExtraBold.ttf", Alias = "Mulish_ExtraBold")]
+[assembly: ExportFont("Mulish-ExtraLight.ttf", Alias = "Mulish_ExtraLight")]
+[assembly: ExportFont("Mulish-Light.ttf", Alias = "Mulish_Light")]
+[assembly: ExportFont("Mulish-Medium.ttf", Alias = "Mulish_Medium")]
+[assembly: ExportFont("Mulish-Regular.ttf", Alias = "Mulish_Regular")]
+[assembly: ExportFont("Mulish-SemiBold.ttf", Alias = "Mulish_SemiBold")]
 
 namespace ToDoApp
 {

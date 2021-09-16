@@ -12,14 +12,14 @@
                 <Label
                     Text="Name"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    FontFamily="Barlow_Regular"
+                    FontFamily="Mulish_Regular"
                     FontSize="{StaticResource Body1FontSize}"></Label>
                 <Frame
                     BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
                     CornerRadius="8"
                     Padding="10, 0">
                     <Entry
-                        FontFamily="Barlow_Regular"
+                        FontFamily="Mulish_Regular"
                         Placeholder="Enter your name"
                         Text="{Binding AddTask.task}"
                         TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
@@ -36,7 +36,7 @@
                 <Label
                     Text="List"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    FontFamily="Barlow_Regular"
+                    FontFamily="Mulish_Regular"
                     FontSize="{StaticResource Body1FontSize}"></Label>
                 <Frame
                     BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
@@ -46,7 +46,7 @@
                         ItemsSource="{Binding ProjectList}"
                         SelectedItem="{Binding AddTask.listObject}"
                         ItemDisplayBinding="{Binding name}"
-                        FontFamily="Barlow_Regular"
+                        FontFamily="Mulish_Regular"
                         TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                         BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
                         <Picker.Effects>
@@ -61,14 +61,14 @@
                 <Label
                     Text="Date"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    FontFamily="Barlow_Regular"
+                    FontFamily="Mulish_Regular"
                     FontSize="{StaticResource Body1FontSize}"></Label>
                 <Frame
                     BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
                     CornerRadius="8"
                     Padding="10, 0">
                     <DatePicker
-                        FontFamily="Barlow_Regular"
+                        FontFamily="Mulish_Regular"
                         Date="{Binding AddTask.dateObject}"
                         Format="dd/MM/yyyy"
                         TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
@@ -86,7 +86,7 @@
             Command="{Binding CreateCommand}"
             CornerRadius="28"
             FontSize="{StaticResource ButtonFontSize}"
-            FontFamily="Barlow_Bold"
+            FontFamily="Mulish_Bold"
             Margin="0, 0, 0, 16"
             Padding="20, 18"
             Text="Add new task"

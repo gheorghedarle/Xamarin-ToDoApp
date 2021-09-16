@@ -11,13 +11,13 @@
             HeightRequest="200"></Image>
         <Label
             Text="All clear"
-            FontFamily="Barlow_Bold"
+            FontFamily="Mulish_Bold"
             FontSize="{StaticResource Headline2FontSize}"
             HorizontalTextAlignment="Center"
             TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
         <Label
             Text="Looks like you don't have any tasks for this day"
-            FontFamily="Barlow_Regular"
+            FontFamily="Mulish_Regular"
             FontSize="{StaticResource Body1FontSize}"
             HorizontalTextAlignment="Center"
             TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>

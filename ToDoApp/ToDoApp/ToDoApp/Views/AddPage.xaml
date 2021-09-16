@@ -28,7 +28,7 @@
                     VerticalOptions="Center"></Label>
                 <Label
                     Grid.Column="1"
-                    Style="{StaticResource Headline4_BarlowBold}"
+                    Style="{StaticResource Headline4_MulishBold}"
                     Text="{Binding Type, StringFormat='Add new {0}'}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                     Margin="10, 0, 0, 0"
@@ -75,7 +75,7 @@
                     <Label
                         Text="Task"
                         FontSize="{StaticResource Body1FontSize}"
-                        FontFamily="Barlow_SemiBold"
+                        FontFamily="Mulish_SemiBold"
                         HorizontalTextAlignment="Center">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>
@@ -136,7 +136,7 @@
                     <Label
                         Text="List"
                         FontSize="{StaticResource Body1FontSize}"
-                        FontFamily="Barlow_SemiBold"
+                        FontFamily="Mulish_SemiBold"
                         HorizontalTextAlignment="Center">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>

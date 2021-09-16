@@ -14,46 +14,46 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
 
-    <Style x:Key="Headline4_BarlowRegular" TargetType="Label">
-        <Setter Property="FontFamily" Value="Barlow_Regular" />
+    <Style x:Key="Headline4_MulishRegular" TargetType="Label">
+        <Setter Property="FontFamily" Value="Mulish_Regular" />
         <Setter Property="FontSize" Value="{StaticResource Headline4FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
-    <Style x:Key="Headline4_BarlowBold" TargetType="Label">
-        <Setter Property="FontFamily" Value="Barlow_Bold" />
+    <Style x:Key="Headline4_MulishBold" TargetType="Label">
+        <Setter Property="FontFamily" Value="Mulish_Bold" />
         <Setter Property="FontSize" Value="{StaticResource Headline4FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
 
-    <Style x:Key="Subtitle1_BarlowRegular" TargetType="Label">
-        <Setter Property="FontFamily" Value="Barlow_Regular" />
+    <Style x:Key="Subtitle1_MulishRegular" TargetType="Label">
+        <Setter Property="FontFamily" Value="Mulish_Regular" />
         <Setter Property="FontSize" Value="{StaticResource Subtitle1FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
-    <Style x:Key="Subtitle1_BarlowBold" TargetType="Label">
-        <Setter Property="FontFamily" Value="Barlow_Bold" />
+    <Style x:Key="Subtitle1_MulishBold" TargetType="Label">
+        <Setter Property="FontFamily" Value="Mulish_Bold" />
         <Setter Property="FontSize" Value="{StaticResource Subtitle1FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
 
-    <Style x:Key="Body1_BarlowRegular" TargetType="Label">
-        <Setter Property="FontFamily" Value="Barlow_Regular" />
+    <Style x:Key="Body1_MulishRegular" TargetType="Label">
+        <Setter Property="FontFamily" Value="Mulish_Regular" />
         <Setter Property="FontSize" Value="{StaticResource Body1FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
-    <Style x:Key="Body1_BarlowSemiBold" TargetType="Label">
-        <Setter Property="FontFamily" Value="Barlow_Regular" />
+    <Style x:Key="Body1_MulishSemiBold" TargetType="Label">
+        <Setter Property="FontFamily" Value="Mulish_Regular" />
         <Setter Property="FontSize" Value="{StaticResource Body1FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
-    <Style x:Key="Body1_BarlowBold" TargetType="Label">
-        <Setter Property="FontFamily" Value="Barlow_Bold" />
+    <Style x:Key="Body1_MulishBold" TargetType="Label">
+        <Setter Property="FontFamily" Value="Mulish_Bold" />
         <Setter Property="FontSize" Value="{StaticResource Body1FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
 
-    <Style x:Key="Body2_BarlowRegular" TargetType="Label">
-        <Setter Property="FontFamily" Value="Barlow_Regular" />
+    <Style x:Key="Body2_MulishRegular" TargetType="Label">
+        <Setter Property="FontFamily" Value="Mulish_Regular" />
         <Setter Property="FontSize" Value="{StaticResource Body2FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>

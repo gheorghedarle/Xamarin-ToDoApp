@@ -11,7 +11,7 @@
             <Label
                 Grid.Row="1"
                 Text="Manage your daily tasks"
-                Style="{StaticResource Headline4_BarlowBold}"
+                Style="{StaticResource Headline4_MulishBold}"
                 Margin="0, 20, 0, 20"></Label>
             <Button
                 Grid.Row="2"
@@ -19,7 +19,7 @@
                 Command="{Binding GetStartedCommand}"
                 CornerRadius="28"
                 FontSize="{StaticResource ButtonFontSize}"
-                FontFamily="Barlow_Bold"
+                FontFamily="Mulish_Bold"
                 Margin="0, 0, 0, 30"
                 Padding="20, 18"
                 Text="Login"

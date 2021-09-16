@@ -41,7 +41,7 @@
                         HorizontalOptions="Center">
                     </Label>
                     <Label
-                        Style="{StaticResource Headline4_BarlowBold}"
+                        Style="{StaticResource Headline4_MulishBold}"
                         HorizontalOptions="Center"
                         Text="{Binding Username}"
                         TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
@@ -53,13 +53,13 @@
                             Spacing="0">
                             <Label
                                 Text="Tasks"
-                                FontFamily="Barlow_Medium"
+                                FontFamily="Mulish_Medium"
                                 FontSize="{StaticResource Body1FontSize}"
                                 TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
                             <Label
                                 Text="{Binding ProfileDetails.TotalTasks}"
-                                FontFamily="Barlow_SemiBold"
+                                FontFamily="Mulish_SemiBold"
                                 FontSize="{StaticResource Body1FontSize}"
                                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
@@ -69,13 +69,13 @@
                             Spacing="0">
                             <Label
                                 Text="Done"
-                                FontFamily="Barlow_Medium"
+                                FontFamily="Mulish_Medium"
                                 FontSize="{StaticResource Body1FontSize}"
                                 TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
                             <Label
                                 Text="{Binding ProfileDetails.DoneTasks}"
-                                FontFamily="Barlow_SemiBold"
+                                FontFamily="Mulish_SemiBold"
                                 FontSize="{StaticResource Body1FontSize}"
                                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
@@ -85,13 +85,13 @@
                             Spacing="0">
                             <Label
                                 Text="Lists"
-                                FontFamily="Barlow_Medium"
+                                FontFamily="Mulish_Medium"
                                 FontSize="{StaticResource Body1FontSize}"
                                 TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
                             <Label
                                 Text="{Binding ProfileDetails.TotalLists}"
-                                FontFamily="Barlow_SemiBold"
+                                FontFamily="Mulish_SemiBold"
                                 FontSize="{StaticResource Body1FontSize}"
                                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
@@ -137,7 +137,7 @@
                 </Switch>
             </StackLayout>
             <Label
-                FontFamily="Barlow_SemiBold"
+                FontFamily="Mulish_SemiBold"
                 FontSize="{StaticResource Body1FontSize}"
                 Text="Log out"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"

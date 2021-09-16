@@ -26,7 +26,7 @@
                     VerticalOptions="Center"></Label>
                 <Label
                     Grid.Column="1"
-                    Style="{StaticResource Headline4_BarlowBold}"
+                    Style="{StaticResource Headline4_MulishBold}"
                     Text="More"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                     Margin="10, 0, 0, 0"
@@ -39,7 +39,7 @@
                 <Label
                     Text="Display tasks from"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    FontFamily="Barlow_Regular"
+                    FontFamily="Mulish_Regular"
                     FontSize="{StaticResource Body1FontSize}"></Label>
                 <Frame
                     BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
@@ -49,7 +49,7 @@
                         ItemsSource="{Binding ProjectList}"
                         SelectedItem="{Binding SelectedList}"
                         ItemDisplayBinding="{Binding name}"
-                        FontFamily="Barlow_Regular"
+                        FontFamily="Mulish_Regular"
                         TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                         BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
                         <Picker.Effects>

@@ -10,14 +10,14 @@
             <Label
                 Text="Email"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Barlow_Regular"
+                FontFamily="Mulish_Regular"
                 FontSize="{StaticResource Body1FontSize}"></Label>
             <Frame
                 BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
                 CornerRadius="8"
                 Padding="10, 0">
                 <Entry
-                    FontFamily="Barlow_Regular"
+                    FontFamily="Mulish_Regular"
                     Placeholder="Enter your email"
                     ReturnCommand="{Binding StartCommand}"
                     Text="{Binding Email}"
@@ -36,14 +36,14 @@
             <Label
                 Text="Password"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Barlow_Regular"
+                FontFamily="Mulish_Regular"
                 FontSize="{StaticResource Body1FontSize}"></Label>
             <Frame
                 BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
                 CornerRadius="8"
                 Padding="10, 0">
                 <Entry
-                    FontFamily="Barlow_Regular"
+                    FontFamily="Mulish_Regular"
                     IsPassword="True"
                     Placeholder="Enter your password"
                     ReturnCommand="{Binding StartCommand}"
@@ -61,7 +61,7 @@
             Text="Forgot password?"
             TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
             TextDecorations="Underline"
-            FontFamily="Barlow_SemiBold"
+            FontFamily="Mulish_SemiBold"
             FontSize="{StaticResource Body1FontSize}"
             Margin="20, 10"></Label>
         <Button 
@@ -69,7 +69,7 @@
             Command="{Binding LoginCommand}"
             CornerRadius="28"
             FontSize="{StaticResource ButtonFontSize}"
-            FontFamily="Barlow_Bold"
+            FontFamily="Mulish_Bold"
             Margin="20, 0, 20, 10"
             Padding="20, 18"
             Text="Login"

@@ -44,13 +44,13 @@
                 <Label
                     Grid.Column="1"
                     Grid.Row="0"
-                    Style="{StaticResource Body1_BarlowSemiBold}"
+                    Style="{StaticResource Body1_MulishSemiBold}"
                     Text="Hello"
                     TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"></Label>
                 <Label
                     Grid.Column="1"
                     Grid.Row="1"
-                    Style="{StaticResource Headline4_BarlowBold}"
+                    Style="{StaticResource Headline4_MulishBold}"
                     Text="{Binding Name}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
                 <Label
@@ -77,7 +77,7 @@
                     Grid.Column="0"
                     Text="{Binding Week.WeekString}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    Style="{StaticResource Subtitle1_BarlowBold}"
+                    Style="{StaticResource Subtitle1_MulishBold}"
                     VerticalOptions="Center"></Label>
                 <Button
                     Grid.Column="2"
@@ -155,7 +155,7 @@
                                 <Label
                                     Text="{Binding DayName}"
                                     TextTransform="Uppercase"
-                                    Style="{StaticResource Body1_BarlowRegular}"
+                                    Style="{StaticResource Body1_MulishRegular}"
                                     CharacterSpacing="-1"
                                     HorizontalTextAlignment="Center">
                                     <VisualStateManager.VisualStateGroups>
@@ -173,7 +173,7 @@
                                                     <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Active}}"></StateTrigger>
                                                 </VisualState.StateTriggers>
                                                 <VisualState.Setters>
-                                                    <Setter Property="FontFamily" Value="Barlow_Bold"/>
+                                                    <Setter Property="FontFamily" Value="Mulish_Bold"/>
                                                     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"/>
                                                 </VisualState.Setters>
                                             </VisualState>
@@ -191,7 +191,7 @@
                                 <Label
                                     CharacterSpacing="-1"
                                     HorizontalTextAlignment="Center"
-                                    Style="{StaticResource Headline4_BarlowBold}"
+                                    Style="{StaticResource Headline4_MulishBold}"
                                     Text="{Binding Day}">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup>
@@ -235,11 +235,11 @@
                 <Label
                     Text="Tasks"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    Style="{StaticResource Subtitle1_BarlowBold}"></Label>
+                    Style="{StaticResource Subtitle1_MulishBold}"></Label>
                 <Label
                     Text="{Binding Filter}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    Style="{StaticResource Body1_BarlowRegular}"
+                    Style="{StaticResource Body1_MulishRegular}"
                     HorizontalOptions="EndAndExpand"
                     VerticalOptions="End"></Label>
             </StackLayout>
@@ -376,7 +376,7 @@
                                                 Grid.Row="0"
                                                 Grid.Column="1"
                                                 Text="{Binding task}"
-                                                FontFamily="Barlow_SemiBold"
+                                                FontFamily="Mulish_SemiBold"
                                                 FontSize="{StaticResource Body1FontSize}"
                                                 Margin="8, 0, 8, 0"
                                                 VerticalOptions="Center">
@@ -405,7 +405,7 @@
                                                 Grid.Row="1"
                                                 Grid.Column="1"
                                                 Text="{Binding list}"
-                                                FontFamily="Barlow_Medium"
+                                                FontFamily="Mulish_Medium"
                                                 FontSize="{StaticResource Body2FontSize}"
                                                 Margin="8, 0, 8, 0"
                                                 VerticalOptions="CenterAndExpand">

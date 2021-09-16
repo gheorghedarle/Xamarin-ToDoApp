@@ -10,14 +10,14 @@
             <Label
                 Text="Username"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Barlow_Regular"
+                FontFamily="Mulish_Regular"
                 FontSize="{StaticResource Body1FontSize}"></Label>
             <Frame
                 BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
                 CornerRadius="8"
                 Padding="10, 0">
                 <Entry
-                    FontFamily="Barlow_Regular"
+                    FontFamily="Mulish_Regular"
                     Placeholder="Enter your username"
                     ReturnCommand="{Binding StartCommand}"
                     Text="{Binding Username}"
@@ -36,14 +36,14 @@
             <Label
                 Text="Email"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Barlow_Regular"
+                FontFamily="Mulish_Regular"
                 FontSize="{StaticResource Body1FontSize}"></Label>
             <Frame
                 BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
                 CornerRadius="8"
                 Padding="10, 0">
                 <Entry
-                    FontFamily="Barlow_Regular"
+                    FontFamily="Mulish_Regular"
                     Placeholder="Enter your email"
                     ReturnCommand="{Binding StartCommand}"
                     Text="{Binding Email}"
@@ -62,14 +62,14 @@
             <Label
                 Text="Password"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Barlow_Regular"
+                FontFamily="Mulish_Regular"
                 FontSize="{StaticResource Body1FontSize}"></Label>
             <Frame
                 BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
                 CornerRadius="8"
                 Padding="10, 0">
                 <Entry
-                    FontFamily="Barlow_Regular"
+                    FontFamily="Mulish_Regular"
                     IsPassword="True"
                     Placeholder="Enter your password"
                     ReturnCommand="{Binding StartCommand}"
@@ -89,14 +89,14 @@
             <Label
                 Text="Confirm Password"
                 TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Barlow_Regular"
+                FontFamily="Mulish_Regular"
                 FontSize="{StaticResource Body1FontSize}"></Label>
             <Frame
                 BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
                 CornerRadius="8"
                 Padding="10, 0">
                 <Entry
-                    FontFamily="Barlow_Regular"
+                    FontFamily="Mulish_Regular"
                     IsPassword="True"
                     Placeholder="Confirm your password"
                     Text="{Binding ConfirmPassword}"
@@ -114,7 +114,7 @@
             Command="{Binding SignUpCommand}"
             CornerRadius="28"
             FontSize="{StaticResource ButtonFontSize}"
-            FontFamily="Barlow_Bold"
+            FontFamily="Mulish_Bold"
             Margin="20, 20, 20, 10"
             Padding="20, 18"
             Text="Register"

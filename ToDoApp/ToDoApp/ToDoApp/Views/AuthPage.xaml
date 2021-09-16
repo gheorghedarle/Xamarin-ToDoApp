@@ -37,7 +37,7 @@
                     Grid.Column="1"
                     Text="{Binding Title}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    FontFamily="Barlow_Bold"
+                    FontFamily="Mulish_Bold"
                     FontSize="{StaticResource Headline3FontSize}"
                     Margin="10, -2, 0, 0"
                     VerticalOptions="Center"></Label>
@@ -55,12 +55,12 @@
                     <FormattedString>
                         <Span
                         Text="Don't have an account? "
-                        FontFamily="Barlow_Regular"
+                        FontFamily="Mulish_Regular"
                         FontSize="{StaticResource Body1FontSize}"></Span>
                         <Span
                         Text="Sign Up"
                         TextDecorations="Underline"
-                        FontFamily="Barlow_SemiBold"
+                        FontFamily="Mulish_SemiBold"
                         FontSize="{StaticResource Body1FontSize}"></Span>
                     </FormattedString>
                 </Label.FormattedText>
@@ -77,12 +77,12 @@
                     <FormattedString>
                         <Span
                         Text="Already have an account? "
-                        FontFamily="Barlow_Regular"
+                        FontFamily="Mulish_Regular"
                         FontSize="{StaticResource Body1FontSize}"></Span>
                         <Span
                         Text="Login"
                         TextDecorations="Underline"
-                        FontFamily="Barlow_SemiBold"
+                        FontFamily="Mulish_SemiBold"
                         FontSize="{StaticResource Body1FontSize}"></Span>
                     </FormattedString>
                 </Label.FormattedText>
