@@ -14,6 +14,12 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
 
+    <Style x:Key="Headline3_MulishBlack" TargetType="Label">
+        <Setter Property="FontFamily" Value="Mulish_Black" />
+        <Setter Property="FontSize" Value="{StaticResource Headline3FontSize}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+    </Style>
+
     <Style x:Key="Headline4_MulishRegular" TargetType="Label">
         <Setter Property="FontFamily" Value="Mulish_Regular" />
         <Setter Property="FontSize" Value="{StaticResource Headline4FontSize}" />

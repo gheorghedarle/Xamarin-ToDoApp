@@ -28,11 +28,6 @@
       Android="16"
       iOS="16" />
     <OnPlatform
-      x:Key="Subtitle2FontSize"
-      x:TypeArguments="x:Double"
-      Android="16"
-      iOS="16" />
-    <OnPlatform
       x:Key="Subtitle1FontSize"
       x:TypeArguments="x:Double"
       Android="18"

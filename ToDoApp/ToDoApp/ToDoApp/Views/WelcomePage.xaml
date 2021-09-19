@@ -5,23 +5,30 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid
-            Padding="20, 0, 20, 0"
             BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
-            RowDefinitions="*, Auto, Auto">
+            Padding="20, 0, 20, 0"
+            RowDefinitions="*, Auto, Auto, Auto">
             <Label
                 Grid.Row="1"
-                Text="Manage your daily tasks"
-                Style="{StaticResource Headline4_MulishBold}"
-                Margin="0, 20, 0, 20"></Label>
-            <Button
+                HorizontalTextAlignment="Center"
+                Margin="30, 20, 30, 0"
+                Style="{StaticResource Headline3_MulishBlack}"
+                Text="Manage your daily tasks in one place"></Label>
+            <Label
                 Grid.Row="2"
+                HorizontalTextAlignment="Center"
+                Margin="0, 0, 0, 30"
+                Style="{StaticResource Body1_MulishRegular}"
+                Text="Organize your daily tasks with ToDo app"></Label>
+            <Button
                 BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
                 Command="{Binding GetStartedCommand}"
-                CornerRadius="28"
-                FontSize="{StaticResource ButtonFontSize}"
+                CornerRadius="30"
                 FontFamily="Mulish_Bold"
+                FontSize="{StaticResource ButtonFontSize}"
+                Grid.Row="3"
                 Margin="0, 0, 0, 30"
-                Padding="20, 18"
+                Padding="20, 20"
                 Text="Login"
                 TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
                 VerticalOptions="End"></Button>

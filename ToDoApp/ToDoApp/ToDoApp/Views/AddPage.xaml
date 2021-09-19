@@ -65,7 +65,7 @@
                                     <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardUnselectedBackgroundColor}, Dark={StaticResource DarkCardUnselectedBackgroundColor}}"/>
+                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardDoneBackgroundColor}, Dark={StaticResource DarkCardDoneBackgroundColor}}"/>
                                     <Setter Property="HasShadow" Value="False"/>
                                     <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
                                 </VisualState.Setters>
@@ -126,7 +126,7 @@
                                     <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardUnselectedBackgroundColor}, Dark={StaticResource DarkCardUnselectedBackgroundColor}}"/>
+                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardDoneBackgroundColor}, Dark={StaticResource DarkCardDoneBackgroundColor}}"/>
                                     <Setter Property="HasShadow" Value="False"/>
                                     <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
                                 </VisualState.Setters>
