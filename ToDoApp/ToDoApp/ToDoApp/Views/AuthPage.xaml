@@ -36,10 +36,8 @@
                 <Label
                     Grid.Column="1"
                     Text="{Binding Title}"
-                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    FontFamily="Mulish_Bold"
-                    FontSize="{StaticResource Headline3FontSize}"
-                    Margin="10, -2, 0, 0"
+                    Style="{StaticResource Headline3_MulishBlack}"
+                    Margin="10, 0, 0, 0"
                     VerticalOptions="Center"></Label>
             </Grid>
             <ContentView prism:RegionManager.RegionName="LoginRegion"
@@ -55,12 +53,12 @@
                     <FormattedString>
                         <Span
                         Text="Don't have an account? "
-                        FontFamily="Mulish_Regular"
+                        FontFamily="Mulish_SemiBold"
                         FontSize="{StaticResource Body1FontSize}"></Span>
                         <Span
                         Text="Sign Up"
                         TextDecorations="Underline"
-                        FontFamily="Mulish_SemiBold"
+                        FontFamily="Mulish_Bold"
                         FontSize="{StaticResource Body1FontSize}"></Span>
                     </FormattedString>
                 </Label.FormattedText>
