@@ -27,6 +27,7 @@
     <Color x:Key="DarkPrimaryTextColor">#F5F5F5</Color>
     <Color x:Key="DarkSecondaryTextColor">#B2B8C1</Color>
     <Color x:Key="DarkDisabledTextColor">#A6A3BD</Color>
+    <Color x:Key="DarkPlaceholderTextColor">#BDBDBD</Color>
 
     <Color x:Key="DarkButtonColor">#F7F7FC</Color>
     <Color x:Key="DarkButtonTextColor">#0E1837</Color>

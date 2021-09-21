@@ -52,14 +52,11 @@
                 <Label.FormattedText>
                     <FormattedString>
                         <Span
-                        Text="Don't have an account? "
-                        FontFamily="Mulish_SemiBold"
-                        FontSize="{StaticResource Body1FontSize}"></Span>
+                            Text="Don't have an account? "
+                            Style="{StaticResource Body1_MulishRegular}"></Span>
                         <Span
-                        Text="Sign Up"
-                        TextDecorations="Underline"
-                        FontFamily="Mulish_Bold"
-                        FontSize="{StaticResource Body1FontSize}"></Span>
+                            Text="Sign Up"
+                            Style="{StaticResource Base_Link}"></Span>
                     </FormattedString>
                 </Label.FormattedText>
                 <Label.GestureRecognizers>
@@ -74,14 +71,11 @@
                 <Label.FormattedText>
                     <FormattedString>
                         <Span
-                        Text="Already have an account? "
-                        FontFamily="Mulish_Regular"
-                        FontSize="{StaticResource Body1FontSize}"></Span>
+                            Text="Already have an account? "
+                            Style="{StaticResource Body1_MulishRegular}"></Span>
                         <Span
-                        Text="Login"
-                        TextDecorations="Underline"
-                        FontFamily="Mulish_SemiBold"
-                        FontSize="{StaticResource Body1FontSize}"></Span>
+                            Text="Login"
+                            Style="{StaticResource Base_Link}"></Span>
                     </FormattedString>
                 </Label.FormattedText>
                 <Label.GestureRecognizers>

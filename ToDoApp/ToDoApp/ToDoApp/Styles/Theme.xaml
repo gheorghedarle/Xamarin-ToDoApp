@@ -64,4 +64,35 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
 
+
+    <Style x:Key="Base_Link" TargetType="Label">
+        <Setter Property="FontFamily" Value="Mulish_Bold" />
+        <Setter Property="TextDecorations" Value="Underline" />
+        <Setter Property="FontSize" Value="{StaticResource Body1FontSize}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+    </Style>
+
+
+    <Style x:Key="Base_FrameEntry" TargetType="Frame">
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="10, 0" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}" />
+    </Style>
+    <Style x:Key="Base_Entry" TargetType="Entry">
+        <Setter Property="FontFamily" Value="Mulish_Regular" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+        <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource LightPlaceholderTextColor}, Dark={StaticResource DarkPlaceholderTextColor}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}" />
+    </Style>
+
+    
+    <Style x:Key="Base_Button" TargetType="Button">
+        <Setter Property="CornerRadius" Value="30" />
+        <Setter Property="FontFamily" Value="Mulish_Bold" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}" />
+        <Setter Property="FontSize" Value="{StaticResource ButtonFontSize}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}" />
+    </Style>
 </ResourceDictionary>
