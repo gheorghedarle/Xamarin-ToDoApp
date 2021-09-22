@@ -8,6 +8,8 @@
         <styles:Fonts></styles:Fonts>
     </ResourceDictionary.MergedDictionaries>
 
+    <!--#region Labels-->
+    
     <Style x:Key="Headline2_FontAwesome" TargetType="Label">
         <Setter Property="FontFamily" Value="FontAwesome_Solid" />
         <Setter Property="FontSize" Value="{StaticResource Headline2FontSize}" />
@@ -64,6 +66,9 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
 
+    <!--#endregion-->
+    
+    <!--#region Links-->
 
     <Style x:Key="Base_Link" TargetType="Label">
         <Setter Property="FontFamily" Value="Mulish_Bold" />
@@ -72,7 +77,10 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
 
+    <!--#endregion-->
 
+    <!--#region Frames-->
+    
     <Style x:Key="Base_FrameEntry" TargetType="Frame">
         <Setter Property="CornerRadius" Value="10" />
         <Setter Property="Padding" Value="10, 0" />
@@ -86,6 +94,9 @@
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}" />
     </Style>
 
+    <!--#endregion-->
+
+    <!--#region Buttons-->
     
     <Style x:Key="Base_Button" TargetType="Button">
         <Setter Property="CornerRadius" Value="30" />
@@ -95,4 +106,6 @@
         <Setter Property="FontSize" Value="{StaticResource ButtonFontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}" />
     </Style>
+    
+    <!--#endregion-->
 </ResourceDictionary>
