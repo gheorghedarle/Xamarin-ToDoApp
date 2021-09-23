@@ -5,25 +5,17 @@
              x:Class="ToDoApp.Views.Templates.Auth.SignUpTemplate">
     <StackLayout>
         <StackLayout
-            Spacing="5"
-            Margin="20, 0">
+            Margin="20, 0"
+            Spacing="5">
             <Label
                 Text="Username"
-                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Mulish_Regular"
-                FontSize="{StaticResource Body1FontSize}"></Label>
+                Style="{StaticResource Body1_MulishSemiBold}"></Label>
             <Frame
-                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
-                CornerRadius="8"
-                Padding="10, 0">
+                Style="{StaticResource Base_FrameEntry}">
                 <Entry
-                    FontFamily="Mulish_Regular"
                     Placeholder="Enter your username"
-                    ReturnCommand="{Binding StartCommand}"
-                    Text="{Binding Username}"
-                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                    Text="{Binding Email}"
+                    Style="{StaticResource Base_Entry}">
                     <Entry.Effects>
                         <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                     </Entry.Effects>
@@ -31,25 +23,17 @@
             </Frame>
         </StackLayout>
         <StackLayout
-                Spacing="5"
-                Margin="20, 0">
+            Margin="20, 0"
+            Spacing="5">
             <Label
                 Text="Email"
-                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Mulish_Regular"
-                FontSize="{StaticResource Body1FontSize}"></Label>
+                Style="{StaticResource Body1_MulishSemiBold}"></Label>
             <Frame
-                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
-                CornerRadius="8"
-                Padding="10, 0">
+                Style="{StaticResource Base_FrameEntry}">
                 <Entry
-                    FontFamily="Mulish_Regular"
                     Placeholder="Enter your email"
-                    ReturnCommand="{Binding StartCommand}"
                     Text="{Binding Email}"
-                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                    Style="{StaticResource Base_Entry}">
                     <Entry.Effects>
                         <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                     </Entry.Effects>
@@ -57,26 +41,18 @@
             </Frame>
         </StackLayout>
         <StackLayout
-            Spacing="5"
-            Margin="20, 0">
+            Margin="20, 0"
+            Spacing="5">
             <Label
                 Text="Password"
-                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Mulish_Regular"
-                FontSize="{StaticResource Body1FontSize}"></Label>
+                Style="{StaticResource Body1_MulishSemiBold}"></Label>
             <Frame
-                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
-                CornerRadius="8"
-                Padding="10, 0">
+                Style="{StaticResource Base_FrameEntry}">
                 <Entry
-                    FontFamily="Mulish_Regular"
                     IsPassword="True"
                     Placeholder="Enter your password"
-                    ReturnCommand="{Binding StartCommand}"
                     Text="{Binding Password}"
-                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                    Style="{StaticResource Base_Entry}">
                     <Entry.Effects>
                         <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                     </Entry.Effects>
@@ -84,25 +60,19 @@
             </Frame>
         </StackLayout>
         <StackLayout
-            Spacing="5"
-            Margin="20, 0">
+            Margin="20, 0"
+            Spacing="5">
             <Label
                 Text="Confirm Password"
-                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                FontFamily="Mulish_Regular"
-                FontSize="{StaticResource Body1FontSize}"></Label>
+                Style="{StaticResource Body1_MulishSemiBold}"></Label>
             <Frame
-                BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
-                CornerRadius="8"
-                Padding="10, 0">
+                Style="{StaticResource Base_FrameEntry}">
                 <Entry
-                    FontFamily="Mulish_Regular"
                     IsPassword="True"
                     Placeholder="Confirm your password"
+                    ReturnCommand="{Binding SignUpCommand}"
                     Text="{Binding ConfirmPassword}"
-                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                    Style="{StaticResource Base_Entry}">
                     <Entry.Effects>
                         <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                     </Entry.Effects>
@@ -110,14 +80,9 @@
             </Frame>
         </StackLayout>
         <Button 
-            BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
             Command="{Binding SignUpCommand}"
-            CornerRadius="28"
-            FontSize="{StaticResource ButtonFontSize}"
-            FontFamily="Mulish_Bold"
-            Margin="20, 20, 20, 10"
-            Padding="20, 18"
+            Margin="20, 10, 20, 10"
             Text="Register"
-            TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"></Button>
+            Style="{StaticResource Base_Button}"></Button>
     </StackLayout>
 </ContentView>

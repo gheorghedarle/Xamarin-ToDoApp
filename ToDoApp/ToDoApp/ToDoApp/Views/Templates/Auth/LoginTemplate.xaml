@@ -13,7 +13,6 @@
             <Frame
                 Style="{StaticResource Base_FrameEntry}">
                 <Entry
-                    FontFamily="Mulish_Regular"
                     Placeholder="Enter your email"
                     Text="{Binding Email}"
                     Style="{StaticResource Base_Entry}">
@@ -34,8 +33,8 @@
                 <Entry
                     IsPassword="True"
                     Placeholder="Enter your password"
+                    ReturnCommand="{Binding LoginCommand}"
                     Text="{Binding Password}"
-                    ReturnCommand="{Binding StartCommand}"
                     Style="{StaticResource Base_Entry}">
                     <Entry.Effects>
                         <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
