@@ -10,15 +10,12 @@
             WidthRequest="200"
             HeightRequest="200"></Image>
         <Label
+            HorizontalTextAlignment="Center"
             Text="All clear"
-            FontFamily="Mulish_Bold"
-            FontSize="{StaticResource Headline2FontSize}"
-            HorizontalTextAlignment="Center"
-            TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
+            Style="{StaticResource Headline3_MulishBlack}"></Label>
         <Label
-            Text="Looks like you don't have any tasks for this day"
-            FontFamily="Mulish_Regular"
-            FontSize="{StaticResource Body1FontSize}"
             HorizontalTextAlignment="Center"
-            TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
+            Style="{StaticResource Body1_MulishRegular}"
+            Text="Looks like you don't have any tasks for this day"
+            TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"></Label>
 </StackLayout>

@@ -25,7 +25,7 @@
                 ColumnDefinitions="Auto, *, Auto"
                 RowDefinitions="Auto, Auto"
                 RowSpacing="0"
-                Margin="16, 16, 16, 0">
+                Margin="10, 10, 10, 0">
                 <Label
                     Grid.Column="0"
                     Grid.Row="0"
@@ -36,7 +36,7 @@
                     FontFamily="FontAwesome_Solid"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
-                    Margin="8, 0, 8, 0">
+                    Margin="10, 0, 5, 0">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ProfileCommand}"></TapGestureRecognizer>
                     </Label.GestureRecognizers>
@@ -44,13 +44,14 @@
                 <Label
                     Grid.Column="1"
                     Grid.Row="0"
-                    Style="{StaticResource Body1_MulishSemiBold}"
+                    Style="{StaticResource Body1_MulishBold}"
                     Text="Hello"
                     TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"></Label>
                 <Label
                     Grid.Column="1"
                     Grid.Row="1"
-                    Style="{StaticResource Headline4_MulishBold}"
+                    Margin="0, -2, 0, 0"
+                    Style="{StaticResource Headline4_MulishBlack}"
                     Text="{Binding Name}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
                 <Label
@@ -62,7 +63,7 @@
                     FontSize="{StaticResource Headline4FontSize}"
                     FontFamily="FontAwesome_Solid"
                     VerticalOptions="Center"
-                    Margin="0, 0, 16, 0">
+                    Margin="0, 0, 15, 0">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding MoreCommand}"></TapGestureRecognizer>
                     </Label.GestureRecognizers>
@@ -70,14 +71,14 @@
             </Grid>
             <Grid
                 Grid.Row="2"
-                Margin="16, 0, 16, 0"
+                Margin="20, 0"
                 HeightRequest="40"
                 ColumnDefinitions="Auto, *, 40, 40">
                 <Label
                     Grid.Column="0"
                     Text="{Binding Week.WeekString}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    Style="{StaticResource Subtitle1_MulishBold}"
+                    Style="{StaticResource Subtitle1_MulishBlack}"
                     VerticalOptions="Center"></Label>
                 <Button
                     Grid.Column="2"
@@ -107,7 +108,7 @@
                 Grid.Row="3"
                 ColumnDefinitions="*, *, *, *, *, *"
                 BindableLayout.ItemsSource="{Binding DaysList}"
-                Margin="16, 0, 16, 0">
+                Margin="15, 0">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Frame
@@ -143,7 +144,7 @@
                                             <StateTrigger IsActive="{Binding State, Converter={xct:EqualConverter}, ConverterParameter={x:Static model:DayStateEnum.Past}}"></StateTrigger>
                                         </VisualState.StateTriggers>
                                         <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardDoneBackgroundColor}, Dark={StaticResource DarkCardDoneBackgroundColor}}"/>
+                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardDisabledBackgroundColor}, Dark={StaticResource DarkCardDisabledBackgroundColor}}"/>
                                             <Setter Property="HasShadow" Value="False"/>
                                             <Setter Property="IsEnabled" Value="False"/>
                                         </VisualState.Setters>
@@ -189,9 +190,8 @@
                                     </VisualStateManager.VisualStateGroups>
                                 </Label>
                                 <Label
-                                    CharacterSpacing="-1"
                                     HorizontalTextAlignment="Center"
-                                    Style="{StaticResource Headline4_MulishBold}"
+                                    Style="{StaticResource Headline4_MulishBlack}"
                                     Text="{Binding Day}">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup>
@@ -231,11 +231,11 @@
                 Grid.Row="4"
                 Orientation="Horizontal"
                 HorizontalOptions="FillAndExpand"
-                Margin="16, 0, 16, 0">
+                Margin="15, 5, 15, 0">
                 <Label
+                    Style="{StaticResource Subtitle1_MulishBlack}"
                     Text="Tasks"
-                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    Style="{StaticResource Subtitle1_MulishBold}"></Label>
+                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
                 <Label
                     Text="{Binding Filter}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
@@ -443,10 +443,10 @@
                 BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
                 VerticalOptions="End" 
                 HorizontalOptions="End" 
-                CornerRadius="18" 
-                TranslationY="-16" 
-                TranslationX="-16"
-                Padding="18, 16, 18, 16"
+                CornerRadius="20" 
+                TranslationY="-15" 
+                TranslationX="-15"
+                Padding="15"
                 xct:TouchEffect.NativeAnimation="True">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding AddCommand}"></TapGestureRecognizer>

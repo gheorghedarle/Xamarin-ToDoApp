@@ -15,7 +15,7 @@
         <Setter Property="FontSize" Value="{StaticResource Headline2FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
-
+    
     <Style x:Key="Headline3_MulishBlack" TargetType="Label">
         <Setter Property="FontFamily" Value="Mulish_Black" />
         <Setter Property="FontSize" Value="{StaticResource Headline3FontSize}" />
@@ -32,6 +32,11 @@
         <Setter Property="FontSize" Value="{StaticResource Headline4FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
+    <Style x:Key="Headline4_MulishBlack" TargetType="Label">
+        <Setter Property="FontFamily" Value="Mulish_Black" />
+        <Setter Property="FontSize" Value="{StaticResource Headline4FontSize}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+    </Style>
 
     <Style x:Key="Subtitle1_MulishRegular" TargetType="Label">
         <Setter Property="FontFamily" Value="Mulish_Regular" />
@@ -40,6 +45,16 @@
     </Style>
     <Style x:Key="Subtitle1_MulishBold" TargetType="Label">
         <Setter Property="FontFamily" Value="Mulish_Bold" />
+        <Setter Property="FontSize" Value="{StaticResource Subtitle1FontSize}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+    </Style>
+    <Style x:Key="Subtitle1_MulishBlack" TargetType="Label">
+        <Setter Property="FontFamily" Value="Mulish_Black" />
+        <Setter Property="FontSize" Value="{StaticResource Subtitle1FontSize}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+    </Style>
+    <Style x:Key="Subtitle1_MulishExtraBold" TargetType="Label">
+        <Setter Property="FontFamily" Value="Mulish_ExtraBold" />
         <Setter Property="FontSize" Value="{StaticResource Subtitle1FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
