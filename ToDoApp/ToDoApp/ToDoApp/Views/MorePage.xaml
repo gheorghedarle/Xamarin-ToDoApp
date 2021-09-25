@@ -7,11 +7,10 @@
         <Grid
             BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
             RowDefinitions="Auto, *"
-            Padding="20, 0, 20, 0">
+            Padding="20, 20, 20, 0">
             <Grid
-                Grid.Row="0"
                 ColumnDefinitions="Auto, Auto"
-                Margin="0, 20, 0, 10"
+                Margin="0, 0, 0, 10"
                 HorizontalOptions="Start">
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding BackCommand}"></TapGestureRecognizer>
@@ -26,11 +25,9 @@
                     VerticalOptions="Center"></Label>
                 <Label
                     Grid.Column="1"
-                    Style="{StaticResource Headline4_MulishBold}"
+                    Style="{StaticResource Headline3_MulishBlack}"
                     Text="More"
-                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                     Margin="10, 0, 0, 0"
-                    HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center"/>
             </Grid>
             <StackLayout
@@ -38,20 +35,14 @@
                 Spacing="10">
                 <Label
                     Text="Display tasks from"
-                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    FontFamily="Mulish_Regular"
-                    FontSize="{StaticResource Body1FontSize}"></Label>
+                    Style="{StaticResource Body1_MulishSemiBold}"></Label>
                 <Frame
-                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
-                    CornerRadius="8"
-                    Padding="10, 0">
+                    Style="{StaticResource Base_FrameEntry}">
                     <Picker
                         ItemsSource="{Binding ProjectList}"
                         SelectedItem="{Binding SelectedList}"
                         ItemDisplayBinding="{Binding name}"
-                        FontFamily="Mulish_Regular"
-                        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                        BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                        Style="{StaticResource Base_Picker}">
                         <Picker.Effects>
                             <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                         </Picker.Effects>

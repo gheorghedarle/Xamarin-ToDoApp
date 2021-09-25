@@ -444,9 +444,9 @@
                 VerticalOptions="End" 
                 HorizontalOptions="End" 
                 CornerRadius="20" 
-                TranslationY="-15" 
-                TranslationX="-15"
-                Padding="15"
+                TranslationY="-20" 
+                TranslationX="-20"
+                Padding="20"
                 xct:TouchEffect.NativeAnimation="True">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding AddCommand}"></TapGestureRecognizer>

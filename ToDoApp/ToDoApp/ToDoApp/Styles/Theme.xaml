@@ -102,6 +102,11 @@
         <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}" />
     </Style>
+
+    <!--#endregion-->
+
+    <!--#region Entry-->
+
     <Style x:Key="Base_Entry" TargetType="Entry">
         <Setter Property="FontFamily" Value="Mulish_Regular" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
@@ -111,6 +116,16 @@
 
     <!--#endregion-->
 
+    <!--#region Picker-->
+
+    <Style x:Key="Base_Picker" TargetType="Picker">
+        <Setter Property="FontFamily" Value="Mulish_Regular" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}" />
+    </Style>
+
+    <!--#endregion-->
+    
     <!--#region Buttons-->
     
     <Style x:Key="Base_Button" TargetType="Button">
