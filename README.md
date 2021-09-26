@@ -1,4 +1,7 @@
+<img src="https://github.com/gheorghedarle/Xamarin-ToDoApp/blob/main/app_icon.png" width="96" /> 
+
 # Xamarin ToDo App
+
 ![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg)
 
 Todo App is a simple to do app developed with Xamarin and Firebase
