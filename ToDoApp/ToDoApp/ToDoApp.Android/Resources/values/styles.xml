@@ -9,10 +9,10 @@
     <item name="android:statusBarColor">#001532</item>
   </style>
   <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    <item name="colorPrimary">#233E8B</item>
-    <item name="colorPrimaryDark">#0E1837</item>
-    <item name="colorAccent">#feb92f</item>
-    <item name="android:statusBarColor">#001532</item>
+    <item name="colorPrimary">#212121</item>
+    <item name="colorPrimaryDark">#2A2A2A</item>
+    <item name="colorAccent">#AA3333</item>
+    <item name="android:statusBarColor">#212121</item>
     <item name="android:windowBackground">@drawable/splash_screen</item>
   </style>
 </resources>

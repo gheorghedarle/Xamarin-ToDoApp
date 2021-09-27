@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToDoApp.Styles.Colors">
     <Color x:Key="PrimaryColor">#212121</Color>
-    <Color x:Key="AccentColor">#FAFAFA</Color>
+    <Color x:Key="AccentColor">#AA3333</Color>
 
     <Color x:Key="FailColor">#D04C41</Color>
     <Color x:Key="SuccessColor">#00AF49</Color>
@@ -19,7 +19,7 @@
 
     <Color x:Key="LightPageBackgroundColor">#F0F0F0</Color>
     <Color x:Key="LightCardBackgroundColor">#FFFFFF</Color>
-    <Color x:Key="LightCardDoneBackgroundColor">#F1F0F7</Color>
+    <Color x:Key="LightCardDoneBackgroundColor">#F0F0F0</Color>
     <Color x:Key="LightCardDisabledBackgroundColor">#E1E1E1</Color>
     <Color x:Key="LightCardBorderColor">#E1E1E1</Color>
 
