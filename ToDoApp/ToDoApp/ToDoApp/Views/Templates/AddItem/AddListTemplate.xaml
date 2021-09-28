@@ -8,16 +8,12 @@
         <StackLayout
             Grid.Row="0">
             <StackLayout
-                Spacing="10">
+                Spacing="5">
                 <Label
                     Text="Name"
-                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    FontFamily="Mulish_Regular"
-                    FontSize="{StaticResource Body1FontSize}"></Label>
+                    Style="{StaticResource Body1_MulishSemiBold}"></Label>
                 <Frame
-                    BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"
-                    CornerRadius="8"
-                    Padding="10, 0">
+                    Style="{StaticResource Base_FrameEntry}">
                     <Entry
                         FontFamily="Mulish_Regular"
                         Placeholder="Enter your name"
@@ -32,12 +28,10 @@
                 </Frame>
             </StackLayout>
             <StackLayout
-            Spacing="10">
+                Spacing="5">
                 <Label
                     Text="Color"
-                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                    FontFamily="Mulish_Regular"
-                    FontSize="{StaticResource Body1FontSize}"></Label>
+                    Style="{StaticResource Body1_MulishSemiBold}"></Label>
                 <CollectionView
                     ItemsSource="{Binding ColorList}"
                     SelectedItem="{Binding AddList.colorObject}"

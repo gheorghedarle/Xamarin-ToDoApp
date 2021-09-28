@@ -9,11 +9,11 @@
         <Grid
             BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
             RowDefinitions="Auto, Auto, *, Auto"
-            Padding="20, 0, 20, 0">
+            Padding="20, 20, 20, 0">
             <Grid
                 Grid.Row="0"
                 ColumnDefinitions="Auto, Auto"
-                Margin="0, 20, 0, 10"
+                Margin="0, 0, 0, 10"
                 HorizontalOptions="Start">
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding BackCommand}"></TapGestureRecognizer>
@@ -28,16 +28,15 @@
                     VerticalOptions="Center"></Label>
                 <Label
                     Grid.Column="1"
-                    Style="{StaticResource Headline4_MulishBold}"
+                    Style="{StaticResource Headline3_MulishBlack}"
                     Text="{Binding Type, StringFormat='Add new {0}'}"
-                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                     Margin="10, 0, 0, 0"
-                    HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center"/>
             </Grid>
             <Grid
                 Grid.Row="1"
-                ColumnDefinitions="*, *">
+                ColumnDefinitions="*, *"
+                Margin="0, 0, 0, 10">
                 <Frame
                     Grid.Column="0"
                     CornerRadius="16"
