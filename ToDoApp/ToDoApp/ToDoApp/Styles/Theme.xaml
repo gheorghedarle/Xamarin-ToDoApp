@@ -74,7 +74,12 @@
         <Setter Property="FontSize" Value="{StaticResource Body1FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
-
+    <Style x:Key="Body1_MulishBlack" TargetType="Label">
+        <Setter Property="FontFamily" Value="Mulish_Black" />
+        <Setter Property="FontSize" Value="{StaticResource Body1FontSize}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+    </Style>
+    
     <Style x:Key="Body2_MulishRegular" TargetType="Label">
         <Setter Property="FontFamily" Value="Mulish_Regular" />
         <Setter Property="FontSize" Value="{StaticResource Body2FontSize}" />

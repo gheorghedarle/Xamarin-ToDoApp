@@ -7,7 +7,8 @@
              IsVisible="{Binding HasNoInternetConnection}" 
              Padding="24, 16, 24, 16"
              RowDefinitions="Auto, Auto"
-             RowSpacing="0">
+             RowSpacing="0"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
     <Label
         Grid.Column="0"
         Grid.RowSpan="2"
@@ -19,7 +20,7 @@
     <Label
         Grid.Column="1"
         Grid.Row="0"
-        Style="{StaticResource Body1_MulishRegular}"
+        Style="{StaticResource Body1_MulishBlack}"
         Text="No Internet Connection"
         TextColor="{StaticResource FailColor}"/>
     <Label
