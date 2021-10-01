@@ -10,5 +10,6 @@
         <Label 
             Text="Loading..." 
             TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
-            HorizontalOptions="Center" />
+            Style="{StaticResource Body1_MulishSemiBold}"
+            HorizontalOptions="Center"/>
 </StackLayout>
