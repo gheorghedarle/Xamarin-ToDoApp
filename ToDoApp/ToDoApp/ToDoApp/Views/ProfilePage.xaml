@@ -41,8 +41,8 @@
                         HorizontalOptions="Center">
                     </Label>
                     <Label
-                        Style="{StaticResource Headline4_MulishBold}"
                         HorizontalOptions="Center"
+                        Style="{StaticResource Headline4_MulishBlack}"
                         Text="{Binding Username}"
                         TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
                     <Grid
@@ -52,48 +52,39 @@
                             Grid.Column="0"
                             Spacing="0">
                             <Label
+                                Style="{StaticResource Body1_MulishRegular}"
                                 Text="Tasks"
-                                FontFamily="Mulish_Medium"
-                                FontSize="{StaticResource Body1FontSize}"
                                 TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
                             <Label
+                                Style="{StaticResource Body1_MulishBold}"
                                 Text="{Binding ProfileDetails.TotalTasks}"
-                                FontFamily="Mulish_SemiBold"
-                                FontSize="{StaticResource Body1FontSize}"
-                                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
                         </StackLayout>
                         <StackLayout
                             Grid.Column="1"
                             Spacing="0">
                             <Label
-                                Text="Done"
-                                FontFamily="Mulish_Medium"
-                                FontSize="{StaticResource Body1FontSize}"
+                                Style="{StaticResource Body1_MulishRegular}"
+                                Text="Done"                                
                                 TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
                             <Label
+                                Style="{StaticResource Body1_MulishBold}"
                                 Text="{Binding ProfileDetails.DoneTasks}"
-                                FontFamily="Mulish_SemiBold"
-                                FontSize="{StaticResource Body1FontSize}"
-                                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
                         </StackLayout>
                         <StackLayout
                             Grid.Column="2"
                             Spacing="0">
                             <Label
+                                Style="{StaticResource Body1_MulishRegular}"
                                 Text="Lists"
-                                FontFamily="Mulish_Medium"
-                                FontSize="{StaticResource Body1FontSize}"
                                 TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
                             <Label
+                                Style="{StaticResource Body1_MulishBold}"
                                 Text="{Binding ProfileDetails.TotalLists}"
-                                FontFamily="Mulish_SemiBold"
-                                FontSize="{StaticResource Body1FontSize}"
-                                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
                                 HorizontalTextAlignment="Center"></Label>
                         </StackLayout>
                     </Grid>
@@ -105,9 +96,9 @@
             <StackLayout
                 Orientation="Horizontal">
                 <Label
-                    FontSize="{StaticResource Body1FontSize}"
+                    Style="{StaticResource Body1_MulishRegular}"
                     Text="Dark mode"
-                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
+                    TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"></Label>
                 <Switch
                     IsToggled="{Binding IsDarkMode}"
                     HorizontalOptions="EndAndExpand"
@@ -122,9 +113,9 @@
             <StackLayout
                 Orientation="Horizontal">
                 <Label
-                    FontSize="{StaticResource Body1FontSize}"
+                    Style="{StaticResource Body1_MulishRegular}"
                     Text="Hide done tasks"
-                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
+                    TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"></Label>
                 <Switch
                     IsToggled="{Binding IsHideEnabled}"
                     HorizontalOptions="EndAndExpand"
@@ -137,11 +128,8 @@
                 </Switch>
             </StackLayout>
             <Label
-                FontFamily="Mulish_SemiBold"
-                FontSize="{StaticResource Body1FontSize}"
-                Text="Log out"
-                TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                TextDecorations="Underline">
+                Style="{StaticResource Base_Link}"
+                Text="Log out">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding LogOutCommand}"></TapGestureRecognizer>
                 </Label.GestureRecognizers>
