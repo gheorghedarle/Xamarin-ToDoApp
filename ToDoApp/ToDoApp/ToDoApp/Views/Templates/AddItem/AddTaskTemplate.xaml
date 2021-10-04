@@ -15,12 +15,9 @@
                 <Frame
                     Style="{StaticResource Base_FrameEntry}">
                     <Entry
-                        FontFamily="Mulish_Regular"
                         Placeholder="Enter your name"
                         Text="{Binding AddTask.task}"
-                        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                        PlaceholderColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"
-                        BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                        Style="{StaticResource Base_Entry}">
                         <Entry.Effects>
                             <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                         </Entry.Effects>
@@ -38,9 +35,7 @@
                         ItemsSource="{Binding ProjectList}"
                         SelectedItem="{Binding AddTask.listObject}"
                         ItemDisplayBinding="{Binding name}"
-                        FontFamily="Mulish_Regular"
-                        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                        BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                        Style="{StaticResource Base_Picker}">
                         <Picker.Effects>
                             <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                         </Picker.Effects>
@@ -58,8 +53,7 @@
                         FontFamily="Mulish_Regular"
                         Date="{Binding AddTask.dateObject}"
                         Format="dd/MM/yyyy"
-                        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                        BackgroundColor="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}">
+                        Style="{StaticResource Base_Picker}">
                         <DatePicker.Effects>
                             <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                         </DatePicker.Effects>
@@ -68,16 +62,12 @@
             </StackLayout>
         </StackLayout>
         <Button
-            Grid.Row="1"
-            BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
             Command="{Binding CreateCommand}"
-            CornerRadius="28"
-            FontSize="{StaticResource ButtonFontSize}"
-            FontFamily="Mulish_Bold"
+            Grid.Row="1"
             Margin="0, 0, 0, 16"
             Padding="20, 18"
+            Style="{StaticResource Base_Button}"
             Text="Add new task"
-            TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
             VerticalOptions="End"></Button>
     </Grid>
 </ContentView>

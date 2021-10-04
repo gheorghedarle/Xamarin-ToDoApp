@@ -74,7 +74,6 @@
                     <Label
                         Text="Task"
                         FontSize="{StaticResource Body1FontSize}"
-                        FontFamily="Mulish_SemiBold"
                         HorizontalTextAlignment="Center">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>
@@ -83,6 +82,7 @@
                                         <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
+                                        <Setter Property="FontFamily" Value="Mulish_ExtraBold"/>
                                         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"/>
                                     </VisualState.Setters>
                                 </VisualState>
@@ -91,7 +91,8 @@
                                         <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
-                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDisabledTextColor}, Dark={StaticResource DarkDisabledTextColor}}"/>
+                                        <Setter Property="FontFamily" Value="Mulish_SemiBold"/>
+                                        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -135,7 +136,6 @@
                     <Label
                         Text="List"
                         FontSize="{StaticResource Body1FontSize}"
-                        FontFamily="Mulish_SemiBold"
                         HorizontalTextAlignment="Center">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>
@@ -144,6 +144,7 @@
                                         <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
+                                        <Setter Property="FontFamily" Value="Mulish_ExtraBold"/>
                                         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"/>
                                     </VisualState.Setters>
                                 </VisualState>
@@ -152,6 +153,7 @@
                                         <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
+                                        <Setter Property="FontFamily" Value="Mulish_SemiBold"/>
                                         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDisabledTextColor}, Dark={StaticResource DarkDisabledTextColor}}"/>
                                     </VisualState.Setters>
                                 </VisualState>

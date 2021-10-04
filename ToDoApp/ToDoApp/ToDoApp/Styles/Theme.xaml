@@ -104,8 +104,8 @@
     <Style x:Key="Base_FrameEntry" TargetType="Frame">
         <Setter Property="CornerRadius" Value="10" />
         <Setter Property="Padding" Value="10, 0" />
-        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}" />
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightEntryBorderColor}, Dark={StaticResource DarkEntryBorderColor}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightEntryBackgroundColor}, Dark={StaticResource DarkEntryBackgroundColor}}" />
     </Style>
 
     <!--#endregion-->
@@ -116,7 +116,6 @@
         <Setter Property="FontFamily" Value="Mulish_Regular" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
         <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource LightPlaceholderTextColor}, Dark={StaticResource DarkPlaceholderTextColor}}" />
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}" />
     </Style>
 
     <!--#endregion-->
@@ -126,7 +125,6 @@
     <Style x:Key="Base_Picker" TargetType="Picker">
         <Setter Property="FontFamily" Value="Mulish_Regular" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}" />
     </Style>
 
     <!--#endregion-->
@@ -135,7 +133,7 @@
     
     <Style x:Key="Base_Button" TargetType="Button">
         <Setter Property="CornerRadius" Value="30" />
-        <Setter Property="FontFamily" Value="Mulish_Bold" />
+        <Setter Property="FontFamily" Value="Mulish_ExtraBold" />
         <Setter Property="Padding" Value="20" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}" />
         <Setter Property="FontSize" Value="{StaticResource ButtonFontSize}" />
