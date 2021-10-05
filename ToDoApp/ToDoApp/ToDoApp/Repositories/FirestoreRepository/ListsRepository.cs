@@ -33,6 +33,11 @@ namespace ToDoApp.Repositories.FirestoreRepository
             throw new NotImplementedException();
         }
 
+        public IQuery GetAllContains(string userId, string field1, object value1, string field2, object value2, string field3, object value3)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> Update(ListModel model)
         {
             throw new System.NotImplementedException();

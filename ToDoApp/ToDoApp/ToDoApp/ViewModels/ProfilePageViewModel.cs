@@ -38,7 +38,7 @@ namespace ToDoApp.ViewModels
         public ProfileDetailsModel ProfileDetails { get; set; }
         public string Username { get; set; }
         public bool IsDarkMode { get; set; }
-        public bool HideDoneTasks { get; set; }
+        public bool IsHideEnabled { get; set; }
 
         #endregion
 
@@ -54,8 +54,6 @@ namespace ToDoApp.ViewModels
 
             BackCommand = new Command(BackCommandHandler);
             LogOutCommand = new Command(LogOutCommandHandler);
-            DarkModeToggleCommand = new Command(DarkModeToggleCommandHandler);
-            HideDoneToggleCommand = new Command(HideDoneToggleCommandHandler);
         }
 
         public async void Initialize(INavigationParameters parameters)
@@ -65,7 +63,7 @@ namespace ToDoApp.ViewModels
             await GetProfileDetails();
 
             IsDarkMode = Application.Current.UserAppTheme.Equals(OSAppTheme.Dark);
-            HideDoneTasks = Preferences.Get("hideDoneTasks", false);
+            IsHideEnabled = Preferences.Get("hideDoneTasks", false);
 
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             Username = auth.GetUsername();
@@ -76,26 +74,6 @@ namespace ToDoApp.ViewModels
         #endregion
 
         #region Command Handlers
-
-        private void DarkModeToggleCommandHandler()
-        {
-            if (IsDarkMode)
-            {
-                Application.Current.UserAppTheme = OSAppTheme.Dark;
-                Preferences.Set("theme", "dark");
-            }
-            else
-            {
-                Application.Current.UserAppTheme = OSAppTheme.Light;
-                Preferences.Set("theme", "light");
-            }
-        }
-
-        private void HideDoneToggleCommandHandler()
-        {
-            HideDoneTasks = !HideDoneTasks;
-            Preferences.Set("hideDoneTasks", HideDoneTasks);
-        }
 
         private void LogOutCommandHandler()
         {
@@ -114,6 +92,25 @@ namespace ToDoApp.ViewModels
         #endregion
 
         #region Private Methods
+
+        private void OnIsDarkModeChanged()
+        {
+            if (IsDarkMode)
+            {
+                Application.Current.UserAppTheme = OSAppTheme.Dark;
+                Preferences.Set("theme", "dark");
+            }
+            else
+            {
+                Application.Current.UserAppTheme = OSAppTheme.Light;
+                Preferences.Set("theme", "light");
+            }
+        }
+
+        private void OnIsHideEnabledChanged()
+        {
+            Preferences.Set("hideDoneTasks", IsHideEnabled);
+        }
 
         private async Task GetProfileDetails()
         {

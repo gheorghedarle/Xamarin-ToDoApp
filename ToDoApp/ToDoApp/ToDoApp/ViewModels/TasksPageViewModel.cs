@@ -213,10 +213,15 @@ namespace ToDoApp.ViewModels
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var userId = auth.GetUserId();
             var list = Preferences.Get("taskFilterByList", "all");
+            var hideDoneTask = Preferences.Get("hideDoneTasks", false);
             SetFilterName(list);
             query = list == "all" ?
+                hideDoneTask == false ?
                 _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy")) :
-                _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "list", list);
+                _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "archived", !hideDoneTask) :
+                hideDoneTask == false ?
+                _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "list", list) : 
+                _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "list", list, "archived", !hideDoneTask);
             _disposables.Add(query.ObserveAdded()
                 .Select(change => (Object: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), Index: change.NewIndex))
                 .Subscribe(t =>

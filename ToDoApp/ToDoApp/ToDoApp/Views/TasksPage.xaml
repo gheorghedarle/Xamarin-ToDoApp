@@ -245,7 +245,8 @@
             </StackLayout>
             <StackLayout
                 Grid.Row="5"
-                xct:StateLayout.CurrentState="{Binding TaskListState}">
+                xct:StateLayout.CurrentState="{Binding TaskListState}"
+                Padding="5, 0">
                 <xct:StateLayout.StateViews>
                     <xct:StateView 
                         StateKey="Loading"
@@ -301,9 +302,9 @@
                                         </SwipeItems>
                                     </SwipeView.RightItems>
                                     <Frame
-                                        Padding="8, 12, 8, 12"
-                                        Margin="8, 4, 8, 4"
-                                        CornerRadius="24">
+                                        Padding="10"
+                                        Margin="10, 5"
+                                        CornerRadius="20">
                                         <Frame.GestureRecognizers>
                                             <DragGestureRecognizer
                                             CanDrag="True"
@@ -345,10 +346,10 @@
                                                 Grid.Column="0"
                                                 Grid.RowSpan="2"
                                                 Text="{Binding archived, Converter={StaticResource DoneIconConverter}}"
-                                                FontSize="24"
+                                                FontSize="25"
                                                 HorizontalOptions="Start"
                                                 VerticalOptions="Center"
-                                                Margin="12, 0, 0, 0">
+                                                Margin="10, 0, 0, 0">
                                                 <VisualStateManager.VisualStateGroups>
                                                     <VisualStateGroup>
                                                         <VisualState x:Name="normal">
@@ -378,7 +379,7 @@
                                                 Text="{Binding task}"
                                                 FontFamily="Mulish_ExtraBold"
                                                 FontSize="{StaticResource Body1FontSize}"
-                                                Margin="8, 0, 8, 0"
+                                                Margin="10, 0"
                                                 VerticalOptions="Center">
                                                 <VisualStateManager.VisualStateGroups>
                                                     <VisualStateGroup>
@@ -407,7 +408,7 @@
                                                 Text="{Binding list}"
                                                 FontFamily="Mulish_Regular"
                                                 FontSize="{StaticResource Body2FontSize}"
-                                                Margin="8, 0, 8, 0"
+                                                Margin="10, 0"
                                                 VerticalOptions="CenterAndExpand">
                                                 <VisualStateManager.VisualStateGroups>
                                                     <VisualStateGroup>
