@@ -3,6 +3,7 @@ using Prism.Regions;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ToDoApp.Helpers;
+using ToDoApp.Models;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels
@@ -21,6 +22,7 @@ namespace ToDoApp.ViewModels
 
         public string Type { get; set; }
         public ObservableCollection<string> ItemList { get; set; }
+        public bool IsEdit { get; set; }
 
         #endregion
 
@@ -41,16 +43,25 @@ namespace ToDoApp.ViewModels
 
             BackCommand = new Command(BackCommandHandler);
             ChangeTypeCommand = new Command<string>(ChangeTypeCommandHandler);
-
-            ItemList = Constants.AddOptions;
         }
 
         public void Initialize(INavigationParameters parameters)
         {
-            Type = "task";
+            var task = parameters.GetValue<TaskModel>("task");
 
-            _regionManager.RequestNavigate("AddTaskRegion", "AddTaskTemplate");
-            _regionManager.RequestNavigate("AddListRegion", "AddListTemplate");
+            if(task != null)
+            {
+                IsEdit = true;
+            }
+            else
+            {
+                IsEdit = false;
+                ItemList = Constants.AddOptions;
+                Type = "task";
+
+                _regionManager.RequestNavigate("AddTaskRegion", "AddTaskTemplate");
+                _regionManager.RequestNavigate("AddListRegion", "AddListTemplate");
+            }
         }
 
         #endregion

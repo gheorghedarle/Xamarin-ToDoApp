@@ -285,19 +285,35 @@
                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
                                     <SwipeView.RightItems>
                                         <SwipeItems>
+                                            <SwipeItemView
+                                                Command="{Binding BindingContext.EditTaskCommand, Source={x:Reference TaskItems}}"
+                                                CommandParameter="{Binding}">
+                                                <Frame
+                                                    BackgroundColor="Transparent"
+                                                    Padding="0. 15">
+                                                    <Label
+                                                        Text="&#xf2ed;"
+                                                        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                                                        FontSize="{StaticResource Headline4FontSize}"
+                                                        FontFamily="FontAwesome_Solid"
+                                                        VerticalTextAlignment="Center">
+                                                    </Label>
+                                                </Frame>
+                                            </SwipeItemView>
                                             <SwipeItemView 
                                                 Command="{Binding BindingContext.DeleteTaskCommand, Source={x:Reference TaskItems}}"
                                                 CommandParameter="{Binding}">
-                                                <Button
-                                                    CornerRadius="16"
-                                                    Text="&#xf2ed;"
-                                                    TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
-                                                    FontSize="23"
-                                                    FontFamily="FontAwesome_Solid"
-                                                    HorizontalOptions="EndAndExpand"
+                                                <Frame
                                                     BackgroundColor="Transparent"
-                                                    Command="{Binding NextWeekCommand}"
-                                                    CommandParameter="{Binding Week.LastDay}"></Button>
+                                                    Padding="20, 0, 15, 0">
+                                                    <Label
+                                                        Text="&#xf303;"
+                                                        TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
+                                                        FontSize="{StaticResource Headline4FontSize}"
+                                                        FontFamily="FontAwesome_Solid"
+                                                        VerticalTextAlignment="Center">
+                                                    </Label>
+                                                </Frame>
                                             </SwipeItemView>
                                         </SwipeItems>
                                     </SwipeView.RightItems>
@@ -307,10 +323,10 @@
                                         CornerRadius="20">
                                         <Frame.GestureRecognizers>
                                             <DragGestureRecognizer
-                                            CanDrag="True"
-                                            DragStarting="DragGestureRecognizer_DragStarting_Collection"
-                                            DragStartingCommand="{Binding BindingContext.ItemDragged, Source={x:Reference TaskItems}}"
-                                            DragStartingCommandParameter="{Binding}" />
+                                                CanDrag="True"
+                                                DragStarting="DragGestureRecognizer_DragStarting_Collection"
+                                                DragStartingCommand="{Binding BindingContext.ItemDragged, Source={x:Reference TaskItems}}"
+                                                DragStartingCommandParameter="{Binding}" />
                                             <TapGestureRecognizer Command="{Binding BindingContext.CheckTaskCommand, Source={x:Reference TaskItems}}" CommandParameter="{Binding}"></TapGestureRecognizer>
                                         </Frame.GestureRecognizers>
                                         <VisualStateManager.VisualStateGroups>

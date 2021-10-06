@@ -56,6 +56,7 @@ namespace ToDoApp.ViewModels
         public ICommand ProfileCommand { get; set; }
         public ICommand MoreCommand { get; set; }
         public ICommand DeleteTaskCommand { get; set; }
+        public ICommand EditTaskCommand { get; set; }
 
         public ICommand ItemDragged { get; }
         public ICommand ItemDraggedOver { get; }
@@ -80,6 +81,7 @@ namespace ToDoApp.ViewModels
             DayCommand = new Command<DayModel>(DayCommandHandler);
             AddCommand = new Command(AddCommandHandler);
             DeleteTaskCommand = new Command<TaskModel>(DeleteTaskCommandHandler);
+            EditTaskCommand = new Command<TaskModel>(EditTaskCommandHandler);
             ProfileCommand = new Command(ProfileCommandHandler);
             MoreCommand = new Command(MoreCommandHandler);
 
@@ -146,6 +148,15 @@ namespace ToDoApp.ViewModels
         private void DeleteTaskCommandHandler(TaskModel taskModel)
         {
             _taskRepository.Delete(taskModel);
+        }
+
+        private async void EditTaskCommandHandler(TaskModel taskModel)
+        {
+            var param = new NavigationParameters()
+            {
+                { "task", taskModel }
+            };
+            await _navigationService.NavigateAsync(nameof(AddPage), param);
         }
 
         private void ProfileCommandHandler()
