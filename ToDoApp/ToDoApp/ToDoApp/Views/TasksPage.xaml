@@ -285,12 +285,12 @@
                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
                                     <SwipeView.RightItems>
                                         <SwipeItems>
-                                            <SwipeItemView
+                                            <!--<SwipeItemView
                                                 Command="{Binding BindingContext.EditTaskCommand, Source={x:Reference TaskItems}}"
                                                 CommandParameter="{Binding}">
                                                 <Frame
-                                                    BackgroundColor="Transparent"
-                                                    Padding="0. 15">
+                                                    BackgroundColor="Red"
+                                                    Padding="15, 0">
                                                     <Label
                                                         Text="&#xf2ed;"
                                                         TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
@@ -304,8 +304,8 @@
                                                 Command="{Binding BindingContext.DeleteTaskCommand, Source={x:Reference TaskItems}}"
                                                 CommandParameter="{Binding}">
                                                 <Frame
-                                                    BackgroundColor="Transparent"
-                                                    Padding="20, 0, 15, 0">
+                                                    BackgroundColor="Blue"
+                                                    Padding="15, 0">
                                                     <Label
                                                         Text="&#xf303;"
                                                         TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
@@ -314,7 +314,21 @@
                                                         VerticalTextAlignment="Center">
                                                     </Label>
                                                 </Frame>
-                                            </SwipeItemView>
+                                            </SwipeItemView>-->
+                                            <SwipeItem 
+                                                    Command="{Binding BindingContext.EditTaskCommand, Source={x:Reference TaskItems}}"
+                                                    CommandParameter="{Binding}">
+                                                <SwipeItem.IconImageSource>
+                                                    <FontImageSource Glyph="&#xf2ed;" FontFamily="FontAwesome_Solid"/>
+                                                </SwipeItem.IconImageSource>
+                                            </SwipeItem>
+                                            <SwipeItem
+                                                    Command="{Binding BindingContext.DeleteTaskCommand, Source={x:Reference TaskItems}}"
+                                                    CommandParameter="{Binding}">
+                                                <SwipeItem.IconImageSource>
+                                                    <FontImageSource Glyph="&#xf303;" FontFamily="FontAwesome_Solid"/>
+                                                </SwipeItem.IconImageSource>
+                                            </SwipeItem>
                                         </SwipeItems>
                                     </SwipeView.RightItems>
                                     <Frame
