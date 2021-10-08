@@ -1,8 +1,12 @@
-﻿using Prism.Navigation;
+﻿using Plugin.CloudFirestore;
+using Plugin.CloudFirestore.Reactive;
+using Prism.Navigation;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ToDoApp.Auth;
@@ -11,13 +15,9 @@ using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Services.DateService;
 using ToDoApp.Views;
 using Xamarin.CommunityToolkit.UI.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Plugin.CloudFirestore.Reactive;
-using System.Reactive.Linq;
-using Plugin.CloudFirestore;
-using System.Reactive.Disposables;
-using Xamarin.Essentials;
 
 namespace ToDoApp.ViewModels
 {

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Android.Gms.Extensions;
+using Firebase.Auth;
+using System;
 using System.Threading.Tasks;
 using ToDoApp.Auth;
-using Firebase.Auth;
 using ToDoApp.Models;
-using Android.Gms.Extensions;
 
 namespace ToDoApp.Droid.Auth
 {
