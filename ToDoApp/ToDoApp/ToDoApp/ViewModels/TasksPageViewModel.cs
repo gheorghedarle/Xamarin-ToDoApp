@@ -147,7 +147,7 @@ namespace ToDoApp.ViewModels
 
         private void DeleteTaskCommandHandler(TaskModel taskModel)
         {
-            _taskRepository.Delete(taskModel);
+           _taskRepository.Delete(taskModel);
         }
 
         private async void EditTaskCommandHandler(TaskModel taskModel)

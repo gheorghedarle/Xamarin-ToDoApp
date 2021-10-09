@@ -1,4 +1,5 @@
 ﻿using Prism.Navigation;
+using Prism.Regions.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,14 +15,12 @@ using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels.Templates.AddItem
 {
-    public class AddTaskViewModel : BaseViewModel
+    public class AddTaskViewModel : BaseViewModel, IRegionAware
     {
         #region Private & Protected
 
         private IFirestoreRepository<ListModel> _listRepository;
         private IFirestoreRepository<TaskModel> _taskRepository;
-
-        private Task Initialization { get; set; }
 
         #endregion
 
@@ -29,6 +28,7 @@ namespace ToDoApp.ViewModels.Templates.AddItem
 
         public ObservableCollection<ListModel> ProjectList { get; set; }
         public TaskModel AddTask { get; set; }
+        public string Mode { get; set; }
 
         #endregion
 
@@ -49,21 +49,49 @@ namespace ToDoApp.ViewModels.Templates.AddItem
             _listRepository = listRepository;
 
             CreateCommand = new Command(CreateCommandHandler);
-
-            Initialization = Initialize();
         }
 
-        public async Task Initialize()
+        public async void OnNavigatedTo(INavigationContext navigationContext)
         {
+            var isEdit = navigationContext.Parameters.GetValue<bool>("isEdit");
+            var task = navigationContext.Parameters.GetValue<TaskModel>("task");
+
             var projectList = await GetProjectList();
             ProjectList = new ObservableCollection<ListModel>(projectList);
 
-            AddTask = new TaskModel() { 
-                task = Constants.DefaultTask.task,
-                archived = Constants.DefaultTask.archived,
-                dateObject = Constants.DefaultTask.dateObject,
-                listObject = Constants.DefaultTask.listObject,
-            };
+            Mode = isEdit ? "Edit" : "Add";
+            
+            if(Mode == "Edit")
+            {
+                task.listObject = projectList.FirstOrDefault(pr => pr.name == task.list);
+                AddTask = new TaskModel()
+                {
+                    task = task.task,
+                    archived = task.archived,
+                    dateObject = DateTime.Parse(task.date),
+                    listObject = task.listObject,
+                };
+            }
+            else
+            {
+                AddTask = new TaskModel()
+                {
+                    task = Constants.DefaultTask.task,
+                    archived = Constants.DefaultTask.archived,
+                    dateObject = Constants.DefaultTask.dateObject,
+                    listObject = Constants.DefaultTask.listObject,
+                };
+            }
+        }
+
+        public bool IsNavigationTarget(INavigationContext navigationContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnNavigatedFrom(INavigationContext navigationContext)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

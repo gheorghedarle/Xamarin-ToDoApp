@@ -282,14 +282,15 @@
                                     Margin="0, 5, 0, 0"
                                     IsVisible="{Binding isBeingDraggedOver}" />
                                 <SwipeView
+                                    IsEnabled="{Binding archived, Converter={xct:InvertedBoolConverter}}"
                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
                                     <SwipeView.RightItems>
                                         <SwipeItems>
-                                            <!--<SwipeItemView
-                                                Command="{Binding BindingContext.EditTaskCommand, Source={x:Reference TaskItems}}"
+                                            <SwipeItemView
+                                                Command="{Binding BindingContext.DeleteTaskCommand, Source={x:Reference TaskItems}}"
                                                 CommandParameter="{Binding}">
                                                 <Frame
-                                                    BackgroundColor="Red"
+                                                    BackgroundColor="Transparent"
                                                     Padding="15, 0">
                                                     <Label
                                                         Text="&#xf2ed;"
@@ -301,10 +302,10 @@
                                                 </Frame>
                                             </SwipeItemView>
                                             <SwipeItemView 
-                                                Command="{Binding BindingContext.DeleteTaskCommand, Source={x:Reference TaskItems}}"
+                                                Command="{Binding BindingContext.EditTaskCommand, Source={x:Reference TaskItems}}"
                                                 CommandParameter="{Binding}">
                                                 <Frame
-                                                    BackgroundColor="Blue"
+                                                    BackgroundColor="Transparent"
                                                     Padding="15, 0">
                                                     <Label
                                                         Text="&#xf303;"
@@ -314,21 +315,7 @@
                                                         VerticalTextAlignment="Center">
                                                     </Label>
                                                 </Frame>
-                                            </SwipeItemView>-->
-                                            <SwipeItem 
-                                                    Command="{Binding BindingContext.EditTaskCommand, Source={x:Reference TaskItems}}"
-                                                    CommandParameter="{Binding}">
-                                                <SwipeItem.IconImageSource>
-                                                    <FontImageSource Glyph="&#xf2ed;" FontFamily="FontAwesome_Solid"/>
-                                                </SwipeItem.IconImageSource>
-                                            </SwipeItem>
-                                            <SwipeItem
-                                                    Command="{Binding BindingContext.DeleteTaskCommand, Source={x:Reference TaskItems}}"
-                                                    CommandParameter="{Binding}">
-                                                <SwipeItem.IconImageSource>
-                                                    <FontImageSource Glyph="&#xf303;" FontFamily="FontAwesome_Solid"/>
-                                                </SwipeItem.IconImageSource>
-                                            </SwipeItem>
+                                            </SwipeItemView>
                                         </SwipeItems>
                                     </SwipeView.RightItems>
                                     <Frame

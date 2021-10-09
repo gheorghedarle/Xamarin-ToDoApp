@@ -52,12 +52,21 @@ namespace ToDoApp.ViewModels
             if(task != null)
             {
                 IsEdit = true;
+                Type = "task";
+                Title = "Edit task";
+                var param = new NavigationParameters()
+                {
+                    { "task", task },
+                    { "isEdit", true }
+                };
+                _regionManager.RequestNavigate("AddTaskRegion", "AddTaskTemplate", param);
             }
             else
             {
                 IsEdit = false;
                 ItemList = Constants.AddOptions;
                 Type = "task";
+                Title = "Add new task";
 
                 _regionManager.RequestNavigate("AddTaskRegion", "AddTaskTemplate");
                 _regionManager.RequestNavigate("AddListRegion", "AddListTemplate");
@@ -71,6 +80,7 @@ namespace ToDoApp.ViewModels
         private void ChangeTypeCommandHandler(string type)
         { 
             Type = type;
+            Title = $"Add new {type}";
         }
 
         #endregion
