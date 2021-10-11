@@ -12,7 +12,7 @@
         <Label
             HorizontalTextAlignment="Center"
             Text="All clear"
-            Style="{StaticResource Headline3_MulishBlack}"></Label>
+            Style="{StaticResource Headline4_MulishBlack}"></Label>
         <Label
             HorizontalTextAlignment="Center"
             Style="{StaticResource Body1_MulishRegular}"

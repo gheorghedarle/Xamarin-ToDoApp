@@ -26,6 +26,6 @@
     <Label
         Grid.Column="1"
         Grid.Row="1"
-        Style="{StaticResource Body2_MulishRegular}"
+        Style="{StaticResource Body1_MulishRegular}"
         Text="It looks like you do not have internet connection"/>
 </Grid>

@@ -32,11 +32,11 @@
                     Grid.RowSpan="2"
                     Text="&#xf2bd;"
                     TextColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
-                    FontSize="48"
+                    FontSize="{StaticResource Headline2FontSize}"
                     FontFamily="FontAwesome_Solid"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
-                    Margin="10, 0, 5, 0">
+                    Margin="5, 0, 5, 0">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ProfileCommand}"></TapGestureRecognizer>
                     </Label.GestureRecognizers>
@@ -51,7 +51,7 @@
                     Grid.Column="1"
                     Grid.Row="1"
                     Margin="0, -2, 0, 0"
-                    Style="{StaticResource Headline4_MulishBlack}"
+                    Style="{StaticResource Subtitle1_MulishBlack}"
                     Text="{Binding Name}"
                     TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"></Label>
                 <Label
@@ -63,7 +63,7 @@
                     FontSize="{StaticResource Headline4FontSize}"
                     FontFamily="FontAwesome_Solid"
                     VerticalOptions="Center"
-                    Margin="0, 0, 15, 0">
+                    Margin="0, 0, 10, 0">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding MoreCommand}"></TapGestureRecognizer>
                     </Label.GestureRecognizers>
@@ -71,7 +71,7 @@
             </Grid>
             <Grid
                 Grid.Row="2"
-                Margin="20, 0"
+                Margin="15, 0"
                 HeightRequest="40"
                 ColumnDefinitions="Auto, *, 40, 40">
                 <Label
@@ -85,9 +85,8 @@
                     CornerRadius="15"
                     Text="&#xf053;"
                     TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
-                    FontSize="{StaticResource Subtitle1FontSize}"
+                    FontSize="{StaticResource Body2FontSize}"
                     FontFamily="FontAwesome_Solid"
-                    HorizontalOptions="EndAndExpand"
                     BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
                     Command="{Binding PreviousWeekCommand}"
                     CommandParameter="{Binding Week.StartDay}"></Button>
@@ -96,9 +95,8 @@
                     CornerRadius="15"
                     Text="&#xf054;"
                     TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
-                    FontSize="{StaticResource Subtitle1FontSize}"
+                    FontSize="{StaticResource Body2FontSize}"
                     FontFamily="FontAwesome_Solid"
-                    HorizontalOptions="EndAndExpand"
                     BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
                     Command="{Binding NextWeekCommand}"
                     CommandParameter="{Binding Week.LastDay}"></Button>
@@ -146,6 +144,7 @@
                                         <VisualState.Setters>
                                             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardDisabledBackgroundColor}, Dark={StaticResource DarkCardDisabledBackgroundColor}}"/>
                                             <Setter Property="HasShadow" Value="False"/>
+                                            <Setter Property="HasShadow" Value="False"/>
                                             <Setter Property="IsEnabled" Value="False"/>
                                         </VisualState.Setters>
                                     </VisualState>
@@ -157,7 +156,6 @@
                                     Text="{Binding DayName}"
                                     TextTransform="Uppercase"
                                     Style="{StaticResource Body1_MulishRegular}"
-                                    CharacterSpacing="-1"
                                     HorizontalTextAlignment="Center">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup>

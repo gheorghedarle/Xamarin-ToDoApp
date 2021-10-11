@@ -12,7 +12,7 @@
                 Grid.Row="1"
                 HorizontalTextAlignment="Center"
                 Margin="30, 20, 30, 0"
-                Style="{StaticResource Headline3_MulishBlack}"
+                Style="{StaticResource Headline4_MulishBlack}"
                 Text="Manage your daily tasks in one place"></Label>
             <Label
                 Grid.Row="2"

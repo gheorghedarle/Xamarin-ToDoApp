@@ -36,7 +36,7 @@
                 <Label
                     Grid.Column="1"
                     Text="{Binding Title}"
-                    Style="{StaticResource Headline3_MulishBlack}"
+                    Style="{StaticResource Headline4_MulishBlack}"
                     Margin="10, 0, 0, 0"
                     VerticalOptions="Center"></Label>
             </Grid>

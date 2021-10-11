@@ -18,12 +18,12 @@
       Android="14"
       iOS="14" />
     <OnPlatform
-      x:Key="Body2FontSize"
+      x:Key="Body1FontSize"
       x:TypeArguments="x:Double"
       Android="14"
       iOS="14" />
     <OnPlatform
-      x:Key="Body1FontSize"
+      x:Key="Body2FontSize"
       x:TypeArguments="x:Double"
       Android="16"
       iOS="16" />

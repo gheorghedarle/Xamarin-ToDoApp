@@ -9,16 +9,10 @@
     </ResourceDictionary.MergedDictionaries>
 
     <!--#region Labels-->
-    
+
     <Style x:Key="Headline2_FontAwesome" TargetType="Label">
         <Setter Property="FontFamily" Value="FontAwesome_Solid" />
         <Setter Property="FontSize" Value="{StaticResource Headline2FontSize}" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
-    </Style>
-    
-    <Style x:Key="Headline3_MulishBlack" TargetType="Label">
-        <Setter Property="FontFamily" Value="Mulish_Black" />
-        <Setter Property="FontSize" Value="{StaticResource Headline3FontSize}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
 
