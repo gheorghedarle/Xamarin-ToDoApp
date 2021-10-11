@@ -4,11 +4,12 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ToDoApp.Helpers;
 using ToDoApp.Models;
+using ToDoApp.Views.Templates.AddItem;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels
 {
-    public class AddPageViewModel :
+    public class AddEditPageViewModel :
         BaseViewModel,
         IInitialize
     {
@@ -35,7 +36,7 @@ namespace ToDoApp.ViewModels
 
         #region Constructors
 
-        public AddPageViewModel(
+        public AddEditPageViewModel(
             INavigationService navigationService, 
             IRegionManager regionManager) : base(navigationService)
         {
@@ -59,7 +60,7 @@ namespace ToDoApp.ViewModels
                     { "task", task },
                     { "isEdit", true }
                 };
-                _regionManager.RequestNavigate("AddTaskRegion", "AddTaskTemplate", param);
+                _regionManager.RequestNavigate("AddEditTaskRegion", nameof(AddEditTaskTemplate), param);
             }
             else
             {
@@ -68,8 +69,8 @@ namespace ToDoApp.ViewModels
                 Type = "task";
                 Title = "Add new task";
 
-                _regionManager.RequestNavigate("AddTaskRegion", "AddTaskTemplate");
-                _regionManager.RequestNavigate("AddListRegion", "AddListTemplate");
+                _regionManager.RequestNavigate("AddEditTaskRegion", nameof(AddEditTaskTemplate));
+                _regionManager.RequestNavigate("AddEditListRegion", nameof(AddEditListTemplate));
             }
         }
 

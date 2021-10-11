@@ -304,7 +304,7 @@
                                                 CommandParameter="{Binding}">
                                                 <Frame
                                                     BackgroundColor="Transparent"
-                                                    Padding="15, 0">
+                                                    Padding="25, 0, 15, 0">
                                                     <Label
                                                         Text="&#xf303;"
                                                         TextColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
@@ -393,7 +393,7 @@
                                                 Grid.Column="1"
                                                 Text="{Binding task}"
                                                 FontFamily="Mulish_ExtraBold"
-                                                FontSize="{StaticResource Body1FontSize}"
+                                                FontSize="{StaticResource Body2FontSize}"
                                                 Margin="10, 0"
                                                 VerticalOptions="Center">
                                                 <VisualStateManager.VisualStateGroups>
@@ -422,7 +422,7 @@
                                                 Grid.Column="1"
                                                 Text="{Binding list}"
                                                 FontFamily="Mulish_Regular"
-                                                FontSize="{StaticResource Body2FontSize}"
+                                                FontSize="{StaticResource Body1FontSize}"
                                                 Margin="10, 0"
                                                 VerticalOptions="CenterAndExpand">
                                                 <VisualStateManager.VisualStateGroups>

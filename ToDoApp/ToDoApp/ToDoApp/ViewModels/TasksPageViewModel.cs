@@ -137,7 +137,7 @@ namespace ToDoApp.ViewModels
 
         private void AddCommandHandler()
         {
-            _navigationService.NavigateAsync(nameof(AddPage));
+            _navigationService.NavigateAsync(nameof(AddEditPage));
         }
 
         private void MoreCommandHandler()
@@ -156,7 +156,7 @@ namespace ToDoApp.ViewModels
             {
                 { "task", taskModel }
             };
-            await _navigationService.NavigateAsync(nameof(AddPage), param);
+            await _navigationService.NavigateAsync(nameof(AddEditPage), param);
         }
 
         private void ProfileCommandHandler()

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="ToDoApp.Views.AddPage"
+             x:Class="ToDoApp.Views.AddEditPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid
@@ -163,10 +163,10 @@
                     </Label>
                 </Frame>
             </Grid>
-            <ContentView prism:RegionManager.RegionName="AddTaskRegion"
+            <ContentView prism:RegionManager.RegionName="AddEditTaskRegion"
                          IsVisible="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"
                          Grid.Row="2"/>
-            <ContentView prism:RegionManager.RegionName="AddListRegion"
+            <ContentView prism:RegionManager.RegionName="AddEditListRegion"
                          IsVisible="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"
                          Grid.Row="2"/>
         </Grid>

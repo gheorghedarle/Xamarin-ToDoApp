@@ -65,13 +65,13 @@ namespace ToDoApp
             containerRegistry.RegisterForNavigation<NavigationPage>("NavigationPage");
             containerRegistry.RegisterForNavigation<WelcomePage, WelcomePageViewModel>("WelcomePage");
             containerRegistry.RegisterForNavigation<TasksPage, TasksPageViewModel>("TasksPage");
-            containerRegistry.RegisterForNavigation<AddPage, AddPageViewModel>("AddPage");
+            containerRegistry.RegisterForNavigation<AddEditPage, AddEditPageViewModel>("AddEditPage");
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>("ProfilePage");
             containerRegistry.RegisterForNavigation<AuthPage, AuthPageViewModel>("AuthPage");
             containerRegistry.RegisterForNavigation<MorePage, MorePageViewModel>("MorePage");
 
-            containerRegistry.RegisterForRegionNavigation<AddListTemplate, AddListViewModel>("AddListTemplate");
-            containerRegistry.RegisterForRegionNavigation<AddTaskTemplate, AddTaskViewModel>("AddTaskTemplate");
+            containerRegistry.RegisterForRegionNavigation<AddEditListTemplate, AddEditListViewModel>("AddEditListTemplate");
+            containerRegistry.RegisterForRegionNavigation<AddEditTaskTemplate, AddEditTaskViewModel>("AddEditTaskTemplate");
 
             containerRegistry.RegisterForRegionNavigation<LoginTemplate, LoginViewModel>();
             containerRegistry.RegisterForRegionNavigation<SignUpTemplate, SignUpViewModel>();

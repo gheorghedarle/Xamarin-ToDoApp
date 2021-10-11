@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 namespace ToDoApp.Views.Templates.AddItem
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddListTemplate : ContentView
+    public partial class AddEditTaskTemplate : ContentView
     {
-        public AddListTemplate()
+        public AddEditTaskTemplate()
         {
             InitializeComponent();
         }

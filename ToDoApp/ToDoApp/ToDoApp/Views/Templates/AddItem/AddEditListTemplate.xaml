@@ -2,7 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="ToDoApp.Views.Templates.AddItem.AddListTemplate">
+             x:Class="ToDoApp.Views.Templates.AddItem.AddEditListTemplate">
     <Grid
         RowDefinitions="*, Auto">
         <StackLayout
@@ -76,7 +76,27 @@
             Margin="0, 0, 0, 15"
             Padding="20, 15"
             Style="{StaticResource Base_Button}"
-            Text="Add new list"
-            VerticalOptions="End"></Button>
+            VerticalOptions="End">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup>
+                    <VisualState x:Name="task">
+                        <VisualState.StateTriggers>
+                            <StateTrigger IsActive="{Binding Mode, Converter={xct:EqualConverter}, ConverterParameter='Edit'}"></StateTrigger>
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="Text" Value="Save"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="list">
+                        <VisualState.StateTriggers>
+                            <StateTrigger IsActive="{Binding Mode, Converter={xct:EqualConverter}, ConverterParameter='Add'}"></StateTrigger>
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="Text" Value="Add new task"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
     </Grid>
 </ContentView>

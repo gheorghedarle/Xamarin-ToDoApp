@@ -15,7 +15,7 @@ using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels.Templates.AddItem
 {
-    public class AddTaskViewModel : BaseViewModel, IRegionAware
+    public class AddEditTaskViewModel : BaseViewModel, IRegionAware
     {
         #region Private & Protected
 
@@ -40,7 +40,7 @@ namespace ToDoApp.ViewModels.Templates.AddItem
 
         #region Constructors
 
-        public AddTaskViewModel(
+        public AddEditTaskViewModel(
             INavigationService navigationService,
             IFirestoreRepository<TaskModel> taskRepository,
             IFirestoreRepository<ListModel> listRepository) : base(navigationService)
@@ -49,49 +49,6 @@ namespace ToDoApp.ViewModels.Templates.AddItem
             _listRepository = listRepository;
 
             CreateCommand = new Command(CreateCommandHandler);
-        }
-
-        public async void OnNavigatedTo(INavigationContext navigationContext)
-        {
-            var isEdit = navigationContext.Parameters.GetValue<bool>("isEdit");
-            var task = navigationContext.Parameters.GetValue<TaskModel>("task");
-
-            var projectList = await GetProjectList();
-            ProjectList = new ObservableCollection<ListModel>(projectList);
-
-            Mode = isEdit ? "Edit" : "Add";
-            
-            if(Mode == "Edit")
-            {
-                task.listObject = projectList.FirstOrDefault(pr => pr.name == task.list);
-                AddTask = new TaskModel()
-                {
-                    task = task.task,
-                    archived = task.archived,
-                    dateObject = DateTime.Parse(task.date),
-                    listObject = task.listObject,
-                };
-            }
-            else
-            {
-                AddTask = new TaskModel()
-                {
-                    task = Constants.DefaultTask.task,
-                    archived = Constants.DefaultTask.archived,
-                    dateObject = Constants.DefaultTask.dateObject,
-                    listObject = Constants.DefaultTask.listObject,
-                };
-            }
-        }
-
-        public bool IsNavigationTarget(INavigationContext navigationContext)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnNavigatedFrom(INavigationContext navigationContext)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion
@@ -144,6 +101,53 @@ namespace ToDoApp.ViewModels.Templates.AddItem
                 listToAdd.Add(Constants.InboxList);
             }
             return listToAdd;
+        }
+
+        #endregion
+
+        #region Region Navigation Handlers
+
+        public async void OnNavigatedTo(INavigationContext navigationContext)
+        {
+            var isEdit = navigationContext.Parameters.GetValue<bool>("isEdit");
+            var task = navigationContext.Parameters.GetValue<TaskModel>("task");
+
+            var projectList = await GetProjectList();
+            ProjectList = new ObservableCollection<ListModel>(projectList);
+
+            Mode = isEdit ? "Edit" : "Add";
+
+            if (Mode == "Edit")
+            {
+                task.listObject = projectList.FirstOrDefault(pr => pr.name == task.list);
+                AddTask = new TaskModel()
+                {
+                    task = task.task,
+                    archived = task.archived,
+                    dateObject = DateTime.Parse(task.date),
+                    listObject = task.listObject,
+                };
+            }
+            else
+            {
+                AddTask = new TaskModel()
+                {
+                    task = Constants.DefaultTask.task,
+                    archived = Constants.DefaultTask.archived,
+                    dateObject = Constants.DefaultTask.dateObject,
+                    listObject = Constants.DefaultTask.listObject,
+                };
+            }
+        }
+
+        public bool IsNavigationTarget(INavigationContext navigationContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnNavigatedFrom(INavigationContext navigationContext)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

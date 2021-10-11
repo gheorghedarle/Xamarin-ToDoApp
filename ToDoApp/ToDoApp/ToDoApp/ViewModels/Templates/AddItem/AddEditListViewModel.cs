@@ -1,8 +1,8 @@
 ﻿using Prism.Navigation;
+using Prism.Regions.Navigation;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using ToDoApp.Auth;
 using ToDoApp.Helpers;
@@ -12,13 +12,11 @@ using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels.Templates.AddItem
 {
-    public class AddListViewModel : BaseViewModel
+    public class AddEditListViewModel : BaseViewModel, IRegionAware
     {
         #region Private & Protected
 
         private IFirestoreRepository<ListModel> _listRepository;
-
-        private Task Initialization { get; set; }
 
         #endregion
 
@@ -26,6 +24,7 @@ namespace ToDoApp.ViewModels.Templates.AddItem
 
         public ListModel AddList { get; set; }
         public ObservableCollection<ColorModel> ColorList { get; set; }
+        public string Mode { get; set; }
 
         #endregion
 
@@ -37,28 +36,13 @@ namespace ToDoApp.ViewModels.Templates.AddItem
 
         #region Constructors
 
-        public AddListViewModel(
+        public AddEditListViewModel(
             INavigationService navigationService,
             IFirestoreRepository<ListModel> listRepository) : base(navigationService)
         {
             _listRepository = listRepository;
 
             CreateCommand = new Command(CreateCommandHandler);
-
-            Initialization = Initialize();
-        }
-
-        public Task Initialize()
-        {
-            ColorList = new ObservableCollection<ColorModel>(Constants.ListColorList);
-
-            AddList = new ListModel()
-            {
-                name = Constants.DefaultList.name,
-                colorObject = Constants.DefaultList.colorObject,
-            };
-
-            return Task.CompletedTask;
         }
 
         #endregion
@@ -85,6 +69,46 @@ namespace ToDoApp.ViewModels.Templates.AddItem
                 //display error message
                 Debug.Write(ex.Message);
             }
+        }
+
+        #endregion
+
+        #region Region Navigation Handlers
+
+        public async void OnNavigatedTo(INavigationContext navigationContext)
+        {
+            var isEdit = navigationContext.Parameters.GetValue<bool>("isEdit");
+            var list = navigationContext.Parameters.GetValue<ListModel>("list");
+
+            Mode = isEdit ? "Edit" : "Add";
+            ColorList = new ObservableCollection<ColorModel>(Constants.ListColorList);
+
+            if (Mode == "Edit")
+            {
+                AddList = new ListModel()
+                {
+                    name = Constants.DefaultList.name,
+                    colorObject = Constants.DefaultList.colorObject,
+                };
+            }
+            else
+            {
+                AddList = new ListModel()
+                {
+                    name = Constants.DefaultList.name,
+                    colorObject = Constants.DefaultList.colorObject,
+                };
+            }
+        }
+
+        public bool IsNavigationTarget(INavigationContext navigationContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnNavigatedFrom(INavigationContext navigationContext)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
