@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -61,15 +62,33 @@ namespace ToDoApp.ViewModels.Templates.AddItem
             {
                 var auth = DependencyService.Get<IFirebaseAuthentication>();
                 var userId = auth.GetUserId();
-                var model = new TaskModel()
+
+                if(Mode == "Edit")
                 {
-                    archived = false,
-                    list = AddTask.listObject.name,
-                    task = AddTask.task,
-                    userId = userId,
-                    date = AddTask.dateObject.ToString("dd/MM/yyyy")
-                };
-                await _taskRepository.Add(model);
+                    var model = new TaskModel()
+                    {
+                        archived = false,
+                        list = AddTask.listObject.name,
+                        task = AddTask.task,
+                        userId = userId,
+                        date = AddTask.dateObject.ToString("dd/MM/yyyy"),
+                        id = AddTask.id
+                    };
+                    await _taskRepository.Update(model);
+                }
+                else
+                {
+                    var model = new TaskModel()
+                    {
+                        archived = false,
+                        list = AddTask.listObject.name,
+                        task = AddTask.task,
+                        userId = userId,
+                        date = AddTask.dateObject.ToString("dd/MM/yyyy")
+                    };
+                    await _taskRepository.Add(model);
+                }
+
                 await _navigationService.GoBackAsync();
             }
             catch (Exception ex)
@@ -124,8 +143,9 @@ namespace ToDoApp.ViewModels.Templates.AddItem
                 {
                     task = task.task,
                     archived = task.archived,
-                    dateObject = DateTime.Parse(task.date),
+                    dateObject = DateTime.ParseExact(task.date, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                     listObject = task.listObject,
+                    id = task.id
                 };
             }
             else

@@ -207,7 +207,7 @@ namespace ToDoApp.ViewModels
         {
             if (parameters.GetNavigationMode() == Prism.Navigation.NavigationMode.Back)
             {
-                CreateQueryForTasks(DateTime.Today);
+                CreateQueryForTasks(_selectedDay.Date);
             }
         }
 
