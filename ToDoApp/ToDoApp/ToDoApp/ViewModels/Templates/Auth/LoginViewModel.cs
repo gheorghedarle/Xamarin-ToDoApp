@@ -10,15 +10,10 @@ using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels.Templates.Auth
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : BaseRegionViewModel
     {
-        #region Private & Protected
-
-        private Task Initialization { get; set; }
-
-        #endregion
-
         #region Properties
+
         public string Email { get; set; }
         public string Password { get; set; }
 

@@ -62,10 +62,10 @@
     <Compile Update="Views\AddEditPage.xaml.cs">
       <DependentUpon>AddEditPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Templates\AddItem\AddEditListTemplate.xaml.cs">
+    <Compile Update="Views\Templates\AddEditItem\AddEditListTemplate.xaml.cs">
       <DependentUpon>AddEditListTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Templates\AddItem\AddEditTaskTemplate.xaml.cs">
+    <Compile Update="Views\Templates\AddEditItem\AddEditTaskTemplate.xaml.cs">
       <DependentUpon>AddEditTaskTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Templates\Auth\LoginTemplate.xaml.cs">
@@ -110,10 +110,10 @@
     <EmbeddedResource Update="Views\TasksPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\AddItem\AddEditListTemplate.xaml">
+    <EmbeddedResource Update="Views\Templates\AddEditItem\AddEditListTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\AddItem\AddEditTaskTemplate.xaml">
+    <EmbeddedResource Update="Views\Templates\AddEditItem\AddEditTaskTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\Auth\LoginTemplate.xaml">

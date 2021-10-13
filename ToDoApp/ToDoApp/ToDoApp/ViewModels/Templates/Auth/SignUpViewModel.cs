@@ -9,14 +9,8 @@ using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels.Templates.Auth
 {
-    public class SignUpViewModel : BaseViewModel
+    public class SignUpViewModel : BaseRegionViewModel
     {
-        #region Private & Protected
-
-        private Task Initialization { get; set; }
-
-        #endregion
-
         #region Properties
         public string Username { get; set; }
         public string Email { get; set; }

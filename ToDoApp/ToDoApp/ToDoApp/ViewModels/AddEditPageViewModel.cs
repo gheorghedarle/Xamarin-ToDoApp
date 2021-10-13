@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ToDoApp.Helpers;
 using ToDoApp.Models;
-using ToDoApp.Views.Templates.AddItem;
+using ToDoApp.Views.Templates.AddEditItem;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels

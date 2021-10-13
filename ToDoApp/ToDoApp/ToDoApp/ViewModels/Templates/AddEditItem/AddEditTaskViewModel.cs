@@ -14,9 +14,9 @@ using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
 using Xamarin.Forms;
 
-namespace ToDoApp.ViewModels.Templates.AddItem
+namespace ToDoApp.ViewModels.Templates.AddEditItem
 {
-    public class AddEditTaskViewModel : BaseViewModel, IRegionAware
+    public class AddEditTaskViewModel : BaseRegionViewModel
     {
         #region Private & Protected
 
@@ -126,7 +126,7 @@ namespace ToDoApp.ViewModels.Templates.AddItem
 
         #region Region Navigation Handlers
 
-        public async void OnNavigatedTo(INavigationContext navigationContext)
+        public new async void OnNavigatedTo(INavigationContext navigationContext)
         {
             var isEdit = navigationContext.Parameters.GetValue<bool>("isEdit");
             var task = navigationContext.Parameters.GetValue<TaskModel>("task");
@@ -158,16 +158,6 @@ namespace ToDoApp.ViewModels.Templates.AddItem
                     listObject = Constants.DefaultTask.listObject,
                 };
             }
-        }
-
-        public bool IsNavigationTarget(INavigationContext navigationContext)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnNavigatedFrom(INavigationContext navigationContext)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion
