@@ -40,8 +40,8 @@
                 Margin="0, 0, 0, 10">
                 <Frame
                     Grid.Column="0"
-                    CornerRadius="16"
-                    Padding="0, 10, 0, 10"
+                    CornerRadius="15"
+                    Padding="0, 10"
                     Margin="0, 0, 2, 0">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer 
@@ -65,7 +65,7 @@
                                     <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='list'}"></StateTrigger>
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardDoneBackgroundColor}, Dark={StaticResource DarkCardDoneBackgroundColor}}"/>
+                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardUnselectedBackgroundColor}, Dark={StaticResource DarkCardUnselectedBackgroundColor}}"/>
                                     <Setter Property="HasShadow" Value="False"/>
                                     <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
                                 </VisualState.Setters>
@@ -102,8 +102,8 @@
                 </Frame>
                 <Frame
                     Grid.Column="1"
-                    CornerRadius="16"
-                    Padding="0, 10, 0, 10"
+                    CornerRadius="15"
+                    Padding="0, 10"
                     Margin="2, 0, 0, 0">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer 
@@ -127,7 +127,7 @@
                                     <StateTrigger IsActive="{Binding Type, Converter={xct:EqualConverter}, ConverterParameter='task'}"></StateTrigger>
                                 </VisualState.StateTriggers>
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardDoneBackgroundColor}, Dark={StaticResource DarkCardDoneBackgroundColor}}"/>
+                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardUnselectedBackgroundColor}, Dark={StaticResource DarkCardUnselectedBackgroundColor}}"/>
                                     <Setter Property="HasShadow" Value="False"/>
                                     <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource LightCardBorderColor}, Dark={StaticResource DarkCardBorderColor}}"/>
                                 </VisualState.Setters>

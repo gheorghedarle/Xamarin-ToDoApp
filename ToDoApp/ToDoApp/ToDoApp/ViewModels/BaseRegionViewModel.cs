@@ -6,7 +6,9 @@ using Xamarin.CommunityToolkit.UI.Views;
 
 namespace ToDoApp.ViewModels
 {
-    public class BaseRegionViewModel: IRegionAware
+    public class BaseRegionViewModel: 
+        INotifyPropertyChanged, 
+        IRegionAware
     {
         #region Private & Protected
 
@@ -34,14 +36,14 @@ namespace ToDoApp.ViewModels
 
         #region Region Navigation Handlers
 
-        public void OnNavigatedTo(INavigationContext navigationContext) { }
+        public virtual void OnNavigatedTo(INavigationContext navigationContext) { }
 
-        public bool IsNavigationTarget(INavigationContext navigationContext)
+        public virtual bool IsNavigationTarget(INavigationContext navigationContext)
         {
             throw new NotImplementedException();
         }
 
-        public void OnNavigatedFrom(INavigationContext navigationContext) { }
+        public virtual void OnNavigatedFrom(INavigationContext navigationContext) { }
 
         #endregion
     }

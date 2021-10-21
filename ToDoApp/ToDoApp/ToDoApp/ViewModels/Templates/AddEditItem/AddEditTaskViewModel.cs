@@ -126,7 +126,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
         #region Region Navigation Handlers
 
-        public new async void OnNavigatedTo(INavigationContext navigationContext)
+        public override async void OnNavigatedTo(INavigationContext navigationContext)
         {
             var isEdit = navigationContext.Parameters.GetValue<bool>("isEdit");
             var task = navigationContext.Parameters.GetValue<TaskModel>("task");

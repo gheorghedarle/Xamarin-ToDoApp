@@ -69,8 +69,13 @@ namespace ToDoApp.ViewModels
                 Type = "task";
                 Title = "Add new task";
 
-                _regionManager.RequestNavigate("AddEditTaskRegion", nameof(AddEditTaskTemplate));
-                _regionManager.RequestNavigate("AddEditListRegion", nameof(AddEditListTemplate));
+                var param = new NavigationParameters()
+                {
+                    { "task", null },
+                    { "isEdit", false }
+                };
+                _regionManager.RequestNavigate("AddEditTaskRegion", nameof(AddEditTaskTemplate), param);
+                _regionManager.RequestNavigate("AddEditListRegion", nameof(AddEditListTemplate), param);
             }
         }
 
