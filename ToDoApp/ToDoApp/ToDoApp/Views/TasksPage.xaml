@@ -72,8 +72,8 @@
             <Grid
                 Grid.Row="2"
                 Margin="15, 0"
-                HeightRequest="40"
-                ColumnDefinitions="Auto, *, 40, 40">
+                HeightRequest="35"
+                ColumnDefinitions="Auto, *, 35, 35">
                 <Label
                     Grid.Column="0"
                     Text="{Binding Week.WeekString}"
@@ -144,7 +144,6 @@
                                         <VisualState.Setters>
                                             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardDisabledBackgroundColor}, Dark={StaticResource DarkCardDisabledBackgroundColor}}"/>
                                             <Setter Property="HasShadow" Value="False"/>
-                                            <Setter Property="HasShadow" Value="False"/>
                                             <Setter Property="IsEnabled" Value="False"/>
                                         </VisualState.Setters>
                                     </VisualState>
@@ -189,7 +188,7 @@
                                 </Label>
                                 <Label
                                     HorizontalTextAlignment="Center"
-                                    Style="{StaticResource Headline4_MulishBlack}"
+                                    Style="{StaticResource Subtitle1_MulishBlack}"
                                     Text="{Binding Day}">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup>
