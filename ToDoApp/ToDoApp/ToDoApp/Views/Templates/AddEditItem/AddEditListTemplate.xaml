@@ -91,7 +91,7 @@
                             <StateTrigger IsActive="{Binding Mode, Converter={xct:EqualConverter}, ConverterParameter='Add'}"></StateTrigger>
                         </VisualState.StateTriggers>
                         <VisualState.Setters>
-                            <Setter Property="Text" Value="Add new task"/>
+                            <Setter Property="Text" Value="Add new list"/>
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>

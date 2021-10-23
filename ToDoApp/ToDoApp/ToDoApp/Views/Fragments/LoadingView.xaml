@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
         x:Class="ToDoApp.Views.Fragments.LoadingView"
         HorizontalOptions="Center"
-        VerticalOptions="Center">
+        VerticalOptions="Center"            
+        BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
         <ActivityIndicator
             Color="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
             IsRunning="True"/>

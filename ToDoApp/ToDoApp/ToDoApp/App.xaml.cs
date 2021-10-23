@@ -1,4 +1,5 @@
-﻿using Prism;
+﻿using Plugin.SharedTransitions;
+using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
 using ToDoApp.Auth;
@@ -46,7 +47,7 @@ namespace ToDoApp
             var isLoggedIn = auth.IsLoggedIn();
             if (isLoggedIn)
             {
-                await NavigationService.NavigateAsync($"/{nameof(TasksPage)}");
+                await NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(TasksPage)}");
             }
             else
             {
@@ -62,7 +63,7 @@ namespace ToDoApp
             containerRegistry.Register<IFirestoreRepository<TaskModel>, TasksRepository>();
             containerRegistry.Register<IFirestoreRepository<ListModel>, ListsRepository>();
 
-            containerRegistry.RegisterForNavigation<NavigationPage>("NavigationPage");
+            containerRegistry.RegisterForNavigation<SharedTransitionNavigationPage>("NavigationPage");
             containerRegistry.RegisterForNavigation<WelcomePage, WelcomePageViewModel>("WelcomePage");
             containerRegistry.RegisterForNavigation<TasksPage, TasksPageViewModel>("TasksPage");
             containerRegistry.RegisterForNavigation<AddEditPage, AddEditPageViewModel>("AddEditPage");
