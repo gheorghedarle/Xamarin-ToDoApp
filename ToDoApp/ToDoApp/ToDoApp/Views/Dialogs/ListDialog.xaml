@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Frame xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoApp.Views.Dialogs.ListDialog"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             prism:DialogLayout.CloseOnBackgroundTapped="True"
+             prism:DialogLayout.RelativeWidthRequest=".85"
+             CornerRadius="24"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightCardUnselectedBackgroundColor}, Dark={StaticResource DarkCardUnselectedBackgroundColor}}">
+    <prism:DialogLayout.Mask>
+        <StackLayout BackgroundColor="{AppThemeBinding Light={StaticResource LightTransparentBackgroundColor}, Dark={StaticResource DarkTransparentBackgroundColor}}"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand"></StackLayout>
+    </prism:DialogLayout.Mask>
+    <StackLayout>
+        <Label
+            Style="{StaticResource Headline4_MulishBlack}"
+            Text="Lists"
+            Margin="10, 0, 0, 0"/>
+        <CollectionView
+            ItemsSource="{Binding ProjectList}"
+            HeightRequest="150">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label
+                            Style="{StaticResource Body1_MulishRegular}"
+                            Text="{Binding name}"
+                            Margin="10, 0, 0, 0"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</Frame>

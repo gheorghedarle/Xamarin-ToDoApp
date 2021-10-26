@@ -1,4 +1,5 @@
 ﻿using Prism.Navigation;
+using Prism.Services.Dialogs;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,6 +9,7 @@ using ToDoApp.Auth;
 using ToDoApp.Helpers;
 using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
+using ToDoApp.Views.Dialogs;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -19,7 +21,7 @@ namespace ToDoApp.ViewModels
     {
         #region Private & Protected
 
-        private IFirestoreRepository<ListModel> _listRepository;
+        private IDialogService _dialogService;
 
         #endregion
 
@@ -33,6 +35,7 @@ namespace ToDoApp.ViewModels
         #region Commands
 
         public ICommand BackCommand { get; set; }
+        public ICommand OpenListDialogCommand { get; set; }
 
         #endregion
 
@@ -40,20 +43,27 @@ namespace ToDoApp.ViewModels
 
         public MorePageViewModel(
             INavigationService navigationService,
-            IFirestoreRepository<ListModel> listRepository) : base(navigationService)
+            IDialogService dialogService) : base(navigationService)
         {
-            _listRepository = listRepository;
+            _dialogService = dialogService;
 
             BackCommand = new Command(BackCommandHandler);
+            OpenListDialogCommand = new Command(OpenListDialogCommandHandler);
         }
 
-        public async void Initialize(INavigationParameters parameters)
+        public  void Initialize(INavigationParameters parameters)
         {
-            var projectList = await GetProjectList();
-            ProjectList = new ObservableCollection<ListModel>(projectList);
-
             var list = Preferences.Get("taskFilterByList", "all");
             SelectedList = list == "all" ? Constants.AllLists : ProjectList.First(a => a.name == list);
+        }
+
+        #endregion
+
+        #region Constructors
+
+        private async void OpenListDialogCommandHandler()
+        {
+            await _dialogService.ShowDialogAsync(nameof(ListDialog));
         }
 
         #endregion
@@ -70,27 +80,6 @@ namespace ToDoApp.ViewModels
             {
                 Preferences.Set("taskFilterByList", SelectedList.name);
             }
-        }
-
-        private async Task<List<ListModel>> GetProjectList()
-        {
-            var auth = DependencyService.Get<IFirebaseAuthentication>();
-            var userId = auth.GetUserId();
-
-            var querySnapshot = await _listRepository.GetAll(userId).GetAsync();
-            var list = querySnapshot.ToObjects<ListModel>();
-            var listToAdd = new List<ListModel>();
-            if (list.Count() > 0)
-            {
-                listToAdd = list.ToList();
-                listToAdd.Insert(0, Constants.InboxList);
-                listToAdd.Insert(0, Constants.AllLists);
-            }
-            else
-            {
-                listToAdd.Add(Constants.InboxList);
-            }
-            return listToAdd;
         }
 
         #endregion

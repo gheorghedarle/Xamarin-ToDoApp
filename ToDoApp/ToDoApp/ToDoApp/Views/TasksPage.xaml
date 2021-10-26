@@ -4,8 +4,6 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:fragments="clr-namespace:ToDoApp.Views.Fragments"
              xmlns:model="clr-namespace:ToDoApp.Models"
-             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
-             sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="SlideFromLeft"
              NavigationPage.HasNavigationBar="False"
              x:Class="ToDoApp.Views.TasksPage">
     <ContentPage.Content>

@@ -7,9 +7,11 @@ using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Services.DateService;
 using ToDoApp.ViewModels;
+using ToDoApp.ViewModels.Dialogs;
 using ToDoApp.ViewModels.Templates.AddEditItem;
 using ToDoApp.ViewModels.Templates.Auth;
 using ToDoApp.Views;
+using ToDoApp.Views.Dialogs;
 using ToDoApp.Views.Templates.AddEditItem;
 using ToDoApp.Views.Templates.Auth;
 using Xamarin.Essentials;
@@ -63,7 +65,7 @@ namespace ToDoApp
             containerRegistry.Register<IFirestoreRepository<TaskModel>, TasksRepository>();
             containerRegistry.Register<IFirestoreRepository<ListModel>, ListsRepository>();
 
-            containerRegistry.RegisterForNavigation<SharedTransitionNavigationPage>("NavigationPage");
+            containerRegistry.RegisterForNavigation<NavigationPage>("NavigationPage");
             containerRegistry.RegisterForNavigation<WelcomePage, WelcomePageViewModel>("WelcomePage");
             containerRegistry.RegisterForNavigation<TasksPage, TasksPageViewModel>("TasksPage");
             containerRegistry.RegisterForNavigation<AddEditPage, AddEditPageViewModel>("AddEditPage");
@@ -76,6 +78,8 @@ namespace ToDoApp
 
             containerRegistry.RegisterForRegionNavigation<LoginTemplate, LoginViewModel>();
             containerRegistry.RegisterForRegionNavigation<SignUpTemplate, SignUpViewModel>();
+
+            containerRegistry.RegisterDialog<ListDialog, ListDialogViewModel>();
         }
 
         protected override void OnStart()

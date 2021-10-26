@@ -38,8 +38,12 @@
                     Text="Display tasks from"
                     Style="{StaticResource Body1_MulishSemiBold}"></Label>
                 <Frame
-                    Style="{StaticResource Base_FrameEntry}">
-                    <Picker
+                    Style="{StaticResource Base_FrameEntry}"
+                    Padding="15, 10">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenListDialogCommand}"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <!--<Picker
                         ItemsSource="{Binding ProjectList}"
                         SelectedItem="{Binding SelectedList}"
                         ItemDisplayBinding="{Binding name}"
@@ -47,7 +51,11 @@
                         <Picker.Effects>
                             <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                         </Picker.Effects>
-                    </Picker>
+                    </Picker>-->
+                    <Label
+                        Text="{Binding SelectedList.name}"
+                        Style="{StaticResource Subtitle1_MulishRegular}">
+                    </Label>
                 </Frame>
             </StackLayout>
         </Grid>
