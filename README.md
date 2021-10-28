@@ -20,7 +20,6 @@ Todo App is a simple to do app developed with Xamarin and Firebase
 - [Fody](https://github.com/Fody/Fody)
 - [Reactive UI](https://github.com/reactiveui/ReactiveUI)
 - [Firebase Firestore](https://github.com/f-miyu/Plugin.CloudFirestore)
-- [Xamarin.Plugin.SharedTransitions](https://github.com/GiampaoloGabba/Xamarin.Plugin.SharedTransitions) (Page Transitions)
 
 ## Setup
 
