@@ -4,7 +4,7 @@
         x:Class="ToDoApp.Views.Fragments.LoadingView"
         HorizontalOptions="Center"
         VerticalOptions="Center"            
-        BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
+        BackgroundColor="Transparent">
         <ActivityIndicator
             Color="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"
             IsRunning="True"/>

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="ToDoApp.Views.MorePage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
@@ -43,17 +42,8 @@
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding OpenListDialogCommand}"></TapGestureRecognizer>
                     </Frame.GestureRecognizers>
-                    <!--<Picker
-                        ItemsSource="{Binding ProjectList}"
-                        SelectedItem="{Binding SelectedList}"
-                        ItemDisplayBinding="{Binding name}"
-                        Style="{StaticResource Base_Picker}">
-                        <Picker.Effects>
-                            <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
-                        </Picker.Effects>
-                    </Picker>-->
                     <Label
-                        Text="{Binding SelectedList.name}"
+                        Text="{Binding SelectedList}"
                         Style="{StaticResource Subtitle1_MulishRegular}">
                     </Label>
                 </Frame>

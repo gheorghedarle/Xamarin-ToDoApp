@@ -28,7 +28,7 @@ namespace ToDoApp.ViewModels
         #region Properties
 
         public ObservableCollection<ListModel> ProjectList { get; set; }
-        public ListModel SelectedList { get; set; }
+        public string SelectedList { get; set; }
 
         #endregion
 
@@ -53,8 +53,8 @@ namespace ToDoApp.ViewModels
 
         public  void Initialize(INavigationParameters parameters)
         {
-            var list = Preferences.Get("taskFilterByList", "all");
-            SelectedList = list == "all" ? Constants.AllLists : ProjectList.First(a => a.name == list);
+            var list = Preferences.Get("taskFilterByList", "All lists");
+            SelectedList = list;
         }
 
         #endregion
@@ -64,22 +64,6 @@ namespace ToDoApp.ViewModels
         private async void OpenListDialogCommandHandler()
         {
             await _dialogService.ShowDialogAsync(nameof(ListDialog));
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        private void OnSelectedListChanged()
-        {
-            if(SelectedList == Constants.AllLists)
-            {
-                Preferences.Set("taskFilterByList", "all");
-            }
-            else
-            {
-                Preferences.Set("taskFilterByList", SelectedList.name);
-            }
         }
 
         #endregion
