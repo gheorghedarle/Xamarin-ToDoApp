@@ -223,10 +223,10 @@ namespace ToDoApp.ViewModels
             IQuery query;
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var userId = auth.GetUserId();
-            var list = Preferences.Get("taskFilterByList", "all");
+            var list = Preferences.Get("taskFilterByList", "All lists");
             var hideDoneTask = Preferences.Get("hideDoneTasks", false);
             SetFilterName(list);
-            query = list == "all" ?
+            query = list == "All lists" ?
                 hideDoneTask == false ?
                 _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy")) :
                 _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "archived", !hideDoneTask) :

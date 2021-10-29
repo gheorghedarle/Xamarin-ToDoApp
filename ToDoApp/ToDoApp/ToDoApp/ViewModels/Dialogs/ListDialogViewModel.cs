@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ToDoApp.Auth;
 using ToDoApp.Helpers;
 using ToDoApp.Models;
@@ -31,6 +32,12 @@ namespace ToDoApp.ViewModels.Dialogs
 
         #endregion
 
+        #region Commands 
+
+        public ICommand ChangeSelectListCommand { get; set; }
+
+        #endregion
+
         #region Constructors
 
         public ListDialogViewModel(
@@ -39,12 +46,19 @@ namespace ToDoApp.ViewModels.Dialogs
         {
             _listRepository = listRepository;
 
+            ChangeSelectListCommand = new Command(ChangeSelectListCommandHandler);
+
             MainState = LayoutState.Loading;
         }
 
         #endregion
 
         #region Command Handlers
+        private void ChangeSelectListCommandHandler()
+        {
+            Preferences.Set("taskFilterByList", SelectedList.name);
+            RequestClose(null);
+        }
 
         #endregion
 
@@ -63,7 +77,7 @@ namespace ToDoApp.ViewModels.Dialogs
             ProjectList = new ObservableCollection<ListModel>(projectList);
 
             var list = Preferences.Get("taskFilterByList", "All lists");
-            SelectedList = list == "all" ? Constants.AllLists : ProjectList.First(a => a.name == list);
+            SelectedList = ProjectList.First(a => a.name == list);
 
             MainState = LayoutState.None;
         }

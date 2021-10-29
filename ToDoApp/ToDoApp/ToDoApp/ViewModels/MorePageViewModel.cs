@@ -1,14 +1,10 @@
 ﻿using Prism.Navigation;
 using Prism.Services.Dialogs;
-using System.Collections.Generic;
+using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows.Input;
-using ToDoApp.Auth;
-using ToDoApp.Helpers;
 using ToDoApp.Models;
-using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Views.Dialogs;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -63,7 +59,7 @@ namespace ToDoApp.ViewModels
 
         private async void OpenListDialogCommandHandler()
         {
-            await _dialogService.ShowDialogAsync(nameof(ListDialog));
+            var r = await _dialogService.ShowDialogAsync(nameof(ListDialog));
         }
 
         #endregion

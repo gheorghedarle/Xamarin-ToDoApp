@@ -34,7 +34,8 @@ namespace ToDoApp.Helpers
             id = "alllist",
             name = "All lists",
             userId = "Default",
-            color = "#F9371C"
+            color = "#F9371C",
+            colorObject = ListColorList.First()
         };
 
         public static TaskModel DefaultTask = new TaskModel()

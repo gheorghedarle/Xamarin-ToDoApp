@@ -50,7 +50,7 @@ namespace ToDoApp.ViewModels.Templates.Auth
                     if (user != null)
                     {
                         ClearAuthData();
-                        Preferences.Set("taskFilterByList", "all");
+                        Preferences.Set("taskFilterByList", "All lists");
                         await _navigationService.NavigateAsync($"/{nameof(TasksPage)}");
                     }
                     else
