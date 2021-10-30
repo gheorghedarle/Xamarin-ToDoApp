@@ -1,8 +1,6 @@
 ﻿using Prism.Navigation;
 using Prism.Services.Dialogs;
-using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows.Input;
 using ToDoApp.Models;
 using ToDoApp.Views.Dialogs;
@@ -57,9 +55,12 @@ namespace ToDoApp.ViewModels
 
         #region Constructors
 
-        private async void OpenListDialogCommandHandler()
+        private void OpenListDialogCommandHandler()
         {
-            var r = await _dialogService.ShowDialogAsync(nameof(ListDialog));
+            _dialogService.ShowDialog(nameof(ListDialog), null, (IDialogResult r) => {
+                var res = r.Parameters.GetValue<string>("selectedList");
+                SelectedList = res;
+            });
         }
 
         #endregion

@@ -57,7 +57,11 @@ namespace ToDoApp.ViewModels.Dialogs
         private void ChangeSelectListCommandHandler()
         {
             Preferences.Set("taskFilterByList", SelectedList.name);
-            RequestClose(null);
+            var param = new DialogParameters()
+            {
+                { "selectedList", SelectedList.name }
+            };
+            RequestClose(param);
         }
 
         #endregion
