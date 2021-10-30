@@ -1,5 +1,4 @@
-﻿using Plugin.SharedTransitions;
-using Prism;
+﻿using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
 using ToDoApp.Auth;

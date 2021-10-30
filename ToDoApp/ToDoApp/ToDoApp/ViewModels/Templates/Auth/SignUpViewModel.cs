@@ -60,7 +60,7 @@ namespace ToDoApp.ViewModels.Templates.Auth
             }
             catch (Exception ex)
             {
-                // display error
+                Debug.WriteLine(ex);
             }
             finally
             {

@@ -19,7 +19,6 @@ namespace ToDoApp.ViewModels
         #region Properties
 
         public ObservableCollection<string> AuthScreenList { get; set; }
-        public string Title { get; set; }
         public string CurrentAuthScreen { get; set; }
 
         #endregion

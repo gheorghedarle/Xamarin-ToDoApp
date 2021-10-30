@@ -1,6 +1,7 @@
 ﻿using Android.Gms.Extensions;
 using Firebase.Auth;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using ToDoApp.Auth;
 using ToDoApp.Models;
@@ -25,6 +26,7 @@ namespace ToDoApp.Droid.Auth
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 return null;
             }
         }
@@ -41,6 +43,7 @@ namespace ToDoApp.Droid.Auth
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 return false;
             }
         }
@@ -78,6 +81,7 @@ namespace ToDoApp.Droid.Auth
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 return false;
             }
         }

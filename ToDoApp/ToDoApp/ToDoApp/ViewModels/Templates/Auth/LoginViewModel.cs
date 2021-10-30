@@ -1,5 +1,6 @@
 ﻿using Prism.Navigation;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ToDoApp.Auth;
@@ -61,7 +62,7 @@ namespace ToDoApp.ViewModels.Templates.Auth
             }
             catch (Exception ex)
             {
-                // display error
+                Debug.WriteLine(ex);
             }
             finally
             {
