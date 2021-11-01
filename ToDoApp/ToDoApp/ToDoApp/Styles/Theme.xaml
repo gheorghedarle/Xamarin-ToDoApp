@@ -112,6 +112,12 @@
         <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource LightPlaceholderTextColor}, Dark={StaticResource DarkPlaceholderTextColor}}" />
     </Style>
 
+    <Style x:Key="Error_Entry" TargetType="Entry">
+        <Setter Property="FontFamily" Value="Mulish_Bold" />
+        <Setter Property="TextColor" Value="{StaticResource FailColor}" />
+        <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource LightPlaceholderTextColor}, Dark={StaticResource DarkPlaceholderTextColor}}" />
+    </Style>
+
     <!--#endregion-->
 
     <!--#region Picker-->

@@ -21,6 +21,12 @@
                         <Entry.Effects>
                             <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                         </Entry.Effects>
+                        <Entry.Behaviors>
+                            <xct:CharactersValidationBehavior 
+                                MinimumLength="5"
+                                CharacterType="Alphanumeric"
+                                InvalidStyle="{StaticResource Error_Entry}"></xct:CharactersValidationBehavior>
+                        </Entry.Behaviors>
                     </Entry>
                 </Frame>
             </StackLayout>
