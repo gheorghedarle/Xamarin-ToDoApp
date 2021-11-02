@@ -21,12 +21,6 @@
                         <Entry.Effects>
                             <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                         </Entry.Effects>
-                        <Entry.Behaviors>
-                            <xct:CharactersValidationBehavior 
-                                MinimumLength="5"
-                                CharacterType="Alphanumeric"
-                                InvalidStyle="{StaticResource Error_Entry}"></xct:CharactersValidationBehavior>
-                        </Entry.Behaviors>
                     </Entry>
                 </Frame>
             </StackLayout>
@@ -36,16 +30,15 @@
                     Text="List"
                     Style="{StaticResource Body1_MulishSemiBold}"></Label>
                 <Frame
-                    Style="{StaticResource Base_FrameEntry}">
-                    <Picker
-                        ItemsSource="{Binding ProjectList}"
-                        SelectedItem="{Binding AddTask.listObject}"
-                        ItemDisplayBinding="{Binding name}"
-                        Style="{StaticResource Base_Picker}">
-                        <Picker.Effects>
-                            <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
-                        </Picker.Effects>
-                    </Picker>
+                    Style="{StaticResource Base_FrameEntry}"
+                    Padding="15, 10">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenListDialogCommand}"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <Label
+                        Text="{Binding AddTask.list}"
+                        Style="{StaticResource Subtitle1_MulishRegular}">
+                    </Label>
                 </Frame>
             </StackLayout>
             <StackLayout

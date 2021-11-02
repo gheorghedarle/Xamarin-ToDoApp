@@ -53,7 +53,7 @@ namespace ToDoApp.ViewModels
 
         #endregion
 
-        #region Constructors
+        #region Command Handlers
 
         private void OpenListDialogCommandHandler()
         {

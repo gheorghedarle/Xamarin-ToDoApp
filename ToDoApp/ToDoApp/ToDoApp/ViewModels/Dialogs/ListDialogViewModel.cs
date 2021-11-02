@@ -20,6 +20,8 @@ namespace ToDoApp.ViewModels.Dialogs
     {
         #region Private & Protected
 
+        private string _list;
+
         private IFirestoreRepository<ListModel> _listRepository;
 
         #endregion
@@ -54,14 +56,19 @@ namespace ToDoApp.ViewModels.Dialogs
         #endregion
 
         #region Command Handlers
+
         private void ChangeSelectListCommandHandler()
         {
-            Preferences.Set("taskFilterByList", SelectedList.name);
-            var param = new DialogParameters()
+            var list = ProjectList.First(a => a.name == _list);
+            if(SelectedList != list)
             {
-                { "selectedList", SelectedList.name }
-            };
-            RequestClose(param);
+                Preferences.Set("taskFilterByList", SelectedList.name);
+                var param = new DialogParameters()
+                {
+                    { "selectedList", SelectedList.name }
+                };
+                RequestClose(param);
+            }
         }
 
         #endregion
@@ -80,8 +87,8 @@ namespace ToDoApp.ViewModels.Dialogs
             var projectList = await GetProjectList();
             ProjectList = new ObservableCollection<ListModel>(projectList);
 
-            var list = Preferences.Get("taskFilterByList", "All lists");
-            SelectedList = ProjectList.First(a => a.name == list);
+            _list = Preferences.Get("taskFilterByList", "All lists");
+            SelectedList = ProjectList.First(a => a.name == _list);
 
             MainState = LayoutState.None;
         }

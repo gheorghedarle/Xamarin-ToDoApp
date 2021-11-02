@@ -1,5 +1,6 @@
 ﻿using Prism.Navigation;
 using Prism.Regions.Navigation;
+using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +13,7 @@ using ToDoApp.Auth;
 using ToDoApp.Helpers;
 using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
+using ToDoApp.Views.Dialogs;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels.Templates.AddEditItem
@@ -20,6 +22,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
     {
         #region Private & Protected
 
+        private IDialogService _dialogService;
         private IFirestoreRepository<ListModel> _listRepository;
         private IFirestoreRepository<TaskModel> _taskRepository;
 
@@ -36,6 +39,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         #region Commands
 
         public ICommand CreateCommand { get; set; }
+        public ICommand OpenListDialogCommand { get; set; }
 
         #endregion
 
@@ -43,13 +47,14 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
         public AddEditTaskViewModel(
             INavigationService navigationService,
-            IFirestoreRepository<TaskModel> taskRepository,
-            IFirestoreRepository<ListModel> listRepository) : base(navigationService)
+            IDialogService dialogService,
+            IFirestoreRepository<TaskModel> taskRepository) : base(navigationService)
         {
+            _dialogService = dialogService;
             _taskRepository = taskRepository;
-            _listRepository = listRepository;
 
             CreateCommand = new Command(CreateCommandHandler);
+            OpenListDialogCommand = new Command(OpenListDialogCommandHandler);
         }
 
         #endregion
@@ -98,6 +103,14 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
             }
         }
 
+        private void OpenListDialogCommandHandler()
+        {
+            _dialogService.ShowDialog(nameof(ListDialog), null, (IDialogResult r) => {
+                var res = r.Parameters.GetValue<string>("selectedList");
+                AddTask.list = res;
+            });
+        }
+
         #endregion
 
         #region Private Methods
@@ -126,25 +139,21 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
         #region Region Navigation Handlers
 
-        public override async void OnNavigatedTo(INavigationContext navigationContext)
+        public override void OnNavigatedTo(INavigationContext navigationContext)
         {
             var isEdit = navigationContext.Parameters.GetValue<bool>("isEdit");
             var task = navigationContext.Parameters.GetValue<TaskModel>("task");
-
-            var projectList = await GetProjectList();
-            ProjectList = new ObservableCollection<ListModel>(projectList);
 
             Mode = isEdit ? "Edit" : "Add";
 
             if (Mode == "Edit")
             {
-                task.listObject = projectList.FirstOrDefault(pr => pr.name == task.list);
                 AddTask = new TaskModel()
                 {
                     task = task.task,
                     archived = task.archived,
                     dateObject = DateTime.ParseExact(task.date, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                    listObject = task.listObject,
+                    list = task.list,
                     id = task.id
                 };
             }
@@ -155,7 +164,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                     task = Constants.DefaultTask.task,
                     archived = Constants.DefaultTask.archived,
                     dateObject = Constants.DefaultTask.dateObject,
-                    listObject = Constants.DefaultTask.listObject,
+                    list = Constants.DefaultTask.list,
                 };
             }
         }

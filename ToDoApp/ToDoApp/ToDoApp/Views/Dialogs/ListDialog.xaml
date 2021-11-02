@@ -2,8 +2,6 @@
 <Frame xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToDoApp.Views.Dialogs.ListDialog"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:fragments="clr-namespace:ToDoApp.Views.Fragments"
              xmlns:prism="http://prismlibrary.com"
              prism:DialogLayout.RelativeWidthRequest=".85"
              CornerRadius="24"
@@ -13,16 +11,7 @@
                      HorizontalOptions="FillAndExpand"
                      VerticalOptions="FillAndExpand"></StackLayout>
     </prism:DialogLayout.Mask>
-    <StackLayout
-        xct:StateLayout.CurrentState="{Binding MainState}" 
-        xct:StateLayout.AnimateStateChanges="True">
-        <xct:StateLayout.StateViews>
-            <xct:StateView
-                StateKey="Loading"
-                VerticalOptions="FillAndExpand">
-                <fragments:LoadingView/>
-            </xct:StateView>
-        </xct:StateLayout.StateViews>
+    <StackLayout>
         <Label
             Style="{StaticResource Headline4_MulishBlack}"
             Text="Select a list"
