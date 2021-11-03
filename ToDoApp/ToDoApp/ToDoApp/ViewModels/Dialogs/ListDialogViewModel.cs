@@ -84,11 +84,21 @@ namespace ToDoApp.ViewModels.Dialogs
 
         public async void OnDialogOpened(IDialogParameters parameters)
         {
-            var projectList = await GetProjectList();
+            var fromPage = parameters.GetValue<string>("fromPage");
+            var selectedItem = parameters.GetValue<string>("selectedItem");
+            var projectList = await GetProjectList(fromPage);
             ProjectList = new ObservableCollection<ListModel>(projectList);
 
-            _list = Preferences.Get("taskFilterByList", "All lists");
-            SelectedList = ProjectList.First(a => a.name == _list);
+            if(selectedItem == null)
+            {
+                _list = Preferences.Get("taskFilterByList", "All lists");
+                SelectedList = ProjectList.First(a => a.name == _list);
+            }
+            else
+            {
+                _list = selectedItem;
+                SelectedList = ProjectList.First(a => a.name == selectedItem);
+            }
 
             MainState = LayoutState.None;
         }
@@ -97,7 +107,7 @@ namespace ToDoApp.ViewModels.Dialogs
 
         #region Private Methods
 
-        private async Task<List<ListModel>> GetProjectList()
+        private async Task<List<ListModel>> GetProjectList(string fromPage)
         {
             var auth = DependencyService.Get<IFirebaseAuthentication>();
             var userId = auth.GetUserId();
@@ -109,7 +119,10 @@ namespace ToDoApp.ViewModels.Dialogs
             {
                 listToAdd = list.ToList();
                 listToAdd.Insert(0, Constants.InboxList);
-                listToAdd.Insert(0, Constants.AllLists);
+                if(fromPage == "More")
+                {
+                    listToAdd.Insert(0, Constants.AllLists);
+                }
             }
             else
             {

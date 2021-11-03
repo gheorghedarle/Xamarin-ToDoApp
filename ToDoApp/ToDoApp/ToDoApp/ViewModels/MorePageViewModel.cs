@@ -57,7 +57,11 @@ namespace ToDoApp.ViewModels
 
         private void OpenListDialogCommandHandler()
         {
-            _dialogService.ShowDialog(nameof(ListDialog), null, (IDialogResult r) => {
+            var param = new DialogParameters()
+            {
+                { "fromPage", "More" }
+            };
+            _dialogService.ShowDialog(nameof(ListDialog), param, (IDialogResult r) => {
                 var res = r.Parameters.GetValue<string>("selectedList");
                 SelectedList = res;
             });

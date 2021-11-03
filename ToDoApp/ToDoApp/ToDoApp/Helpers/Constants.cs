@@ -44,6 +44,7 @@ namespace ToDoApp.Helpers
             archived = false,
             dateObject = DateTime.Today,
             listObject = InboxList,
+            list = "Inbox"
         };
 
         public static ListModel DefaultList = new ListModel()
