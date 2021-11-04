@@ -21,6 +21,7 @@ namespace ToDoApp.ViewModels.Dialogs
         #region Private & Protected
 
         private string _list;
+        private string _fromPage;
 
         private IFirestoreRepository<ListModel> _listRepository;
 
@@ -62,7 +63,10 @@ namespace ToDoApp.ViewModels.Dialogs
             var list = ProjectList.First(a => a.name == _list);
             if(SelectedList != list)
             {
-                Preferences.Set("taskFilterByList", SelectedList.name);
+                if(_fromPage == "More")
+                {
+                    Preferences.Set("taskFilterByList", SelectedList.name);
+                }
                 var param = new DialogParameters()
                 {
                     { "selectedList", SelectedList.name }
@@ -84,9 +88,9 @@ namespace ToDoApp.ViewModels.Dialogs
 
         public async void OnDialogOpened(IDialogParameters parameters)
         {
-            var fromPage = parameters.GetValue<string>("fromPage");
+            _fromPage = parameters.GetValue<string>("fromPage");
             var selectedItem = parameters.GetValue<string>("selectedItem");
-            var projectList = await GetProjectList(fromPage);
+            var projectList = await GetProjectList(_fromPage);
             ProjectList = new ObservableCollection<ListModel>(projectList);
 
             if(selectedItem == null)
