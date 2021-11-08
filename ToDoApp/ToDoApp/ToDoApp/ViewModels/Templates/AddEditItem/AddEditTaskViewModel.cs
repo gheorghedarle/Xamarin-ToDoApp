@@ -1,6 +1,11 @@
 ﻿using Prism.Navigation;
 using Prism.Regions.Navigation;
 using Prism.Services.Dialogs;
+using ReactiveUI;
+using ReactiveUI.Validation.Abstractions;
+using ReactiveUI.Validation.Contexts;
+using ReactiveUI.Validation.Extensions;
+using ReactiveUI.Validation.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +23,7 @@ using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels.Templates.AddEditItem
 {
-    public class AddEditTaskViewModel : BaseRegionViewModel
+    public class AddEditTaskViewModel : BaseRegionViewModel, IActivatableViewModel
     {
         #region Private & Protected
 
@@ -41,6 +46,8 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         public ICommand CreateCommand { get; set; }
         public ICommand OpenListDialogCommand { get; set; }
 
+        public ViewModelActivator Activator { get; } = new ViewModelActivator();
+
         #endregion
 
         #region Constructors
@@ -55,6 +62,11 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
             CreateCommand = new Command(CreateCommandHandler);
             OpenListDialogCommand = new Command(OpenListDialogCommandHandler);
+
+            this.ValidationRule(
+                viewModel => viewModel.AddTask.task,
+                task => !string.IsNullOrWhiteSpace(task),
+                "You must specify a valid name for task");
         }
 
         #endregion

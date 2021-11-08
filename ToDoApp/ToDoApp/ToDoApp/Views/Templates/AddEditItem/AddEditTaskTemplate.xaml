@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="ToDoApp.Views.Templates.AddEditItem.AddEditTaskTemplate">
+<reactive:ReactiveContentView
+        x:TypeArguments="vms:AddEditTaskViewModel" 
+        xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+        xmlns:vms="clr-namespace:ToDoApp.ViewModels.Templates.AddEditItem"
+        xmlns:reactive="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+        x:Class="ToDoApp.Views.Templates.AddEditItem.AddEditTaskTemplate">
     <Grid
         RowDefinitions="*, Auto">
         <StackLayout
@@ -23,6 +27,9 @@
                         </Entry.Effects>
                     </Entry>
                 </Frame>
+                <Label x:Name="NamerErrorMessage"
+                    TextColor="Red"
+                    VerticalOptions="Start" />
             </StackLayout>
             <StackLayout
                 Spacing="5">
@@ -52,7 +59,7 @@
                         FontFamily="Mulish_Regular"
                         Date="{Binding AddTask.dateObject}"
                         Format="dd/MM/yyyy"
-                        Style="{StaticResource Base_Picker}">
+                        Style="{StaticResource Base_DatePicker}">
                         <DatePicker.Effects>
                             <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                         </DatePicker.Effects>
@@ -88,4 +95,4 @@
             </VisualStateManager.VisualStateGroups>
         </Button>
     </Grid>
-</ContentView>
+</reactive:ReactiveContentView>

@@ -128,7 +128,16 @@
     </Style>
 
     <!--#endregion-->
-    
+
+    <!--#region Date Picker-->
+
+    <Style x:Key="Base_DatePicker" TargetType="DatePicker">
+        <Setter Property="FontFamily" Value="Mulish_Regular" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+    </Style>
+
+    <!--#endregion-->
+
     <!--#region Buttons-->
     
     <Style x:Key="Base_Button" TargetType="Button">
