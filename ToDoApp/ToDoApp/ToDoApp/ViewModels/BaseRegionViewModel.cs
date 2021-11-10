@@ -1,6 +1,5 @@
 ﻿using Prism.Navigation;
 using Prism.Regions.Navigation;
-using ReactiveUI.Validation.Helpers;
 using System;
 using System.ComponentModel;
 using Xamarin.CommunityToolkit.UI.Views;
@@ -8,7 +7,6 @@ using Xamarin.CommunityToolkit.UI.Views;
 namespace ToDoApp.ViewModels
 {
     public class BaseRegionViewModel:
-        ReactiveValidationObject,
         INotifyPropertyChanged, 
         IRegionAware
     {

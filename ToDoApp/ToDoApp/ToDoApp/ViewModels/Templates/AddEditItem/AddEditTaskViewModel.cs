@@ -2,17 +2,10 @@
 using Prism.Regions.Navigation;
 using Prism.Services.Dialogs;
 using ReactiveUI;
-using ReactiveUI.Validation.Abstractions;
-using ReactiveUI.Validation.Contexts;
-using ReactiveUI.Validation.Extensions;
-using ReactiveUI.Validation.Helpers;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using ToDoApp.Auth;
 using ToDoApp.Helpers;
@@ -28,7 +21,6 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         #region Private & Protected
 
         private IDialogService _dialogService;
-        private IFirestoreRepository<ListModel> _listRepository;
         private IFirestoreRepository<TaskModel> _taskRepository;
 
         #endregion
@@ -62,11 +54,6 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
             CreateCommand = new Command(CreateCommandHandler);
             OpenListDialogCommand = new Command(OpenListDialogCommandHandler);
-
-            this.ValidationRule(
-                viewModel => viewModel.AddTask.task,
-                task => !string.IsNullOrWhiteSpace(task),
-                "You must specify a valid name for task");
         }
 
         #endregion
@@ -126,30 +113,6 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                 var res = r.Parameters.GetValue<string>("selectedList");
                 AddTask.list = res;
             });
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        private async Task<List<ListModel>> GetProjectList()
-        {
-            var auth = DependencyService.Get<IFirebaseAuthentication>();
-            var userId = auth.GetUserId();
-
-            var querySnapshot = await _listRepository.GetAll(userId).GetAsync();
-            var list = querySnapshot.ToObjects<ListModel>();
-            var listToAdd = new List<ListModel>();
-            if (list.Count() > 0)
-            {
-                listToAdd = list.ToList();
-                listToAdd.Insert(0, Constants.InboxList);
-            }
-            else
-            {
-                listToAdd.Add(Constants.InboxList);
-            }
-            return listToAdd;
         }
 
         #endregion
