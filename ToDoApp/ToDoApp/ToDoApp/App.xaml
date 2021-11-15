@@ -8,6 +8,7 @@
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
             <converters:DoneIconConverter x:Key="DoneIconConverter"/>
+            <converters:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
 
             <ResourceDictionary.MergedDictionaries>
                 <styles:Theme></styles:Theme>

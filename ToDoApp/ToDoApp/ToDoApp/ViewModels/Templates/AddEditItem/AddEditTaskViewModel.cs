@@ -1,7 +1,6 @@
 ﻿using Prism.Navigation;
 using Prism.Regions.Navigation;
 using Prism.Services.Dialogs;
-using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -9,6 +8,8 @@ using System.Globalization;
 using System.Windows.Input;
 using ToDoApp.Auth;
 using ToDoApp.Helpers;
+using ToDoApp.Helpers.Validations;
+using ToDoApp.Helpers.Validations.Rules;
 using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
 using ToDoApp.Views.Dialogs;
@@ -16,7 +17,7 @@ using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels.Templates.AddEditItem
 {
-    public class AddEditTaskViewModel : BaseRegionViewModel, IActivatableViewModel
+    public class AddEditTaskViewModel : BaseRegionViewModel
     {
         #region Private & Protected
 
@@ -29,6 +30,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
         public ObservableCollection<ListModel> ProjectList { get; set; }
         public TaskModel AddTask { get; set; }
+        public ValidatableObject<string> Name { get; set; }
         public string Mode { get; set; }
 
         #endregion
@@ -38,7 +40,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         public ICommand CreateCommand { get; set; }
         public ICommand OpenListDialogCommand { get; set; }
 
-        public ViewModelActivator Activator { get; } = new ViewModelActivator();
+        public ICommand ValidateNameCommand { get; set; }
 
         #endregion
 
@@ -54,6 +56,19 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
             CreateCommand = new Command(CreateCommandHandler);
             OpenListDialogCommand = new Command(OpenListDialogCommandHandler);
+
+            ValidateNameCommand = new Command(ValidateNameCommandHandler);
+
+            AddValidations();
+        }
+
+        #endregion
+
+        #region Validation Handlers
+
+        private void ValidateNameCommandHandler()
+        {
+            Name.Validate();
         }
 
         #endregion
@@ -147,6 +162,17 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                     list = Constants.DefaultTask.list,
                 };
             }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void AddValidations()
+        {
+            Name = new ValidatableObject<string>();
+
+            Name.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A name is required." });
         }
 
         #endregion
