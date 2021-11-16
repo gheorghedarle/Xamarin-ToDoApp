@@ -13,16 +13,34 @@
                     Text="Name"
                     Style="{StaticResource Body1_MulishSemiBold}"></Label>
                 <Frame
+                    x:Name="NameFrame"
                     Style="{StaticResource Base_FrameEntry}">
                     <Entry
-                        Placeholder="Enter your name"
-                        Text="{Binding AddList.name}"
+                        Placeholder="Enter list name"
+                        Text="{Binding Name.Value}"
                         Style="{StaticResource Base_Entry}">
+                        <Entry.Behaviors>
+                            <xct:EventToCommandBehavior
+							    EventName="TextChanged"
+							    Command="{Binding ValidateNameCommand}" />
+                        </Entry.Behaviors>
+                        <Entry.Triggers>
+                            <DataTrigger 
+							    TargetType="Entry"
+							    Binding="{Binding Name.IsValid}"
+							    Value="False">
+                                <Setter TargetName="NameFrame" Property="Frame.BorderColor" Value="{StaticResource FailColor}" />
+                            </DataTrigger>
+                        </Entry.Triggers>
                         <Entry.Effects>
                             <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                         </Entry.Effects>
                     </Entry>
                 </Frame>
+                <Label
+                    IsVisible="{Binding Name.IsValid, Converter={xct:InvertedBoolConverter}}"
+					Text="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+					TextColor="{StaticResource FailColor}" />
             </StackLayout>
             <StackLayout
                 Spacing="5">

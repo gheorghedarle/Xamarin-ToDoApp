@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Windows.Input;
 using ToDoApp.Auth;
 using ToDoApp.Helpers;
+using ToDoApp.Helpers.Validations;
+using ToDoApp.Helpers.Validations.Rules;
 using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
 using Xamarin.Forms;
@@ -23,6 +25,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         #region Properties
 
         public ListModel AddList { get; set; }
+        public ValidatableObject<string> Name { get; set; }
         public ObservableCollection<ColorModel> ColorList { get; set; }
         public string Mode { get; set; }
 
@@ -31,6 +34,8 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         #region Commands
 
         public ICommand CreateCommand { get; set; }
+
+        public ICommand ValidateNameCommand { get; set; }
 
         #endregion
 
@@ -43,6 +48,18 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
             _listRepository = listRepository;
 
             CreateCommand = new Command(CreateCommandHandler);
+            ValidateNameCommand = new Command(ValidateNameCommandHandler);
+
+            AddValidations();
+        }
+
+        #endregion
+
+        #region Validation Handlers
+
+        private void ValidateNameCommandHandler()
+        {
+            Name.Validate();
         }
 
         #endregion
@@ -99,6 +116,17 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                     colorObject = Constants.DefaultList.colorObject,
                 };
             }
+        }
+
+        #endregion        
+        
+        #region Private Methods
+
+        private void AddValidations()
+        {
+            Name = new ValidatableObject<string>();
+
+            Name.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A name is required." });
         }
 
         #endregion
