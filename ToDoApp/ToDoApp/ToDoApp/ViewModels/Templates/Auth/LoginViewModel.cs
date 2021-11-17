@@ -1,9 +1,10 @@
 ﻿using Prism.Navigation;
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using ToDoApp.Auth;
+using ToDoApp.Helpers.Validations;
+using ToDoApp.Helpers.Validations.Rules;
 using ToDoApp.Views;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
@@ -15,14 +16,16 @@ namespace ToDoApp.ViewModels.Templates.Auth
     {
         #region Properties
 
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public ValidatableObject<string> Email { get; set; }
+        public ValidatableObject<string> Password { get; set; }
 
         #endregion
 
         #region Commands
 
         public ICommand LoginCommand { get; set; }
+        public ICommand ValidateCommand { get; set; }
+
 
         #endregion
 
@@ -32,6 +35,23 @@ namespace ToDoApp.ViewModels.Templates.Auth
             INavigationService navigationService) : base(navigationService)
         {
             LoginCommand = new Command(LoginCommandHandler);
+
+            ValidateCommand = new Command<string>(ValidateCommandHandler);
+
+            AddValidations();
+        }
+
+        #endregion
+
+        #region Validation Handlers
+
+        private void ValidateCommandHandler(string field)
+        {
+            switch (field)
+            {
+                case "email": Email.Validate(); break;
+                case "password": Password.Validate(); break;
+            }
         }
 
         #endregion
@@ -46,7 +66,7 @@ namespace ToDoApp.ViewModels.Templates.Auth
                 if (ValidateLoginData())
                 {
                     var auth = DependencyService.Get<IFirebaseAuthentication>();
-                    var user = await auth.LoginWithEmailAndPassword(Email, Password);
+                    var user = await auth.LoginWithEmailAndPassword(Email.Value, Password.Value);
 
                     if (user != null)
                     {
@@ -74,17 +94,26 @@ namespace ToDoApp.ViewModels.Templates.Auth
 
         #region Private Functionality
 
+        private void AddValidations()
+        {
+            Email = new ValidatableObject<string>();
+            Password = new ValidatableObject<string>();
+
+            Email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A email is required." });
+            Password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A password is required." });
+        }
+
         private bool ValidateLoginData()
         {
-            if (string.IsNullOrWhiteSpace(Email) ||
-                string.IsNullOrWhiteSpace(Password))
+            if (Email.IsValid == false ||
+                Password.IsValid == false)
                 return false;
             return true;
         }
 
         private void ClearAuthData()
         {
-            Email = Password = string.Empty;
+            Email.Value = Password.Value = string.Empty;
         }
 
         #endregion

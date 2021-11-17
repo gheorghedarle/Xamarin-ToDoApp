@@ -21,9 +21,10 @@
                         Text="{Binding Name.Value}"
                         Style="{StaticResource Base_Entry}">
                         <Entry.Behaviors>
-                            <xct:EventToCommandBehavior
-							    EventName="TextChanged"
-							    Command="{Binding ValidateNameCommand}" />
+                            <xct:UserStoppedTypingBehavior
+							    Command="{Binding ValidateNameCommand}"
+                                StoppedTypingTimeThreshold="50"
+                                ShouldDismissKeyboardAutomatically="False"/>
                         </Entry.Behaviors>
                         <Entry.Triggers>
                             <DataTrigger 
