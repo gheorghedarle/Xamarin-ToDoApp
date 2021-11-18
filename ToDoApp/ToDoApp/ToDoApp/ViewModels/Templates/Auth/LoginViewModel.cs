@@ -100,6 +100,7 @@ namespace ToDoApp.ViewModels.Templates.Auth
             Password = new ValidatableObject<string>();
 
             Email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A email is required." });
+            Email.Validations.Add(new IsEmailRule<string> { ValidationMessage = "Email format is not correct" });
             Password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A password is required." });
         }
 
