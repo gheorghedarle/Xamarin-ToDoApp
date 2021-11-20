@@ -1,7 +1,6 @@
 ﻿using Prism.Navigation;
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using ToDoApp.Auth;
 using ToDoApp.Helpers.Validations;
@@ -15,9 +14,9 @@ namespace ToDoApp.ViewModels.Templates.Auth
     {
         #region Properties
         public ValidatableObject<string> Username { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
+        public ValidatableObject<string> Email { get; set; }
+        public ValidatableObject<string> Password { get; set; }
+        public ValidatableObject<string> ConfirmPassword { get; set; }
 
         #endregion
 
@@ -33,6 +32,7 @@ namespace ToDoApp.ViewModels.Templates.Auth
         public SignUpViewModel(
             INavigationService navigationService) : base(navigationService)
         {
+            SignUpCommand = new Command(SignUpCommandHandler);
 
             ValidateCommand = new Command<string>(ValidateCommandHandler);
 
@@ -48,6 +48,9 @@ namespace ToDoApp.ViewModels.Templates.Auth
             switch (field)
             {
                 case "username": Username.Validate(); break;
+                case "email": Email.Validate(); break;
+                case "password": Password.Validate(); break;
+                case "confirmPassword": ConfirmPassword.Validate(); break;
             }
         }
 
@@ -63,7 +66,7 @@ namespace ToDoApp.ViewModels.Templates.Auth
                 if (ValidateSignUpData())
                 {
                     var auth = DependencyService.Get<IFirebaseAuthentication>();
-                    var created = await auth.RegisterWithEmailAndPassword(Username.Value, Email, Password);
+                    var created = await auth.RegisterWithEmailAndPassword(Username.Value, Email.Value, Password.Value);
 
                     if (created)
                     {
@@ -94,24 +97,31 @@ namespace ToDoApp.ViewModels.Templates.Auth
         private void AddValidations()
         {
             Username = new ValidatableObject<string>();
+            Email = new ValidatableObject<string>();
+            Password = new ValidatableObject<string>();
+            ConfirmPassword = new ValidatableObject<string>();
 
             Username.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A username is required." });
+            Email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A email is required." });
+            Email.Validations.Add(new IsEmailRule<string> { ValidationMessage = "Email format is not correct." });
+            Password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A password is required." });
+            ConfirmPassword.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A confirm password is required." });
         }
 
         private bool ValidateSignUpData()
         {
             if (Username.IsValid ||
-                string.IsNullOrWhiteSpace(Email) ||
-                string.IsNullOrWhiteSpace(Password) ||
-                string.IsNullOrWhiteSpace(ConfirmPassword) ||
-                !Password.Equals(ConfirmPassword))
+                Email.IsValid ||
+                Password.IsValid ||
+                ConfirmPassword.IsValid ||
+                !Password.Value.Equals(ConfirmPassword.Value))
                 return false;
             return true;
         }
 
         private void ClearAuthData()
         {
-            Username.Value = Email = Password = ConfirmPassword = string.Empty;
+            Username.Value = Email.Value = Password.Value = ConfirmPassword.Value = string.Empty;
         }
 
         #endregion

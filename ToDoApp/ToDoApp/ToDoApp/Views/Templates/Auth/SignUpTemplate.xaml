@@ -50,16 +50,37 @@
                 Text="Email"
                 Style="{StaticResource Body1_MulishSemiBold}"></Label>
             <Frame
+                x:Name="EmailFrame"
                 Style="{StaticResource Base_FrameEntry}">
                 <Entry
                     Placeholder="Enter your email"
-                    Text="{Binding Email}"
+                    Text="{Binding Email.Value}"
                     Style="{StaticResource Base_Entry}">
+                    <Entry.Behaviors>
+                        <xct:UserStoppedTypingBehavior
+							Command="{Binding ValidateCommand}"
+							CommandParameter="email"
+                            StoppedTypingTimeThreshold="50"
+                            ShouldDismissKeyboardAutomatically="False"/>
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger 
+							TargetType="Entry"
+							Binding="{Binding Email.IsValid}"
+							Value="False">
+                            <Setter TargetName="EmailFrame" Property="Frame.BorderColor" Value="{StaticResource FailColor}" />
+                            <Setter TargetName="SignupButton" Property="Button.IsEnabled" Value="False" />
+                        </DataTrigger>
+                    </Entry.Triggers>
                     <Entry.Effects>
                         <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                     </Entry.Effects>
                 </Entry>
             </Frame>
+            <Label
+                IsVisible="{Binding Email.IsValid, Converter={xct:InvertedBoolConverter}}"
+				Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+				TextColor="{StaticResource FailColor}" />
         </StackLayout>
         <StackLayout
             Margin="20, 0"
@@ -68,17 +89,38 @@
                 Text="Password"
                 Style="{StaticResource Body1_MulishSemiBold}"></Label>
             <Frame
+                x:Name="PasswordFrame"
                 Style="{StaticResource Base_FrameEntry}">
                 <Entry
                     IsPassword="True"
                     Placeholder="Enter your password"
-                    Text="{Binding Password}"
+                    Text="{Binding Password.Value}"
                     Style="{StaticResource Base_Entry}">
+                    <Entry.Behaviors>
+                        <xct:UserStoppedTypingBehavior
+							Command="{Binding ValidateCommand}"
+							CommandParameter="password"
+                            StoppedTypingTimeThreshold="50"
+                            ShouldDismissKeyboardAutomatically="False"/>
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger 
+							TargetType="Entry"
+							Binding="{Binding Password.IsValid}"
+							Value="False">
+                            <Setter TargetName="PasswordFrame" Property="Frame.BorderColor" Value="{StaticResource FailColor}" />
+                            <Setter TargetName="SignupButton" Property="Button.IsEnabled" Value="False" />
+                        </DataTrigger>
+                    </Entry.Triggers>
                     <Entry.Effects>
                         <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                     </Entry.Effects>
                 </Entry>
             </Frame>
+            <Label
+                IsVisible="{Binding Password.IsValid, Converter={xct:InvertedBoolConverter}}"
+				Text="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+				TextColor="{StaticResource FailColor}" />
         </StackLayout>
         <StackLayout
             Margin="20, 0"
@@ -87,18 +129,39 @@
                 Text="Confirm Password"
                 Style="{StaticResource Body1_MulishSemiBold}"></Label>
             <Frame
+                x:Name="ConfirmPasswordFrame"
                 Style="{StaticResource Base_FrameEntry}">
                 <Entry
                     IsPassword="True"
                     Placeholder="Confirm your password"
                     ReturnCommand="{Binding SignUpCommand}"
-                    Text="{Binding ConfirmPassword}"
+                    Text="{Binding ConfirmPassword.Value}"
                     Style="{StaticResource Base_Entry}">
+                    <Entry.Behaviors>
+                        <xct:UserStoppedTypingBehavior
+							Command="{Binding ValidateCommand}"
+							CommandParameter="confirmPassword"
+                            StoppedTypingTimeThreshold="50"
+                            ShouldDismissKeyboardAutomatically="False"/>
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger 
+							TargetType="Entry"
+							Binding="{Binding ConfirmPassword.IsValid}"
+							Value="False">
+                            <Setter TargetName="ConfirmPasswordFrame" Property="Frame.BorderColor" Value="{StaticResource FailColor}" />
+                            <Setter TargetName="SignupButton" Property="Button.IsEnabled" Value="False" />
+                        </DataTrigger>
+                    </Entry.Triggers>
                     <Entry.Effects>
                         <xct:RemoveBorderEffect></xct:RemoveBorderEffect>
                     </Entry.Effects>
                 </Entry>
             </Frame>
+            <Label
+                IsVisible="{Binding ConfirmPassword.IsValid, Converter={xct:InvertedBoolConverter}}"
+				Text="{Binding ConfirmPassword.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+				TextColor="{StaticResource FailColor}" />
         </StackLayout>
         <Button 
             x:Name="SignupButton"
