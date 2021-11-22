@@ -22,7 +22,8 @@
                         Style="{StaticResource Base_Entry}">
                         <Entry.Behaviors>
                             <xct:UserStoppedTypingBehavior
-							    Command="{Binding ValidateNameCommand}"
+							    Command="{Binding ValidateCommand}"
+							    CommandParameter="name"
                                 StoppedTypingTimeThreshold="50"
                                 ShouldDismissKeyboardAutomatically="False"/>
                         </Entry.Behaviors>

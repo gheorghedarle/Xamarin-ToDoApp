@@ -48,7 +48,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
             _listRepository = listRepository;
 
             CreateCommand = new Command(CreateCommandHandler);
-            ValidateNameCommand = new Command(ValidateNameCommandHandler);
+            ValidateNameCommand = new Command<string>(ValidateCommandHandler);
 
             AddValidations();
         }
@@ -57,9 +57,12 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
         #region Validation Handlers
 
-        private void ValidateNameCommandHandler()
+        private void ValidateCommandHandler(string field)
         {
-            Name.Validate();
+            switch (field)
+            {
+                case "name": Name.Validate(); break;
+            }
         }
 
         #endregion
