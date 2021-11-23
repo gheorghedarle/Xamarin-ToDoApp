@@ -40,7 +40,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         public ICommand CreateCommand { get; set; }
         public ICommand OpenListDialogCommand { get; set; }
 
-        public ICommand ValidateNameCommand { get; set; }
+        public ICommand ValidateCommand { get; set; }
 
         #endregion
 
@@ -57,7 +57,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
             CreateCommand = new Command(CreateCommandHandler);
             OpenListDialogCommand = new Command(OpenListDialogCommandHandler);
 
-            ValidateNameCommand = new Command<string>(ValidateCommandHandler);
+            ValidateCommand = new Command<string>(ValidateCommandHandler);
 
             AddValidations();
         }

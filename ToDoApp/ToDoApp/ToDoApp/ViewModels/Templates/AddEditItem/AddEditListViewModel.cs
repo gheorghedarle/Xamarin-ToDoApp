@@ -35,7 +35,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
         public ICommand CreateCommand { get; set; }
 
-        public ICommand ValidateNameCommand { get; set; }
+        public ICommand ValidateCommand { get; set; }
 
         #endregion
 
@@ -48,7 +48,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
             _listRepository = listRepository;
 
             CreateCommand = new Command(CreateCommandHandler);
-            ValidateNameCommand = new Command<string>(ValidateCommandHandler);
+            ValidateCommand = new Command<string>(ValidateCommandHandler);
 
             AddValidations();
         }

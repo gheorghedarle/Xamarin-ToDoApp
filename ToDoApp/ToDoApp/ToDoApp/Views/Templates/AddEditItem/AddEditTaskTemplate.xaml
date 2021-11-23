@@ -33,6 +33,7 @@
 							    Binding="{Binding Name.IsValid}"
 							    Value="False">
                                 <Setter TargetName="NameFrame" Property="Frame.BorderColor" Value="{StaticResource FailColor}" />
+                                <Setter TargetName="AddButton" Property="Button.IsEnabled" Value="False" />
                             </DataTrigger>
                         </Entry.Triggers>
                         <Entry.Effects>
@@ -82,6 +83,7 @@
             </StackLayout>
         </StackLayout>
         <Button
+            x:Name="AddButton"
             Command="{Binding CreateCommand}"
             Grid.Row="1"
             Margin="0, 0, 0, 15"
