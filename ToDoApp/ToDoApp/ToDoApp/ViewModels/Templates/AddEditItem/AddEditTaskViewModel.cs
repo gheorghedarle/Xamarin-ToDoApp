@@ -24,13 +24,17 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         private IDialogService _dialogService;
         private IFirestoreRepository<TaskModel> _taskRepository;
 
+        private bool _archived;
+        private string _id;
+
         #endregion
 
         #region Properties
 
         public ObservableCollection<ListModel> ProjectList { get; set; }
-        public TaskModel AddTask { get; set; }
         public ValidatableObject<string> Name { get; set; }
+        public ValidatableObject<string> List { get; set; }
+        public ValidatableObject<DateTime> Date { get; set; }
         public string Mode { get; set; }
 
         #endregion
@@ -71,6 +75,8 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
             switch (field)
             {
                 case "name": Name.Validate(); break;
+                case "list": List.Validate(); break;
+                case "date": Date.Validate(); break;
             }
         }
 
@@ -85,16 +91,16 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                 var auth = DependencyService.Get<IFirebaseAuthentication>();
                 var userId = auth.GetUserId();
 
-                if(Mode == "Edit")
+                if (Mode == "Edit")
                 {
                     var model = new TaskModel()
                     {
                         archived = false,
-                        list = AddTask.listObject.name,
-                        task = AddTask.task,
+                        list = List.Value,
+                        task = Name.Value,
                         userId = userId,
-                        date = AddTask.dateObject.ToString("dd/MM/yyyy"),
-                        id = AddTask.id
+                        date = Date.Value.ToString("dd/MM/yyyy"),
+                        id = _id
                     };
                     await _taskRepository.Update(model);
                 }
@@ -103,10 +109,10 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                     var model = new TaskModel()
                     {
                         archived = false,
-                        list = AddTask.listObject.name,
-                        task = AddTask.task,
+                        list = List.Value,
+                        task = Name.Value,
                         userId = userId,
-                        date = AddTask.dateObject.ToString("dd/MM/yyyy")
+                        date = Date.Value.ToString("dd/MM/yyyy")
                     };
                     await _taskRepository.Add(model);
                 }
@@ -125,11 +131,12 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
             var param = new DialogParameters()
             {
                 { "fromPage", "AddEdit" },
-                { "selectedItem", AddTask.list }
+                { "selectedItem", List.Value }
             };
-            _dialogService.ShowDialog(nameof(ListDialog), param, (IDialogResult r) => {
+            _dialogService.ShowDialog(nameof(ListDialog), param, (IDialogResult r) =>
+            {
                 var res = r.Parameters.GetValue<string>("selectedList");
-                AddTask.list = res;
+                List.Value = res;
             });
         }
 
@@ -146,24 +153,18 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
             if (Mode == "Edit")
             {
-                AddTask = new TaskModel()
-                {
-                    task = task.task,
-                    archived = task.archived,
-                    dateObject = DateTime.ParseExact(task.date, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                    list = task.list,
-                    id = task.id
-                };
+                Name.Value = task.task;
+                _archived = task.archived;
+                Date.Value = DateTime.ParseExact(task.date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                List.Value = task.list;
+                _id = task.id;
             }
             else
             {
-                AddTask = new TaskModel()
-                {
-                    task = Constants.DefaultTask.task,
-                    archived = Constants.DefaultTask.archived,
-                    dateObject = Constants.DefaultTask.dateObject,
-                    list = Constants.DefaultTask.list,
-                };
+                Name.Value = Constants.DefaultTask.task;
+                _archived = Constants.DefaultTask.archived;
+                Date.Value = Constants.DefaultTask.dateObject;
+                List.Value = Constants.DefaultTask.list;
             }
         }
 
@@ -174,8 +175,12 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         private void AddValidations()
         {
             Name = new ValidatableObject<string>();
+            List = new ValidatableObject<string>();
+            Date = new ValidatableObject<DateTime>();
 
             Name.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A name is required." });
+            List.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A list is required." });
+            Date.Validations.Add(new IsNotNullOrEmptyRule<DateTime> { ValidationMessage = "A date is required." });
         }
 
         #endregion

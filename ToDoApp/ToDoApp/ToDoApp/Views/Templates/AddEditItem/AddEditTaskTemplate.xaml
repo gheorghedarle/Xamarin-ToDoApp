@@ -58,7 +58,7 @@
                         <TapGestureRecognizer Command="{Binding OpenListDialogCommand}"></TapGestureRecognizer>
                     </Frame.GestureRecognizers>
                     <Label
-                        Text="{Binding AddTask.list}"
+                        Text="{Binding List.Value}"
                         Style="{StaticResource Subtitle1_MulishRegular}">
                     </Label>
                 </Frame>
@@ -72,7 +72,7 @@
                     Style="{StaticResource Base_FrameEntry}">
                     <DatePicker
                         FontFamily="Mulish_Regular"
-                        Date="{Binding AddTask.dateObject}"
+                        Date="{Binding Date.Value}"
                         Format="dd/MM/yyyy"
                         Style="{StaticResource Base_DatePicker}">
                         <DatePicker.Effects>
