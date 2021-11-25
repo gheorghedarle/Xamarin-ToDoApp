@@ -33,6 +33,11 @@
 							    Binding="{Binding Name.IsValid}"
 							    Value="False">
                                 <Setter TargetName="NameFrame" Property="Frame.BorderColor" Value="{StaticResource FailColor}" />
+                            </DataTrigger>
+                            <DataTrigger 
+							    TargetType="Entry"
+							    Binding="{Binding Name.IsButtonActive}"
+							    Value="False">
                                 <Setter TargetName="AddButton" Property="Button.IsEnabled" Value="False" />
                             </DataTrigger>
                         </Entry.Triggers>
@@ -52,6 +57,7 @@
                     Text="List"
                     Style="{StaticResource Body1_MulishSemiBold}"></Label>
                 <Frame
+                    x:Name="ListFrame"
                     Style="{StaticResource Base_FrameEntry}"
                     Padding="15, 10">
                     <Frame.GestureRecognizers>
@@ -69,6 +75,7 @@
                     Text="Date"
                     Style="{StaticResource Body1_MulishSemiBold}"></Label>
                 <Frame
+                    x:Name="DateFrame"
                     Style="{StaticResource Base_FrameEntry}">
                     <DatePicker
                         FontFamily="Mulish_Regular"

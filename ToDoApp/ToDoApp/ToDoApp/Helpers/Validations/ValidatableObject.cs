@@ -10,6 +10,8 @@ namespace ToDoApp.Helpers.Validations
         private List<string> _errors;
         private T _value;
         private bool _isValid;
+        private bool _isButtonActive;
+        private bool _isFirstTime;
 
         public List<IValidationRule<T>> Validations => _validations;
 
@@ -43,9 +45,21 @@ namespace ToDoApp.Helpers.Validations
             }
         }
 
+        public bool IsButtonActive
+        {
+            get => _isButtonActive;
+            set
+            {
+                _isButtonActive = value;
+                RaisePropertyChanged(() => IsButtonActive);
+            }
+        }
+
         public ValidatableObject()
         {
             _isValid = true;
+            _isButtonActive = false;
+            _isFirstTime = true;
             _errors = new List<string>();
             _validations = new List<IValidationRule<T>>();
         }
@@ -54,11 +68,21 @@ namespace ToDoApp.Helpers.Validations
         {
             Errors.Clear();
 
-            IEnumerable<string> errors = _validations.Where(v => !v.Check(Value))
-                .Select(v => v.ValidationMessage);
+            if (_isFirstTime)
+            {
+                _isFirstTime = false;
+                IsValid = true;
+                IsButtonActive = false;
+            }
+            else
+            {
+                IEnumerable<string> errors = _validations.Where(v => !v.Check(Value))
+                    .Select(v => v.ValidationMessage);
 
-            Errors = errors.ToList();
-            IsValid = !Errors.Any();
+                Errors = errors.ToList();
+                IsValid = !Errors.Any();
+                IsButtonActive = !Errors.Any();
+            }
 
             return this.IsValid;
         }
