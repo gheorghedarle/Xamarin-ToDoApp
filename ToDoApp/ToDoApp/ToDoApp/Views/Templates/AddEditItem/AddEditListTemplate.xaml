@@ -20,6 +20,9 @@
                         Text="{Binding Name.Value}"
                         Style="{StaticResource Base_Entry}">
                         <Entry.Behaviors>
+                            <xct:EventToCommandBehavior
+                                EventName="Completed"
+                                Command="{Binding CreateCommand}"></xct:EventToCommandBehavior>
                             <xct:UserStoppedTypingBehavior
 							    Command="{Binding ValidateCommand}"
 							    CommandParameter="name"

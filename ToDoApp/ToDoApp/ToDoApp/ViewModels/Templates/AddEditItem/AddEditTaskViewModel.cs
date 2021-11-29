@@ -35,6 +35,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         public ValidatableObject<string> Name { get; set; }
         public ValidatableObject<string> List { get; set; }
         public ValidatableObject<DateTime> Date { get; set; }
+        public DateTime MinDate { get; set; }
         public string Mode { get; set; }
 
         #endregion
@@ -64,6 +65,8 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
             ValidateCommand = new Command<string>(ValidateCommandHandler);
 
             AddValidations();
+
+            MinDate = DateTime.Now;
         }
 
         #endregion

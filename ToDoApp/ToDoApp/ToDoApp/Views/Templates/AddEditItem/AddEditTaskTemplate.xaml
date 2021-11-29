@@ -21,6 +21,9 @@
                         Text="{Binding Name.Value}"
                         Style="{StaticResource Base_Entry}">
                         <Entry.Behaviors>
+                            <xct:EventToCommandBehavior
+                                EventName="Completed"
+                                Command="{Binding CreateCommand}"></xct:EventToCommandBehavior>
                             <xct:UserStoppedTypingBehavior
 							    Command="{Binding ValidateCommand}"
 							    CommandParameter="name"
@@ -68,6 +71,10 @@
                         Style="{StaticResource Subtitle1_MulishRegular}">
                     </Label>
                 </Frame>
+                <Label
+                    IsVisible="{Binding List.IsValid, Converter={xct:InvertedBoolConverter}}"
+					Text="{Binding List.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+					TextColor="{StaticResource FailColor}" />
             </StackLayout>
             <StackLayout
                 Spacing="5">
@@ -80,6 +87,7 @@
                     <DatePicker
                         FontFamily="Mulish_Regular"
                         Date="{Binding Date.Value}"
+                        MinimumDate="{Binding MinDate}"
                         Format="dd/MM/yyyy"
                         Style="{StaticResource Base_DatePicker}">
                         <DatePicker.Effects>
@@ -87,6 +95,10 @@
                         </DatePicker.Effects>
                     </DatePicker>
                 </Frame>
+                <Label
+                    IsVisible="{Binding Date.IsValid, Converter={xct:InvertedBoolConverter}}"
+					Text="{Binding Date.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+					TextColor="{StaticResource FailColor}" />
             </StackLayout>
         </StackLayout>
         <Button
