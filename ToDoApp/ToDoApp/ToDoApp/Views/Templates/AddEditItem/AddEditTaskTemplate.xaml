@@ -36,11 +36,6 @@
 							    Binding="{Binding Name.IsValid}"
 							    Value="False">
                                 <Setter TargetName="NameFrame" Property="Frame.BorderColor" Value="{StaticResource FailColor}" />
-                            </DataTrigger>
-                            <DataTrigger 
-							    TargetType="Entry"
-							    Binding="{Binding Name.IsButtonActive}"
-							    Value="False">
                                 <Setter TargetName="AddButton" Property="Button.IsEnabled" Value="False" />
                             </DataTrigger>
                         </Entry.Triggers>

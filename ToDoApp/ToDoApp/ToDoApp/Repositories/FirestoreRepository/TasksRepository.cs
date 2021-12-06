@@ -63,7 +63,7 @@ namespace ToDoApp.Repositories.FirestoreRepository
                 await CrossCloudFirestore.Current
                         .Instance
                         .Collection("tasks")
-                        .Document(model.id)
+                        .Document(model.Id)
                         .UpdateAsync(model);
                 return true;
             }
@@ -98,7 +98,7 @@ namespace ToDoApp.Repositories.FirestoreRepository
                 await CrossCloudFirestore.Current
                         .Instance
                         .Collection("tasks")
-                        .Document(model.id)
+                        .Document(model.Id)
                         .DeleteAsync();
                 return true;
             }

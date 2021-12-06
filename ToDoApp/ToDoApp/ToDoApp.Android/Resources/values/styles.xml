@@ -6,7 +6,7 @@
     <item name="android:windowIsTranslucent">false</item>
     <item name="android:windowIsFloating">false</item>
     <item name="android:backgroundDimEnabled">true</item>
-    <item name="android:statusBarColor">#001532</item>
+    <item name="android:statusBarColor">#212121</item>
   </style>
   <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="colorPrimary">#212121</item>

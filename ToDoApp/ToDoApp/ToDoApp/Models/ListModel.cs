@@ -5,11 +5,15 @@ namespace ToDoApp.Models
     public class ListModel : BaseModel
     {
         [Id]
-        public string id { get; set; }
-        public string name { get; set; }
-        public string color { get; set; }
+        [MapTo("id")]
+        public string Id { get; set; }
+        [MapTo("name")]
+        public string Name { get; set; }
+        [MapTo("color")]
+        public string Color { get; set; }
         [Ignored]
         public ColorModel colorObject { get; set; }
-        public string userId { get; set; }
+        [MapTo("userId")]
+        public string UserId { get; set; }
     }
 }

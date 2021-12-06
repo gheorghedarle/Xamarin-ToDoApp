@@ -2,7 +2,7 @@
 {
     public class ColorModel: BaseModel
     {
-        public string name { get; set; }
-        public string color { get; set; }
+        public string Name { get; set; }
+        public string Color { get; set; }
     }
 }

@@ -14,43 +14,41 @@ namespace ToDoApp.Helpers
         };
 
         public static List<ColorModel> ListColorList = new List<ColorModel>() {
-            new ColorModel() { name="Red", color = "#F9371C" },
-            new ColorModel() { name="Orange", color = "#F97C1C" },
-            new ColorModel() { name="Yellow", color = "#F9C81C" },
-            new ColorModel() { name="Turquoise", color = "#41D0B6" },
-            new ColorModel() { name="Cyan", color = "#2CADF6" },
-            new ColorModel() { name="Purple", color = "#6562FC" },
+            new ColorModel() { Name="Red", Color = "#F9371C" },
+            new ColorModel() { Name="Orange", Color = "#F97C1C" },
+            new ColorModel() { Name="Yellow", Color = "#F9C81C" },
+            new ColorModel() { Name="Turquoise", Color = "#41D0B6" },
+            new ColorModel() { Name="Cyan", Color = "#2CADF6" },
+            new ColorModel() { Name="Purple", Color = "#6562FC" },
         };
 
         public static ListModel InboxList = new ListModel() {
-            id = "zlDZNn3sNmyirSNs3mRY",
-            name = "Inbox",
-            userId = "Default",
-            color = "#F9371C"
+            Id = "zlDZNn3sNmyirSNs3mRY",
+            Name = "Inbox",
+            UserId = "Default",
+            Color = "#F9371C"
         };
 
         public static ListModel AllLists = new ListModel()
         {
-            id = "alllist",
-            name = "All lists",
-            userId = "Default",
-            color = "#F9371C",
-            colorObject = ListColorList.First()
+            Id = "alllist",
+            Name = "All lists",
+            UserId = "Default",
+            Color = "#F9371C",
         };
 
         public static TaskModel DefaultTask = new TaskModel()
         {
-            task = "",
-            archived = false,
-            dateObject = DateTime.Today,
-            listObject = InboxList,
-            list = "Inbox"
+            Task = "",
+            Archived = false,
+            List = "Inbox",
+            Date = DateTime.Now.ToString("dd/MM/yyyy")
         };
 
         public static ListModel DefaultList = new ListModel()
         {
-            name = "",
-            colorObject = ListColorList.First()
+            Name = "",
+            Color = "#F9371C",
         };
     }
 }

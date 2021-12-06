@@ -71,15 +71,20 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
         private async void CreateCommandHandler()
         {
+            if(IsFormValid())
+            {
+                return;
+            }
+
             try
             {
                 var auth = DependencyService.Get<IFirebaseAuthentication>();
                 var userId = auth.GetUserId();
                 var model = new ListModel()
                 {
-                    name = AddList.name,
-                    color = AddList.colorObject.color,
-                    userId = userId
+                    Name = AddList.Name,
+                    Color = AddList.colorObject.Color,
+                    UserId = userId
                 };
                 await _listRepository.Add(model);
                 await _navigationService.GoBackAsync();
@@ -107,7 +112,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
             {
                 AddList = new ListModel()
                 {
-                    name = Constants.DefaultList.name,
+                    Name = Constants.DefaultList.Name,
                     colorObject = Constants.DefaultList.colorObject,
                 };
             }
@@ -115,16 +120,20 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
             {
                 AddList = new ListModel()
                 {
-                    name = Constants.DefaultList.name,
+                    Name = Constants.DefaultList.Name,
                     colorObject = Constants.DefaultList.colorObject,
                 };
             }
         }
 
-        #endregion        
-        
+        #endregion
+
         #region Private Methods
 
+        private bool IsFormValid()
+        {
+            return Name.IsValid;
+        }
         private void AddValidations()
         {
             Name = new ValidatableObject<string>();

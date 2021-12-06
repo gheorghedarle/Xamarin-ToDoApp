@@ -111,7 +111,7 @@ namespace ToDoApp.ViewModels
 
         private void CheckTaskCommandHandler(TaskModel task)
         {
-            task.archived = !task.archived;
+            task.Archived = !task.Archived;
             _taskRepository.Update(task);
         }
 
@@ -166,20 +166,20 @@ namespace ToDoApp.ViewModels
 
         private void OnItemDragged(TaskModel item)
         {
-            Debug.WriteLine($"OnItemDragged: {item?.task}");
+            Debug.WriteLine($"OnItemDragged: {item?.Task}");
             TaskList.ForEach(i => i.isBeingDragged = item == i);
         }
 
         private void OnItemDraggedOver(TaskModel item)
         {
-            Debug.WriteLine($"OnItemDraggedOver: {item?.task}");
+            Debug.WriteLine($"OnItemDraggedOver: {item?.Task}");
             var itemBeingDragged = TaskList.FirstOrDefault(i => i.isBeingDragged);
             TaskList.ForEach(i => i.isBeingDraggedOver = item == i && item != itemBeingDragged);
         }
 
         private void OnItemDragLeave(TaskModel item)
         {
-            Debug.WriteLine($"OnItemDragLeave: {item?.task}");
+            Debug.WriteLine($"OnItemDragLeave: {item?.Task}");
             TaskList.ForEach(i => i.isBeingDraggedOver = false);
         }
 
@@ -241,14 +241,14 @@ namespace ToDoApp.ViewModels
                 }));
             _disposables.Add(query.ObserveModified()
                  .Select(change => change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate))
-                 .Select(taskItem => (TaskItem: taskItem, ViewModel: TaskList.FirstOrDefault(x => x.id == taskItem.id)))
+                 .Select(taskItem => (TaskItem: taskItem, ViewModel: TaskList.FirstOrDefault(x => x.Id == taskItem.Id)))
                  .Where(t => t.ViewModel != null)
                  .Subscribe(t =>
                  {
                      t.ViewModel.Update(t.TaskItem);
                  }));
             _disposables.Add(query.ObserveRemoved()
-                 .Select(change => TaskList.FirstOrDefault(x => x.id == change.Document.Id))
+                 .Select(change => TaskList.FirstOrDefault(x => x.Id == change.Document.Id))
                  .Subscribe(viewModel =>
                  {
                      TaskList.Remove(viewModel);

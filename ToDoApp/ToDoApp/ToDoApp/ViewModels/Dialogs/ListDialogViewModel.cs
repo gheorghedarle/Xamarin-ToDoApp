@@ -60,16 +60,16 @@ namespace ToDoApp.ViewModels.Dialogs
 
         private void ChangeSelectListCommandHandler()
         {
-            var list = ProjectList.First(a => a.name == _list);
+            var list = ProjectList.First(a => a.Name == _list);
             if(SelectedList != list)
             {
                 if(_fromPage == "More")
                 {
-                    Preferences.Set("taskFilterByList", SelectedList.name);
+                    Preferences.Set("taskFilterByList", SelectedList.Name);
                 }
                 var param = new DialogParameters()
                 {
-                    { "selectedList", SelectedList.name }
+                    { "selectedList", SelectedList.Name }
                 };
                 RequestClose(param);
             }
@@ -96,12 +96,12 @@ namespace ToDoApp.ViewModels.Dialogs
             if(selectedItem == null)
             {
                 _list = Preferences.Get("taskFilterByList", "All lists");
-                SelectedList = ProjectList.First(a => a.name == _list);
+                SelectedList = ProjectList.First(a => a.Name == _list);
             }
             else
             {
                 _list = selectedItem;
-                SelectedList = ProjectList.First(a => a.name == selectedItem);
+                SelectedList = ProjectList.First(a => a.Name == selectedItem);
             }
 
             MainState = LayoutState.None;

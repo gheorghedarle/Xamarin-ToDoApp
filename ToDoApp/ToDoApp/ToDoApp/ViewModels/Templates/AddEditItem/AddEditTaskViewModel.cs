@@ -89,6 +89,10 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
         private async void CreateCommandHandler()
         {
+            if(!IsFormValid())
+            {
+                return;
+            }
             try
             {
                 var auth = DependencyService.Get<IFirebaseAuthentication>();
@@ -98,12 +102,12 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                 {
                     var model = new TaskModel()
                     {
-                        archived = false,
-                        list = List.Value,
-                        task = Name.Value,
-                        userId = userId,
-                        date = Date.Value.ToString("dd/MM/yyyy"),
-                        id = _id
+                        Archived = false,
+                        List = List.Value,
+                        Task = Name.Value,
+                        UserId = userId,
+                        Date = Date.Value.ToString("dd/MM/yyyy"),
+                        Id = _id
                     };
                     await _taskRepository.Update(model);
                 }
@@ -111,11 +115,11 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                 {
                     var model = new TaskModel()
                     {
-                        archived = false,
-                        list = List.Value,
-                        task = Name.Value,
-                        userId = userId,
-                        date = Date.Value.ToString("dd/MM/yyyy")
+                        Archived = false,
+                        List = List.Value,
+                        Task = Name.Value,
+                        UserId = userId,
+                        Date = Date.Value.ToString("dd/MM/yyyy")
                     };
                     await _taskRepository.Add(model);
                 }
@@ -156,24 +160,29 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
             if (Mode == "Edit")
             {
-                Name.Value = task.task;
-                _archived = task.archived;
-                Date.Value = DateTime.ParseExact(task.date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                List.Value = task.list;
-                _id = task.id;
+                Name.Value = task.Task;
+                _archived = task.Archived;
+                Date.Value = DateTime.ParseExact(task.Date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                List.Value = task.List;
+                _id = task.Id;
             }
             else
             {
-                Name.Value = Constants.DefaultTask.task;
-                _archived = Constants.DefaultTask.archived;
-                Date.Value = Constants.DefaultTask.dateObject;
-                List.Value = Constants.DefaultTask.list;
+                Name.Value = Constants.DefaultTask.Task;
+                _archived = Constants.DefaultTask.Archived;
+                Date.Value = DateTime.ParseExact(Constants.DefaultTask.Date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                List.Value = Constants.DefaultTask.List;
             }
         }
 
         #endregion
 
         #region Private Methods
+
+        private bool IsFormValid()
+        {
+            return Name.IsButtonActive && List.IsButtonActive && Date.IsButtonActive;
+        }
 
         private void AddValidations()
         {

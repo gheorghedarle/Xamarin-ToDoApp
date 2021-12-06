@@ -39,7 +39,7 @@
                         <Label
                             x:Name="ListName"
                             Style="{StaticResource Body1_MulishRegular}"
-                            Text="{Binding name}"
+                            Text="{Binding Name}"
                             Margin="10, 5, 0, 5">
                         </Label>
                     </StackLayout>

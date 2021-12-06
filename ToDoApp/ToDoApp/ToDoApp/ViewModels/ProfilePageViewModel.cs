@@ -123,7 +123,7 @@ namespace ToDoApp.ViewModels
             {
                 TotalLists = lists.Count,
                 TotalTasks = tasks.Count,
-                DoneTasks = tasks.ToObjects<TaskModel>().Count(t => t.archived == true)
+                DoneTasks = tasks.ToObjects<TaskModel>().Count(t => t.Archived == true)
             };
         }
 
