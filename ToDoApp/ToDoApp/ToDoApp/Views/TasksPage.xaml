@@ -279,7 +279,7 @@
                                     Margin="0, 5, 0, 0"
                                     IsVisible="{Binding isBeingDraggedOver}" />
                                 <SwipeView
-                                    IsEnabled="{Binding archived, Converter={xct:InvertedBoolConverter}}"
+                                    IsEnabled="{Binding Archived, Converter={xct:InvertedBoolConverter}}"
                                     BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}">
                                     <SwipeView.RightItems>
                                         <SwipeItems>
@@ -331,7 +331,7 @@
                                             <VisualStateGroup>
                                                 <VisualState x:Name="normal">
                                                     <VisualState.StateTriggers>
-                                                        <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                        <StateTrigger IsActive="{Binding Archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
                                                     </VisualState.StateTriggers>
                                                     <VisualState.Setters>
                                                         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardBackgroundColor}, Dark={StaticResource DarkCardBackgroundColor}}"/>
@@ -341,7 +341,7 @@
                                                 </VisualState>
                                                 <VisualState x:Name="done">
                                                     <VisualState.StateTriggers>
-                                                        <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                        <StateTrigger IsActive="{Binding Archived}"></StateTrigger>
                                                     </VisualState.StateTriggers>
                                                     <VisualState.Setters>
                                                         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightCardDoneBackgroundColor}, Dark={StaticResource DarkCardDoneBackgroundColor}}"/>
@@ -359,7 +359,7 @@
                                                 Grid.Row="0"
                                                 Grid.Column="0"
                                                 Grid.RowSpan="2"
-                                                Text="{Binding archived, Converter={StaticResource DoneIconConverter}}"
+                                                Text="{Binding Archived, Converter={StaticResource DoneIconConverter}}"
                                                 FontSize="25"
                                                 HorizontalOptions="Start"
                                                 VerticalOptions="Center"
@@ -368,7 +368,7 @@
                                                     <VisualStateGroup>
                                                         <VisualState x:Name="normal">
                                                             <VisualState.StateTriggers>
-                                                                <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                                <StateTrigger IsActive="{Binding Archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
                                                             </VisualState.StateTriggers>
                                                             <VisualState.Setters>
                                                                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
@@ -377,7 +377,7 @@
                                                         </VisualState>
                                                         <VisualState x:Name="done">
                                                             <VisualState.StateTriggers>
-                                                                <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                                <StateTrigger IsActive="{Binding Archived}"></StateTrigger>
                                                             </VisualState.StateTriggers>
                                                             <VisualState.Setters>
                                                                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDisabledTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
@@ -390,7 +390,7 @@
                                             <Label 
                                                 Grid.Row="0"
                                                 Grid.Column="1"
-                                                Text="{Binding task}"
+                                                Text="{Binding Task}"
                                                 FontFamily="Mulish_ExtraBold"
                                                 FontSize="{StaticResource Body2FontSize}"
                                                 Margin="10, 0"
@@ -399,7 +399,7 @@
                                                     <VisualStateGroup>
                                                         <VisualState x:Name="normal">
                                                             <VisualState.StateTriggers>
-                                                                <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                                <StateTrigger IsActive="{Binding Archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
                                                             </VisualState.StateTriggers>
                                                             <VisualState.Setters>
                                                                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
@@ -407,7 +407,7 @@
                                                         </VisualState>
                                                         <VisualState x:Name="done">
                                                             <VisualState.StateTriggers>
-                                                                <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                                <StateTrigger IsActive="{Binding Archived}"></StateTrigger>
                                                             </VisualState.StateTriggers>
                                                             <VisualState.Setters>
                                                                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDisabledTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
@@ -419,7 +419,7 @@
                                             <Label 
                                                 Grid.Row="1"
                                                 Grid.Column="1"
-                                                Text="{Binding list}"
+                                                Text="{Binding List}"
                                                 FontFamily="Mulish_Regular"
                                                 FontSize="{StaticResource Body1FontSize}"
                                                 Margin="10, 0"
@@ -428,7 +428,7 @@
                                                     <VisualStateGroup>
                                                         <VisualState x:Name="normal">
                                                             <VisualState.StateTriggers>
-                                                                <StateTrigger IsActive="{Binding archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                                <StateTrigger IsActive="{Binding Archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
                                                             </VisualState.StateTriggers>
                                                             <VisualState.Setters>
                                                                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
@@ -436,7 +436,7 @@
                                                         </VisualState>
                                                         <VisualState x:Name="done">
                                                             <VisualState.StateTriggers>
-                                                                <StateTrigger IsActive="{Binding archived}"></StateTrigger>
+                                                                <StateTrigger IsActive="{Binding Archived}"></StateTrigger>
                                                             </VisualState.StateTriggers>
                                                             <VisualState.Setters>
                                                                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDisabledTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>

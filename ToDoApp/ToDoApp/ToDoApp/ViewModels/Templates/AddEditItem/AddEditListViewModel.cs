@@ -71,7 +71,8 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
         private async void CreateCommandHandler()
         {
-            if(IsFormValid())
+            ValidateForm();
+            if (IsFormValid())
             {
                 return;
             }
@@ -132,8 +133,14 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
         private bool IsFormValid()
         {
-            return Name.IsValid;
+            return Name.IsButtonActive;
         }
+
+        private void ValidateForm()
+        {
+            Name.Validate();
+        }
+
         private void AddValidations()
         {
             Name = new ValidatableObject<string>();
