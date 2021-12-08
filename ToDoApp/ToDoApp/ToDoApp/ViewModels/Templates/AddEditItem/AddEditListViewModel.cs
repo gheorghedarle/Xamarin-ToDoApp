@@ -26,6 +26,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
         public ListModel AddList { get; set; }
         public ValidatableObject<string> Name { get; set; }
+        public ValidatableObject<string> Color { get; set; }
         public ObservableCollection<ColorModel> ColorList { get; set; }
         public string Mode { get; set; }
 
@@ -62,6 +63,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
             switch (field)
             {
                 case "name": Name.Validate(); break;
+                case "color": Color.Validate(); break;
             }
         }
 
@@ -83,8 +85,8 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                 var userId = auth.GetUserId();
                 var model = new ListModel()
                 {
-                    Name = AddList.Name,
-                    Color = AddList.colorObject.Color,
+                    Name = Name.Value,
+                    Color = Color.Value,
                     UserId = userId
                 };
                 await _listRepository.Add(model);
@@ -131,6 +133,11 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
         #region Private Methods
 
+        private void InitForm()
+        {
+            Color.Value = Constants.DefaultList.Color;
+        }
+
         private bool IsFormValid()
         {
             return Name.IsButtonActive;
@@ -139,13 +146,16 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         private void ValidateForm()
         {
             Name.Validate();
+            Color.Validate();
         }
 
         private void AddValidations()
         {
             Name = new ValidatableObject<string>();
+            Color = new ValidatableObject<string>();
 
             Name.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A name is required." });
+            Color.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A color is required." });
         }
 
         #endregion

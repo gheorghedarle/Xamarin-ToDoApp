@@ -11,8 +11,6 @@ namespace ToDoApp.Models
         public string Name { get; set; }
         [MapTo("color")]
         public string Color { get; set; }
-        [Ignored]
-        public ColorModel colorObject { get; set; }
         [MapTo("userId")]
         public string UserId { get; set; }
     }

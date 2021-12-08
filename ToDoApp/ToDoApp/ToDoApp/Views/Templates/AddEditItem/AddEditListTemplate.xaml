@@ -55,7 +55,7 @@
                     Style="{StaticResource Body1_MulishSemiBold}"></Label>
                 <CollectionView
                     ItemsSource="{Binding ColorList}"
-                    SelectedItem="{Binding AddList.Color}"
+                    SelectedItem="{Binding AddList.colorObject}"
                     SelectionMode="Single">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"></LinearItemsLayout>

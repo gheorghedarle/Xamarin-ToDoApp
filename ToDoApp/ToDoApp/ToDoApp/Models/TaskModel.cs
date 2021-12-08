@@ -1,5 +1,4 @@
 ﻿using Plugin.CloudFirestore.Attributes;
-using System;
 using ToDoApp.Models.Interfaces;
 
 namespace ToDoApp.Models
@@ -13,12 +12,10 @@ namespace ToDoApp.Models
         public bool Archived { get; set; }
         [MapTo("list")]
         public string List { get; set; }
-        [Ignored]
         [MapTo("task")]
         public string Task { get; set; }
         [MapTo("date")]
         public string Date { get; set; }
-        [Ignored]
         [MapTo("userId")]
         public string UserId { get; set; }
 

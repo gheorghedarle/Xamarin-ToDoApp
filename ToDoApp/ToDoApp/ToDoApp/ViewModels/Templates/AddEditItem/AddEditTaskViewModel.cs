@@ -66,7 +66,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
             AddValidations();
 
-            MinDate = DateTime.Now;
+            InitForm();
         }
 
         #endregion
@@ -179,6 +179,13 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         #endregion
 
         #region Private Methods
+
+        private void InitForm()
+        {
+            MinDate = DateTime.Now;
+            Date.Value = MinDate;
+            Date.Validate();
+        }
 
         private bool IsFormValid()
         {
