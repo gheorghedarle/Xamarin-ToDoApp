@@ -76,7 +76,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         private async void CreateCommandHandler()
         {
             ValidateForm();
-            if (IsFormValid())
+            if (!IsFormValid())
             {
                 return;
             }

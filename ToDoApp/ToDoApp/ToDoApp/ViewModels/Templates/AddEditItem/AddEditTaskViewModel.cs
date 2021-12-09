@@ -174,6 +174,9 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                 Date.Value = DateTime.ParseExact(Constants.DefaultTask.Date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 List.Value = Constants.DefaultTask.List;
             }
+
+            List.Validate();
+            Date.Validate();
         }
 
         #endregion
@@ -183,8 +186,6 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         private void InitForm()
         {
             MinDate = DateTime.Now;
-            Date.Value = MinDate;
-            Date.Validate();
         }
 
         private bool IsFormValid()

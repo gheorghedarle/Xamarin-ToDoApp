@@ -56,7 +56,8 @@
                 <CollectionView
                     ItemsSource="{Binding ColorList}"
                     SelectedItem="{Binding Color.Value}"
-                    SelectionMode="Single">
+                    SelectionMode="Single"
+                    HeightRequest="45">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"></LinearItemsLayout>
                     </CollectionView.ItemsLayout>
