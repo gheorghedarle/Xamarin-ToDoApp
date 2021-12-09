@@ -55,7 +55,7 @@
                     Style="{StaticResource Body1_MulishSemiBold}"></Label>
                 <CollectionView
                     ItemsSource="{Binding ColorList}"
-                    SelectedItem="{Binding AddList.colorObject}"
+                    SelectedItem="{Binding Color.Value}"
                     SelectionMode="Single">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"></LinearItemsLayout>
@@ -85,7 +85,7 @@
                                 <Frame
                                     x:Name="Circle"
                                     xct:TouchEffect.NativeAnimation="True"
-                                    BackgroundColor="{Binding Name}"
+                                    BackgroundColor="{Binding .}"
                                     CornerRadius="40">
                                 </Frame>
                             </StackLayout>

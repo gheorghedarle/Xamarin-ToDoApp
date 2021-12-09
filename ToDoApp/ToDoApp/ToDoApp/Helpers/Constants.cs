@@ -13,13 +13,13 @@ namespace ToDoApp.Helpers
             "list"
         };
 
-        public static List<ColorModel> ListColorList = new List<ColorModel>() {
-            new ColorModel() { Name="Red", Color = "#F9371C" },
-            new ColorModel() { Name="Orange", Color = "#F97C1C" },
-            new ColorModel() { Name="Yellow", Color = "#F9C81C" },
-            new ColorModel() { Name="Turquoise", Color = "#41D0B6" },
-            new ColorModel() { Name="Cyan", Color = "#2CADF6" },
-            new ColorModel() { Name="Purple", Color = "#6562FC" },
+        public static List<string> ListColorList = new List<string>() {
+            "#F9371C",
+            "#F97C1C",
+            "#F9C81C",
+            "#41D0B6",
+            "#2CADF6",
+            "#6562FC"
         };
 
         public static ListModel InboxList = new ListModel() {

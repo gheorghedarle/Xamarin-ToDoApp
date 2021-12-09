@@ -27,7 +27,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
         public ListModel AddList { get; set; }
         public ValidatableObject<string> Name { get; set; }
         public ValidatableObject<string> Color { get; set; }
-        public ObservableCollection<ColorModel> ColorList { get; set; }
+        public ObservableCollection<string> ColorList { get; set; }
         public string Mode { get; set; }
 
         #endregion
@@ -52,6 +52,8 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
             ValidateCommand = new Command<string>(ValidateCommandHandler);
 
             AddValidations();
+
+            InitForm();
         }
 
         #endregion
@@ -109,14 +111,13 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
             var list = navigationContext.Parameters.GetValue<ListModel>("list");
 
             Mode = isEdit ? "Edit" : "Add";
-            ColorList = new ObservableCollection<ColorModel>(Constants.ListColorList);
 
             if (Mode == "Edit")
             {
                 AddList = new ListModel()
                 {
                     Name = Constants.DefaultList.Name,
-                    colorObject = Constants.DefaultList.colorObject,
+                    Color = Constants.DefaultList.Color,
                 };
             }
             else
@@ -124,7 +125,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                 AddList = new ListModel()
                 {
                     Name = Constants.DefaultList.Name,
-                    colorObject = Constants.DefaultList.colorObject,
+                    Color = Constants.DefaultList.Color,
                 };
             }
         }
@@ -135,6 +136,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
         private void InitForm()
         {
+            ColorList = new ObservableCollection<string>(Constants.ListColorList);
             Color.Value = Constants.DefaultList.Color;
         }
 
