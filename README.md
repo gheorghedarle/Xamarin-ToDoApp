@@ -9,7 +9,7 @@ Todo App is a simple to do app developed with Xamarin and Firebase. The app allo
 ## Screenshots
 
 #### Light mode
-
+<img src="https://github.com/gheorghedarle/Xamarin-ToDoApp/blob/main/Screenshots/light_mode.png?raw=true" Width="1620" /> 
 #### Dark mode
 
 ## Libraries
