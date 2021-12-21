@@ -110,7 +110,15 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                         Date = Date.Value.ToString("dd/MM/yyyy"),
                         Id = _id
                     };
-                    await _taskRepository.Update(model);
+                    var wasUpdated = await _taskRepository.Update(model);
+                    if(wasUpdated)
+                    {
+                        await _navigationService.GoBackAsync();
+                    }
+                    else
+                    {
+                        // display error message
+                    }
                 }
                 else
                 {
@@ -122,14 +130,20 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                         UserId = userId,
                         Date = Date.Value.ToString("dd/MM/yyyy")
                     };
-                    await _taskRepository.Add(model);
+                    var wasAdded = await _taskRepository.Add(model);
+                    if (wasAdded)
+                    {
+                        await _navigationService.GoBackAsync();
+                    }
+                    else
+                    {
+                        // display error message
+                    }
                 }
-
-                await _navigationService.GoBackAsync();
             }
             catch (Exception ex)
             {
-                //display error message
+                // display error message
                 Debug.Write(ex.Message);
             }
         }

@@ -71,17 +71,17 @@ namespace ToDoApp.ViewModels.Templates.Auth
                     if (created)
                     {
                         ClearAuthData();
-                        //CurrentAuthScreen = "Login";
                         Debug.WriteLine("User Created");
                     }
                     else
                     {
-                        // display error
+                        // display error message
                     }
                 }
             }
             catch (Exception ex)
             {
+                // display error message
                 Debug.WriteLine(ex);
             }
             finally

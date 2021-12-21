@@ -91,8 +91,15 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                     Color = Color.Value,
                     UserId = userId
                 };
-                await _listRepository.Add(model);
-                await _navigationService.GoBackAsync();
+                var wasAdded = await _listRepository.Add(model);
+                if(wasAdded)
+                {
+                    await _navigationService.GoBackAsync();
+                }
+                else
+                {
+                    //display error message
+                }
             }
             catch (Exception ex)
             {
