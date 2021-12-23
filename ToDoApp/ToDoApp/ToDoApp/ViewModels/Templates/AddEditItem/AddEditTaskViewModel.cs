@@ -117,7 +117,11 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                     }
                     else
                     {
-                        // display error message
+                        var param = new DialogParameters()
+                        {
+                            { "message", Constants.Errors.GeneralError }
+                        };
+                        _dialogService.ShowDialog(nameof(ErrorDialog), param);
                     }
                 }
                 else
@@ -137,13 +141,21 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                     }
                     else
                     {
-                        // display error message
+                        var param = new DialogParameters()
+                        {
+                            { "message", Constants.Errors.GeneralError }
+                        };
+                        _dialogService.ShowDialog(nameof(ErrorDialog), param);
                     }
                 }
             }
             catch (Exception ex)
             {
-                // display error message
+                var param = new DialogParameters()
+                {
+                    { "message", Constants.Errors.GeneralError }
+                };
+                _dialogService.ShowDialog(nameof(ErrorDialog), param);
                 Debug.Write(ex.Message);
             }
         }

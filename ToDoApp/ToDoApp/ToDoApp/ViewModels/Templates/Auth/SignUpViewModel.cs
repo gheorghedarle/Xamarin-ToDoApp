@@ -1,10 +1,13 @@
 ﻿using Prism.Navigation;
+using Prism.Services.Dialogs;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
 using ToDoApp.Auth;
+using ToDoApp.Helpers;
 using ToDoApp.Helpers.Validations;
 using ToDoApp.Helpers.Validations.Rules;
+using ToDoApp.Views.Dialogs;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 
@@ -12,6 +15,12 @@ namespace ToDoApp.ViewModels.Templates.Auth
 {
     public class SignUpViewModel : BaseRegionViewModel
     {
+        #region Private & Protected
+
+        private IDialogService _dialogService;
+
+        #endregion
+
         #region Properties
         public ValidatableObject<string> Username { get; set; }
         public ValidatableObject<string> Email { get; set; }
@@ -30,8 +39,11 @@ namespace ToDoApp.ViewModels.Templates.Auth
         #region Constructors
 
         public SignUpViewModel(
+            IDialogService dialogService,
             INavigationService navigationService) : base(navigationService)
         {
+            _dialogService = dialogService;
+
             SignUpCommand = new Command(SignUpCommandHandler);
 
             ValidateCommand = new Command<string>(ValidateCommandHandler);
@@ -75,13 +87,21 @@ namespace ToDoApp.ViewModels.Templates.Auth
                     }
                     else
                     {
-                        // display error message
+                        var param = new DialogParameters()
+                        {
+                            { "message", Constants.Errors.GeneralError }
+                        };
+                        _dialogService.ShowDialog(nameof(ErrorDialog), param);
                     }
                 }
             }
             catch (Exception ex)
             {
-                // display error message
+                var param = new DialogParameters()
+                {
+                    { "message", Constants.Errors.GeneralError }
+                };
+                _dialogService.ShowDialog(nameof(ErrorDialog), param);
                 Debug.WriteLine(ex);
             }
             finally

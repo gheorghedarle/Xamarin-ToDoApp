@@ -79,6 +79,7 @@ namespace ToDoApp
             containerRegistry.RegisterForRegionNavigation<SignUpTemplate, SignUpViewModel>();
 
             containerRegistry.RegisterDialog<ListDialog, ListDialogViewModel>();
+            containerRegistry.RegisterDialog<ErrorDialog, ErrorDialogViewModel>();
         }
 
         protected override void OnStart()

@@ -1,11 +1,14 @@
 ﻿using Prism.Navigation;
+using Prism.Services.Dialogs;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
 using ToDoApp.Auth;
+using ToDoApp.Helpers;
 using ToDoApp.Helpers.Validations;
 using ToDoApp.Helpers.Validations.Rules;
 using ToDoApp.Views;
+using ToDoApp.Views.Dialogs;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -14,6 +17,12 @@ namespace ToDoApp.ViewModels.Templates.Auth
 {
     public class LoginViewModel : BaseRegionViewModel
     {
+        #region Private & Protected
+
+        private IDialogService _dialogService;
+
+        #endregion
+
         #region Properties
 
         public ValidatableObject<string> Email { get; set; }
@@ -26,14 +35,16 @@ namespace ToDoApp.ViewModels.Templates.Auth
         public ICommand LoginCommand { get; set; }
         public ICommand ValidateCommand { get; set; }
 
-
         #endregion
 
         #region Constructors
 
         public LoginViewModel(
+            DialogService dialogService,
             INavigationService navigationService) : base(navigationService)
         {
+            _dialogService = dialogService;
+
             LoginCommand = new Command(LoginCommandHandler);
 
             ValidateCommand = new Command<string>(ValidateCommandHandler);
@@ -76,13 +87,21 @@ namespace ToDoApp.ViewModels.Templates.Auth
                     }
                     else
                     {
-                        // display error message
+                        var param = new DialogParameters()
+                        {
+                            { "message", Constants.Errors.WrongUserOrPasswordError }
+                        };
+                        _dialogService.ShowDialog(nameof(ErrorDialog), param);
                     }
                 }
             }
             catch (Exception ex)
             {
-                // display error message
+                var param = new DialogParameters()
+                {
+                    { "message", Constants.Errors.GeneralError }
+                };
+                _dialogService.ShowDialog(nameof(ErrorDialog), param);
                 Debug.WriteLine(ex);
             }
             finally

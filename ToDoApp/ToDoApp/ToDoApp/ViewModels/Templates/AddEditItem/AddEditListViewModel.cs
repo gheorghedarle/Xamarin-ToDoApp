@@ -1,5 +1,6 @@
 ﻿using Prism.Navigation;
 using Prism.Regions.Navigation;
+using Prism.Services.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -10,6 +11,7 @@ using ToDoApp.Helpers.Validations;
 using ToDoApp.Helpers.Validations.Rules;
 using ToDoApp.Models;
 using ToDoApp.Repositories.FirestoreRepository;
+using ToDoApp.Views.Dialogs;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels.Templates.AddEditItem
@@ -18,6 +20,7 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
     {
         #region Private & Protected
 
+        private IDialogService _dialogService;
         private IFirestoreRepository<ListModel> _listRepository;
 
         #endregion
@@ -44,8 +47,10 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
 
         public AddEditListViewModel(
             INavigationService navigationService,
+            IDialogService dialogService,
             IFirestoreRepository<ListModel> listRepository) : base(navigationService)
         {
+            _dialogService = dialogService;
             _listRepository = listRepository;
 
             CreateCommand = new Command(CreateCommandHandler);
@@ -98,12 +103,20 @@ namespace ToDoApp.ViewModels.Templates.AddEditItem
                 }
                 else
                 {
-                    //display error message
+                    var param = new DialogParameters()
+                    {
+                        { "message", Constants.Errors.GeneralError }
+                    };
+                    _dialogService.ShowDialog(nameof(ErrorDialog), param);
                 }
             }
             catch (Exception ex)
             {
-                //display error message
+                var param = new DialogParameters()
+                {
+                    { "message", Constants.Errors.GeneralError }
+                };
+                _dialogService.ShowDialog(nameof(ErrorDialog), param);
                 Debug.Write(ex.Message);
             }
         }

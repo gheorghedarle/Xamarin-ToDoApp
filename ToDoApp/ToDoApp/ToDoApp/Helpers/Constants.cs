@@ -50,5 +50,11 @@ namespace ToDoApp.Helpers
             Name = "",
             Color = "#F9371C",
         };
+
+        public static class Errors
+        {
+            public static string GeneralError = "Something went wrong! Please wait a moment and try again.";
+            public static string WrongUserOrPasswordError = "The email or password is incorrect";
+        }
     }
 }
