@@ -17,6 +17,11 @@
                     VerticalOptions="FillAndExpand">
                     <fragments:LoadingView></fragments:LoadingView>
                 </xct:StateView>
+                <xct:StateView 
+                    StateKey="Error"
+                    VerticalOptions="FillAndExpand">
+                    <fragments:ErrorView></fragments:ErrorView>
+                </xct:StateView>
             </xct:StateLayout.StateViews>
             <fragments:ConnectionView
                 Grid.Row="0"/>

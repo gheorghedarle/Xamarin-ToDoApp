@@ -8,6 +8,10 @@
             BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
             Padding="20, 0, 20, 0"
             RowDefinitions="*, Auto, Auto, Auto">
+            <Image
+                Grid.Row="0"
+                Aspect="AspectFit"
+                Source="welcome.png"></Image>
             <Label
                 Grid.Row="1"
                 HorizontalTextAlignment="Center"

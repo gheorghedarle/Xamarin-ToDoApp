@@ -217,54 +217,62 @@ namespace ToDoApp.ViewModels
 
         private void CreateQueryForTasks(DateTime date)
         {
-            TaskListState = LayoutState.Loading;
-            _disposables.Clear();
-            TaskList.Clear();
-            IQuery query;
-            var auth = DependencyService.Get<IFirebaseAuthentication>();
-            var userId = auth.GetUserId();
-            var list = Preferences.Get("taskFilterByList", "All lists");
-            var hideDoneTask = Preferences.Get("hideDoneTasks", false);
-            SetFilterName(list);
-            query = list == "All lists" ?
-                hideDoneTask == false ?
-                _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy")) :
-                _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "archived", !hideDoneTask) :
-                hideDoneTask == false ?
-                _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "list", list) : 
-                _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "list", list, "archived", !hideDoneTask);
-            _disposables.Add(query.ObserveAdded()
-                .Select(change => (Object: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), Index: change.NewIndex))
-                .Subscribe(t =>
-                {
-                    TaskList.Insert(t.Index, t.Object);
-                }));
-            _disposables.Add(query.ObserveModified()
-                 .Select(change => change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate))
-                 .Select(taskItem => (TaskItem: taskItem, ViewModel: TaskList.FirstOrDefault(x => x.Id == taskItem.Id)))
-                 .Where(t => t.ViewModel != null)
-                 .Subscribe(t =>
-                 {
-                     t.ViewModel.Update(t.TaskItem);
-                 }));
-            _disposables.Add(query.ObserveRemoved()
-                 .Select(change => TaskList.FirstOrDefault(x => x.Id == change.Document.Id))
-                 .Subscribe(viewModel =>
-                 {
-                     TaskList.Remove(viewModel);
-                 }));
-            _disposables.Add(query.AsObservable()
-                .Subscribe(list =>
-                {
-                    if (list.Count == 0)
-                    {
-                        TaskListState = LayoutState.Empty;
-                    }
-                    else
-                    {
-                        TaskListState = LayoutState.None;
-                    }
-                }));
+            //try
+            //{
+            //    TaskListState = LayoutState.Loading;
+            //    _disposables.Clear();
+            //    TaskList.Clear();
+            //    IQuery query;
+            //    var auth = DependencyService.Get<IFirebaseAuthentication>();
+            //    var userId = auth.GetUserId();
+            //    var list = Preferences.Get("taskFilterByList", "All lists");
+            //    var hideDoneTask = Preferences.Get("hideDoneTasks", false);
+            //    SetFilterName(list);
+            //    query = list == "All lists" ?
+            //        hideDoneTask == false ?
+            //        _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy")) :
+            //        _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "archived", !hideDoneTask) :
+            //        hideDoneTask == false ?
+            //        _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "list", list) :
+            //        _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "list", list, "archived", !hideDoneTask);
+            //    _disposables.Add(query.ObserveAdded()
+            //        .Select(change => (Object: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), Index: change.NewIndex))
+            //        .Subscribe(t =>
+            //        {
+            //            TaskList.Insert(t.Index, t.Object);
+            //        }));
+            //    _disposables.Add(query.ObserveModified()
+            //         .Select(change => change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate))
+            //         .Select(taskItem => (TaskItem: taskItem, ViewModel: TaskList.FirstOrDefault(x => x.Id == taskItem.Id)))
+            //         .Where(t => t.ViewModel != null)
+            //         .Subscribe(t =>
+            //         {
+            //             t.ViewModel.Update(t.TaskItem);
+            //         }));
+            //    _disposables.Add(query.ObserveRemoved()
+            //         .Select(change => TaskList.FirstOrDefault(x => x.Id == change.Document.Id))
+            //         .Subscribe(viewModel =>
+            //         {
+            //             TaskList.Remove(viewModel);
+            //         }));
+            //    _disposables.Add(query.AsObservable()
+            //        .Subscribe(list =>
+            //        {
+            //            if (list.Count == 0)
+            //            {
+            //                TaskListState = LayoutState.Empty;
+            //            }
+            //            else
+            //            {
+            //                TaskListState = LayoutState.None;
+            //            }
+            //        }));
+            //}
+            //catch(Exception ex)
+            //{
+                MainState = LayoutState.Error;
+                //Debug.WriteLine(ex.Message);
+            //}
         }
 
         private void SetUserName()

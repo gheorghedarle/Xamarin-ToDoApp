@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoApp.Views.Fragments.ErrorView"
+             RowDefinitions="*, Auto"
+             RowSpacing="0"
+             Margin="15, 0, 15, 0">
+    <Image
+        Grid.Row="0"
+        Aspect="AspectFit"
+        Source="error.png"></Image>
+    <StackLayout 
+        Grid.Row="1">
+        <Label
+            Text="Error"
+            Style="{StaticResource Headline4_MulishBlack}"/>
+        <Label
+            Text="Oops, something went wrong! Please wait few moments and try again."
+            Style="{StaticResource Body1_MulishRegular}"
+            Margin="0, 10, 0, 15"></Label>
+        <Button
+            Text="TRY AGAIN"
+            Style="{StaticResource Base_Button}"
+            Command="{Binding TryAgainCommand}"
+            Margin="0, 0, 0, 25"></Button>
+    </StackLayout>
+</Grid>
