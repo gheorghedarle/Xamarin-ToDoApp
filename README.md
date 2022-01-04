@@ -1,4 +1,4 @@
-<img src="https://github.com/gheorghedarle/Xamarin-ToDoApp/blob/main/app_icon.png" width="96" /> 
+<img src="https://github.com/gheorghedarle/Xamarin-ToDoApp/blob/main/Screenshots/app_icon.png" width="96" /> 
 
 # Xamarin ToDo App
 
