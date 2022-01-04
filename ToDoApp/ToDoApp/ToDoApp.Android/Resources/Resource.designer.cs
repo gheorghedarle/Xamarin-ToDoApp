@@ -26198,19 +26198,22 @@ namespace ToDoApp.Droid
 			public const int splash_background = 2131165348;
 			
 			// aapt resource value: 0x7F0700A5
-			public const int splash_screen = 2131165349;
+			public const int splash_logo = 2131165349;
 			
 			// aapt resource value: 0x7F0700A6
-			public const int test_custom_background = 2131165350;
+			public const int splash_screen = 2131165350;
 			
 			// aapt resource value: 0x7F0700A7
-			public const int tooltip_frame_dark = 2131165351;
+			public const int test_custom_background = 2131165351;
 			
 			// aapt resource value: 0x7F0700A8
-			public const int tooltip_frame_light = 2131165352;
+			public const int tooltip_frame_dark = 2131165352;
 			
 			// aapt resource value: 0x7F0700A9
-			public const int welcome = 2131165353;
+			public const int tooltip_frame_light = 2131165353;
+			
+			// aapt resource value: 0x7F0700AA
+			public const int welcome = 2131165354;
 			
 			static Drawable()
 			{

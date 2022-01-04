@@ -10,8 +10,8 @@
         android:angle="-90" />
     </shape>
   </item>
-  <!--<item>
+  <item>
     <bitmap android:src="@drawable/splash_logo"
     android:gravity="center" />
-  </item>-->
+  </item>
 </layer-list>

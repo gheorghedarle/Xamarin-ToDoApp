@@ -6,16 +6,17 @@
     <ContentPage.Content>
         <Grid
             BackgroundColor="{AppThemeBinding Light={StaticResource LightPageBackgroundColor}, Dark={StaticResource DarkPageBackgroundColor}}"
-            Padding="20, 0, 20, 0"
             RowDefinitions="*, Auto, Auto, Auto">
             <Image
                 Grid.Row="0"
                 Aspect="AspectFit"
-                Source="welcome.png"></Image>
+                Source="welcome.png"
+                HorizontalOptions="EndAndExpand"
+                Margin="20, 0, 0, 0"></Image>
             <Label
                 Grid.Row="1"
                 HorizontalTextAlignment="Center"
-                Margin="30, 20, 30, 0"
+                Margin="30, 20, 30, 10"
                 Style="{StaticResource Headline4_MulishBlack}"
                 Text="Manage your daily tasks in one place"></Label>
             <Label
@@ -23,19 +24,16 @@
                 HorizontalTextAlignment="Center"
                 Margin="0, 0, 0, 30"
                 Style="{StaticResource Body1_MulishRegular}"
-                Text="Organize your daily tasks with ToDo app"></Label>
+                Text="Organize your daily tasks with ToDo app."
+                TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"></Label>
             <Button
                 BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
                 Command="{Binding GetStartedCommand}"
-                CornerRadius="30"
-                FontFamily="Mulish_Bold"
-                FontSize="{StaticResource ButtonFontSize}"
                 Grid.Row="3"
-                Margin="0, 0, 0, 30"
-                Padding="20, 20"
+                Margin="20, 0, 20, 30"
                 Text="Login"
-                TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
-                VerticalOptions="End"></Button>
+                VerticalOptions="End"
+                Style="{StaticResource Base_Button}"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -12,16 +12,20 @@
     <StackLayout 
         Grid.Row="1">
         <Label
+            HorizontalTextAlignment="Center"
+            Margin="30, 20, 30, 10"
             Text="Error"
-            Style="{StaticResource Headline4_MulishBlack}"/>
+            Style="{StaticResource Headline4_MulishBlack}"></Label>
         <Label
-            Text="Oops, something went wrong! Please wait few moments and try again."
+            HorizontalTextAlignment="Center"
+            Margin="0, 0, 0, 30"
             Style="{StaticResource Body1_MulishRegular}"
-            Margin="0, 10, 0, 15"></Label>
+            Text="Oops, something went wrong! Please wait few moments and try again."
+            TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"></Label>
         <Button
             Text="TRY AGAIN"
             Style="{StaticResource Base_Button}"
             Command="{Binding TryAgainCommand}"
-            Margin="0, 0, 0, 25"></Button>
+            Margin="0, 20, 0, 25"></Button>
     </StackLayout>
 </Grid>
