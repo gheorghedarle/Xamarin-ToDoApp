@@ -133,7 +133,7 @@
       <Version>8.1.97</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI">
-      <Version>17.1.9</Version>
+      <Version>17.1.17</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Firebase.iOS.Auth">
       <Version>6.9.2</Version>
