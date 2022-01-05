@@ -25,6 +25,15 @@ Todo App is a simple to do app developed with Xamarin and Firebase. The app allo
 - [Firebase Firestore](https://github.com/f-miyu/Plugin.CloudFirestore)
 
 ## Setup
+The app is using **Firebase**. To start the project you need to create a Firebase project. 
+#### Android
+- In the **Firebase Console** go to **Project settings**
+- Add **Android App** and add **com.gheorghedarle.todoapp** as **Android package name** and click on **Register app**
+- Download **google-services.json** and add it to root of the **Android project** in the solution. Select **GoogleServicesJson** as **Build Action** in the **Properties** of the file
+#### iOS
+- In the **Firebase Console** go to **Project settings**
+- Add **iOS App** and add **com.gheorghedarle.todoapp** as **Apple bundle ID** and click on **Register app**
+- Download **GoogleService-Info.plist** and add it to root of the **iOS project** in the solution. Select **BundleResource** as **Build Action** in the **Properties** of the file
 
 ## Resources
 Illustrations are from [Icons8](https://icons8.com/illustrations/style--3d-flame)
