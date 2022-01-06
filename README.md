@@ -4,7 +4,11 @@
 
 ![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg)
 
-Todo App is a simple to do app developed with Xamarin and Firebase. The app allows you to create tasks and organize them into lists. The app is available in light mode and dark mode.
+Todo App is a simple to do app developed with **Xamarin** and **Firebase**. The app allows you to create tasks and organize them into lists. The app is available in light mode and dark mode.
+
+If you like this repository you can buy me a coffee on
+
+<a href="https://www.buymeacoffee.com/gheorghedarle" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee"></a>
 
 ## Screenshots
 
