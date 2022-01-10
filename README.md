@@ -4,7 +4,11 @@
 
 ![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg)
 
-Todo App is a simple to do app developed with Xamarin and Firebase. The app allows you to create tasks and organize them into lists. The app is available in light mode and dark mode.
+Todo App is a simple to do app developed with **Xamarin** and **Firebase**. The app allows you to create an account and login to create tasks and organize them into lists. You can see the tasks for the selected date in realtime mode, edit and delete them with swipe action, reorder them using drag and drop action and filter them by list from More screen. From Profile screen you can hide completed tasks on the main screen and see the total number of tasks, of completed tasks and lists that you created for your account. The app is available in both **light** and **dark mode**.
+
+If you like this repository you can support me on
+
+<a href="https://www.buymeacoffee.com/gheorghedarle" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg" alt="Buy Me A Coffee" width="175"></a>
 
 ## Screenshots
 
@@ -21,8 +25,8 @@ Todo App is a simple to do app developed with Xamarin and Firebase. The app allo
 - [Xamarin Firebase Auth](https://github.com/xamarin/GooglePlayServicesComponents) (Firebase Authentication)
 - [Prism.Forms](https://github.com/PrismLibrary/Prism) (MVVM, Dialogs)
 - [Fody](https://github.com/Fody/Fody)
-- [Reactive UI](https://github.com/reactiveui/ReactiveUI)
-- [Firebase Firestore](https://github.com/f-miyu/Plugin.CloudFirestore)
+- [Reactive UI](https://github.com/reactiveui/ReactiveUI) (Realtime)
+- [Firebase Firestore](https://github.com/f-miyu/Plugin.CloudFirestore) (CRUD Operations)
 
 ## Setup
 The app is using **Firebase**. To start the project you need to create a Firebase project. 
