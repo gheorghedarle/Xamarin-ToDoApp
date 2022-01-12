@@ -1,7 +1,9 @@
-﻿using Prism.Navigation;
+﻿using Prism.Events;
+using Prism.Navigation;
 using Prism.Regions;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using ToDoApp.Events;
 using Xamarin.Forms;
 
 namespace ToDoApp.ViewModels
@@ -13,6 +15,7 @@ namespace ToDoApp.ViewModels
         #region Private & Protected
 
         private IRegionManager _regionManager { get; }
+        private SwitchViewEvent _switchViewEvent;
 
         #endregion
 
@@ -37,13 +40,17 @@ namespace ToDoApp.ViewModels
 
         public AuthPageViewModel(
             INavigationService navigationService,
-            IRegionManager regionManager) : base(navigationService)
+            IRegionManager regionManager,
+            IEventAggregator eventAggregator) : base(navigationService)
         {
             _regionManager = regionManager;
             
             BackCommand = new Command(BackCommandHandler);
             SwitchToLoginCommand = new Command(SwitchToLoginCommandHandler);
             SwitchToSignUpCommand = new Command(SwitchToSignUpCommandHandler);
+
+            _switchViewEvent = eventAggregator.GetEvent<SwitchViewEvent>();
+            _switchViewEvent.Subscribe(SwitchViewEventHandler);
         }
 
         public void Initialize(INavigationParameters parameters)
@@ -69,6 +76,20 @@ namespace ToDoApp.ViewModels
         {
             CurrentAuthScreen = "signup";
             Title = "Sign Up";
+        }
+
+        private void SwitchViewEventHandler(string view)
+        {
+            if(view == "Login")
+            {
+                CurrentAuthScreen = "login";
+                Title = "Login";
+            }
+            else if (view == "SignUp")
+            {
+                CurrentAuthScreen = "signup";
+                Title = "Sign Up";
+            }
         }
 
         #endregion

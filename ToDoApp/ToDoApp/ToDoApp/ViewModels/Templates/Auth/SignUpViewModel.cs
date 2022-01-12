@@ -1,9 +1,11 @@
-﻿using Prism.Navigation;
+﻿using Prism.Events;
+using Prism.Navigation;
 using Prism.Services.Dialogs;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
 using ToDoApp.Auth;
+using ToDoApp.Events;
 using ToDoApp.Helpers;
 using ToDoApp.Helpers.Validations;
 using ToDoApp.Helpers.Validations.Rules;
@@ -18,6 +20,7 @@ namespace ToDoApp.ViewModels.Templates.Auth
         #region Private & Protected
 
         private IDialogService _dialogService;
+        private readonly IEventAggregator _eventAggregator;
 
         #endregion
 
@@ -40,9 +43,11 @@ namespace ToDoApp.ViewModels.Templates.Auth
 
         public SignUpViewModel(
             IDialogService dialogService,
-            INavigationService navigationService) : base(navigationService)
+            INavigationService navigationService,
+            IEventAggregator eventAggregator) : base(navigationService)
         {
             _dialogService = dialogService;
+            _eventAggregator = eventAggregator;
 
             SignUpCommand = new Command(SignUpCommandHandler);
 
@@ -82,6 +87,7 @@ namespace ToDoApp.ViewModels.Templates.Auth
 
                     if (created)
                     {
+                        _eventAggregator.GetEvent<SwitchViewEvent>().Publish("Login");
                         ClearAuthData();
                         Debug.WriteLine("User Created");
                     }
@@ -130,10 +136,10 @@ namespace ToDoApp.ViewModels.Templates.Auth
 
         private bool ValidateSignUpData()
         {
-            if (Username.IsValid ||
-                Email.IsValid ||
-                Password.IsValid ||
-                ConfirmPassword.IsValid ||
+            if (Username.IsValid == false ||
+                Email.IsValid == false ||
+                Password.IsValid == false ||
+                ConfirmPassword.IsValid == false ||
                 !Password.Value.Equals(ConfirmPassword.Value))
                 return false;
             return true;
