@@ -19,7 +19,6 @@
         <CollectionView
             ItemsSource="{Binding ProjectList}"
             SelectedItem="{Binding SelectedList}"
-            SelectionChangedCommand="{Binding ChangeSelectListCommand}"
             SelectionMode="Single"
             HeightRequest="150">
             <CollectionView.ItemTemplate>
@@ -46,5 +45,9 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Button
+            Text="Select"
+            Style="{StaticResource Base_Button}"
+            Command="{Binding ChangeSelectListCommand}"></Button>
     </StackLayout>
 </Frame>

@@ -48,7 +48,6 @@ namespace ToDoApp.ViewModels.Dialogs
             IFirestoreRepository<ListModel> listRepository) : base(navigationService)
         {
             _listRepository = listRepository;
-
             ChangeSelectListCommand = new Command(ChangeSelectListCommandHandler);
 
             MainState = LayoutState.Loading;
@@ -61,18 +60,15 @@ namespace ToDoApp.ViewModels.Dialogs
         private void ChangeSelectListCommandHandler()
         {
             var list = ProjectList.First(a => a.Name == _list);
-            if(SelectedList != list)
+            if(_fromPage == "More")
             {
-                if(_fromPage == "More")
-                {
-                    Preferences.Set("taskFilterByList", SelectedList.Name);
-                }
-                var param = new DialogParameters()
-                {
-                    { "selectedList", SelectedList.Name }
-                };
-                RequestClose(param);
+                Preferences.Set("taskFilterByList", SelectedList.Name);
             }
+            var param = new DialogParameters()
+            {
+                { "selectedList", SelectedList.Name }
+            };
+            RequestClose(param);
         }
 
         #endregion
@@ -96,12 +92,12 @@ namespace ToDoApp.ViewModels.Dialogs
             if(selectedItem == null)
             {
                 _list = Preferences.Get("taskFilterByList", "All lists");
-                SelectedList = ProjectList.First(a => a.Name == _list);
+                SelectedList = ProjectList.FirstOrDefault(a => a.Name == _list);
             }
             else
             {
                 _list = selectedItem;
-                SelectedList = ProjectList.First(a => a.Name == selectedItem);
+                SelectedList = ProjectList.FirstOrDefault(a => a.Name == selectedItem);
             }
 
             MainState = LayoutState.None;
@@ -119,7 +115,7 @@ namespace ToDoApp.ViewModels.Dialogs
             var querySnapshot = await _listRepository.GetAll(userId).GetAsync();
             var list = querySnapshot.ToObjects<ListModel>();
             var listToAdd = new List<ListModel>();
-            if (list.Count() > 0)
+            if (list.Count() >= 0)
             {
                 listToAdd = list.ToList();
                 listToAdd.Insert(0, Constants.InboxList);
