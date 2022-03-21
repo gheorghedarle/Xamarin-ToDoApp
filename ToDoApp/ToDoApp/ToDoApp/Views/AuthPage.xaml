@@ -44,6 +44,8 @@
                          IsVisible="{Binding CurrentAuthScreen, Converter={xct:EqualConverter}, ConverterParameter='login'}"/>
             <ContentView prism:RegionManager.RegionName="SignUpRegion"
                          IsVisible="{Binding CurrentAuthScreen, Converter={xct:EqualConverter}, ConverterParameter='signup'}"/>
+            <ContentView prism:RegionManager.RegionName="ResetPasswordRegion"
+                         IsVisible="{Binding CurrentAuthScreen, Converter={xct:EqualConverter}, ConverterParameter='reset'}"/>
             <Label
                 IsVisible="{Binding CurrentAuthScreen, Converter={xct:EqualConverter}, ConverterParameter='login'}"
                 HorizontalTextAlignment="Center"

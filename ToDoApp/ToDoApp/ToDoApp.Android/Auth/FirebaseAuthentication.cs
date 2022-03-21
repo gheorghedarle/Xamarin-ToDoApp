@@ -48,9 +48,16 @@ namespace ToDoApp.Droid.Auth
             }
         }
 
-        public Task<bool> ForgetPassword(string email)
+        public async Task ForgetPassword(string email)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await FirebaseAuth.Instance.SendPasswordResetEmailAsync(email);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
 
         public string GetUsername()

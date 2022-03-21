@@ -87,7 +87,11 @@
         <Label
             Text="Forgot password?"
             Style="{StaticResource Base_Link}"
-            Margin="20, 10"></Label>
+            Margin="20, 10">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ResetCommand}"></TapGestureRecognizer>
+            </Label.GestureRecognizers>
+        </Label>
         <Button
             x:Name="LoginButton"
             IsEnabled="False"

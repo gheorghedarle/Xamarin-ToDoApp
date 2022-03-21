@@ -77,6 +77,7 @@ namespace ToDoApp
 
             containerRegistry.RegisterForRegionNavigation<LoginTemplate, LoginViewModel>();
             containerRegistry.RegisterForRegionNavigation<SignUpTemplate, SignUpViewModel>();
+            containerRegistry.RegisterForRegionNavigation<ResetPasswordTemplate, ResetPasswordViewModel>();
 
             containerRegistry.RegisterDialog<ListDialog, ListDialogViewModel>();
             containerRegistry.RegisterDialog<ErrorDialog, ErrorDialogViewModel>();

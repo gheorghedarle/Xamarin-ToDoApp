@@ -50,9 +50,16 @@ namespace ToDoApp.iOS.Auth
             }
         }
 
-        public Task<bool> ForgetPassword(string email)
+        public async Task ForgetPassword(string email)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await Firebase.Auth.Auth.DefaultInstance.SendPasswordResetAsync(email);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
 
         public string GetUsername()

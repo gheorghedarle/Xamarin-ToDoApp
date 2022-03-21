@@ -33,6 +33,7 @@ namespace ToDoApp.ViewModels
         public ICommand SignUpCommand { get; set; }
         public ICommand SwitchToLoginCommand { get; set; }
         public ICommand SwitchToSignUpCommand { get; set; }
+        public ICommand SwitchToResetPasswordCommand { get; set; }
 
         #endregion
 
@@ -48,6 +49,7 @@ namespace ToDoApp.ViewModels
             BackCommand = new Command(BackCommandHandler);
             SwitchToLoginCommand = new Command(SwitchToLoginCommandHandler);
             SwitchToSignUpCommand = new Command(SwitchToSignUpCommandHandler);
+            SwitchToResetPasswordCommand = new Command(SwitchToResetPasswordCommandHandler);
 
             _switchViewEvent = eventAggregator.GetEvent<SwitchViewEvent>();
             _switchViewEvent.Subscribe(SwitchViewEventHandler);
@@ -60,6 +62,7 @@ namespace ToDoApp.ViewModels
 
             _regionManager.RequestNavigate("LoginRegion", "LoginTemplate");
             _regionManager.RequestNavigate("SignUpRegion", "SignUpTemplate");
+            _regionManager.RequestNavigate("ResetPasswordRegion", "ResetPasswordTemplate");
         }
 
         #endregion
@@ -78,6 +81,12 @@ namespace ToDoApp.ViewModels
             Title = "Sign Up";
         }
 
+        private void SwitchToResetPasswordCommandHandler()
+        {
+            CurrentAuthScreen = "reset";
+            Title = "ResetPassword";
+        }
+
         private void SwitchViewEventHandler(string view)
         {
             if(view == "Login")
@@ -89,6 +98,11 @@ namespace ToDoApp.ViewModels
             {
                 CurrentAuthScreen = "signup";
                 Title = "Sign Up";
+            }
+            else if (view == "Reset")
+            {
+                CurrentAuthScreen = "reset";
+                Title = "Reset Password";
             }
         }
 
