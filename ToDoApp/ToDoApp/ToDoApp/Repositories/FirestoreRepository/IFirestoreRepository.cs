@@ -5,7 +5,7 @@ namespace ToDoApp.Repositories.FirestoreRepository
 {
     public interface IFirestoreRepository<T>
     {
-        T Get();
+        Task<T> Get(string name);
         IQuery GetAll(string userId);
         IQuery GetAllContains(string userId, string field, object value);
         IQuery GetAllContains(string userId, string field1, object value1, string field2, object value2);

@@ -18,11 +18,14 @@ namespace ToDoApp.Models
         public string Date { get; set; }
         [MapTo("userId")]
         public string UserId { get; set; }
+        [Ignored]
+        public ListModel ListObj { get; set; }
 
         public void Update(TaskModel t)
         {
             Archived = t.Archived;
             Task = t.Task;
+            ListObj = t.ListObj;
         }
     }
 }

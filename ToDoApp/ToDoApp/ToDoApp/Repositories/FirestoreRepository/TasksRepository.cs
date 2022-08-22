@@ -8,7 +8,7 @@ namespace ToDoApp.Repositories.FirestoreRepository
 {
     public class TasksRepository : IFirestoreRepository<TaskModel>
     {
-        public TaskModel Get()
+        public Task<TaskModel> Get(string name)
         {
             throw new NotImplementedException();
         }
@@ -38,6 +38,7 @@ namespace ToDoApp.Repositories.FirestoreRepository
             var query = CrossCloudFirestore.Current
                 .Instance
                 .Collection("tasks")
+
                 .WhereEqualsTo(field1, value1)
                 .WhereEqualsTo(field2, value2)
                 .WhereEqualsTo("userId", userId);

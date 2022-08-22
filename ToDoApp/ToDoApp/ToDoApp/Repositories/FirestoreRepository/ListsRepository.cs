@@ -8,9 +8,15 @@ namespace ToDoApp.Repositories.FirestoreRepository
 {
     public class ListsRepository : IFirestoreRepository<ListModel>
     {
-        public ListModel Get()
+        public async Task<ListModel> Get(string name)
         {
-            throw new NotImplementedException();
+            var query = await CrossCloudFirestore.Current
+                .Instance
+                .Collection("lists")
+                .Document(name)
+                .GetAsync();
+
+            return query.ToObject<ListModel>();
         }
 
         public IQuery GetAll(string userId)

@@ -29,6 +29,7 @@ namespace ToDoApp.ViewModels
 
         private IDateService _dateService;
         private IFirestoreRepository<TaskModel> _taskRepository;
+        private IFirestoreRepository<ListModel> _listsRepository;
 
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
         private DayModel _selectedDay;
@@ -70,9 +71,11 @@ namespace ToDoApp.ViewModels
         public TasksPageViewModel(
             INavigationService navigationService,
             IFirestoreRepository<TaskModel> tasksRepository,
+            IFirestoreRepository<ListModel> listsRepository,
             IDateService dateService) : base(navigationService)
         {
             _taskRepository = tasksRepository;
+            _listsRepository = listsRepository;
             _dateService = dateService;
 
             CheckTaskCommand = new Command<TaskModel>(CheckTaskCommandHandler);
@@ -236,18 +239,32 @@ namespace ToDoApp.ViewModels
                     _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "list", list) :
                     _taskRepository.GetAllContains(userId, "date", date.ToString("dd/MM/yyyy"), "list", list, "archived", !hideDoneTask);
                 _disposables.Add(query.ObserveAdded()
-                    .Select(change => (Object: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), Index: change.NewIndex))
-                    .Subscribe(t =>
+                    .Select(change => (TaskItem: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), Index: change.NewIndex, DocumentChange: change))
+                    .Subscribe(async t =>
                     {
-                        TaskList.Insert(t.Index, t.Object);
+                        var listRes = t.DocumentChange.Document.Data.TryGetValue("list", out var list);
+                        if(listRes)
+                        {
+                            var listObject = await _listsRepository.Get(list.ToString());
+                            var task = t.TaskItem;
+                            task.ListObj = listObject;
+                            TaskList.Insert(t.Index, task);
+                        }
                     }));
                 _disposables.Add(query.ObserveModified()
-                     .Select(change => change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate))
-                     .Select(taskItem => (TaskItem: taskItem, ViewModel: TaskList.FirstOrDefault(x => x.Id == taskItem.Id)))
+                     .Select(change => (Object: change.Document.ToObject<TaskModel>(ServerTimestampBehavior.Estimate), DocumentChange: change))
+                     .Select(taskItem => (TaskItem: taskItem.Object, ViewModel: TaskList.FirstOrDefault(x => x.Id == taskItem.Object.Id), DocumentChange: taskItem.DocumentChange))
                      .Where(t => t.ViewModel != null)
-                     .Subscribe(t =>
+                     .Subscribe(async t =>
                      {
-                         t.ViewModel.Update(t.TaskItem);
+                         var listRes = t.DocumentChange.Document.Data.TryGetValue("list", out var list);
+                         if (listRes)
+                         {
+                             var listObject = await _listsRepository.Get(list.ToString());
+                             var task = t.TaskItem;
+                             task.ListObj = listObject;
+                             t.ViewModel.Update(task);
+                         }
                      }));
                 _disposables.Add(query.ObserveRemoved()
                      .Select(change => TaskList.FirstOrDefault(x => x.Id == change.Document.Id))
@@ -271,7 +288,7 @@ namespace ToDoApp.ViewModels
             catch (Exception ex)
             {
                 MainState = LayoutState.Error;
-                //Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
             }
         }
 

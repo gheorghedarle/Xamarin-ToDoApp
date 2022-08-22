@@ -358,7 +358,7 @@
                                         </VisualStateManager.VisualStateGroups>
                                         <Grid
                                             ColumnDefinitions="Auto, Auto"
-                                            RowDefinitions="Auto, Auto"
+                                            RowDefinitions="Auto, 30"
                                             RowSpacing="0">
                                             <Label
                                                 Grid.Row="0"
@@ -421,35 +421,45 @@
                                                     </VisualStateGroup>
                                                 </VisualStateManager.VisualStateGroups>
                                             </Label>
-                                            <Label 
+                                            <StackLayout
                                                 Grid.Row="1"
                                                 Grid.Column="1"
-                                                Text="{Binding List}"
-                                                FontFamily="Mulish_Regular"
-                                                FontSize="{StaticResource Body1FontSize}"
-                                                Margin="10, 0"
-                                                VerticalOptions="CenterAndExpand">
-                                                <VisualStateManager.VisualStateGroups>
-                                                    <VisualStateGroup>
-                                                        <VisualState x:Name="normal">
-                                                            <VisualState.StateTriggers>
-                                                                <StateTrigger IsActive="{Binding Archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
-                                                            </VisualState.StateTriggers>
-                                                            <VisualState.Setters>
-                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
-                                                            </VisualState.Setters>
-                                                        </VisualState>
-                                                        <VisualState x:Name="done">
-                                                            <VisualState.StateTriggers>
-                                                                <StateTrigger IsActive="{Binding Archived}"></StateTrigger>
-                                                            </VisualState.StateTriggers>
-                                                            <VisualState.Setters>
-                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDisabledTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
-                                                            </VisualState.Setters>
-                                                        </VisualState>
-                                                    </VisualStateGroup>
-                                                </VisualStateManager.VisualStateGroups>
-                                            </Label>
+                                                Orientation="Horizontal"
+                                                Margin="10, 5">
+                                                <BoxView
+                                                    Color="{Binding ListObj.Color}"
+                                                    CornerRadius="10"
+                                                    WidthRequest="10"
+                                                    HeightRequest="10"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Center"></BoxView>
+                                                <Label 
+                                                    Text="{Binding ListObj.Name}"
+                                                    FontFamily="Mulish_Regular"
+                                                    FontSize="{StaticResource Body1FontSize}"
+                                                    VerticalOptions="CenterAndExpand">
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup>
+                                                            <VisualState x:Name="normal">
+                                                                <VisualState.StateTriggers>
+                                                                    <StateTrigger IsActive="{Binding Archived, Converter={xct:InvertedBoolConverter}}"></StateTrigger>
+                                                                </VisualState.StateTriggers>
+                                                                <VisualState.Setters>
+                                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}"/>
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+                                                            <VisualState x:Name="done">
+                                                                <VisualState.StateTriggers>
+                                                                    <StateTrigger IsActive="{Binding Archived}"></StateTrigger>
+                                                                </VisualState.StateTriggers>
+                                                                <VisualState.Setters>
+                                                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightDisabledTextColor}, Dark={StaticResource DarkSecondaryTextColor}}"/>
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                </Label>
+                                            </StackLayout>
                                         </Grid>
                                     </Frame>
                                 </SwipeView>
