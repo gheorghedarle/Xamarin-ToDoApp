@@ -1,6 +1,7 @@
 ﻿using Plugin.CloudFirestore;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using ToDoApp.Models;
 
@@ -13,10 +14,11 @@ namespace ToDoApp.Repositories.FirestoreRepository
             var query = await CrossCloudFirestore.Current
                 .Instance
                 .Collection("lists")
-                .Document(name)
+                .WhereEqualsTo("name", name)
+                .LimitTo(1)
                 .GetAsync();
 
-            return query.ToObject<ListModel>();
+            return query.ToObjects<ListModel>().FirstOrDefault();
         }
 
         public IQuery GetAll(string userId)

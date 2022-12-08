@@ -248,7 +248,7 @@ namespace ToDoApp.ViewModels
                             var listObject = await _listsRepository.Get(list.ToString());
                             var task = t.TaskItem;
                             task.ListObj = listObject;
-                            TaskList.Insert(t.Index, task);
+                            TaskList.Add(task);
                         }
                     }));
                 _disposables.Add(query.ObserveModified()
