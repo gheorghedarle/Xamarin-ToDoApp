@@ -68,7 +68,7 @@
       <Version>8.1.97</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI">
-      <Version>19.4.1</Version>
+      <Version>19.5.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Firebase.Auth">
       <Version>122.0.0.2</Version>
@@ -76,7 +76,7 @@
     <PackageReference Include="Xamarin.Firebase.iOS.Core">
       <Version>8.10.0.3</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2612" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2622" />
     <PackageReference Include="Xamarin.Essentials" Version="1.8.0" />
   </ItemGroup>
   <ItemGroup>
